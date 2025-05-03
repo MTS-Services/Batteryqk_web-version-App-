@@ -1,4 +1,5 @@
 class AppText {
+  static const appTitle = "Batteryqk";
   static const homeTitle = "Find the Perfect Sports Academy or Nursery";
   static const homeSubTitle =
       "Discover top-rated sports academies and nurseries in your area. Book sessions easily and track your progress.";
