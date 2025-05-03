@@ -2,7 +2,6 @@ import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/authentication/views/menu_screen.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -18,7 +17,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     HomeScreen(),
     Container(color: Colors.yellow),
     Container(color: Colors.green),
-    MenuScreen(),
+    Container(color: Colors.green),
 
   ];
 
