@@ -205,8 +205,8 @@ class Points extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     gradient: LinearGradient(
                       colors: [
-                        AppColor.appLightGreenColor,
-                        AppColor.appGreenColor,
+                        const Color.fromARGB(255, 255, 255, 255),
+                        const Color.fromARGB(255, 255, 255, 255),
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -236,14 +236,14 @@ class Points extends StatelessWidget {
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               'Earned 10 points on April ${20 - index}, 2025',
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 13,
                               ),
                             ),
@@ -253,7 +253,7 @@ class Points extends StatelessWidget {
                       Text(
                         '+10',
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
@@ -281,7 +281,7 @@ class Points extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 1,
-                  shadowColor: AppColor.appGreenColor,
+                  // shadowColor: AppColor.appGreenColor,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
