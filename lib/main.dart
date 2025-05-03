@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Batteryqk',
       home: NotificationPage(),
+
       debugShowCheckedModeBanner: false,
     );
   }

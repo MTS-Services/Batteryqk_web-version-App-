@@ -90,7 +90,7 @@ class _NotificationPageState extends State<NotificationPage> {
         return Card(
           color:
               isRead[index]
-                  ? Color(0xffFEF7FF)
+                  ? Color.fromARGB(255, 252, 252, 252)
                   : const Color.fromARGB(255, 240, 240, 240),
 
           elevation: 0,
