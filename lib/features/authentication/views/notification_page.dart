@@ -89,7 +89,10 @@ class _NotificationPageState extends State<NotificationPage> {
       itemBuilder: (context, index) {
         return Card(
           color:
-              isRead[index] ? Color(0xffFEF7FF) : AppColor.appLightGreenColor,
+              isRead[index]
+                  ? Color(0xffFEF7FF)
+                  : const Color.fromARGB(255, 240, 240, 240),
+
           elevation: 0,
           margin: const EdgeInsets.symmetric(vertical: 8),
           shape: RoundedRectangleBorder(
