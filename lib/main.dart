@@ -1,8 +1,8 @@
-import 'package:batteryqk_web_app/features/authentication/views/notification.dart';
+import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,10 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Batteryqk',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const NotificationPage(),
+      home: NotificationPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
