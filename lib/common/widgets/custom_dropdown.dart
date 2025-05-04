@@ -18,7 +18,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 25),
       child: Center(
         child: DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
@@ -50,8 +50,9 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 )
               ),
               padding: EdgeInsets.symmetric(horizontal: 10),
-              height: 30,
-              width: 300,
+
+              height: 40,
+              width: double.infinity,
             ),
           ),
         ),

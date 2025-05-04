@@ -59,15 +59,21 @@ class _ListingsState extends State<Listings> {
                         children: [
                           Container(height: 4, width: 40, color: Colors.grey[300]),
                           const SizedBox(height: 16),
-                          const Text('Paste Search', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          const Text('Filter', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                           const SizedBox(height: 16),
-                          TextField(
-                            decoration: const InputDecoration(
-                              labelText: 'Enter text',
-                              border: OutlineInputBorder(),
+                          const SizedBox(height: 16),
+                          Padding(
+                            padding: const EdgeInsets.all(15),
+                            child: Column(
+                              children: [
+                                CustomDropdownButton(countyList: categoryList,listType: 'Category',),
+                                CustomDropdownButton(countyList: categoryList,listType: 'Category',),
+                                CustomDropdownButton(countyList: categoryList,listType: 'Category',),
+                                CustomDropdownButton(countyList: categoryList,listType: 'Category',),
+                                SizedBox(height: 50,)
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 16),
                           ElevatedButton(
                             onPressed: () {
                               // Do something with the input
@@ -86,10 +92,13 @@ class _ListingsState extends State<Listings> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          CustomDropdownButton(countyList: categoryList,listType: 'Category',),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          children: [
+            CustomDropdownButton(countyList: categoryList,listType: 'Category',),
+          ],
+        ),
       ),
     );
   }
