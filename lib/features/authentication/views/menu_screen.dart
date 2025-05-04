@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
     Container(),
     Scaffold(body: Container(color: Colors.red)),
-    Container(),
+    Points(),
     Container(),
     Container(),
     Container(),
