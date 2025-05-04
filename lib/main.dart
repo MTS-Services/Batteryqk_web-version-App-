@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Batteryqk',
-      home: CustomBottomNavigationBar(),
+      home: CustomBottomNavigationBar(),  
       debugShowCheckedModeBanner: false,
     );
   }
