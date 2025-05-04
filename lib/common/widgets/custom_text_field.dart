@@ -14,7 +14,7 @@ class CustomTextField extends StatelessWidget {
         color: Colors.white,
         elevation: 1,
         child: TextFormField(
-          style: TextStyle(height: 1),
+          //style: TextStyle(height: 1),
           decoration: InputDecoration(),
         ),
       ),
