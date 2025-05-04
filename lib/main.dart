@@ -45,11 +45,7 @@ class MyApp extends StatelessWidget {
 
       title: 'Batteryqk',
 
-      home: Listings(),
 
-      home: CustomBottomNavigationBar(),
-
-      debugShowCheckedModeBanner: false,
 
     );
   }
