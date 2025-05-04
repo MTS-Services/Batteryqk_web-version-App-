@@ -67,7 +67,16 @@ class _MenuScreenState extends State<MenuScreen> {
                 Align(
                   alignment: AlignmentDirectional(1, 0),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return NotificationPage(); // Return NotificationPage properly
+                          },
+                        ),
+                      );
+                    },
                     icon: Icon(
                       Icons.notifications,
                       color: Colors.white,
