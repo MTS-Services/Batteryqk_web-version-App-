@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,42 +9,11 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: Colors.white,
-        elevation: 1,
-        titleSpacing: 16,
-        title: Row(
-          children: [
-            const SizedBox(width: 16),
-            Expanded(
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  prefixIcon: const Icon(Icons.search),
-                  contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                  filled: true,
-                  fillColor: Colors.grey.shade200,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                    borderSide: BorderSide.none,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 16),
-            IconButton(
-              icon: const Icon(
-                Icons.notifications_active,
-                color: Colors.black87,
-              ),
-              onPressed: () {
-                // Handle notification tap
-              },
-            ),
-          ],
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(),
       ),
+
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(

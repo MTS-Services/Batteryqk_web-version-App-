@@ -47,14 +47,26 @@ class _NotificationPageState extends State<NotificationPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: const Text("Notifications"),
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search...',
+              prefixIcon: const Icon(Icons.search),
+              contentPadding: const EdgeInsets.symmetric(vertical: 0),
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: markAllAsRead,
               child: const Text(
-                "Mark all as read",
+                "ALL READ",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.blue,
                   fontWeight: FontWeight.w500,
                 ),
               ),
