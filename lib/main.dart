@@ -1,8 +1,13 @@
+
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
+=======
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
+import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       home: BookScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -31,6 +37,11 @@ class MyApp extends StatelessWidget {
           ),
         )
       ),
+
+      title: 'Batteryqk',
+      home: CustomBottomNavigationBar(),
+      debugShowCheckedModeBanner: false,
+
     );
   }
 }
