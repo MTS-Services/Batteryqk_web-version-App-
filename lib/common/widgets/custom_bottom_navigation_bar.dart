@@ -1,4 +1,3 @@
-import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -18,7 +17,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   final List<Widget> _pages = [
     const HomeScreen(),
     const ColoredBox(color: Colors.yellow),
-    const BookScreen(),
+    const ColoredBox(color: Colors.green),
     const MenuScreen(),
   ];
 
