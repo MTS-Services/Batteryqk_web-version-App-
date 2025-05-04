@@ -12,7 +12,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
     Container(),
-    Scaffold(body: Container(color: Colors.red)),
+    // Scaffold(body: Container(color: Colors.red)),
     Points(),
     Container(),
     Container(),
@@ -21,23 +21,21 @@ class _MenuScreenState extends State<MenuScreen> {
   ];
 
   final _title = [
-    'Home',
-    'Listings',
-    'Loyalty',
+    'Account',
+    'Reward',
     'Car Services',
     'FAQs',
     'Notifications',
-    'Admin',
+    'Logout',
   ];
 
   final _icons = [
-    Icons.home_rounded,
-    Icons.list_alt_rounded,
+    Icons.person,
     Icons.card_membership_rounded,
     Icons.build_circle_outlined,
     Icons.help_outline_rounded,
     Icons.notifications_active_outlined,
-    Icons.admin_panel_settings_outlined,
+    Icons.logout,
   ];
 
   final Color primaryColor = const Color(0xFF206CFD);
@@ -62,6 +60,17 @@ class _MenuScreenState extends State<MenuScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: AlignmentDirectional(1, 0),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ),
                 const Text(
                   'Welcome back,',
                   style: TextStyle(fontSize: 16, color: Colors.white70),
@@ -70,11 +79,12 @@ class _MenuScreenState extends State<MenuScreen> {
                 const Text(
                   'Emon Halder 👋',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
+
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(
