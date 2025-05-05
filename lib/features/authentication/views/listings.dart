@@ -73,7 +73,7 @@ class _ListingsState extends State<Listings> {
         child: CustomAppBar(),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             // Toggle Dropdowns

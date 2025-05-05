@@ -96,7 +96,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
               ),
             ],
           ),
-          child: Image.asset(
+          child: Image.asset( 
             imagePath,
             fit: BoxFit.cover,
           ),

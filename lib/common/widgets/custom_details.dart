@@ -1,15 +1,57 @@
 import 'package:batteryqk_web_app/common/styles/styles.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 
-class CustomDetails extends StatelessWidget {
+class CustomDetails extends StatefulWidget {
   final List facilities;
-  const CustomDetails({super.key,required, required this.facilities});
+
+  const CustomDetails({super.key, required, required this.facilities});
+
+  @override
+  State<CustomDetails> createState() => _CustomDetailsState();
+}
+
+class _CustomDetailsState extends State<CustomDetails> {
+  int starCount = 5;
+  DateTime? selectedDate;
+  final TextEditingController dateController = TextEditingController();
+
+  final List<String> timeList = [
+    "1:00 AM",
+    "2:00 AM",
+    "3:00 AM",
+    "4:00 AM",
+    "5:00 AM",
+    "6:00 AM",
+    "7:00 AM",
+    "8:00 AM",
+    "9:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "1:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
+    "6:00 PM",
+    "7:00 PM",
+    "8:00 PM",
+    "9:00 PM",
+    "10:00 PM",
+    "11:00 PM",
+    "12:00 AM",
+  ];
+
+  final List<String> personNumber = [
+    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    int starCount = 5;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -17,22 +59,22 @@ class CustomDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTitleText(AppText.academies1Title),
-            Badge(label: Text('Paid'),
-            backgroundColor: AppColor.appLightGreenColor,
-            textColor: Colors.black,
-              textStyle: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 12
-              ),
-              padding: EdgeInsets.symmetric(vertical: 4,horizontal: 8),
-
-            )
-
+            Badge(
+              label: Text('Paid'),
+              backgroundColor: AppColor.appLightGreenColor,
+              textColor: Colors.black,
+              textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            ),
           ],
         ),
         Align(
-            alignment: Alignment.centerLeft,
-            child: Text('Downtown',style: TextStyle(color: Colors.grey.shade600),)),
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Something',
+            style: TextStyle(color: Colors.grey.shade600),
+          ),
+        ),
         Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +93,10 @@ class CustomDetails extends StatelessWidget {
                 ),
                 Text(
                   ' ($starCount)',
-                  style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const SizedBox(width: 4),
                 const Text(
@@ -67,36 +112,42 @@ class CustomDetails extends StatelessWidget {
             CustomSectionHeaderText('Age Groups'),
             Row(
               children: [
-                Badge(label: Text('Children (6-12 years)'),
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 16),
-                backgroundColor: AppColor.appLightGreenColor,
-                textColor: Colors.black),
-                SizedBox(width:  10,),
-                Badge(label: Text('Teenagers(13-18 years)'),
-                  padding: EdgeInsets.symmetric(vertical: 3,horizontal: 16),
+                Badge(
+                  label: Text('Children (6-12 years)'),
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 16),
                   backgroundColor: AppColor.appLightGreenColor,
-                  textColor: Colors.black),
+                  textColor: Colors.black,
+                ),
+                SizedBox(width: 10),
+                Badge(
+                  label: Text('Teenagers(13-18 years)'),
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 16),
+                  backgroundColor: AppColor.appLightGreenColor,
+                  textColor: Colors.black,
+                ),
               ],
             ),
             SizedBox(height: 30),
             CustomSectionHeaderText('Facilities'),
             Column(
               children:
-                facilities.map((facility){
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Row(
-                      children: [
-                        Icon(Icons.check,color: Colors.green,),
-                        Text(facility)
-                      ],
-                    ),
-                  );
-                }).toList()
+                  widget.facilities.map((facility) {
+                    return Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Row(
+                        children: [
+                          Icon(Icons.check, color: Colors.green),
+                          Text(facility),
+                        ],
+                      ),
+                    );
+                  }).toList(),
             ),
             SizedBox(height: 30),
             CustomSectionHeaderText('Opening Hours'),
-            CustomParagraphText('Mon-Fri: 7:00 AM - 9:00PM, Sat-Sun: 8:00AM - 7:00PM'),
+            CustomParagraphText(
+              'Mon-Fri: 7:00 AM - 9:00PM, Sat-Sun: 8:00AM - 7:00PM',
+            ),
             SizedBox(height: 30),
             CustomSectionHeaderText('Location'),
             Container(
@@ -109,26 +160,60 @@ class CustomDetails extends StatelessWidget {
             ),
             SizedBox(height: 30),
             CustomSectionHeaderText('Reviews'),
-              CustomReviews(starCount: starCount,name: 'Mark T.',designation: 'Excellent facilities and coaches',),
-              SizedBox(height: 20),
-              CustomReviews(starCount: starCount,name: 'Sarah L.',designation: 'My kids love coming here. Very professional.',),
+            CustomReviews(
+              starCount: starCount,
+              name: 'Mark T.',
+              designation: 'Excellent facilities and coaches',
+            ),
+            SizedBox(height: 20),
+            CustomReviews(
+              starCount: starCount,
+              name: 'Sarah L.',
+              designation: 'My kids love coming here. Very professional.',
+            ),
             SizedBox(height: 50),
             CustomSectionHeaderText('Book a Session'),
-            Text('Date'),
+            SizedBox(height: 30),
+            Text('Date',style: TextStyle(fontWeight: FontWeight.bold),),
             TextField(
+              controller: dateController,
               decoration: InputDecoration(
-                label: Text("Date"),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
+                enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                    color: AppColor.appGreenColor,
+                    color: AppColor.appLightGreenColor
                   )
                 ),
-                suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.calendar_today_outlined))
+                labelText: 'Date/Month/year',
+                suffixIcon: IconButton(
+                  onPressed: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                      initialDate: selectedDate ?? DateTime.now(),
+                    );
+                    if (pickedDate != null) {
+                      selectedDate = pickedDate;
+                      final formattedDate =
+                          "${pickedDate.day.toString().padLeft(2,'0')}/"
+                          "${pickedDate.month.toString().padLeft(2,'0')}/"
+                          "${pickedDate.year.toString().substring(2,)}";
+                      dateController.text = formattedDate;
+                    }
+                  },
+                  icon: Icon(Icons.calendar_today_outlined,color: AppColor.appLightGreenColor),
+                ),
               ),
             ),
+            SizedBox(height: 30),
+            Text('Time',style: TextStyle(fontWeight: FontWeight.bold),),
+            CustomDropdownButton(itemList: timeList, listType: '9:00 AM'),
+            SizedBox(height: 30),
+            Text('Number of person',style: TextStyle(fontWeight: FontWeight.bold),),
+            CustomDropdownButton(itemList: personNumber, listType: '1'),
+
           ],
-        )
+        ),
       ],
     );
   }
@@ -139,13 +224,15 @@ class CustomDetails extends StatelessWidget {
 
 
 
-
 class CustomReviews extends StatelessWidget {
   final String name;
   final String designation;
+
   const CustomReviews({
     super.key,
-    required this.starCount, required this.name, required this.designation,
+    required this.starCount,
+    required this.name,
+    required this.designation,
   });
 
   final int starCount;
@@ -166,22 +253,26 @@ class CustomReviews extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(name,style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
                 Row(
-                  children: List.generate(starCount, (index){
-                    return const Icon(Icons.star,color: Colors.amber,size: 16,);
+                  children: List.generate(starCount, (index) {
+                    return const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                      size: 16,
+                    );
                   }),
-                )
+                ),
               ],
             ),
-
           ),
           Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text(designation),
-              )),
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(designation),
+            ),
+          ),
         ],
       ),
     );
