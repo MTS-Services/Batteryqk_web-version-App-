@@ -1,8 +1,10 @@
-import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
+import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,8 +13,30 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CustomBottomNavigationBar(),
+      home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        canvasColor: Colors.white,
+        inputDecorationTheme: InputDecorationTheme(
+               focusedBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: Colors.blue,),
+                 borderRadius: BorderRadius.circular(10),
+               ),
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(1),
+          ),
+
+        ),
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(
+            color: Color(0xFF374151),
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        )
+      ),
     );
   }
 }
