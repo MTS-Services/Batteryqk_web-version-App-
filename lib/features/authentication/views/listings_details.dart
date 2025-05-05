@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_details.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_details_image_group.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +19,15 @@ class _ListingsDetailsState extends State<ListingsDetails> {
         preferredSize: Size.fromHeight(kToolbarHeight),
     child: CustomAppBar(),
     ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            CustomDetailsImageGroup(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              CustomDetails(),
+            ],
+          ),
         ),
       ),
     );
