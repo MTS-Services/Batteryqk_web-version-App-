@@ -10,8 +10,6 @@ class Batteryqk extends StatelessWidget {
     return MaterialApp(
       home: CustomBottomNavigationBar(),
       debugShowCheckedModeBanner: false,
-
-
     );
   }
 }
