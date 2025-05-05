@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
@@ -120,7 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(), ));
+                  },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                     backgroundColor: AppColor.appGreenColor,
