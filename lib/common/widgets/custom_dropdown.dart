@@ -75,7 +75,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             ),
             elevation: 3,
             scrollbarTheme: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(AppColor.appLightGreenColor.withOpacity(0.7)),
+              thumbColor: WidgetStateProperty.all(AppColor.appLightGreenColor.withOpacity(0.7)),
             ),
           ),
           buttonStyleData: ButtonStyleData(

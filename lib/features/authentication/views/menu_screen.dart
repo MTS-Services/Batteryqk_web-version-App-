@@ -1,9 +1,7 @@
 
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
-import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 
 import 'package:flutter/material.dart';
 
