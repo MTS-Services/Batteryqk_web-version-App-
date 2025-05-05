@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 
@@ -17,8 +18,7 @@ class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
     Container(),
     Points(),
-    Container(),
-
+    CarService(),
     Container(),
     NotificationPage(),
     Container(),
