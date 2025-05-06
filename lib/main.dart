@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BookScreen(),
+      home: CustomBottomNavigationBar(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         canvasColor: Colors.white,

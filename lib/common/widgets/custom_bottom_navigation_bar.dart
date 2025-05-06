@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -16,7 +17,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   List pageLink = [
     HomeScreen(),
     Container(color: Colors.yellow),
-    Container(color: Colors.green),
+    BookScreen(),
     MenuScreen()
 
   ];

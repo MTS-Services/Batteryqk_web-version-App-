@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
-    Container(),
+    HomeScreen(),
     Scaffold(body: Container(color: Colors.red)),
     Points(),
     Container(),
