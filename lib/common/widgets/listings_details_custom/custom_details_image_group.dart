@@ -20,7 +20,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withAlpha((0.1 * 255).toInt()),
                   blurRadius: 12,
                   offset: const Offset(0, 6),
                 ),
@@ -29,18 +29,17 @@ class CustomDetailsImageGroup extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(
-                  AppImages.academies1a,
-                  fit: BoxFit.cover,
-                ),
+                Image.asset(AppImages.academies1a, fit: BoxFit.cover),
                 Positioned(
                   bottom: 14,
                   left: 14,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 6),
+                      horizontal: 14,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withAlpha((0.5 * 255).toInt()), // 127
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Text(
@@ -90,16 +89,13 @@ class CustomDetailsImageGroup extends StatelessWidget {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.08),
+                color: Colors.black.withAlpha((0.08 * 255).toInt()),
                 blurRadius: 8,
                 offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Image.asset( 
-            imagePath,
-            fit: BoxFit.cover,
-          ),
+          child: Image.asset(imagePath, fit: BoxFit.cover),
         ),
       ),
     );
