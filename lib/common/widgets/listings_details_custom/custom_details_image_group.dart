@@ -2,7 +2,13 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 class CustomDetailsImageGroup extends StatelessWidget {
-  const CustomDetailsImageGroup({super.key});
+  final String image1a;
+  final String image1b;
+  final String image1c;
+  final String image1d;
+  final String image1e;
+
+  const CustomDetailsImageGroup({super.key, required this.image1a, required this.image1b, required this.image1c, required this.image1d, required this.image1e, });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +35,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(AppImages.academies1a, fit: BoxFit.cover),
+                Image.asset(image1a, fit: BoxFit.cover),
                 Positioned(
                   bottom: 14,
                   left: 14,
@@ -61,9 +67,9 @@ class CustomDetailsImageGroup extends StatelessWidget {
         // First row of two smaller images
         Row(
           children: [
-            _buildSmallImage(AppImages.academies1b, size),
+            _buildSmallImage(image1b, size),
             const SizedBox(width: 16),
-            _buildSmallImage(AppImages.academies1c, size),
+            _buildSmallImage(image1c, size),
           ],
         ),
         const SizedBox(height: 16),
@@ -71,9 +77,9 @@ class CustomDetailsImageGroup extends StatelessWidget {
         // Second row of two smaller images
         Row(
           children: [
-            _buildSmallImage(AppImages.academies1d, size),
+            _buildSmallImage(image1d, size),
             const SizedBox(width: 16),
-            _buildSmallImage(AppImages.academies1e, size),
+            _buildSmallImage(image1e, size),
           ],
         ),
       ],

@@ -8,15 +8,20 @@ import 'custom_icon.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
   final TextEditingController dateController;
-  const CustomListingsBookingSection({super.key, required this.dateController});
+  final String number;
+  final String gmail;
+  final String web;
+
+  const CustomListingsBookingSection({super.key, required this.dateController, required this.number, required this.gmail, required this.web});
 
   @override
-  State<CustomListingsBookingSection> createState() => _CustomListingsBookingSectionState();
+  State<CustomListingsBookingSection> createState() =>
+      _CustomListingsBookingSectionState();
 }
 
-class _CustomListingsBookingSectionState extends State<CustomListingsBookingSection> {
+class _CustomListingsBookingSectionState
+    extends State<CustomListingsBookingSection> {
   DateTime? selectedDate;
-
 
   final List<String> timeList = [
     "1:00 AM",
@@ -45,8 +50,26 @@ class _CustomListingsBookingSectionState extends State<CustomListingsBookingSect
     "12:00 AM",
   ];
   final List<String> personNumber = [
-    '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
   ];
 
   @override
@@ -57,14 +80,12 @@ class _CustomListingsBookingSectionState extends State<CustomListingsBookingSect
         SizedBox(height: 50),
         CustomSectionHeaderText('Book a Session'),
         SizedBox(height: 30),
-        Text('Date',style: TextStyle(fontWeight: FontWeight.bold),),
+        Text('Date', style: TextStyle(fontWeight: FontWeight.bold)),
         TextField(
           controller: widget.dateController,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                    color: AppColor.appLightGreenColor
-                )
+              borderSide: BorderSide(color: AppColor.appLightGreenColor),
             ),
             labelText: 'Date/Month/year',
             suffixIcon: IconButton(
@@ -78,67 +99,68 @@ class _CustomListingsBookingSectionState extends State<CustomListingsBookingSect
                 if (pickedDate != null) {
                   selectedDate = pickedDate;
                   final formattedDate =
-                      "${pickedDate.day.toString().padLeft(2,'0')}/"
-                      "${pickedDate.month.toString().padLeft(2,'0')}/"
-                      "${pickedDate.year.toString().substring(2,)}";
+                      "${pickedDate.day.toString().padLeft(2, '0')}/"
+                      "${pickedDate.month.toString().padLeft(2, '0')}/"
+                      "${pickedDate.year.toString().substring(2)}";
                   widget.dateController.text = formattedDate;
                 }
               },
-              icon: Icon(Icons.calendar_today_outlined,color: AppColor.appLightGreenColor),
+              icon: Icon(
+                Icons.calendar_today_outlined,
+                color: AppColor.appLightGreenColor,
+              ),
             ),
           ),
         ),
         SizedBox(height: 30),
-        Text('Time',style: TextStyle(fontWeight: FontWeight.bold),),
+        Text('Time', style: TextStyle(fontWeight: FontWeight.bold)),
         CustomDropdownButton(itemList: timeList, listType: '9:00 AM'),
         SizedBox(height: 30),
-        Text('Number of person',style: TextStyle(fontWeight: FontWeight.bold),),
+        Text('Number of person', style: TextStyle(fontWeight: FontWeight.bold)),
         CustomDropdownButton(itemList: personNumber, listType: '1'),
         SizedBox(height: 30),
         CustomButton(buttonText: 'Book Now'),
         SizedBox(height: 20),
-        Container(
-          height: .3,
-          width: double.infinity,
-          color: Colors.grey,
-        ),
+        Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
-        Text('Contact Information',style: TextStyle(fontWeight: FontWeight.bold),),
+        Text(
+          'Contact Information',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.phone_enabled_outlined,color: AppColor.appGreenColor,),
+              child: Icon(
+                Icons.phone_enabled_outlined,
+                color: AppColor.appGreenColor,
+              ),
             ),
-            Text('555-123-4567'),
+            Text(widget.number),
           ],
         ),
         Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.email_outlined,color: AppColor.appGreenColor,),
+              child: Icon(Icons.email_outlined, color: AppColor.appGreenColor),
             ),
-            Text('info@eliteswimmingacademy.com'),
+            Text(widget.gmail),
           ],
         ),
         Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.language,color: AppColor.appGreenColor,),
+              child: Icon(Icons.language, color: AppColor.appGreenColor),
             ),
-            Text('www.eliteswimmingacademy.com'),
+            Text(widget.web),
           ],
         ),
         SizedBox(height: 20),
-        Container(
-          height: .3,
-          width: double.infinity,
-          color: Colors.grey,
-        ),
+        Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
-        Text('Share',style: TextStyle(fontWeight: FontWeight.bold),),
+        Text('Share', style: TextStyle(fontWeight: FontWeight.bold)),
         MyCustomIcon(),
       ],
     );

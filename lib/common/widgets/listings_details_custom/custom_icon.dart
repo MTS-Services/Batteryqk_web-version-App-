@@ -25,7 +25,7 @@ children: [
   ),
   Padding(
     padding: const EdgeInsets.all(4.0),
-    child: Icon(Icons.format_quote, color: AppColor.appGreenColor,),
+    child: Icon(FontAwesomeIcons.whatsapp, color: AppColor.appGreenColor,),
   ),
 
 ],
