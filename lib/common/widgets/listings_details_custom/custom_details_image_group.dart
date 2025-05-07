@@ -1,4 +1,3 @@
-import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 class CustomDetailsImageGroup extends StatelessWidget {

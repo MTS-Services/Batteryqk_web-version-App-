@@ -1,6 +1,7 @@
-import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginScreen(),
+      home: ListingsDetails(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         canvasColor: Colors.white,

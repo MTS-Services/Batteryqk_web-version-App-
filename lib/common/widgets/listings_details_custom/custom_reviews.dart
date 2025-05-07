@@ -28,7 +28,7 @@ class CustomReviews extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(name),
                 Row(
                   children: List.generate(starCount, (index) {
                     return const Icon(
@@ -45,7 +45,7 @@ class CustomReviews extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(designation),
+              child: Text(designation,style: TextStyle(fontWeight: FontWeight.w400),),
             ),
           ),
         ],

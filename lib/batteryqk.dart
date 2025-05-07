@@ -1,4 +1,4 @@
-import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class Batteryqk extends StatelessWidget {
@@ -7,7 +7,7 @@ class Batteryqk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ListingsDetails(),
+      home: CustomBottomNavigationBar(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -74,7 +74,12 @@ class _BookScreenState extends State<BookScreen> {
       backgroundColor: Colors.white,
 
       body: Padding(
-        padding: const EdgeInsets.only(left: 12,right: 12,top: 20,bottom: 20),
+        padding: const EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: 20,
+          bottom: 20,
+        ),
         child: Card(
           elevation: 1,
           color: Colors.white,

@@ -17,8 +17,8 @@ class CustomDropdownButton extends StatefulWidget {
 }
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
-  String? selectedItem;
 
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,6 +38,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           items: widget.itemList
               .map(
                 (String item) => DropdownMenuItem(
+                  enabled: true,
               value: item,
               child: Text(
                 item,
@@ -61,6 +62,9 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             iconEnabledColor: AppColor.appLightGreenColor,
           ),
           dropdownStyleData: DropdownStyleData(
+            isOverButton: false,
+            maxHeight: 400,
+            useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.white,

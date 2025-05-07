@@ -159,9 +159,6 @@ class _CustomListingsBookingSectionState
         ),
         SizedBox(height: 20),
         Container(height: .3, width: double.infinity, color: Colors.grey),
-        SizedBox(height: 30),
-        Text('Share', style: TextStyle(fontWeight: FontWeight.bold)),
-        MyCustomIcon(),
       ],
     );
   }
