@@ -4,6 +4,7 @@ import '../../../util/colors.dart';
 import '../../styles/styles.dart';
 import '../custom_button.dart';
 import '../custom_dropdown.dart';
+import '../custom_dropdown_Listings.dart';
 import 'custom_icon.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
@@ -114,10 +115,10 @@ class _CustomListingsBookingSectionState
         ),
         SizedBox(height: 30),
         Text('Time',),
-        CustomDropdownButton(itemList: timeList, listType: '9:00 AM'),
+        CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
         SizedBox(height: 30),
         Text('Number of person'),
-        CustomDropdownButton(itemList: personNumber, listType: '1'),
+        CustomDropdownListings(itemList: personNumber, listType: '1'),
         SizedBox(height: 30),
         CustomButton(buttonText: 'Book Now'),
         SizedBox(height: 30),

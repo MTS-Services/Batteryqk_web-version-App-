@@ -186,7 +186,6 @@ class _BookScreenState extends State<BookScreen> {
                         Card(
                           elevation: 3,
                           shadowColor: Colors.white.withOpacity(0.5),
-
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () => _pickDate(context),
@@ -197,7 +196,6 @@ class _BookScreenState extends State<BookScreen> {
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-
                               ),
                               child: Row(
                                 children: [

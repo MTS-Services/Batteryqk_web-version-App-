@@ -1,6 +1,8 @@
-import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../util/colors.dart';
 
 class CustomDropdownListings extends StatefulWidget {
   final String listType;
@@ -17,12 +19,12 @@ class CustomDropdownListings extends StatefulWidget {
 }
 
 class _CustomDropdownListingsState extends State<CustomDropdownListings> {
-
   String? selectedItem;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0,),
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
@@ -30,77 +32,71 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
           hint: Text(
             widget.listType,
             style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              color: Theme.of(context).hintColor.withOpacity(0.8),
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey.shade600,
             ),
           ),
           items: widget.itemList
-              .map(
-                (String item) => DropdownMenuItem(
-              enabled: true,
-              value: item,
-              child: Text(
-                item,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black,
-                ),
+              .map((item) => DropdownMenuItem(
+            value: item,
+            child: Text(
+              item,
+              style: const TextStyle(
+                fontSize: 15,
+                color: Colors.black87,
               ),
             ),
-          )
+          ))
               .toList(),
           onChanged: (value) {
             setState(() {
               selectedItem = value;
             });
           },
-          iconStyleData: IconStyleData(
-            icon: const Icon(Icons.keyboard_arrow_down_rounded),
+          iconStyleData: const IconStyleData(
+            icon: Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 20,
             iconEnabledColor: AppColor.appGreenColor,
           ),
           dropdownStyleData: DropdownStyleData(
-            isOverButton: false,
             maxHeight: 300,
-            useSafeArea: true,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
               color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.06),
-                  blurRadius: 12,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            elevation: 3,
-            scrollbarTheme: ScrollbarThemeData(
-              thumbColor: WidgetStateProperty.all(AppColor.appGreenColor.withOpacity(0.7)),
-            ),
-          ),
-          buttonStyleData: ButtonStyleData(
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9),
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: AppColor.appGreenColor.withOpacity(0.7),
-                width: 1.2,
-              ),
+              borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.05),
-                  blurRadius: 8,
+                  blurRadius: 10,
+                  offset: const Offset(0, 4),
+                ),
+              ],
+            ),
+            scrollbarTheme: ScrollbarThemeData(
+              thumbColor: WidgetStateProperty.all(
+                AppColor.appGreenColor.withOpacity(0.7),
+              ),
+              radius: const Radius.circular(8),
+            ),
+          ),
+          buttonStyleData: ButtonStyleData(
+            height: 46,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColor.appGreenColor.withOpacity(0.4),
+                width: 1,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.03),
+                  blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),
               ],
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 40,
-            width: double.infinity,
           ),
           menuItemStyleData: const MenuItemStyleData(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),

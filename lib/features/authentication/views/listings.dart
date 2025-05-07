@@ -3,6 +3,8 @@ import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/custom_dropdown_Listings.dart';
+
 class Listings extends StatefulWidget {
   const Listings({super.key});
 
@@ -130,23 +132,23 @@ class _ListingsState extends State<Listings> {
                       ),
                       const SizedBox(height: 16),
 
-                      CustomDropdownButton(
+                      CustomDropdownListings(
                         itemList: categoryItem,
                         listType: 'Category',
                       ),
-                      CustomDropdownButton(
+                      CustomDropdownListings(
                         itemList: location,
                         listType: 'All Location',
                       ),
-                      CustomDropdownButton(
+                      CustomDropdownListings(
                         itemList: ageGroup,
                         listType: 'Age Group',
                       ),
-                      CustomDropdownButton(
+                      CustomDropdownListings(
                         itemList: rating,
                         listType: 'Rating',
                       ),
-                      CustomDropdownButton(itemList: price, listType: 'Price'),
+                      CustomDropdownListings(itemList: price, listType: 'Price'),
 
                       const SizedBox(height: 20),
 
