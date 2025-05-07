@@ -1,6 +1,10 @@
-import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
+import 'package:batteryqk_web_app/features/authentication/views/account.dart';
+import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
+import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+
+import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
+
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -12,33 +16,30 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
-    HomeScreen(),
-    Scaffold(body: Container(color: Colors.red)),
+    Account(),
     Points(),
-    Container(),
-    Container(),
+    CarService(),
+    Faqs(),
     NotificationPage(),
     Container(),
   ];
 
   final _title = [
-    'Home',
-    'Listings',
-    'Loyalty',
+    'Account',
+    'Reward',
     'Car Services',
     'FAQs',
     'Notifications',
-    'Admin',
+    'Logout',
   ];
 
   final _icons = [
-    Icons.home_rounded,
-    Icons.list_alt_rounded,
+    Icons.person,
     Icons.card_membership_rounded,
     Icons.build_circle_outlined,
     Icons.help_outline_rounded,
     Icons.notifications_active_outlined,
-    Icons.admin_panel_settings_outlined,
+    Icons.logout,
   ];
 
   final Color primaryColor = const Color(0xFF206CFD);
@@ -63,19 +64,40 @@ class _MenuScreenState extends State<MenuScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: AlignmentDirectional(1, 0),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return NotificationPage(); // Return NotificationPage properly
+                          },
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ),
                 const Text(
                   'Welcome back,',
                   style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'Emon Halder 👋',
+                  'Hey, Emon 👋',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
+
                 const SizedBox(height: 10),
                 Container(
                   padding: const EdgeInsets.symmetric(
