@@ -16,7 +16,8 @@ class CustomTextField extends StatelessWidget {
       height: 44,
       child: Card(
         color: Colors.white,
-        elevation: 1,
+        elevation: 0.5,
+        shadowColor: Colors.white.withOpacity(0.5),
         child: TextFormField(
           style: TextStyle(height: 1),
           decoration: InputDecoration(
