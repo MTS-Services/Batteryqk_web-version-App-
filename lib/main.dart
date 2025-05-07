@@ -21,12 +21,12 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
                focusedBorder: OutlineInputBorder(
                  borderSide: BorderSide(color: Colors.blue,),
-                 borderRadius: BorderRadius.circular(10),
+                 borderRadius: BorderRadius.circular(6),
                ),
 
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(1),
+            borderRadius: BorderRadius.circular(6),
           ),
 
         ),

@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,12 +13,20 @@ class BookScreen extends StatefulWidget {
 }
 
 class _BookScreenState extends State<BookScreen> {
-  String? selectedAcademy;
+  //String? selectedAcademy;
   String? selectedCategory;
   String? selectedAgeGroup;
 
   bool isChecked = true;
 
+/*  final List<String> academies = [
+    'Elite Swimming Academy',
+    'Champions Football Academy',
+    'Little Stars Nursery',
+    'Hoops Basketball Center',
+    'Ace Tennis Club',
+    'Bright Beginnings Nursery',
+  ];*/
   final List<String> academies = [
     'Elite Swimming Academy',
     'Champions Football Academy',
@@ -27,6 +36,7 @@ class _BookScreenState extends State<BookScreen> {
     'Bright Beginnings Nursery',
   ];
 
+  String? selectedAcademy;
   final List<String> categories = [
     'Swimming',
     'Football',
@@ -38,17 +48,15 @@ class _BookScreenState extends State<BookScreen> {
     'Other',
   ];
 
-  final List<String> ageGroups=[
+  final List<String> ageGroups = [
     'Toddlers(0-5 years',
     'Children(6-12 years',
     'Teenagers(13-18 years',
-    'Adults(18+'
+    'Adults(18+',
   ];
-
 
   DateTime? _selectedDate;
   final DateFormat _formatter = DateFormat('MM/dd/yyyy');
-
   Future<void> _pickDate(BuildContext context) async {
     final DateTime? datePicked = await showDatePicker(
       context: context,
@@ -63,6 +71,7 @@ class _BookScreenState extends State<BookScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -74,9 +83,15 @@ class _BookScreenState extends State<BookScreen> {
         child: CustomAppBar(),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 12,right: 12,top: 20,bottom: 20),
+        padding:  EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: 20,
+          bottom: 20,
+        ),
         child: Card(
-          elevation: 1,
+          elevation: 0.5,
+          shadowColor: Colors.white.withOpacity(0.5),
           color: Colors.white,
           child: Container(
             width: double.infinity,
@@ -112,38 +127,55 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                      
+
                         Text(
                           'First Name',
-                          style: Theme.of(context).textTheme.bodyMedium
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         CustomTextField(),
                         const SizedBox(height: 10),
-                      
-                        Text('Last Name',style: Theme.of(context).textTheme.bodyMedium,),
+
+                        Text(
+                          'Last Name',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         CustomTextField(),
-                      
+
                         const SizedBox(height: 10),
-                      
-                        Text('Email Address',style: Theme.of(context).textTheme.bodyMedium,),
+
+                        Text(
+                          'Email Address',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         CustomTextField(),
-                      
+
                         const SizedBox(height: 10),
-                      
-                        Text('Password',style: Theme.of(context).textTheme.bodyMedium,),
+
+                        Text(
+                          'Password',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         CustomTextField(),
                         const SizedBox(height: 10),
-                      
+
                         Divider(color: Colors.grey.shade300),
                         const SizedBox(height: 10),
-                        Text('Booking Details',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Color(0xFF1F2937)),),
+                        Text(
+                          'Booking Details',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Color(0xFF1F2937),
+                          ),
+                        ),
                         const SizedBox(height: 10),
                         Text('Select Academy'),
                         const SizedBox(height: 3),
-                      
                         Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
-                      
+
                           child: DropdownButtonFormField<String>(
                             // padding: EdgeInsets.symmetric(vertical: 8),
                             isExpanded: true,
@@ -175,13 +207,52 @@ class _BookScreenState extends State<BookScreen> {
                             },
                           ),
                         ),
-                      
-                        Text('Category',style: Theme.of(context).textTheme.bodyMedium,),
-                        const SizedBox(height: 3),
-                      
-                        Card(
+                    /*    Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
-                      
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: DropdownButtonFormField2<String>(
+                            isExpanded: true,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none,
+                              ),
+                              hintText: 'Select an academy',
+                            ),
+                            dropdownDirection: DropdownDirection.up,
+                            value: selectedAcademy,
+                            items: academies.map((academy) {
+                              return DropdownMenuItem<String>(
+                                value: academy,
+                                child: Text(
+                                  academy,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedAcademy = value;
+                              });
+                            },
+                          ),
+                        ),*/
+                    Text(
+                          'Category',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                        const SizedBox(height: 3),
+
+                        Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
+                          color: Colors.white,
+
                           child: DropdownButtonFormField<String>(
                             isExpanded: true,
                             value: selectedCategory,
@@ -215,21 +286,24 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
                         const SizedBox(height: 3),
-                        Text('Date',style: Theme.of(context).textTheme.bodyMedium,),
+                        Text(
+                          'Date',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         Card(
-                      
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () => _pickDate(context),
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                              decoration: BoxDecoration(
-                      
-                      
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 12,
                               ),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 children: [
-                          
                                   // Space between icon and date
                                   Text(
                                     _selectedDate == null
@@ -237,33 +311,47 @@ class _BookScreenState extends State<BookScreen> {
                                         : _formatter.format(_selectedDate!),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: _selectedDate == null ? Colors.black54 : Colors.black54,
+                                      color:
+                                          _selectedDate == null
+                                              ? Colors.black54
+                                              : Colors.black54,
                                     ),
                                   ),
                                   Spacer(),
-                                  Icon(Icons.calendar_today, color: Colors.grey[700]),
+                                  Icon(
+                                    Icons.calendar_today,
+                                    color: Colors.grey[700],
+                                  ),
                                 ],
                               ),
                             ),
                           ),
                         ),
                         const SizedBox(height: 3),
-                        Text('Number of Participants',style: Theme.of(context).textTheme.bodyMedium,),
+                        Text(
+                          'Number of Participants',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
                             height: 47,
-                            decoration: BoxDecoration(
-                      
-                            ),
-                              child: TextFormField(
-                              )),
+                            decoration: BoxDecoration(),
+                            child: TextFormField(),
+                          ),
                         ),
                         const SizedBox(height: 3),
-                        Text('Age Group',style: Theme.of(context).textTheme.bodyMedium,),
+                        Text(
+                          'Age Group',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
-                      
+
                           child: DropdownButtonFormField<String>(
                             // padding: EdgeInsets.symmetric(vertical: 8),
                             isExpanded: true,
@@ -281,15 +369,15 @@ class _BookScreenState extends State<BookScreen> {
                               ),
                             ),
                             items:
-                            ageGroups.map((academy) {
-                              return DropdownMenuItem<String>(
-                                value: academy,
-                                child: Text(
-                                  academy,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              );
-                            }).toList(),
+                                ageGroups.map((academy) {
+                                  return DropdownMenuItem<String>(
+                                    value: academy,
+                                    child: Text(
+                                      academy,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  );
+                                }).toList(),
                             onChanged: (value) {
                               setState(() {
                                 selectedAgeGroup = value;
@@ -297,23 +385,33 @@ class _BookScreenState extends State<BookScreen> {
                             },
                           ),
                         ),
-                      
+
                         const SizedBox(height: 10),
-                      
+
                         Divider(color: Colors.grey.shade300),
                         const SizedBox(height: 10),
-                        Text('Special Request',style: TextStyle(fontWeight: FontWeight.w600,fontSize: 18,color: Color(0xFF1F2937))),
+                        Text(
+                          'Special Request',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                            color: Color(0xFF1F2937),
+                          ),
+                        ),
                         const SizedBox(height: 25),
-                        Text('Additional Request',style: Theme.of(context).textTheme.bodyMedium),
+                        Text(
+                          'Additional Request',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                         Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
-                              height: 100,
-                              decoration: BoxDecoration(
-
-                              ),
-                              child: TextFormField(
-                              )),
+                            height: 100,
+                            decoration: BoxDecoration(),
+                            child: TextFormField(),
+                          ),
                         ),
                         const SizedBox(height: 10),
 
@@ -321,11 +419,12 @@ class _BookScreenState extends State<BookScreen> {
                         const SizedBox(height: 10),
 
                         Container(
+
                           width: double.infinity,
                           //padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.grey.shade300),
+                            border: Border.all(color: Colors.grey.shade100),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Column(
@@ -344,35 +443,61 @@ class _BookScreenState extends State<BookScreen> {
                                     },
                                   ),
                                   Padding(
-                                    padding:  EdgeInsets.only(top: 10),
+                                    padding: EdgeInsets.only(top: 10),
                                     child: Expanded(
                                       child: RichText(
                                         text: TextSpan(
-                                          style: TextStyle(fontSize: 14, color: Colors.black),
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.black,
+                                          ),
                                           children: [
                                             TextSpan(
-                                              text: 'I agree to the terms and conditions\n',
-                                            style: Theme.of(context).textTheme.bodyMedium),
-
-                                            TextSpan(
-                                              text: 'By booking a session, you agree to our\n ',style: TextStyle(color: Color(0xFF6B7280),fontSize: 14,fontWeight: FontWeight.w400),
+                                              text:
+                                                  'I agree to the terms and conditions\n',
+                                              style:
+                                                  Theme.of(
+                                                    context,
+                                                  ).textTheme.bodyMedium,
                                             ),
-
+                                            TextSpan(
+                                              text:
+                                                  'By booking a session, you agree to our\n ',
+                                              style: TextStyle(
+                                                color: Color(0xFF6B7280),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
                                             TextSpan(
                                               text: 'Terms of Service',
-                                              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w400,fontSize: 14),
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () {
-
-                                                },
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 14,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {},
                                             ),
-                                            TextSpan(text: ' and ',style: TextStyle(color: Color(0xFF6B7280),fontSize: 14,fontWeight: FontWeight.w400)),
+                                            TextSpan(
+                                              text: ' and ',
+                                              style: TextStyle(
+                                                color: Color(0xFF6B7280),
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
                                             TextSpan(
                                               text: 'Privacy Policy',
-                                              style: TextStyle(color: Colors.blue,fontWeight: FontWeight.w400,fontSize: 14),
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () {
-                                                },
+                                              style: TextStyle(
+                                                color: Colors.blue,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 14,
+                                              ),
+                                              recognizer:
+                                                  TapGestureRecognizer()
+                                                    ..onTap = () {},
                                             ),
                                             TextSpan(text: '.'),
                                           ],
@@ -384,28 +509,41 @@ class _BookScreenState extends State<BookScreen> {
                               ),
                               SizedBox(height: 20),
 
-
                               Row(
                                 children: [
-                                 Spacer(),
+                                  Spacer(),
                                   OutlinedButton(
                                     onPressed: () {
-                                      print('Cancel pressed',);
+                                      print('Cancel pressed');
                                     },
-                                    child: Text('Cancel',style: Theme.of(context).textTheme.bodyMedium,),
+                                    child: Text(
+                                      'Cancel',
+                                      style:
+                                          Theme.of(
+                                            context,
+                                          ).textTheme.bodyMedium,
+                                    ),
                                   ),
                                   SizedBox(width: 10),
                                   ElevatedButton(
-                                    onPressed: isChecked
-                                        ? () {
-                                      print('Submit Booking pressed');
-                                    }
-                                        : null,
+                                    onPressed:
+                                        isChecked
+                                            ? () {
+                                              print('Submit Booking pressed');
+                                            }
+                                            : null,
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Color(0xFF26B3FF),
                                       foregroundColor: Colors.white,
                                     ),
-                                    child: Text('Submit Booking',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w500,color: Colors.white),),
+                                    child: Text(
+                                      'Submit Booking',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                   SizedBox(width: 5),
                                 ],
@@ -413,10 +551,6 @@ class _BookScreenState extends State<BookScreen> {
                             ],
                           ),
                         ),
-
-
-                      
-                      
                       ],
                     ),
                   ),
@@ -429,4 +563,3 @@ class _BookScreenState extends State<BookScreen> {
     );
   }
 }
-
