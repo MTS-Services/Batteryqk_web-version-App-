@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const ColoredBox(color: Colors.yellow),
+    const Listings(),
     const BookScreen(),
     const MenuScreen(),
   ];
