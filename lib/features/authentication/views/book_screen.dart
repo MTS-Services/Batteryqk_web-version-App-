@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -62,17 +63,17 @@ class _BookScreenState extends State<BookScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: Colors.white,
-
       body: Padding(
         padding: const EdgeInsets.only(
           left: 12,
@@ -81,7 +82,8 @@ class _BookScreenState extends State<BookScreen> {
           bottom: 20,
         ),
         child: Card(
-          elevation: 1,
+          elevation: 0.5,
+          shadowColor: Colors.white.withOpacity(0.5),
           color: Colors.white,
           child: Container(
             width: double.infinity,
@@ -161,40 +163,9 @@ class _BookScreenState extends State<BookScreen> {
                         const SizedBox(height: 10),
                         Text('Select Academy'),
                         const SizedBox(height: 3),
-
-                        Card(
-                          color: Colors.white,
-
-                          child: DropdownButtonFormField<String>(
-                            // padding: EdgeInsets.symmetric(vertical: 8),
-                            isExpanded: true,
-                            value: selectedAcademy,
-                            decoration: InputDecoration(
-                              hintText: 'Select an academy',
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                              ),
-                            ),
-                            items:
-                                academies.map((academy) {
-                                  return DropdownMenuItem<String>(
-                                    value: academy,
-                                    child: Text(
-                                      academy,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  );
-                                }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedAcademy = value;
-                              });
-                            },
-                          ),
+                        CustomDropdownButton(
+                          itemList: academies,
+                          listType: 'Select an academy',
                         ),
 
                         Text(
@@ -202,57 +173,32 @@ class _BookScreenState extends State<BookScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         const SizedBox(height: 3),
-
-                        Card(
-                          color: Colors.white,
-
-                          child: DropdownButtonFormField<String>(
-                            isExpanded: true,
-                            value: selectedCategory,
-                            decoration: InputDecoration(
-                              hintText: 'Select an academy',
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                              ),
-                            ),
-                            items:
-                                categories.map((academy) {
-                                  return DropdownMenuItem<String>(
-                                    value: academy,
-                                    child: Text(
-                                      academy,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  );
-                                }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedCategory = value;
-                              });
-                            },
-                          ),
+                        CustomDropdownButton(
+                          itemList: categories,
+                          listType: 'Select a category',
                         ),
+
                         const SizedBox(height: 3),
                         Text(
                           'Date',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Card(
+                          elevation: 3,
+                          shadowColor: Colors.white.withOpacity(0.5),
+
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () => _pickDate(context),
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 8,
-                                vertical: 12,
+                                vertical: 9,
                               ),
-                              decoration: BoxDecoration(),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+
+                              ),
                               child: Row(
                                 children: [
                                   // Space between icon and date
@@ -278,16 +224,30 @@ class _BookScreenState extends State<BookScreen> {
                             ),
                           ),
                         ),
+
+
                         const SizedBox(height: 3),
                         Text(
                           'Number of Participants',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Card(
+                          elevation: 3,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
-                            height: 47,
-                            decoration: BoxDecoration(),
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white.withOpacity(0.06),
+                                  blurRadius: 12,
+                                  spreadRadius: 1,
+                                  offset: const Offset(0, 6),
+                                )
+                              ]
+                            ),
                             child: TextFormField(),
                           ),
                         ),
@@ -296,41 +256,9 @@ class _BookScreenState extends State<BookScreen> {
                           'Age Group',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
-                        Card(
-                          color: Colors.white,
-
-                          child: DropdownButtonFormField<String>(
-                            // padding: EdgeInsets.symmetric(vertical: 8),
-                            isExpanded: true,
-                            value: selectedAgeGroup,
-                            decoration: InputDecoration(
-                              hintText: 'Select an age group',
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(25),
-                                ),
-                              ),
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: 12,
-                              ),
-                            ),
-                            items:
-                                ageGroups.map((academy) {
-                                  return DropdownMenuItem<String>(
-                                    value: academy,
-                                    child: Text(
-                                      academy,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  );
-                                }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedAgeGroup = value;
-                              });
-                            },
-                          ),
+                        CustomDropdownButton(
+                          itemList: ageGroups,
+                          listType: 'Selected an age group',
                         ),
 
                         const SizedBox(height: 10),
@@ -351,6 +279,8 @@ class _BookScreenState extends State<BookScreen> {
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Card(
+                          elevation: 0.5,
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
                             height: 100,
@@ -359,16 +289,14 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
                         const SizedBox(height: 10),
-
                         Divider(color: Colors.grey.shade300),
                         const SizedBox(height: 10),
-
                         Container(
                           width: double.infinity,
                           //padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.grey.shade300),
+                            border: Border.all(color: Colors.grey.shade100),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Column(
