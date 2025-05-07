@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
@@ -151,7 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if(_globalKey.currentState!.validate()){
                         setState(() {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(), ));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => CustomBottomNavigationBar(), ));
                         });
                       }
 
