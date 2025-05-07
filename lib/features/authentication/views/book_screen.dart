@@ -63,7 +63,6 @@ class _BookScreenState extends State<BookScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -185,33 +184,33 @@ class _BookScreenState extends State<BookScreen> {
                         ),
                         Card(
                           elevation: 3,
-                          shadowColor: Colors.white.withOpacity(0.5),
-
+                          shadowColor: Colors.white.withOpacity(0.3),
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () => _pickDate(context),
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 8,
-                                vertical: 9,
+                                vertical: 7,
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-
+                                borderRadius: BorderRadius.circular(5),
+                                border: Border.all(
+                                  color: Colors.grey.shade300,
+                                  // Light grey border
+                                  width: 1.0,
+                                ),
                               ),
                               child: Row(
                                 children: [
-                                  // Space between icon and date
                                   Text(
                                     _selectedDate == null
                                         ? 'mm/dd/yyyy'
                                         : _formatter.format(_selectedDate!),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color:
-                                          _selectedDate == null
-                                              ? Colors.black54
-                                              : Colors.black54,
+                                      color: Colors.black54,
                                     ),
                                   ),
                                   Spacer(),
@@ -225,7 +224,6 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
 
-
                         const SizedBox(height: 3),
                         Text(
                           'Number of Participants',
@@ -236,17 +234,15 @@ class _BookScreenState extends State<BookScreen> {
                           shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
-                            height: 40,
+                            height: 39,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white.withOpacity(0.06),
-                                  blurRadius: 12,
-                                  spreadRadius: 1,
-                                  offset: const Offset(0, 6),
-                                )
-                              ]
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: Colors.grey.shade200,
+                                // Light grey border
+                                width: 1.0,
+                              ),
                             ),
                             child: TextFormField(),
                           ),

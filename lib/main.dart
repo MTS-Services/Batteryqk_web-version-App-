@@ -21,16 +21,16 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.white,
 
         inputDecorationTheme: InputDecorationTheme(
-               focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(color: AppColor.appGreenColor,),
-                 borderRadius: BorderRadius.circular(6),
-               ),
-
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: AppColor.appGreenColor.withOpacity(0.7),
+            ),
+            borderRadius: BorderRadius.circular(6),
+          ),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(6),
           ),
-
         ),
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
-        )
+        ),
       ),
     );
   }
