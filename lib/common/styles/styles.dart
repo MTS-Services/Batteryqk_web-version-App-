@@ -12,8 +12,7 @@ class CustomTitleText extends StatelessWidget {
       text,
       style: const TextStyle(
         fontSize: 25,
-        fontWeight: FontWeight.w700,
-        color: Colors.black87,
+        fontWeight: FontWeight.w600,
       ),
     );
   }
@@ -31,8 +30,7 @@ class CustomSectionHeaderText extends StatelessWidget {
       text,
       style: const TextStyle(
         fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
+        fontWeight: FontWeight.w500,
       ),
     );
   }
@@ -51,7 +49,7 @@ class CustomParagraphText extends StatelessWidget {
       style: const TextStyle(
         fontSize: 16,
         height: 1.5,
-        color: Colors.black87,
+        fontWeight: FontWeight.w400
       ),
     );
   }
