@@ -1,5 +1,7 @@
-import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,55 +9,78 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: const Color(0xFFF1F5F9),
       body: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.all(16),
         children: [
-          // 🔁 Fixed image replacing slider
+          // Banner with image and gradient overlay
           ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              'https://www.self.inc/info/img/post/cost-analysis-online-travel-agencies-vs-direct/cost-analysis-online-travel-agencies-vs-direct-header.jpg',
-              height: 180,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Container(
-                  color: Colors.grey.shade200,
-                  child: const Center(child: CircularProgressIndicator()),
-                );
-              },
-              errorBuilder:
-                  (context, error, stackTrace) => const Icon(Icons.error),
+            borderRadius: BorderRadius.circular(20),
+            child: Stack(
+              children: [
+                Image.network(
+                  'https://www.self.inc/info/img/post/cost-analysis-online-travel-agencies-vs-direct/cost-analysis-online-travel-agencies-vs-direct-header.jpg',
+                  height: 200,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Container(
+                      height: 200,
+                      color: Colors.grey.shade200,
+                      child: const Center(child: CircularProgressIndicator()),
+                    );
+                  },
+                  errorBuilder:
+                      (context, error, stackTrace) => const SizedBox(
+                        height: 200,
+                        child: Center(child: Icon(Icons.error)),
+                      ),
+                ),
+                Positioned.fill(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Colors.black26, Colors.transparent],
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
 
-          // 🟦 Section title without View All
           _buildSectionTitle("Featured Activities"),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
           _buildGridListings(),
-          const SizedBox(height: 20),
+          const SizedBox(height: 24),
 
-          // 📍 Listing section with "View All"
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _buildSectionTitle("Top Listings"),
               TextButton(
                 onPressed: () {
-                  // Add navigation or logic here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Listings()),
+                  );
                 },
                 child: const Text("View All"),
               ),
             ],
           ),
+          const SizedBox(height: 12),
+
           _buildListingCard(
+            context: context,
             title: "Elite Swimming Academy",
             location: "Swimming | Downtown",
             tag: "Paid",
@@ -66,6 +91,7 @@ class HomeScreen extends StatelessWidget {
                 "https://d2h8hramu3xqoh.cloudfront.net/blog/wp-content/uploads/2018/07/Swimming-Benefits-Children-MentallyEmotionallyand-Physically.webp",
           ),
           _buildListingCard(
+            context: context,
             title: "Power Gym Center",
             location: "Gym | Uptown",
             tag: "Free",
@@ -76,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                 "https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png",
           ),
           _buildListingCard(
+            context: context,
             title: "Ace Tennis Club",
             location: "Tennis | West Side",
             tag: "Paid",
@@ -94,7 +121,7 @@ class HomeScreen extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: FontWeight.bold,
         color: Color(0xFF1F2937),
       ),
@@ -131,20 +158,20 @@ class HomeScreen extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 1.1,
+        crossAxisSpacing: 14,
+        mainAxisSpacing: 14,
+        childAspectRatio: 1.05,
       ),
       itemBuilder: (context, index) {
         final item = items[index];
         return Container(
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.08),
-                blurRadius: 6,
+                color: Colors.black.withOpacity(0.06),
+                blurRadius: 8,
                 offset: const Offset(0, 3),
               ),
             ],
@@ -155,7 +182,7 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: ClipRRect(
                   borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(14),
+                    top: Radius.circular(16),
                   ),
                   child: Image.network(
                     item["img"]!,
@@ -165,15 +192,23 @@ class HomeScreen extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     },
                     errorBuilder:
-                        (context, error, stackTrace) => const Icon(Icons.error),
+                        (context, error, stackTrace) =>
+                            const Center(child: Icon(Icons.error)),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 12,
+                ),
                 child: Text(
                   item["title"]!,
-                  style: const TextStyle(fontWeight: FontWeight.w600),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                  ),
                 ),
               ),
             ],
@@ -184,6 +219,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildListingCard({
+    required BuildContext context,
     required String title,
     required String location,
     required String tag,
@@ -192,14 +228,14 @@ class HomeScreen extends StatelessWidget {
     required String imageUrl,
   }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 18),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            blurRadius: 8,
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 12,
             offset: const Offset(0, 4),
           ),
         ],
@@ -208,22 +244,28 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: Image.network(
               imageUrl,
-              height: 160,
+              height: 180,
               width: double.infinity,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
-                return const Center(child: CircularProgressIndicator());
+                return const SizedBox(
+                  height: 180,
+                  child: Center(child: CircularProgressIndicator()),
+                );
               },
               errorBuilder:
-                  (context, error, stackTrace) => const Icon(Icons.error),
+                  (context, error, stackTrace) => const SizedBox(
+                    height: 180,
+                    child: Center(child: Icon(Icons.error)),
+                  ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.all(14),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -233,39 +275,40 @@ class HomeScreen extends StatelessWidget {
                       child: Text(
                         title,
                         style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 17,
+                          color: Color(0xFF1E293B),
                         ),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 4,
+                        horizontal: 10,
+                        vertical: 5,
                       ),
                       decoration: BoxDecoration(
                         color:
                             tag == "Paid"
-                                ? Colors.blue[100]
-                                : Colors.green[100],
-                        borderRadius: BorderRadius.circular(8),
+                                ? Colors.blue.shade100
+                                : Colors.green.shade100,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         tag,
                         style: const TextStyle(
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Text(
                   location,
                   style: const TextStyle(color: Colors.grey, fontSize: 13),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Row(
                   children: List.generate(
                     5,
@@ -279,27 +322,50 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
                 Text(
                   description,
                   style: const TextStyle(fontSize: 13),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 12),
+                const SizedBox(height: 14),
                 Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ListingsDetails(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.blue.shade600,
                         foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                       child: const Text("View Details"),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 10),
                     OutlinedButton(
                       onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                       child: const Text("Book Now"),
                     ),
                   ],
