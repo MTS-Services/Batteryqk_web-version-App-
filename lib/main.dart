@@ -2,6 +2,7 @@ import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.da
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,13 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginScreen(),
+      home: BookScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         canvasColor: Colors.white,
+
         inputDecorationTheme: InputDecorationTheme(
                focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(color: Colors.blue,),
+                 borderSide: BorderSide(color: AppColor.appGreenColor,),
                  borderRadius: BorderRadius.circular(6),
                ),
 
