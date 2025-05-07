@@ -10,8 +10,8 @@ import geolocator_apple
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   GeolocatorPlugin.register(with: registry.registrar(forPlugin: "GeolocatorPlugin"))
-=======
+=========
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
->>>>>>> Home
+>>>>>>>>> Temporary merge branch 2
 }
