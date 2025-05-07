@@ -80,7 +80,7 @@ class _CustomListingsBookingSectionState
         SizedBox(height: 50),
         CustomSectionHeaderText('Book a Session'),
         SizedBox(height: 30),
-        Text('Date', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('Date'),
         TextField(
           controller: widget.dateController,
           decoration: InputDecoration(
@@ -113,10 +113,10 @@ class _CustomListingsBookingSectionState
           ),
         ),
         SizedBox(height: 30),
-        Text('Time', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('Time',),
         CustomDropdownButton(itemList: timeList, listType: '9:00 AM'),
         SizedBox(height: 30),
-        Text('Number of person', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('Number of person'),
         CustomDropdownButton(itemList: personNumber, listType: '1'),
         SizedBox(height: 30),
         CustomButton(buttonText: 'Book Now'),
@@ -124,8 +124,7 @@ class _CustomListingsBookingSectionState
         Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
         Text(
-          'Contact Information',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'Contact Information'
         ),
         Row(
           children: [
