@@ -29,7 +29,11 @@ class CustomAppBar extends StatelessWidget {
           ),
           const SizedBox(width: 16),
           IconButton(
-            icon: const Icon(Icons.notifications_none, color: Colors.black87),
+            icon: const Icon(
+              Icons.notifications_none,
+              color: Colors.black87,
+              size: 28,
+            ),
             onPressed: () {
               // Handle notification tap
             },
