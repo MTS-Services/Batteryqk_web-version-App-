@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
@@ -18,9 +19,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _obscurePassword = true;
 
-  final TextEditingController _emailTEController=TextEditingController();
-  final TextEditingController _passwordTEController=TextEditingController();
-  final GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
+  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Email is required';
                     }
-                    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                    final emailRegex = RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                    );
                     if (!emailRegex.hasMatch(value)) {
                       return 'Enter a valid email';
                     }
@@ -124,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         setState(() {
-                          _obscurePassword =  !_obscurePassword;
+                          _obscurePassword = !_obscurePassword;
                         });
                       },
                     ),
@@ -149,15 +152,22 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_globalKey.currentState!.validate()){
+                      if (_globalKey.currentState!.validate()) {
                         setState(() {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(), ));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomBottomNavigationBar(),
+                            ),
+                          );
                         });
                       }
-
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
                       backgroundColor: AppColor.appGreenColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

@@ -1,4 +1,4 @@
-import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart'; 
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
         child: CustomAppBar(),
       ),
       backgroundColor: const Color(0xFFF8FAFC),
-      body: ListView(
+      body: ListView( 
         padding: const EdgeInsets.all(12),
         children: [
           // 🔁 Fixed image replacing slider
@@ -198,7 +198,7 @@ class HomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withOpacity(0.1), 
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
