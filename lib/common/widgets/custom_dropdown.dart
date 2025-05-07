@@ -44,8 +44,8 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 item,
                 style: TextStyle(
                   fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColor.appGreenColor,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -59,11 +59,11 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           iconStyleData: IconStyleData(
             icon: const Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 20,
-            iconEnabledColor: AppColor.appLightGreenColor,
+            iconEnabledColor: AppColor.appGreenColor,
           ),
           dropdownStyleData: DropdownStyleData(
             isOverButton: false,
-            maxHeight: 400,
+            maxHeight: 300,
             useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
@@ -79,15 +79,15 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             ),
             elevation: 3,
             scrollbarTheme: ScrollbarThemeData(
-              thumbColor: WidgetStateProperty.all(AppColor.appLightGreenColor.withOpacity(0.7)),
+              thumbColor: WidgetStateProperty.all(AppColor.appGreenColor.withOpacity(0.7)),
             ),
           ),
           buttonStyleData: ButtonStyleData(
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.9),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: AppColor.appLightGreenColor.withOpacity(0.7),
+                color: AppColor.appGreenColor.withOpacity(0.7),
                 width: 1.2,
               ),
               boxShadow: [

@@ -85,7 +85,7 @@ class _CustomListingsBookingSectionState
           controller: widget.dateController,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColor.appLightGreenColor),
+              borderSide: BorderSide(color: AppColor.appGreenColor),
             ),
             labelText: 'Date/Month/year',
             suffixIcon: IconButton(
@@ -107,7 +107,7 @@ class _CustomListingsBookingSectionState
               },
               icon: Icon(
                 Icons.calendar_today_outlined,
-                color: AppColor.appLightGreenColor,
+                color: AppColor.appGreenColor,
               ),
             ),
           ),
@@ -120,7 +120,7 @@ class _CustomListingsBookingSectionState
         CustomDropdownButton(itemList: personNumber, listType: '1'),
         SizedBox(height: 30),
         CustomButton(buttonText: 'Book Now'),
-        SizedBox(height: 20),
+        SizedBox(height: 30),
         Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
         Text(

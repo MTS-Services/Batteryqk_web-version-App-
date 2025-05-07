@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Sign In',
+          buttonText,
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
       ),
