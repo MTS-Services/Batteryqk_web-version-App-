@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
-import 'package:flutter/material.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          // 🔁 Image with gradient overlay
+          // Banner with image and gradient overlay
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Stack(
@@ -29,12 +30,16 @@ class HomeScreen extends StatelessWidget {
                   loadingBuilder: (context, child, loadingProgress) {
                     if (loadingProgress == null) return child;
                     return Container(
+                      height: 200,
                       color: Colors.grey.shade200,
                       child: const Center(child: CircularProgressIndicator()),
                     );
                   },
                   errorBuilder:
-                      (context, error, stackTrace) => const Icon(Icons.error),
+                      (context, error, stackTrace) => const SizedBox(
+                        height: 200,
+                        child: Center(child: Icon(Icons.error)),
+                      ),
                 ),
                 Positioned.fill(
                   child: Container(
@@ -65,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Listings()),
+                    MaterialPageRoute(builder: (context) => const Listings()),
                   );
                 },
                 child: const Text("View All"),
@@ -73,7 +78,9 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
+
           _buildListingCard(
+            context: context,
             title: "Elite Swimming Academy",
             location: "Swimming | Downtown",
             tag: "Paid",
@@ -84,6 +91,7 @@ class HomeScreen extends StatelessWidget {
                 "https://d2h8hramu3xqoh.cloudfront.net/blog/wp-content/uploads/2018/07/Swimming-Benefits-Children-MentallyEmotionallyand-Physically.webp",
           ),
           _buildListingCard(
+            context: context,
             title: "Power Gym Center",
             location: "Gym | Uptown",
             tag: "Free",
@@ -94,6 +102,7 @@ class HomeScreen extends StatelessWidget {
                 "https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png",
           ),
           _buildListingCard(
+            context: context,
             title: "Ace Tennis Club",
             location: "Tennis | West Side",
             tag: "Paid",
@@ -183,7 +192,8 @@ class HomeScreen extends StatelessWidget {
                       return const Center(child: CircularProgressIndicator());
                     },
                     errorBuilder:
-                        (context, error, stackTrace) => const Icon(Icons.error),
+                        (context, error, stackTrace) =>
+                            const Center(child: Icon(Icons.error)),
                   ),
                 ),
               ),
@@ -209,6 +219,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildListingCard({
+    required BuildContext context,
     required String title,
     required String location,
     required String tag,
@@ -241,10 +252,16 @@ class HomeScreen extends StatelessWidget {
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
-                return const Center(child: CircularProgressIndicator());
+                return const SizedBox(
+                  height: 180,
+                  child: Center(child: CircularProgressIndicator()),
+                );
               },
               errorBuilder:
-                  (context, error, stackTrace) => const Icon(Icons.error),
+                  (context, error, stackTrace) => const SizedBox(
+                    height: 180,
+                    child: Center(child: Icon(Icons.error)),
+                  ),
             ),
           ),
           Padding(
@@ -316,7 +333,14 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ListingsDetails(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue.shade600,
                         foregroundColor: Colors.white,

@@ -17,12 +17,12 @@ class CustomDropdownButton extends StatefulWidget {
 }
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
-  String? selectedItem;
 
+  String? selectedItem;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0,),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
@@ -38,13 +38,14 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           items: widget.itemList
               .map(
                 (String item) => DropdownMenuItem(
+                  enabled: true,
               value: item,
               child: Text(
                 item,
                 style: TextStyle(
                   fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColor.appGreenColor,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -58,9 +59,12 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           iconStyleData: IconStyleData(
             icon: const Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 20,
-            iconEnabledColor: AppColor.appLightGreenColor,
+            iconEnabledColor: AppColor.appGreenColor,
           ),
           dropdownStyleData: DropdownStyleData(
+            isOverButton: false,
+            maxHeight: 300,
+            useSafeArea: true,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               color: Colors.white,
@@ -75,15 +79,15 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             ),
             elevation: 3,
             scrollbarTheme: ScrollbarThemeData(
-              thumbColor: MaterialStateProperty.all(AppColor.appLightGreenColor.withOpacity(0.7)),
+              thumbColor: WidgetStateProperty.all(AppColor.appGreenColor.withOpacity(0.7)),
             ),
           ),
           buttonStyleData: ButtonStyleData(
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.9),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(8),
               border: Border.all(
-                color: AppColor.appLightGreenColor.withOpacity(0.7),
+                color: AppColor.appGreenColor.withOpacity(0.7),
                 width: 1.2,
               ),
               boxShadow: [

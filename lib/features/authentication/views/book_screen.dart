@@ -72,8 +72,14 @@ class _BookScreenState extends State<BookScreen> {
         child: CustomAppBar(),
       ),
       backgroundColor: Colors.white,
+
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: 20,
+          bottom: 20,
+        ),
         child: Card(
           elevation: 1,
           color: Colors.white,
@@ -85,13 +91,16 @@ class _BookScreenState extends State<BookScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 30),
-                  Text(
-                    'Book a Session',
-                    style: TextStyle(
-                      color: Color(0xFF1F2937),
-                      fontSize: 24,
-                      fontWeight: FontWeight.w700,
+                  const SizedBox(height: 35),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      'Book a Session',
+                      style: TextStyle(
+                        color: Color(0xFF1F2937),
+                        fontSize: 24,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   Padding(
