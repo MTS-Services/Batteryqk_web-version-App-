@@ -44,11 +44,7 @@ class _ListingsState extends State<Listings> {
     '4 Stars',
     '5 Stars',
   ];
-  final List<String> price = [
-    'Free',
-    'Paid',
-    'Subscription'
-  ];
+  final List<String> price = ['Free', 'Paid', 'Subscription'];
 
   bool _isDropdownVisible = false;
 
@@ -59,11 +55,15 @@ class _ListingsState extends State<Listings> {
   }
 
   void _resetFilters() {
+
     // Reset logic can be improved depending on your use case
     setState(() {
       _isDropdownVisible = false;
+      islogin = false;
     });
   }
+  bool islogin = true;
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,93 +75,128 @@ class _ListingsState extends State<Listings> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Toggle Dropdowns
             Center(
-              child: ElevatedButton(
+              child: ElevatedButton.icon(
                 onPressed: _toggleDropdown,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
+                  backgroundColor: AppColor.appGreenColor,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 32,
-                    vertical: 12,
+                    vertical: 10,
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25),
                   ),
                   elevation: 4,
                 ),
-                child: const Text(
+                icon: const Icon(
+                  Icons.filter_alt_outlined,
+                  color: Colors.white,
+                ),
+                label: const Text(
                   'Filter Listings',
                   style: TextStyle(
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.1,
-                    color: AppColor.appGreenColor,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
-            // Dropdowns
             if (_isDropdownVisible)
-              Column(
-                children: [
-                  CustomDropdownButton(
-                    itemList: categoryItem,
-                    listType: 'Category',
-                  ),
-                  CustomDropdownButton(
-                    itemList: location,
-                    listType: 'All Location',
-                  ),
-                  CustomDropdownButton(
-                    itemList: ageGroup,
-                    listType: 'Age Group',
-                  ),
-                  CustomDropdownButton(itemList: rating, listType: 'Rating'),
-                  CustomDropdownButton(itemList: price, listType: 'Price'),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Card(
+                elevation: 3,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          // Add your filter logic here
-                        },
-                        icon: const Icon(Icons.filter_list),
-                        label: const Text(
-                          'Apply Filters',
-                          style: TextStyle(color: AppColor.appGreenColor),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 8,
-                          ),
+                      const Text(
+                        'Apply Filters',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
-                      ElevatedButton.icon(
-                        onPressed: _resetFilters,
-                        icon: const Icon(Icons.refresh),
-                        label: const Text(
-                          'Reset',
-                          style: TextStyle(color: AppColor.appGreenColor),
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 8,
+                      const SizedBox(height: 16),
+
+                      CustomDropdownButton(
+                        itemList: categoryItem,
+                        listType: 'Category',
+                      ),
+                      CustomDropdownButton(
+                        itemList: location,
+                        listType: 'All Location',
+                      ),
+                      CustomDropdownButton(
+                        itemList: ageGroup,
+                        listType: 'Age Group',
+                      ),
+                      CustomDropdownButton(
+                        itemList: rating,
+                        listType: 'Rating',
+                      ),
+                      CustomDropdownButton(itemList: price, listType: 'Price'),
+
+                      const SizedBox(height: 20),
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: () {
+                                setState(() {
+                                  islogin = true;
+                                });
+                              },
+                              icon: const Icon(Icons.check_circle_outline),
+                              label: const Text('Apply Filters'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: islogin ? AppColor.appGreenColor : Colors.grey.shade200,
+                                foregroundColor: islogin ? Colors.white : Colors.black87,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: _resetFilters,
+                              icon: const Icon(Icons.refresh),
+                              label: const Text('Reset'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: islogin ? Colors.grey.shade200 : AppColor.appGreenColor,
+                                foregroundColor: islogin ? Colors.black87 : Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 12,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
           ],
         ),
