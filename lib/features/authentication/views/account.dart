@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -62,7 +63,7 @@ class _AccountState extends State<Account> {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: AppColor.backgroundColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(

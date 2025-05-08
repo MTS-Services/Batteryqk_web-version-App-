@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: const Color(0xFFF1F5F9),
+      backgroundColor: AppColor.backgroundColor,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class Faqs extends StatelessWidget {
@@ -64,7 +65,7 @@ class Faqs extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
