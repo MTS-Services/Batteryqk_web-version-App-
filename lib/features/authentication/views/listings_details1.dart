@@ -7,14 +7,14 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ListingsDetails extends StatefulWidget {
-  const ListingsDetails({super.key});
+class ListingsDetails1 extends StatefulWidget {
+  const ListingsDetails1({super.key});
 
   @override
-  State<ListingsDetails> createState() => _ListingsDetailsState();
+  State<ListingsDetails1> createState() => _ListingsDetails1State();
 }
 
-class _ListingsDetailsState extends State<ListingsDetails> {
+class _ListingsDetails1State extends State<ListingsDetails1> {
   final List facilitiesList = [
     'Olympic-sized pool',
     'Changing rooms',
