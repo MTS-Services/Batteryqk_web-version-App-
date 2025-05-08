@@ -17,7 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: LoginScreen(),
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
       theme: ThemeData(
+        
         canvasColor: Colors.white,
 
         inputDecorationTheme: InputDecorationTheme(
