@@ -4,6 +4,7 @@ import '../../../util/colors.dart';
 import '../../styles/styles.dart';
 import '../custom_button.dart';
 import '../custom_dropdown.dart';
+import '../custom_dropdown_Listings.dart';
 import 'custom_icon.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
@@ -80,7 +81,7 @@ class _CustomListingsBookingSectionState
         SizedBox(height: 50),
         CustomSectionHeaderText('Book a Session'),
         SizedBox(height: 30),
-        Text('Date', style: TextStyle(fontWeight: FontWeight.bold)),
+        Text('Date'),
         TextField(
           controller: widget.dateController,
           decoration: InputDecoration(
@@ -113,19 +114,18 @@ class _CustomListingsBookingSectionState
           ),
         ),
         SizedBox(height: 30),
-        Text('Time', style: TextStyle(fontWeight: FontWeight.bold)),
-        CustomDropdownButton(itemList: timeList, listType: '9:00 AM'),
+        Text('Time',),
+        CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
         SizedBox(height: 30),
-        Text('Number of person', style: TextStyle(fontWeight: FontWeight.bold)),
-        CustomDropdownButton(itemList: personNumber, listType: '1'),
+        Text('Number of person'),
+        CustomDropdownListings(itemList: personNumber, listType: '1'),
         SizedBox(height: 30),
         CustomButton(buttonText: 'Book Now'),
         SizedBox(height: 30),
         Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
         Text(
-          'Contact Information',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'Contact Information'
         ),
         Row(
           children: [

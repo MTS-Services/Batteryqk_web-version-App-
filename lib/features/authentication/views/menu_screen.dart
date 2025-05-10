@@ -1,9 +1,11 @@
 import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,7 @@ class _MenuScreenState extends State<MenuScreen> {
     CarService(),
     Faqs(),
     NotificationPage(),
-    Container(),
+    LoginScreen(),
   ];
 
   final _title = [
@@ -47,7 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: AppColor.backgroundColor,
       body: Column(
         children: [
           // Header

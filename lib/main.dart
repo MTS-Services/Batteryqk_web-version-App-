@@ -1,5 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -21,16 +23,16 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.white,
 
         inputDecorationTheme: InputDecorationTheme(
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: AppColor.appGreenColor.withOpacity(0.7),
-            ),
-            borderRadius: BorderRadius.circular(6),
-          ),
+               focusedBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color: AppColor.appGreenColor,),
+                 borderRadius: BorderRadius.circular(6),
+               ),
+
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(6),
           ),
+
         ),
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
-        ),
+        )
       ),
     );
   }

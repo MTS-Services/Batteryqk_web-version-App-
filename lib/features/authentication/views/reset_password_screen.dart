@@ -1,4 +1,4 @@
-
+import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,15 +6,14 @@ class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() =>
-      _ResetPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -48,7 +47,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 decoration: InputDecoration(
                   hintText: 'At least 6 digit',
                   filled: true,
-                  fillColor:Colors.blue.shade50,
+                  fillColor: Colors.blue.shade50,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -98,7 +97,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    backgroundColor:AppColor.appGreenColor,
+                    backgroundColor: AppColor.appGreenColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -109,17 +108,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
     );
   }
-
-
 }
-
-
-
-
