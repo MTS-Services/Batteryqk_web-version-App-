@@ -107,13 +107,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       // Handle Facebook login
                     },
                   ),
-                  SizedBox(width: 16),
-                  buildSocialButton(
-                    icon: FontAwesomeIcons.apple,
-                    onTap: () {
-                      // Handle Apple login
-                    },
-                  ),
                 ],
               ),
               const SizedBox(height: 50),

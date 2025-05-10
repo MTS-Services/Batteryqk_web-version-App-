@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -62,11 +63,9 @@ class _BookScreenState extends State<BookScreen> {
       });
     }
   }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: PreferredSize(
@@ -75,10 +74,7 @@ class _BookScreenState extends State<BookScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(
-          left: 12,
-          right: 12,
-          top: 20,
-          bottom: 20,
+          left: 12, right: 12, top: 20, bottom: 20,
         ),
         child: Card(
           elevation: 0.5,
@@ -98,7 +94,7 @@ class _BookScreenState extends State<BookScreen> {
                     child: Text(
                       'Book a Session',
                       style: TextStyle(
-                        color: Color(0xFF1F2937),
+                        color: AppColor.appGreenColor,
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
@@ -384,7 +380,7 @@ class _BookScreenState extends State<BookScreen> {
                                   Spacer(),
                                   OutlinedButton(
                                     onPressed: () {
-                                      print('Cancel pressed');
+
                                     },
                                     child: Text(
                                       'Cancel',
@@ -403,7 +399,7 @@ class _BookScreenState extends State<BookScreen> {
                                             }
                                             : null,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF26B3FF),
+                                      backgroundColor: AppColor.appLightGreenColor,
                                       foregroundColor: Colors.white,
                                     ),
                                     child: Text(
@@ -421,6 +417,7 @@ class _BookScreenState extends State<BookScreen> {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 60,),
                       ],
                     ),
                   ),

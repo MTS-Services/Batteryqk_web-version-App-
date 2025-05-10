@@ -114,13 +114,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       // Handle Facebook login
                     },
                   ),
-                  SizedBox(width: 16),
-                  buildSocialButton(
-                    icon: FontAwesomeIcons.apple,
-                    onTap: () {
-                      // Handle Apple login
-                    },
-                  ),
                 ],
               ),
               const SizedBox(height: 50),

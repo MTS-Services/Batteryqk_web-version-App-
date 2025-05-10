@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          _buildSectionTitle("Featured Activities"),
+          _buildSectionTitle("Featured Activities",),
           const SizedBox(height: 12),
           _buildGridListings(),
           const SizedBox(height: 24),
@@ -367,7 +367,7 @@ class HomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade600,
+                        backgroundColor: AppColor.appGreenColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
@@ -383,6 +383,7 @@ class HomeScreen extends StatelessWidget {
                     OutlinedButton(
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
+                        backgroundColor: AppColor.appLightGreenColor,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 12,
@@ -391,7 +392,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text("Book Now"),
+                      child: const Text("Book Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),),
                     ),
                   ],
                 ),
