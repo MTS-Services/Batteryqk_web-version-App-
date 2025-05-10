@@ -55,17 +55,11 @@ class Points extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               elevation: 3,
+              color: Colors.white,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColor.appLightGreenColor,
-                      AppColor.appGreenColor,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
+                  color: Colors.white, // Changed to white
                 ),
                 padding: const EdgeInsets.all(20),
                 child: Row(
@@ -86,7 +80,7 @@ class Points extends StatelessWidget {
                               context,
                             ).textTheme.titleMedium!.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -120,12 +114,12 @@ class Points extends StatelessWidget {
                             context,
                           ).textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                         const Text(
                           'Points',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: Colors.black),
                         ),
                       ],
                     ),
@@ -156,6 +150,7 @@ class Points extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 1,
+                      color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Column(
@@ -203,17 +198,10 @@ class Points extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color.fromARGB(255, 255, 255, 255),
-                        const Color.fromARGB(255, 255, 255, 255),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    color: Colors.white, // Changed from gradient to white
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.white,
+                        color: Colors.grey.withOpacity(0.2),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -252,7 +240,7 @@ class Points extends StatelessWidget {
                       ),
                       Text(
                         '+10',
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
@@ -281,7 +269,7 @@ class Points extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 1,
-                  // shadowColor: AppColor.appGreenColor,
+                  color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -303,6 +291,12 @@ class Points extends StatelessWidget {
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: const BorderSide(
+                              color: AppColor.appGreenColor,
+                            ),
+                          ),
                           child: const Text(
                             "Redeem",
                             style: TextStyle(color: AppColor.appGreenColor),
