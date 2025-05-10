@@ -6,6 +6,7 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/custom_bottom_navigation_bar.dart';
+import '../../../util/colors.dart';
 
 class ListingsDetails1 extends StatefulWidget {
   const ListingsDetails1({super.key});
@@ -31,7 +32,7 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true,),

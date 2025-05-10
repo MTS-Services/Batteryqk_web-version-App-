@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,10 +12,10 @@ Widget buildSocialButton({
       height: 60,
       width: 60,
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color:AppColor.blueColor,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Center(child: FaIcon(icon, color: Colors.black)),
+      child: Center(child: FaIcon(icon, color: Colors.white)),
     ),
   );
 }

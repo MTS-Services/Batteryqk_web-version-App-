@@ -27,7 +27,7 @@ class _NotificationPageState extends State<NotificationPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("All notifications marked as read"),
-        backgroundColor: AppColor.appGreenColor,
+        backgroundColor: AppColor.blueColor,
       ),
     );
   }
@@ -46,7 +46,7 @@ class _NotificationPageState extends State<NotificationPage> {
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColor.backgroundColor,
+          backgroundColor: AppColor.whiteColor,
           title: TextField(
             decoration: InputDecoration(
               hintText: 'Search...',
@@ -76,8 +76,8 @@ class _NotificationPageState extends State<NotificationPage> {
             dividerColor: const Color.fromARGB(255, 226, 226, 226),
             tabs: tabs,
             isScrollable: false,
-            labelColor: AppColor.appGreenColor,
-            indicatorColor: AppColor.appGreenColor,
+            labelColor: AppColor.blueColor,
+            indicatorColor: AppColor.blueColor,
             indicatorWeight: 0.5,
             unselectedLabelColor: Colors.black,
           ),
@@ -111,7 +111,7 @@ class _NotificationPageState extends State<NotificationPage> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: ListTile(
-            leading: Icon(Icons.notifications, color: AppColor.appGreenColor),
+            leading: Icon(Icons.notifications, color: AppColor.blueColor),
             title: Text("$type #${index + 1}"),
             subtitle: const Text("This is a sample notification message."),
             trailing:

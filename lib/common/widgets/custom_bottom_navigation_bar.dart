@@ -50,7 +50,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             });
           },
           backgroundColor: Colors.white,
-          selectedItemColor: AppColor.appGreenColor,
+          selectedItemColor: AppColor.blueColor,
           unselectedItemColor: Colors.grey.shade500,
           selectedFontSize: 14,
           unselectedFontSize: 13,

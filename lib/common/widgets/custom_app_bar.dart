@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
               style: GoogleFonts.openSans(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                color: AppColor.appGreenColor,
+                color: AppColor.blueColor,
               ),
             ),
             SizedBox(width: 20),

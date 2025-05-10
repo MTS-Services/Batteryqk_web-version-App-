@@ -63,7 +63,7 @@ class _AccountState extends State<Account> {
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true,),
       ),
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         child: Column(

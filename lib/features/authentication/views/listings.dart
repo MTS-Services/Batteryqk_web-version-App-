@@ -114,7 +114,7 @@ class _ListingsState extends State<Listings> {
                         icon: const Icon(Icons.check_circle_outline),
                         label: const Text('Apply Filters'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: islogin ? AppColor.appGreenColor : Colors.grey.shade200,
+                          backgroundColor: islogin ? AppColor.blueColor : Colors.grey.shade200,
                           foregroundColor: islogin ? Colors.white : Colors.black87,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
@@ -130,7 +130,7 @@ class _ListingsState extends State<Listings> {
                         icon: const Icon(Icons.refresh),
                         label: const Text('Reset'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: islogin ? Colors.grey.shade200 : AppColor.appGreenColor,
+                          backgroundColor: islogin ? Colors.grey.shade200 : AppColor.blueColor,
                           foregroundColor: islogin ? Colors.black87 : Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
@@ -153,10 +153,10 @@ class _ListingsState extends State<Listings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
-      appBar: PreferredSize(
+      backgroundColor: AppColor.whiteColor,
+      appBar:  PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: false),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
@@ -167,7 +167,7 @@ class _ListingsState extends State<Listings> {
               child: ElevatedButton.icon(
                 onPressed: _showFilterModal,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.appGreenColor,
+                  backgroundColor: AppColor.blueColor,
                   padding: const EdgeInsets.symmetric(
                     horizontal: 32,
                     vertical: 10,
@@ -179,7 +179,7 @@ class _ListingsState extends State<Listings> {
                 ),
                 icon: const Icon(
                   Icons.filter_alt_outlined,
-                  color: Colors.white,
+                  color: AppColor.whiteColor,
                 ),
                 label: const Text(
                   'Filter Listings',
@@ -187,7 +187,7 @@ class _ListingsState extends State<Listings> {
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1,
-                    color: Colors.white,
+                    color: AppColor.whiteColor,
                   ),
                 ),
               ),

@@ -19,7 +19,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -84,7 +84,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    backgroundColor: AppColor.appGreenColor,
+                    backgroundColor: AppColor.blueColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -96,7 +96,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-              Center(child: Text('Or',style: TextStyle(fontSize: 16,color: AppColor.appGreenColor),)),
+              Center(child: Text('Or',style: TextStyle(fontSize: 16,color: AppColor.blueColor),)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -112,13 +112,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     icon: FontAwesomeIcons.facebook,
                     onTap: () {
                       // Handle Facebook login
-                    },
-                  ),
-                  SizedBox(width: 16),
-                  buildSocialButton(
-                    icon: FontAwesomeIcons.apple,
-                    onTap: () {
-                      // Handle Apple login
                     },
                   ),
                 ],
@@ -143,14 +136,14 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: AppColor.appGreenColor
+                        color: AppColor.blueColor
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
                     'Sign up',
-                    style: TextStyle(fontSize: 18, color:AppColor.appGreenColor),
+                    style: TextStyle(fontSize: 18, color:AppColor.blueColor),
                   ),
                 ),
               ),

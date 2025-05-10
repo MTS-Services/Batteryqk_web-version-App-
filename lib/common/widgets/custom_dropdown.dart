@@ -84,7 +84,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             iconStyleData: IconStyleData(
               icon: const Icon(Icons.keyboard_arrow_down_rounded),
               iconSize: 20,
-              iconEnabledColor: iisFocused ? AppColor.appGreenColor: Colors.grey,
+              iconEnabledColor: iisFocused ? AppColor.blueColor: Colors.grey,
             ),
             dropdownStyleData: DropdownStyleData(
               isOverButton: false,
@@ -104,7 +104,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
               ),
               elevation: 3,
               scrollbarTheme: ScrollbarThemeData(
-                thumbColor: WidgetStateProperty.all(AppColor.appGreenColor),
+                thumbColor: WidgetStateProperty.all(AppColor.blueColor),
               ),
             ),
             buttonStyleData: ButtonStyleData(
@@ -112,7 +112,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 color: Colors.white.withOpacity(0.7),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: isFocused ? AppColor.appGreenColor : Colors.grey.withOpacity(0.2),
+                  color: isFocused ? AppColor.blueColor : Colors.grey.withOpacity(0.2),
                   width: isFocused ? 2 : 1.2,
                 ),
                 boxShadow: [
