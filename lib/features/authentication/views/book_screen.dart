@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -63,15 +64,16 @@ class _BookScreenState extends State<BookScreen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true,),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -184,33 +186,31 @@ class _BookScreenState extends State<BookScreen> {
                         ),
                         Card(
                           elevation: 3,
-                          shadowColor: Colors.white.withOpacity(0.3),
+                          shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: GestureDetector(
                             onTap: () => _pickDate(context),
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 8,
-                                vertical: 7,
+                                vertical: 9,
                               ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                  color: Colors.grey.shade300,
-                                  // Light grey border
-                                  width: 1.0,
-                                ),
                               ),
                               child: Row(
                                 children: [
+                                  // Space between icon and date
                                   Text(
                                     _selectedDate == null
                                         ? 'mm/dd/yyyy'
                                         : _formatter.format(_selectedDate!),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: Colors.black54,
+                                      color:
+                                          _selectedDate == null
+                                              ? Colors.black54
+                                              : Colors.black54,
                                     ),
                                   ),
                                   Spacer(),
@@ -224,6 +224,7 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
 
+
                         const SizedBox(height: 3),
                         Text(
                           'Number of Participants',
@@ -234,15 +235,17 @@ class _BookScreenState extends State<BookScreen> {
                           shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
-                            height: 39,
+                            height: 40,
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(5),
-                              border: Border.all(
-                                color: Colors.grey.shade200,
-                                // Light grey border
-                                width: 1.0,
-                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.white.withOpacity(0.06),
+                                  blurRadius: 12,
+                                  spreadRadius: 1,
+                                  offset: const Offset(0, 6),
+                                )
+                              ]
                             ),
                             child: TextFormField(),
                           ),

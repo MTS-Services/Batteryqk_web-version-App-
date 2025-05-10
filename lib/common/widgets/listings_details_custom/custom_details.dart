@@ -99,15 +99,6 @@ class _CustomDetailsState extends State<CustomDetails> {
           'Mon-Fri: 7:00 AM - 9:00PM, Sat-Sun: 8:00AM - 7:00PM',
         ),
         SizedBox(height: 30),
-        CustomSectionHeaderText('Location'),
-        Container(
-          height: 250,
-          width: 400,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColor.appLightGreenColor,
-          ),
-        ),
         SizedBox(height: 30),
         CustomSectionHeaderText('Reviews'),
         CustomReviews(

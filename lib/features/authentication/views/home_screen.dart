@@ -1,7 +1,10 @@
+import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:batteryqk_web_app/util/images_path.dart';
+import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
+import 'package:batteryqk_web_app/features/authentication/views/listings_details1.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,11 +12,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
+      appBar:  PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: false),
       ),
-      backgroundColor: const Color(0xFFF1F5F9),
+      backgroundColor: AppColor.backgroundColor,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -81,36 +84,58 @@ class HomeScreen extends StatelessWidget {
 
           _buildListingCard(
             context: context,
-            title: "Elite Swimming Academy",
+            title: AppText.academies1Title,
             location: "Swimming | Downtown",
             tag: "Paid",
             rating: 4.5,
             description:
-                "Elite Swimming Academy offers professional swimming lessons for children and teenagers.",
+                AppText.academies1Details,
             imageUrl:
-                "https://d2h8hramu3xqoh.cloudfront.net/blog/wp-content/uploads/2018/07/Swimming-Benefits-Children-MentallyEmotionallyand-Physically.webp",
+                AppImages.academies1a,
           ),
           _buildListingCard(
             context: context,
-            title: "Power Gym Center",
+            title: AppText.academies2Title,
             location: "Gym | Uptown",
             tag: "Free",
             rating: 4.0,
             description:
-                "Power Gym Center is equipped with modern machines and certified personal trainers.",
+            AppText.academies2Details,
             imageUrl:
-                "https://www.hussle.com/blog/wp-content/uploads/2020/12/Gym-structure-1080x675.png",
+                AppImages.academies2a,
           ),
           _buildListingCard(
             context: context,
-            title: "Ace Tennis Club",
+            title: AppText.academies3Title,
             location: "Tennis | West Side",
             tag: "Paid",
             rating: 5.0,
             description:
-                "Join Ace Tennis Club to enjoy premium coaching and facilities for all skill levels.",
+                AppText.academies3Details,
             imageUrl:
-                "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2204664465.jpg?c=16x9&q=h_833,w_1480,c_fill",
+                AppImages.academies3a,
+          ),
+          _buildListingCard(
+            context: context,
+            title: AppText.academies4Title,
+            location: "Basketball | Downtown",
+            tag: "Paid",
+            rating: 4.5,
+            description:
+            AppText.academies4Details,
+            imageUrl:
+            AppImages.academies4a,
+          ),
+          _buildListingCard(
+            context: context,
+            title: AppText.academies5Title,
+            location: "Tennis | south Side",
+            tag: "Paid",
+            rating: 5.0,
+            description:
+            AppText.academies5Details,
+            imageUrl:
+            AppImages.academies5a,
           ),
         ],
       ),
@@ -337,7 +362,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ListingsDetails(),
+                            builder: (context) => const ListingsDetails1(),
                           ),
                         );
                       },

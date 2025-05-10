@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 class CustomDetailsImageGroup extends StatelessWidget {
@@ -34,7 +35,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(image1a, fit: BoxFit.cover),
+                Image.network(AppImages.academies1a, fit: BoxFit.cover),
                 Positioned(
                   bottom: 14,
                   left: 14,
@@ -66,7 +67,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
         // First row of two smaller images
         Row(
           children: [
-            _buildSmallImage(image1b, size),
+            _buildSmallImage(AppImages.academies1b, size),
             const SizedBox(width: 16),
             _buildSmallImage(image1c, size),
           ],
@@ -100,7 +101,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
               ),
             ],
           ),
-          child: Image.asset(imagePath, fit: BoxFit.cover),
+          child: Image.network(imagePath, fit: BoxFit.cover),
         ),
       ),
     );

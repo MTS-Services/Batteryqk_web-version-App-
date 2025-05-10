@@ -46,7 +46,7 @@ class _NotificationPageState extends State<NotificationPage> {
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColor.backgroundColor,
           title: TextField(
             decoration: InputDecoration(
               hintText: 'Search...',
