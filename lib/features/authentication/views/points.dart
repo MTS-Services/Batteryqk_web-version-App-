@@ -12,7 +12,7 @@ class Points extends StatelessWidget {
       backgroundColor: AppColor.backgroundColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true,),
       ),
 
       body: SingleChildScrollView(

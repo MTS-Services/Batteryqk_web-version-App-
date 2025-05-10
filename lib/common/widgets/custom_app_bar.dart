@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  bool? isBack = false;
+
+  CustomAppBar({super.key , this.isBack});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: isBack!,
       toolbarHeight: 70,
       backgroundColor: Colors.white,
       elevation: 1,

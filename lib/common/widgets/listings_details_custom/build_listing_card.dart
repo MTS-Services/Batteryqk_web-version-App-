@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/authentication/views/listings_details1.dart';
-
 class BuildListingCard extends StatelessWidget {
   final String title;
   final String location;

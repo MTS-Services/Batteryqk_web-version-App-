@@ -154,9 +154,9 @@ class _ListingsState extends State<Listings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.backgroundColor,
-      appBar: const PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true,),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
