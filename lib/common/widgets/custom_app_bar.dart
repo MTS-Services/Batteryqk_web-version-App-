@@ -19,9 +19,9 @@ class CustomAppBar extends StatelessWidget {
             Text(
               'Batteryqk',
               style: GoogleFonts.openSans(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  color: AppColor.appGreenColor
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: AppColor.appGreenColor,
               ),
             ),
             SizedBox(width: 20),
@@ -33,7 +33,9 @@ class CustomAppBar extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: 'Search...',
                     prefixIcon: const Icon(Icons.search, size: 20),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 0), // minimize vertical padding
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0,
+                    ), // minimize vertical padding
                     filled: true,
                     fillColor: Colors.grey.shade200,
                     border: OutlineInputBorder(
@@ -46,8 +48,7 @@ class CustomAppBar extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
-
+              ),
             ),
             IconButton(
               icon: const Icon(Icons.notifications_none, color: Colors.black87),
