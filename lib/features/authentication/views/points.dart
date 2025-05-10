@@ -9,7 +9,7 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
@@ -31,8 +31,8 @@ class Points extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(
                     colors: [
-                      AppColor.appLightGreenColor,
-                      AppColor.appGreenColor,
+                      AppColor.whiteColor,
+                      AppColor.blueColor,
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -44,7 +44,7 @@ class Points extends StatelessWidget {
                     const Icon(
                       Icons.emoji_events,
                       size: 40,
-                      color: AppColor.appGreenColor,
+                      color: AppColor.blueColor,
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -67,7 +67,7 @@ class Points extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: AppColor.appLightGreyColor,
+                              color: AppColor.whiteColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Text(
@@ -75,7 +75,7 @@ class Points extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
-                                color: AppColor.appGreenColor,
+                                color: AppColor.blueColor,
                               ),
                             ),
                           ),
@@ -134,7 +134,7 @@ class Points extends StatelessWidget {
                           children: [
                             const Icon(
                               Icons.workspace_premium,
-                              color: AppColor.appGreenColor,
+                              color: AppColor.blueColor,
                               size: 30,
                             ),
                             const SizedBox(height: 8),
@@ -194,7 +194,7 @@ class Points extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: AppColor.appGreenColor,
+                        backgroundColor: AppColor.blueColor,
                         child: const Icon(Icons.history, color: Colors.white),
                       ),
                       const SizedBox(width: 16),
@@ -260,7 +260,7 @@ class Points extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.card_giftcard,
-                          color: AppColor.appGreenColor,
+                          color: AppColor.blueColor,
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -276,7 +276,7 @@ class Points extends StatelessWidget {
                           onPressed: () {},
                           child: const Text(
                             "Redeem",
-                            style: TextStyle(color: AppColor.appGreenColor),
+                            style: TextStyle(color: AppColor.blueColor),
                           ),
                         ),
                       ],

@@ -12,7 +12,7 @@ Widget buildSocialButton({
       height: 60,
       width: 60,
       decoration: BoxDecoration(
-        color:AppColor.appGreenColor,
+        color:AppColor.blueColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Center(child: FaIcon(icon, color: Colors.white)),

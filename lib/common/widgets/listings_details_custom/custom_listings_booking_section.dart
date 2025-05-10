@@ -86,7 +86,7 @@ class _CustomListingsBookingSectionState
           controller: widget.dateController,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColor.appGreenColor),
+              borderSide: BorderSide(color: AppColor.blueColor),
             ),
             labelText: 'Date/Month/year',
             suffixIcon: IconButton(
@@ -108,7 +108,7 @@ class _CustomListingsBookingSectionState
               },
               icon: Icon(
                 Icons.calendar_today_outlined,
-                color: AppColor.appGreenColor,
+                color: AppColor.blueColor,
               ),
             ),
           ),
@@ -133,7 +133,7 @@ class _CustomListingsBookingSectionState
               padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.phone_enabled_outlined,
-                color: AppColor.appGreenColor,
+                color: AppColor.blueColor,
               ),
             ),
             Text(widget.number),
@@ -143,7 +143,7 @@ class _CustomListingsBookingSectionState
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.email_outlined, color: AppColor.appGreenColor),
+              child: Icon(Icons.email_outlined, color: AppColor.blueColor),
             ),
             Text(widget.gmail),
           ],
@@ -152,7 +152,7 @@ class _CustomListingsBookingSectionState
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.language, color: AppColor.appGreenColor),
+              child: Icon(Icons.language, color: AppColor.blueColor),
             ),
             Text(widget.web),
           ],

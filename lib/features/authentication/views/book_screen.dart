@@ -94,7 +94,7 @@ class _BookScreenState extends State<BookScreen> {
                     child: Text(
                       'Book a Session',
                       style: TextStyle(
-                        color: AppColor.appGreenColor,
+                        color: AppColor.blackColor,
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
                       ),
@@ -399,7 +399,7 @@ class _BookScreenState extends State<BookScreen> {
                                             }
                                             : null,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColor.appLightGreenColor,
+                                      backgroundColor: AppColor.orangeColor,
                                       foregroundColor: Colors.white,
                                     ),
                                     child: Text(

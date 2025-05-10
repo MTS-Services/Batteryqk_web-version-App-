@@ -26,7 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -42,7 +42,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.textColor,
+                    color: AppColor.blueColor,
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -81,7 +81,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       vertical: 14,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.appGreenColor),
+                      borderSide: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -113,7 +113,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.appGreenColor),
+                      borderSide: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     suffixIcon: IconButton(
@@ -121,7 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         _obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: AppColor.appGreenColor,
+                        color: AppColor.blueColor,
                       ),
                       onPressed: () {
                         setState(() {
@@ -159,7 +159,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.appGreenColor),
+                      borderSide: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     suffixIcon: IconButton(
@@ -167,7 +167,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         _obscureConfirmPassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: AppColor.appGreenColor,
+                        color: AppColor.blueColor,
                       ),
                       onPressed: () {
                         setState(() {
@@ -191,7 +191,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                      backgroundColor: AppColor.appGreenColor,
+                      backgroundColor: AppColor.blueColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),

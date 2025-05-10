@@ -18,7 +18,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -60,7 +60,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     vertical: 14,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color:AppColor.appGreenColor),
+                    borderSide: BorderSide(color:AppColor.blueColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -77,7 +77,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    backgroundColor: AppColor.appGreenColor,
+                    backgroundColor: AppColor.blueColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -89,7 +89,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-              Center(child: Text('Or',style: TextStyle(color: AppColor.appGreenColor,fontSize: 16,fontWeight: FontWeight.w500),)),
+              Center(child: Text('Or',style: TextStyle(color: AppColor.blackColor,fontSize: 16,fontWeight: FontWeight.w500),)),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -130,14 +130,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
                     shape: RoundedRectangleBorder(
                       side: BorderSide(
-                        color: AppColor.appGreenColor
+                        color: AppColor.blueColor
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
                     'Sign up',
-                    style: TextStyle(fontSize: 18, color:AppColor.appGreenColor),
+                    style: TextStyle(fontSize: 18, color:AppColor.blueColor),
                   ),
                 ),
               ),

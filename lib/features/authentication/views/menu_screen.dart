@@ -49,7 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Column(
         children: [
           // Header

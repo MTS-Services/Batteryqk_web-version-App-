@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -367,7 +367,7 @@ class HomeScreen extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.appGreenColor,
+                        backgroundColor: AppColor.blueColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
@@ -383,7 +383,7 @@ class HomeScreen extends StatelessWidget {
                     OutlinedButton(
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
-                        backgroundColor: AppColor.appLightGreenColor,
+                        backgroundColor: AppColor.orangeColor,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 12,

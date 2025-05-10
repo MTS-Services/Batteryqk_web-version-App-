@@ -31,7 +31,7 @@ class _ListingsDetails3State extends State<ListingsDetails3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),

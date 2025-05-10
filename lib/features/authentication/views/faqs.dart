@@ -65,7 +65,7 @@ class Faqs extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(),
       ),
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(

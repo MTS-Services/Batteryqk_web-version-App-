@@ -65,13 +65,13 @@ class _CustomBottomNavigationBarState
         duration: const Duration(milliseconds: 250),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: isSelected ? AppColor.appGreenColor.withOpacity(0.15) : Colors.transparent,
+          color: isSelected ? AppColor.blueColor.withOpacity(0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Icon(
           icon,
           size: 26,
-          color: isSelected ? AppColor.appGreenColor : Colors.grey.shade600,
+          color: isSelected ? AppColor.blueColor : Colors.grey.shade600,
         ),
       ),
     );
