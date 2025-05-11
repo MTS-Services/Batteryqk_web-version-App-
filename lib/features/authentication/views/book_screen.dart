@@ -388,13 +388,14 @@ class _BookScreenState extends State<BookScreen> {
                                   OutlinedButton(
                                     onPressed: () {
                                       print('Cancel pressed');
-                                    },
+                                    }, style: OutlinedButton.styleFrom(
+                                    backgroundColor: AppColor.blueColor
+                                  ),
                                     child: Text(
                                       'Cancel',
-                                      style:
-                                          Theme.of(
-                                            context,
-                                          ).textTheme.bodyMedium,
+                                      style:TextStyle(
+                                        color:Colors.white,fontWeight: FontWeight.w500,fontSize: 14
+                                      ),
                                     ),
                                   ),
                                   SizedBox(width: 10),
@@ -406,7 +407,7 @@ class _BookScreenState extends State<BookScreen> {
                                             }
                                             : null,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF26B3FF),
+                                      backgroundColor: AppColor.orangeColor,
                                       foregroundColor: Colors.white,
                                     ),
                                     child: Text(
