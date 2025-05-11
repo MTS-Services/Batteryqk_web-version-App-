@@ -45,8 +45,7 @@ class _NotificationPageState extends State<NotificationPage> {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-        backgroundColor:
-            AppColor.whiteColor, // Set whole page background to white
+        backgroundColor: AppColor.whiteColor,
         appBar: AppBar(
           backgroundColor: AppColor.whiteColor,
           title: TextField(

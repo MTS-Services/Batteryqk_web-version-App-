@@ -155,7 +155,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         setState(() {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => CustomBottomNavigationBar(), ));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomBottomNavigationBar(),
+                            ),
+                          );
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -224,7 +229,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-
     );
   }
 }

@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: const EdgeInsets.only(bottom: 10),
       child: Container(
         height: 100,
-        color: Colors.white, // ✅ Force solid white background
+        color: Colors.white, //Force solid white background
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -14,8 +14,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
       _CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState
-    extends State<CustomBottomNavigationBar> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
@@ -43,7 +42,7 @@ class _CustomBottomNavigationBarState
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.07),
+                    color: Colors.white54,
                     blurRadius: 20,
                     offset: const Offset(0, 6),
                   ),
@@ -78,19 +77,21 @@ class _CustomBottomNavigationBarState
         duration: const Duration(milliseconds: 300),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isSelected
-              ? AppColor.blueColor.withOpacity(0.12)
-              : Colors.transparent,
+          color:
+              isSelected
+                  ? AppColor.blueColor.withOpacity(0.12)
+                  : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
-          boxShadow: isSelected
-              ? [
-            BoxShadow(
-              color: AppColor.blueColor.withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4),
-            )
-          ]
-              : [],
+          boxShadow:
+              isSelected
+                  ? [
+                    BoxShadow(
+                      color: AppColor.blueColor.withOpacity(0.3),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                  : [],
         ),
         child: AnimatedScale(
           scale: isSelected ? 1.25 : 1.0,

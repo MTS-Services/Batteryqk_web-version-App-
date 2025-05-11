@@ -35,18 +35,21 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.grey.shade600,
             ),
           ),
-          items: widget.itemList
-              .map((item) => DropdownMenuItem(
-            value: item,
-            child: Text(
-              item,
-              style: const TextStyle(
-                fontSize: 15,
-                color: Colors.black87,
-              ),
-            ),
-          ))
-              .toList(),
+          items:
+              widget.itemList
+                  .map(
+                    (item) => DropdownMenuItem(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
           onChanged: (value) {
             setState(() {
               selectedItem = value;
