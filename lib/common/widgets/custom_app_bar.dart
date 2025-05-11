@@ -36,7 +36,7 @@ class CustomAppBar extends StatelessWidget {
                   decoration: InputDecoration(
                     hintText: 'Search...',
                     prefixIcon: const Icon(Icons.search, size: 20),
-                    contentPadding: const EdgeInsets.symmetric(
+                    contentPadding: const EdgeInsets.symmetric(    
                       vertical: 0,
                     ), // minimize vertical padding
                     filled: true,
