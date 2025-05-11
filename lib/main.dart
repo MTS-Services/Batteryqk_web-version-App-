@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.white,
         inputDecorationTheme: InputDecorationTheme(
                focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(color: AppColor.blackColor,),
+                 borderSide: BorderSide(color:AppColor.blueColor),
                  borderRadius: BorderRadius.circular(6),
                ),
 
@@ -41,4 +41,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
+}  
