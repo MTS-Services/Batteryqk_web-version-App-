@@ -11,9 +11,8 @@ class CarService extends StatelessWidget {
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: true),
       ),
-
       body: Center(
         child: Text(
           "Coming Soon",

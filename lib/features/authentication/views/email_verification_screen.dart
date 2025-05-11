@@ -50,7 +50,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 decoration: InputDecoration(
                   hintText: 'Email',
                   filled: true,
-                  fillColor:Colors.blue.shade50,
+                  fillColor: Colors.blue.shade50,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide.none,
@@ -60,20 +60,29 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     vertical: 14,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color:AppColor.blueColor),
+                    borderSide: BorderSide(color: AppColor.blueColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
 
               const SizedBox(height: 10),
-              Center(child: Text('Back to sign in',style: TextStyle(color: Colors.grey,fontSize: 16),)),
+              Center(
+                child: Text(
+                  'Back to sign in',
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                ),
+              ),
               const SizedBox(height: 25),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => OtpVerificationScreen()));
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => OtpVerificationScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
@@ -89,7 +98,16 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-              Center(child: Text('Or',style: TextStyle(color: AppColor.blackColor,fontSize: 16,fontWeight: FontWeight.w500),)),
+              Center(
+                child: Text(
+                  'Or',
+                  style: TextStyle(
+                    color: AppColor.blackColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -113,7 +131,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Text(
                 'Do you have an account?',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey,fontSize: 16),
+                style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -129,15 +147,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     backgroundColor: Colors.white,
 
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: AppColor.blueColor
-                      ),
+                      side: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
                     'Sign up',
-                    style: TextStyle(fontSize: 18, color:AppColor.blueColor),
+                    style: TextStyle(fontSize: 18, color: AppColor.blueColor),
                   ),
                 ),
               ),
@@ -147,6 +163,4 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       ),
     );
   }
-
-
 }

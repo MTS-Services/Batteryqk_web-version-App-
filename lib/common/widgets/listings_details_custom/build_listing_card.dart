@@ -149,7 +149,6 @@ class BuildListingCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     OutlinedButton(
-
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
                         backgroundColor: AppColor.orangeColor,
@@ -162,7 +161,10 @@ class BuildListingCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text("Book Now", style: TextStyle(color:AppColor.whiteColor),),
+                      child: const Text(
+                        "Book Now",
+                        style: TextStyle(color: AppColor.whiteColor),
+                      ),
                     ),
                   ],
                 ),
