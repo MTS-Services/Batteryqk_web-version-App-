@@ -63,29 +63,23 @@ class Faqs extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: true),
       ),
       backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
-            const Text(
-              'Frequently Asked Questions',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF1F2937),
-              ),
-            ),
             const SizedBox(height: 16),
             ...faqData.map((faq) {
               return Card(
+                color: const Color.fromARGB(255, 240, 240, 240),
+
                 elevation: 0,
                 margin: const EdgeInsets.only(bottom: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(color: Colors.grey.shade300),
+                  side: BorderSide(color: AppColor.whiteColor),
                 ),
                 child: ExpansionTile(
                   title: Text(
@@ -105,7 +99,7 @@ class Faqs extends StatelessWidget {
                         faq['answer']!,
                         style: const TextStyle(
                           fontSize: 14,
-                          color: Colors.black87,
+                          color: AppColor.blackColor,
                         ),
                       ),
                     ),
