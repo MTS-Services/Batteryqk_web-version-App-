@@ -28,7 +28,7 @@ class _CustomDetailsState extends State<CustomDetails> {
             CustomTitleText(AppText.academies1Title),
             Badge(
               label: Text('Paid'),
-              backgroundColor: AppColor.appLightGreenColor,
+              backgroundColor: AppColor.whiteColor,
               textColor: Colors.black,
               textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
               padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
@@ -65,14 +65,14 @@ class _CustomDetailsState extends State<CustomDetails> {
             Badge(
               label: Text('Children (6-12 years)'),
               padding: EdgeInsets.symmetric(vertical: 3, horizontal: 16),
-              backgroundColor: AppColor.appLightGreenColor,
+              backgroundColor: AppColor.whiteColor,
               textColor: Colors.black,
             ),
             SizedBox(width: 10),
             Badge(
               label: Text('Teenagers(13-18 years)'),
               padding: EdgeInsets.symmetric(vertical: 3, horizontal: 16),
-              backgroundColor: AppColor.appLightGreenColor,
+              backgroundColor: AppColor.whiteColor,
               textColor: Colors.black,
             ),
           ],
@@ -105,7 +105,7 @@ class _CustomDetailsState extends State<CustomDetails> {
           width: 400,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: AppColor.appLightGreenColor,
+            color: AppColor.whiteColor,
           ),
         ),
         SizedBox(height: 30),

@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -69,10 +70,10 @@ class _BookScreenState extends State<BookScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true,),
       ),
       body: Padding(
         padding: const EdgeInsets.only(

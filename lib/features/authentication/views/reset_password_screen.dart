@@ -13,7 +13,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -57,7 +57,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     vertical: 14,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColor.appGreenColor),
+                    borderSide: BorderSide(color: AppColor.blueColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -85,7 +85,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     vertical: 14,
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: AppColor.appGreenColor),
+                    borderSide: BorderSide(color: AppColor.blueColor),
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
@@ -97,7 +97,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    backgroundColor: AppColor.appGreenColor,
+                    backgroundColor: AppColor.blueColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),

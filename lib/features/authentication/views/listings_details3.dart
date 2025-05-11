@@ -7,43 +7,55 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ListingsDetails extends StatefulWidget {
-  const ListingsDetails({super.key});
+class ListingsDetails3 extends StatefulWidget {
+  const ListingsDetails3({super.key});
 
   @override
-  State<ListingsDetails> createState() => _ListingsDetailsState();
+  State<ListingsDetails3> createState() => _ListingsDetails3State();
 }
 
-class _ListingsDetailsState extends State<ListingsDetails> {
+class _ListingsDetails3State extends State<ListingsDetails3> {
   final List facilitiesList = [
-    'Olympic-sized pool',
+    'Olympic-sized field',
     'Changing rooms',
     'Shower facilities',
     'Spectator area',
   ];
 
   final List contractInfos = [
-    '555-123-4567',
-    'info@eliteswimmingacademy.com',
-    'www.eliteswimmingacademy.com'
+    '945-624-4531',
+    'info@aceclub.com',
+    'www.aceclub.com',
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-    child: CustomAppBar(),
-    ),
+        child: CustomAppBar(isBack:true,),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-
-              CustomDetailsImageGroup(image1a: AppImages.academies1a, image1b: AppImages.academies1b, image1c: AppImages.academies1c, image1d: AppImages.academies1d, image1e: AppImages.academies1e,),
+              CustomDetailsImageGroup(
+                image1a: AppImages.academies3a,
+                image1b: AppImages.academies3b,
+                image1c: AppImages.academies3c,
+                image1d: AppImages.academies3d,
+                image1e: AppImages.academies3e,
+              ),
               SizedBox(height: 20),
               CustomDetails(facilities: facilitiesList, starCount: 5),
-              CustomListingsBookingSection(dateController: TextEditingController(), number: '555-123-4567', gmail: 'info@eliteswimmingacademy.com', web: 'www.eliteswimmingacademy.com',),
+              CustomListingsBookingSection(
+                dateController: TextEditingController(),
+                number: '945-624-4531',
+                gmail: 'info@aceclub.com',
+                web: 'www.aceclub.com',
+              ),
             ],
           ),
         ),

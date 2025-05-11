@@ -55,7 +55,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 20,
-            iconEnabledColor: AppColor.appGreenColor,
+            iconEnabledColor: AppColor.blueColor,
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 300,
@@ -72,7 +72,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             ),
             scrollbarTheme: ScrollbarThemeData(
               thumbColor: WidgetStateProperty.all(
-                AppColor.appGreenColor.withOpacity(0.7),
+                AppColor.blueColor.withOpacity(0.7),
               ),
               radius: const Radius.circular(8),
             ),
@@ -84,7 +84,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.grey.shade100,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColor.appGreenColor.withOpacity(0.4),
+                color: AppColor.blueColor.withOpacity(0.4),
                 width: 1,
               ),
               boxShadow: [
