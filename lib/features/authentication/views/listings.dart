@@ -78,89 +78,87 @@ class _ListingsState extends State<Listings> {
             right: 20,
             top: 20,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Apply Filters',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Apply Filters',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 12),
+
+              CustomDropdownListings(
+                itemList: categoryItem,
+                listType: 'Category',
+              ),
+              CustomDropdownListings(
+                itemList: location,
+                listType: 'All Location',
+              ),
+              CustomDropdownListings(
+                itemList: ageGroup,
+                listType: 'Age Group',
+              ),
+              CustomDropdownListings(itemList: rating, listType: 'Rating'),
+              CustomDropdownListings(itemList: price, listType: 'Price'),
+
+              const SizedBox(height: 15),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          islogin = true;
+                        });
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.check_circle_outline),
+                      label: const Text('Apply Filters'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            islogin
+                                ? AppColor.blueColor
+                                : Colors.grey.shade200,
+                        foregroundColor:
+                            islogin ? Colors.white : Colors.black87,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-
-                CustomDropdownListings(
-                  itemList: categoryItem,
-                  listType: 'Category',
-                ),
-                CustomDropdownListings(
-                  itemList: location,
-                  listType: 'All Location',
-                ),
-                CustomDropdownListings(
-                  itemList: ageGroup,
-                  listType: 'Age Group',
-                ),
-                CustomDropdownListings(itemList: rating, listType: 'Rating'),
-                CustomDropdownListings(itemList: price, listType: 'Price'),
-
-                const SizedBox(height: 20),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: () {
-                          setState(() {
-                            islogin = true;
-                          });
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.check_circle_outline),
-                        label: const Text('Apply Filters'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              islogin
-                                  ? AppColor.blueColor
-                                  : Colors.grey.shade200,
-                          foregroundColor:
-                              islogin ? Colors.white : Colors.black87,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: _resetFilters,
+                      icon: const Icon(Icons.refresh),
+                      label: const Text('Reset'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            islogin
+                                ? Colors.grey.shade200
+                                : AppColor.blueColor,
+                        foregroundColor:
+                            islogin ? Colors.black87 : Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _resetFilters,
-                        icon: const Icon(Icons.refresh),
-                        label: const Text('Reset'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              islogin
-                                  ? Colors.grey.shade200
-                                  : AppColor.blueColor,
-                          foregroundColor:
-                              islogin ? Colors.black87 : Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+            ],
           ),
         );
       },

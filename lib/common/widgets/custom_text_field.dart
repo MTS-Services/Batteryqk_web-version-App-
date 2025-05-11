@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 0),
-      height: 44,
+      height: 42,
       child: Card(
         color: Colors.white,
         elevation: 0.5,

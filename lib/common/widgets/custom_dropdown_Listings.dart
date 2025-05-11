@@ -81,7 +81,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             ),
           ),
           buttonStyleData: ButtonStyleData(
-            height: 46,
+            height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               color: Colors.grey.shade100,
