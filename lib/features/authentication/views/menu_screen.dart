@@ -44,12 +44,12 @@ class _MenuScreenState extends State<MenuScreen> {
     Icons.logout,
   ];
 
-  final Color primaryColor = const Color(0xFF206CFD);
+  final Color primaryColor = AppColor.blueColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Column(
         children: [
           // Header
@@ -113,7 +113,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.star, size: 18, color: Colors.amber),
+                      Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                       SizedBox(width: 8),
                       Text(
                         'Gold Member - 1200 Points',

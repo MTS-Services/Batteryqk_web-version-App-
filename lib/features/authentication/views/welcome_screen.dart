@@ -17,7 +17,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
@@ -41,7 +41,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1,
-                  color: AppColor.appGreenColor,
+                  color: AppColor.blueColor,
                 ),
               ),
               const SizedBox(height: 15),
@@ -66,9 +66,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                        backgroundColor: isLoginSelected ? AppColor.appGreenColor : Colors.white,
+                        backgroundColor: isLoginSelected ? AppColor.blackColor : Colors.white,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: AppColor.appGreenColor),
+                          side: BorderSide(color: AppColor.blackColor),
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
@@ -95,9 +95,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                        backgroundColor: !isLoginSelected ? AppColor.appGreenColor : Colors.white,
+                        backgroundColor: !isLoginSelected ? AppColor.blueColor : Colors.white,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color:AppColor.appGreenColor),
+                          side: BorderSide(color:AppColor.blueColor),
                           borderRadius: BorderRadius.circular(12),
 
                         ),

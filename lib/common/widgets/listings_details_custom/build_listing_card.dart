@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../features/authentication/views/listings_details1.dart';
+import '../../../util/colors.dart';
 
 class BuildListingCard extends StatelessWidget {
   final String title;
@@ -134,7 +135,7 @@ class BuildListingCard extends StatelessWidget {
                     ElevatedButton(
                       onPressed: onPressed,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade600,
+                        backgroundColor: AppColor.blueColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
@@ -148,8 +149,10 @@ class BuildListingCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     OutlinedButton(
+
                       onPressed: () {},
                       style: OutlinedButton.styleFrom(
+                        backgroundColor: AppColor.orangeColor,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 20,
                           vertical: 12,
@@ -157,8 +160,10 @@ class BuildListingCard extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+
                       ),
-                      child: const Text("Book Now"),
+
+                      child: const Text("Book Now", style: TextStyle(color:AppColor.whiteColor),),
                     ),
                   ],
                 ),

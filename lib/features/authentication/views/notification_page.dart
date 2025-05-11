@@ -27,7 +27,7 @@ class _NotificationPageState extends State<NotificationPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("All notifications marked as read"),
-        backgroundColor: AppColor.appGreenColor,
+        backgroundColor: AppColor.blueColor,
       ),
     );
   }
@@ -45,8 +45,10 @@ class _NotificationPageState extends State<NotificationPage> {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
+        backgroundColor:
+            AppColor.whiteColor, // Set whole page background to white
         appBar: AppBar(
-          backgroundColor: AppColor.backgroundColor,
+          backgroundColor: AppColor.whiteColor,
           title: TextField(
             decoration: InputDecoration(
               hintText: 'Search...',
@@ -66,7 +68,7 @@ class _NotificationPageState extends State<NotificationPage> {
               child: const Text(
                 "ALL READ",
                 style: TextStyle(
-                  color: Colors.blue,
+                  color: AppColor.blueColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -76,8 +78,8 @@ class _NotificationPageState extends State<NotificationPage> {
             dividerColor: const Color.fromARGB(255, 226, 226, 226),
             tabs: tabs,
             isScrollable: false,
-            labelColor: AppColor.appGreenColor,
-            indicatorColor: AppColor.appGreenColor,
+            labelColor: AppColor.blueColor,
+            indicatorColor: AppColor.blueColor,
             indicatorWeight: 0.5,
             unselectedLabelColor: Colors.black,
           ),
@@ -95,33 +97,35 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   Widget _buildNotificationList(String type) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(12),
-      itemCount: isRead.length,
-      itemBuilder: (context, index) {
-        return Card(
-          color:
-              isRead[index]
-                  ? Color.fromARGB(255, 252, 252, 252)
-                  : const Color.fromARGB(255, 240, 240, 240),
-
-          elevation: 0,
-          margin: const EdgeInsets.symmetric(vertical: 8),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: ListTile(
-            leading: Icon(Icons.notifications, color: AppColor.appGreenColor),
-            title: Text("$type #${index + 1}"),
-            subtitle: const Text("This is a sample notification message."),
-            trailing:
+    return Container(
+      color: AppColor.whiteColor, // Ensure list background is white too
+      child: ListView.builder(
+        padding: const EdgeInsets.all(12),
+        itemCount: isRead.length,
+        itemBuilder: (context, index) {
+          return Card(
+            color:
                 isRead[index]
-                    ? null
-                    : const Icon(Icons.circle, size: 8, color: Colors.red),
-            onTap: () => markAsRead(index),
-          ),
-        );
-      },
+                    ? const Color.fromARGB(255, 252, 252, 252)
+                    : const Color.fromARGB(255, 240, 240, 240),
+            elevation: 0,
+            margin: const EdgeInsets.symmetric(vertical: 8),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListTile(
+              leading: Icon(Icons.notifications, color: AppColor.blueColor),
+              title: Text("$type #${index + 1}"),
+              subtitle: const Text("This is a sample notification message."),
+              trailing:
+                  isRead[index]
+                      ? null
+                      : const Icon(Icons.circle, size: 8, color: Colors.red),
+              onTap: () => markAsRead(index),
+            ),
+          );
+        },
+      ),
     );
   }
 }

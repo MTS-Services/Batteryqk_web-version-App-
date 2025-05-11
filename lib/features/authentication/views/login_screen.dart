@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.appGreenColor,
+                    color: AppColor.blackColor,
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       vertical: 14,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.appGreenColor),
+                      borderSide: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderSide: BorderSide.none,
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.appGreenColor),
+                      borderSide: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     suffixIcon: IconButton(
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _obscurePassword
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: Colors.grey,
+                        color: AppColor.blueColor,
                       ),
                       onPressed: () {
                         setState(() {
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         horizontal: 32,
                         vertical: 12,
                       ),
-                      backgroundColor: AppColor.appGreenColor,
+                      backgroundColor: AppColor.blueColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -217,13 +217,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Handle Facebook login
                       },
                     ),
-                    SizedBox(width: 16),
-                    buildSocialButton(
-                      icon: FontAwesomeIcons.apple,
-                      onTap: () {
-                        // Handle Apple login
-                      },
-                    ),
                   ],
                 ),
               ],
@@ -231,6 +224,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+
     );
   }
 }

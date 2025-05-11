@@ -9,10 +9,10 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true),
       ),
 
       body: SingleChildScrollView(
@@ -26,14 +26,12 @@ class Points extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16),
               ),
               elevation: 3,
+              color: AppColor.whiteColor,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(
-                    colors: [
-                      AppColor.appLightGreenColor,
-                      AppColor.appGreenColor,
-                    ],
+                    colors: [AppColor.whiteColor, AppColor.blueColor],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -44,7 +42,7 @@ class Points extends StatelessWidget {
                     const Icon(
                       Icons.emoji_events,
                       size: 40,
-                      color: AppColor.appGreenColor,
+                      color: AppColor.blueColor,
                     ),
                     const SizedBox(width: 16),
                     Expanded(
@@ -57,7 +55,7 @@ class Points extends StatelessWidget {
                               context,
                             ).textTheme.titleMedium!.copyWith(
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 4),
@@ -67,7 +65,7 @@ class Points extends StatelessWidget {
                               vertical: 4,
                             ),
                             decoration: BoxDecoration(
-                              color: AppColor.appLightGreyColor,
+                              color: AppColor.whiteColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: const Text(
@@ -75,7 +73,7 @@ class Points extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
-                                color: AppColor.appGreenColor,
+                                color: AppColor.blueColor,
                               ),
                             ),
                           ),
@@ -91,12 +89,12 @@ class Points extends StatelessWidget {
                             context,
                           ).textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: AppColor.blackColor,
                           ),
                         ),
                         const Text(
                           'Points',
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(color: AppColor.blackColor),
                         ),
                       ],
                     ),
@@ -127,6 +125,7 @@ class Points extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 1,
+                      color: AppColor.whiteColor,
                       child: Padding(
                         padding: const EdgeInsets.all(12),
                         child: Column(
@@ -134,7 +133,7 @@ class Points extends StatelessWidget {
                           children: [
                             const Icon(
                               Icons.workspace_premium,
-                              color: AppColor.appGreenColor,
+                              color: AppColor.blueColor,
                               size: 30,
                             ),
                             const SizedBox(height: 8),
@@ -174,17 +173,11 @@ class Points extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    gradient: LinearGradient(
-                      colors: [
-                        const Color.fromARGB(255, 255, 255, 255),
-                        const Color.fromARGB(255, 255, 255, 255),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
+                    color:
+                        AppColor.whiteColor, // Changed from gradient to white
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.white,
+                        color: Colors.grey.withOpacity(0.2),
                         blurRadius: 5,
                         offset: const Offset(0, 2),
                       ),
@@ -194,8 +187,11 @@ class Points extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: AppColor.appGreenColor,
-                        child: const Icon(Icons.history, color: Colors.white),
+                        backgroundColor: AppColor.blueColor,
+                        child: const Icon(
+                          Icons.history,
+                          color: AppColor.whiteColor,
+                        ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -214,7 +210,7 @@ class Points extends StatelessWidget {
                             Text(
                               'Earned 10 points on April ${20 - index}, 2025',
                               style: const TextStyle(
-                                color: Colors.black,
+                                color: AppColor.blackColor,
                                 fontSize: 13,
                               ),
                             ),
@@ -223,8 +219,8 @@ class Points extends StatelessWidget {
                       ),
                       Text(
                         '+10',
-                        style: TextStyle(
-                          color: Colors.black,
+                        style: const TextStyle(
+                          color: AppColor.blackColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
@@ -252,7 +248,7 @@ class Points extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   elevation: 1,
-                  // shadowColor: AppColor.appGreenColor,
+                  color: AppColor.whiteColor,
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
@@ -260,7 +256,7 @@ class Points extends StatelessWidget {
                       children: [
                         const Icon(
                           Icons.card_giftcard,
-                          color: AppColor.appGreenColor,
+                          color: AppColor.blueColor,
                         ),
                         const SizedBox(height: 8),
                         Text(
@@ -274,9 +270,13 @@ class Points extends StatelessWidget {
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            side: const BorderSide(color: AppColor.blueColor),
+                          ),
                           child: const Text(
                             "Redeem",
-                            style: TextStyle(color: AppColor.appGreenColor),
+                            style: TextStyle(color: AppColor.blueColor),
                           ),
                         ),
                       ],

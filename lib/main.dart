@@ -1,14 +1,11 @@
-import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
-import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/welcome_screen.dart';
+
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,12 +16,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: LoginScreen(),
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
       theme: ThemeData(
         canvasColor: Colors.white,
-
         inputDecorationTheme: InputDecorationTheme(
                focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(color: AppColor.appGreenColor,),
+                 borderSide: BorderSide(color:AppColor.blueColor),
                  borderRadius: BorderRadius.circular(6),
                ),
 
@@ -44,4 +41,4 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-}
+}  

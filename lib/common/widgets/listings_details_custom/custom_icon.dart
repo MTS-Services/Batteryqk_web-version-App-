@@ -13,19 +13,19 @@ class MyCustomIcon extends StatelessWidget {
 children: [
   Padding(
     padding: const EdgeInsets.all(4.0),
-    child: Icon(Icons.facebook,color: AppColor.appGreenColor,),
+    child: Icon(Icons.facebook,color: AppColor.blueColor,),
   ),
   Padding(
     padding: const EdgeInsets.all(4.0),
-    child: Icon(FontAwesomeIcons.twitter,color: AppColor.appGreenColor,),
+    child: Icon(FontAwesomeIcons.twitter,color: AppColor.blueColor,),
   ),
   Padding(
     padding: const EdgeInsets.all(4.0),
-    child: Icon(FontAwesomeIcons.instagram,color: AppColor.appGreenColor,),
+    child: Icon(FontAwesomeIcons.instagram,color: AppColor.blueColor,),
   ),
   Padding(
     padding: const EdgeInsets.all(4.0),
-    child: Icon(FontAwesomeIcons.whatsapp, color: AppColor.appGreenColor,),
+    child: Icon(FontAwesomeIcons.whatsapp, color: AppColor.blueColor,),
   ),
 
 ],

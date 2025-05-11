@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/calender_screen.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
@@ -64,16 +65,15 @@ class _BookScreenState extends State<BookScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        child: CustomAppBar(isBack: true),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -195,35 +195,14 @@ class _BookScreenState extends State<BookScreen> {
                                 horizontal: 8,
                                 vertical: 9,
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: Row(
-                                children: [
-                                  // Space between icon and date
-                                  Text(
-                                    _selectedDate == null
-                                        ? 'mm/dd/yyyy'
-                                        : _formatter.format(_selectedDate!),
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color:
-                                          _selectedDate == null
-                                              ? Colors.black54
-                                              : Colors.black54,
-                                    ),
-                                  ),
-                                  Spacer(),
-                                  Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.grey[700],
-                                  ),
-                                ],
+                              decoration: BoxDecoration(color: Colors.white),
+                              child: CalenderScreen(
+                                selectedDate: _selectedDate,
+                                formatter: _formatter,
                               ),
                             ),
                           ),
                         ),
-
 
                         const SizedBox(height: 3),
                         Text(
@@ -244,8 +223,8 @@ class _BookScreenState extends State<BookScreen> {
                                   blurRadius: 12,
                                   spreadRadius: 1,
                                   offset: const Offset(0, 6),
-                                )
-                              ]
+                                ),
+                              ],
                             ),
                             child: TextFormField(),
                           ),
@@ -282,7 +261,7 @@ class _BookScreenState extends State<BookScreen> {
                           shadowColor: Colors.white.withOpacity(0.5),
                           color: Colors.white,
                           child: Container(
-                            height: 100,
+                            height: 50,
                             decoration: BoxDecoration(),
                             child: TextFormField(),
                           ),
@@ -345,7 +324,7 @@ class _BookScreenState extends State<BookScreen> {
                                             TextSpan(
                                               text: 'Terms of Service',
                                               style: TextStyle(
-                                                color: Colors.blue,
+                                                color: AppColor.blueColor,
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14,
                                               ),
@@ -364,7 +343,7 @@ class _BookScreenState extends State<BookScreen> {
                                             TextSpan(
                                               text: 'Privacy Policy',
                                               style: TextStyle(
-                                                color: Colors.blue,
+                                                color: AppColor.blueColor,
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14,
                                               ),
@@ -389,12 +368,16 @@ class _BookScreenState extends State<BookScreen> {
                                     onPressed: () {
                                       print('Cancel pressed');
                                     },
+                                    style: OutlinedButton.styleFrom(
+                                      backgroundColor: AppColor.blueColor,
+                                    ),
                                     child: Text(
                                       'Cancel',
-                                      style:
-                                          Theme.of(
-                                            context,
-                                          ).textTheme.bodyMedium,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(width: 10),
@@ -406,7 +389,7 @@ class _BookScreenState extends State<BookScreen> {
                                             }
                                             : null,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF26B3FF),
+                                      backgroundColor: AppColor.orangeColor,
                                       foregroundColor: Colors.white,
                                     ),
                                     child: Text(
