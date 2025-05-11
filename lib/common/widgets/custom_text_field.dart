@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-  });
+  final String? icon;
+  final String? title;
+
+  final TextEditingController? controller;
+
+  const CustomTextField({super.key, this.title, this.controller, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,8 @@ class CustomTextField extends StatelessWidget {
       height: 42,
       child: Card(
         color: Colors.white,
-        elevation: 1,
+        elevation: 0.5,
+        shadowColor: Colors.white.withOpacity(0.5),
         child: TextFormField(
           style: TextStyle(height: 1),
           decoration: InputDecoration(),

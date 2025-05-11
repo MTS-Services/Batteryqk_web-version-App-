@@ -1,9 +1,11 @@
-
+import 'package:batteryqk_web_app/features/authentication/views/account.dart';
+import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
+import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
-import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:flutter/material.dart';
 
@@ -16,19 +18,12 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
-    Container(),
-
-    Scaffold(body: Container(color: Colors.red)),
+    Account(),
     Points(),
-    Container(),
-
-    // Scaffold(body: Container(color: Colors.red)),
-    Points(),
-
-    Container(),
-    Container(),
+    CarService(),
+    Faqs(),
     NotificationPage(),
-    Container(),
+    LoginScreen(),
   ];
 
   final _title = [
@@ -49,12 +44,12 @@ class _MenuScreenState extends State<MenuScreen> {
     Icons.logout,
   ];
 
-  final Color primaryColor = const Color(0xFF206CFD);
+  final Color primaryColor = AppColor.blueColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: AppColor.whiteColor,
       body: Column(
         children: [
           // Header
@@ -74,7 +69,16 @@ class _MenuScreenState extends State<MenuScreen> {
                 Align(
                   alignment: AlignmentDirectional(1, 0),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return NotificationPage(); // Return NotificationPage properly
+                          },
+                        ),
+                      );
+                    },
                     icon: Icon(
                       Icons.notifications,
                       color: Colors.white,
@@ -88,7 +92,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'Emon Halder 👋',
+                  'Hey, Emon 👋',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -109,7 +113,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.star, size: 18, color: Colors.amber),
+                      Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                       SizedBox(width: 8),
                       Text(
                         'Gold Member - 1200 Points',
