@@ -73,7 +73,7 @@ class _BookScreenState extends State<BookScreen> {
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true),
+        child: CustomAppBar(isBack: false),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -407,6 +407,8 @@ class _BookScreenState extends State<BookScreen> {
                             ],
                           ),
                         ),
+                        const SizedBox(height: 60,),
+
                       ],
                     ),
                   ),
