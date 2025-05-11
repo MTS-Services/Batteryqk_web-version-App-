@@ -1,4 +1,5 @@
 class AppText {
+  static const appTitle = "Batteryqk";
   static const homeTitle = "Find the Perfect Sports Academy or Nursery";
   static const homeSubTitle =
       "Discover top-rated sports academies and nurseries in your area. Book sessions easily and track your progress.";
@@ -6,8 +7,8 @@ class AppText {
   static const homeBottomSubTitle =
       "Join thousands of parents who have found the perfect academy for their children.";
   static const academies1Title = "Elite Swimming Academy";
-  static const academies2Title = "Champions Football Academy";
-  static const academies3Title = "Little Stars Nursery";
+  static const academies2Title = "Power Gym Center";
+  static const academies3Title = "Ace Tennis Club";
   static const academies4Title = "Hoops Basketball Center";
   static const academies5Title = "Ace Tennis Club";
   static const academies6Title = "Bright Beginnings Nursery";
@@ -15,9 +16,9 @@ class AppText {
   static const academies1Details =
       "Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.";
   static const academies2Details =
-      "Champions Football Academy is dedicated to developing football skills for all ages. Our academy focuses on technique, teamwork, and tactical understanding.";
+      "Power Gym Center is equipped with modern machines and certified personal trainers.";
   static const academies3Details =
-      "Little Stars Nursery provides a safe and nurturing environment for toddlers. We focus on early development through play, art, and physical activities.";
+      "Join Ace Tennis Club to enjoy premium coaching and facilities for all skill levels.";
   static const academies4Details =
       "Hoops Basketball Center offers training programs for all age groups. Our facility includes multiple courts and specialized training equipment.";
   static const academies5Details =

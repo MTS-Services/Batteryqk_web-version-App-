@@ -27,7 +27,7 @@ class _NotificationPageState extends State<NotificationPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("All notifications marked as read"),
-        backgroundColor: AppColor.appGreenColor,
+        backgroundColor: AppColor.blueColor,
       ),
     );
   }
@@ -46,15 +46,27 @@ class _NotificationPageState extends State<NotificationPage> {
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: const Text("Notifications"),
+          backgroundColor: AppColor.whiteColor,
+          title: TextField(
+            decoration: InputDecoration(
+              hintText: 'Search...',
+              prefixIcon: const Icon(Icons.search),
+              contentPadding: const EdgeInsets.symmetric(vertical: 0),
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: markAllAsRead,
               child: const Text(
-                "Mark all as read",
+                "ALL READ",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.blue,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -64,8 +76,8 @@ class _NotificationPageState extends State<NotificationPage> {
             dividerColor: const Color.fromARGB(255, 226, 226, 226),
             tabs: tabs,
             isScrollable: false,
-            labelColor: AppColor.appGreenColor,
-            indicatorColor: AppColor.appGreenColor,
+            labelColor: AppColor.blueColor,
+            indicatorColor: AppColor.blueColor,
             indicatorWeight: 0.5,
             unselectedLabelColor: Colors.black,
           ),
@@ -99,7 +111,7 @@ class _NotificationPageState extends State<NotificationPage> {
             borderRadius: BorderRadius.circular(10),
           ),
           child: ListTile(
-            leading: Icon(Icons.notifications, color: AppColor.appGreenColor),
+            leading: Icon(Icons.notifications, color: AppColor.blueColor),
             title: Text("$type #${index + 1}"),
             subtitle: const Text("This is a sample notification message."),
             trailing:
