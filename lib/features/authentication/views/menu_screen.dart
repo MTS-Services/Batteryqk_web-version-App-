@@ -3,10 +3,8 @@ import 'package:batteryqk_web_app/features/authentication/views/car_service.dart
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
-
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
-
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -18,7 +16,6 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
-    Account(),
     Points(),
     CarService(),
     Faqs(),
@@ -26,14 +23,7 @@ class _MenuScreenState extends State<MenuScreen> {
     LoginScreen(),
   ];
 
-  final _title = [
-    'Account',
-    'Reward',
-    'Car Services',
-    'FAQs',
-    'Notifications',
-    'Logout',
-  ];
+  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Logout'];
 
   final _icons = [
     Icons.person,
@@ -45,6 +35,17 @@ class _MenuScreenState extends State<MenuScreen> {
   ];
 
   final Color primaryColor = AppColor.blueColor;
+  final TextEditingController nameController = TextEditingController(
+    text: 'Emon Halder',
+  );
+  final FocusNode _focusNode = FocusNode();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +58,10 @@ class _MenuScreenState extends State<MenuScreen> {
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(20, 70, 20, 40),
             decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50),
+                bottomRight: Radius.circular(50),
+              ),
               gradient: LinearGradient(
                 colors: [primaryColor, primaryColor.withOpacity(0.9)],
                 begin: Alignment.topLeft,
@@ -64,43 +69,54 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Align(
-                  alignment: AlignmentDirectional(1, 0),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return NotificationPage(); // Return NotificationPage properly
-                          },
+                const SizedBox(height: 10),
+                const CircleAvatar(
+                  radius: 60,
+                  backgroundImage: NetworkImage(
+                    'https://itsmesagar.wordpress.com/wp-content/uploads/2016/07/man-13.png?w=300',
+                  ),
+                ),
+                const SizedBox(height: 12),
+
+                // Editable name with pencil icon
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      width: 160,
+                      child: TextField(
+                        controller: nameController,
+                        focusNode: _focusNode,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.notifications,
-                      color: Colors.white,
-                      size: 28,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          isCollapsed: true,
+                          contentPadding: EdgeInsets.zero,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const Text(
-                  'Welcome back,',
-                  style: TextStyle(fontSize: 16, color: Colors.white70),
-                ),
-                const SizedBox(height: 6),
-                const Text(
-                  'Hey, Emon 👋',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                    IconButton(
+                      onPressed: () {
+                        FocusScope.of(context).requestFocus(_focusNode);
+                      },
+                      icon: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      tooltip: 'Edit Name',
+                    ),
+                  ],
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 6),
                 Container(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 14,
@@ -132,7 +148,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
           const SizedBox(height: 20),
 
-          // Professional Menu List
+          // Menu List
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -176,7 +192,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               child: Icon(
                                 _icons[index],
                                 color: primaryColor,
-                                size: 22, // Slightly smaller icons
+                                size: 22,
                               ),
                             ),
                             const SizedBox(width: 12),
@@ -205,8 +221,6 @@ class _MenuScreenState extends State<MenuScreen> {
               },
             ),
           ),
-
-          // Logout button
         ],
       ),
     );
