@@ -1,4 +1,7 @@
-import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
+
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,9 +14,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Batteryqk',
-      home: Points(),
+      home: LoginScreen(),
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      theme: ThemeData(
+        canvasColor: Colors.white,
+        inputDecorationTheme: InputDecorationTheme(
+               focusedBorder: OutlineInputBorder(
+                 borderSide: BorderSide(color:AppColor.blueColor),
+                 borderRadius: BorderRadius.circular(6),
+               ),
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(6),
+          ),
+
+        ),
+        textTheme: TextTheme(
+          bodyMedium: TextStyle(
+            color: Color(0xFF374151),
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        )
+      ),
     );
   }
 }  

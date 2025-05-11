@@ -1,0 +1,214 @@
+import 'package:batteryqk_web_app/features/authentication/views/account.dart';
+import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
+import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+
+import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
+
+import 'package:flutter/material.dart';
+
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
+  @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
+  final pageList = [
+    Account(),
+    Points(),
+    CarService(),
+    Faqs(),
+    NotificationPage(),
+    LoginScreen(),
+  ];
+
+  final _title = [
+    'Account',
+    'Reward',
+    'Car Services',
+    'FAQs',
+    'Notifications',
+    'Logout',
+  ];
+
+  final _icons = [
+    Icons.person,
+    Icons.card_membership_rounded,
+    Icons.build_circle_outlined,
+    Icons.help_outline_rounded,
+    Icons.notifications_active_outlined,
+    Icons.logout,
+  ];
+
+  final Color primaryColor = AppColor.blueColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColor.whiteColor,
+      body: Column(
+        children: [
+          // Header
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(20, 70, 20, 40),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [primaryColor, primaryColor.withOpacity(0.9)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(1, 0),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return NotificationPage(); // Return NotificationPage properly
+                          },
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.notifications,
+                      color: Colors.white,
+                      size: 28,
+                    ),
+                  ),
+                ),
+                const Text(
+                  'Welcome back,',
+                  style: TextStyle(fontSize: 16, color: Colors.white70),
+                ),
+                const SizedBox(height: 6),
+                const Text(
+                  'Hey, Emon 👋',
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 5,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(Icons.star, size: 18, color: AppColor.orangeColor),
+                      SizedBox(width: 8),
+                      Text(
+                        'Gold Member - 1200 Points',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Professional Menu List
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: _title.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => pageList[index]),
+                      );
+                    },
+                    borderRadius: BorderRadius.circular(12),
+                    child: Ink(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.08),
+                            blurRadius: 8,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 12,
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: primaryColor.withOpacity(0.1),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                _icons[index],
+                                color: primaryColor,
+                                size: 22, // Slightly smaller icons
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                _title[index],
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 0.5,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              size: 16,
+                              color: Colors.grey,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+
+          // Logout button
+        ],
+      ),
+    );
+  }
+}
