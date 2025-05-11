@@ -63,14 +63,16 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 15),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-               children: [
-                 Text("If you didn't receive a code",style: TextStyle(fontSize: 16,color: Colors.grey),),
-                 MyCustomTextButton(text: 'Resend', onPressed: (){}),
-
-               ],
-             ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "If you didn't receive a code",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  MyCustomTextButton(text: 'Resend', onPressed: () {}),
+                ],
+              ),
               const SizedBox(height: 25),
               SizedBox(
                 width: double.infinity,
@@ -96,7 +98,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 50),
-              Center(child: Text('Or',style: TextStyle(fontSize: 16,color: AppColor.blueColor),)),
+              Center(
+                child: Text(
+                  'Or',
+                  style: TextStyle(fontSize: 16, color: AppColor.blueColor),
+                ),
+              ),
               const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +127,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               Text(
                 'Do you have an account?',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey,fontSize: 16),
+                style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -135,15 +142,13 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: AppColor.blueColor
-                      ),
+                      side: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
                     'Sign up',
-                    style: TextStyle(fontSize: 18, color:AppColor.blueColor),
+                    style: TextStyle(fontSize: 18, color: AppColor.blueColor),
                   ),
                 ),
               ),
@@ -153,5 +158,4 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       ),
     );
   }
-
 }

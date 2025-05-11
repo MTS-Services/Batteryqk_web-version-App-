@@ -157,12 +157,11 @@ class BuildListingCard extends StatelessWidget {
                           horizontal: 20,
                           vertical: 12,
                         ),
+                        side: BorderSide.none,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-
                       ),
-
                       child: const Text("Book Now", style: TextStyle(color:AppColor.whiteColor),),
                     ),
                   ],
