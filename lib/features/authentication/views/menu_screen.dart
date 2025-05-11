@@ -1,10 +1,11 @@
+import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/points.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
-import 'package:batteryqk_web_app/features/authentication/views/points.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,12 +18,12 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   final pageList = [
-    Container(),
+    Account(),
     Points(),
     CarService(),
     Faqs(),
     NotificationPage(),
-    Container(),
+    LoginScreen(),
   ];
 
   final _title = [
@@ -48,7 +49,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: AppColor.whiteColor,
       body: Column(
         children: [
           // Header
@@ -91,7 +92,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 const SizedBox(height: 6),
                 const Text(
-                  'Emon Halder 👋',
+                  'Hey, Emon 👋',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,

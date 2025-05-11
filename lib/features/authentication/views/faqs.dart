@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class Faqs extends StatelessWidget {
@@ -60,11 +61,11 @@ class Faqs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(isBack: true),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
@@ -72,11 +73,13 @@ class Faqs extends StatelessWidget {
             const SizedBox(height: 16),
             ...faqData.map((faq) {
               return Card(
+                color: const Color.fromARGB(255, 240, 240, 240),
+
                 elevation: 0,
                 margin: const EdgeInsets.only(bottom: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
-                  side: BorderSide(color: Colors.grey.shade300),
+                  side: BorderSide(color: AppColor.whiteColor),
                 ),
                 child: ExpansionTile(
                   title: Text(
@@ -96,7 +99,7 @@ class Faqs extends StatelessWidget {
                         faq['answer']!,
                         style: const TextStyle(
                           fontSize: 14,
-                          color: Colors.black87,
+                          color: AppColor.blackColor,
                         ),
                       ),
                     ),
