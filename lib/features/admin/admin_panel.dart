@@ -37,7 +37,6 @@ class _AdminPanelState extends State<AdminPanel> {
             const SizedBox(height: 30),
             Text('Admin Dashboard',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 24)),
             const SizedBox(height: 30),
-            /// ✅ Custom tab pill container
             Container(
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
@@ -78,9 +77,8 @@ class _AdminPanelState extends State<AdminPanel> {
 
             const SizedBox(height: 24),
 
-            /// ✅ Tab content view
             Expanded(
-              child: tabs[selectedIndex], // 👈 Load actual widget
+              child: tabs[selectedIndex],
             ),
           ],
         ),
