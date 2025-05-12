@@ -38,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               Image.asset(AppImages.logo, height: 40, width: 55),
               const SizedBox(width: 10),
               Text(
-                'Batteriqk',
+                'Batteryqk',
                 style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
