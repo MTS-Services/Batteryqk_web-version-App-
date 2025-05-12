@@ -27,36 +27,30 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      body: _pages[_currentIndex],
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-            child: Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.85),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white54,
-                    blurRadius: 20,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _buildNavItem(Icons.home_rounded, 0),
-                  _buildNavItem(Icons.assignment, 1),
-                  _buildNavItem(Icons.bookmarks_outlined, 2),
-                  _buildNavItem(Icons.person_rounded, 3),
-                ],
-              ),
+      backgroundColor: AppColor.whiteColor,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: _pages[_currentIndex],
+      ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: BorderRadius.zero, // No border radius
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+          child: Container(
+            height: 70,
+            width: double.infinity, // Make it fill the entire width
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.9), // Slight opacity
+              borderRadius: BorderRadius.zero, // Remove rounded corners
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildNavItem(Icons.home_filled, "Home", 0),
+                _buildNavItem(Icons.work_outline, "Jobs", 1),
+                _buildNavItem(Icons.calendar_today_outlined, "Book", 2),
+                _buildNavItem(Icons.menu, "Menu", 3),
+              ],
             ),
           ),
         ),
@@ -64,43 +58,38 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index) {
+  Widget _buildNavItem(IconData icon, String label, int index) {
     final bool isSelected = _currentIndex == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() => _currentIndex = index);
-        // Optional: Add tap feedback
-        // Feedback.forTap(context);
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color:
-              isSelected
-                  ? AppColor.blueColor.withOpacity(0.12)
-                  : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow:
-              isSelected
-                  ? [
-                    BoxShadow(
-                      color: AppColor.blueColor.withOpacity(0.3),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
-                    ),
-                  ]
-                  : [],
-        ),
-        child: AnimatedScale(
-          scale: isSelected ? 1.25 : 1.0,
+    return Expanded(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(30),
+        onTap: () => setState(() => _currentIndex = index),
+        child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-          child: Icon(
-            icon,
-            size: 26,
-            color: isSelected ? AppColor.blueColor : Colors.grey.shade500,
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColor.blueColor.withOpacity(0.1) : null,
+            borderRadius: BorderRadius.circular(0),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                size: 26,
+                color: isSelected ? AppColor.blueColor : AppColor.orangeColor,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  color: isSelected ? AppColor.blueColor : Colors.grey.shade600,
+                ),
+              ),
+            ],
           ),
         ),
       ),
