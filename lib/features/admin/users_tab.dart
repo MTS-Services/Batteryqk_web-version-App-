@@ -1,4 +1,7 @@
+import 'package:batteryqk_web_app/features/admin/confirm_dialog_widget.dart';
 import 'package:flutter/material.dart';
+
+import 'header_cell_widget.dart';
 
 class UsersTab extends StatefulWidget {
   const UsersTab({super.key});
@@ -24,11 +27,11 @@ class _UsersTabState extends State<UsersTab> {
             color: Colors.white,
             child: Row(
               children: [
-                headerCell(flex: 1, label: 'ID'),
-                headerCell(flex: 2, label: 'NAME'),
-                headerCell(flex: 3, label: 'EMAIL'),
-                headerCell(flex: 2, label: 'JOIN DATE'),
-                headerCell(flex: 2, label: 'ACTIONS'),
+                HeaderCell(flex: 1, label: 'ID'),
+                HeaderCell(flex: 2, label: 'NAME'),
+                HeaderCell(flex: 3, label: 'EMAIL'),
+                HeaderCell(flex: 2, label: 'JOIN DATE'),
+                HeaderCell(flex: 2, label: 'ACTIONS'),
               ],
             ),
           ),
@@ -36,40 +39,64 @@ class _UsersTabState extends State<UsersTab> {
             child: ListView.builder(
               itemCount: 5,
               itemBuilder: (context, index) {
-              return Card(
-                elevation: 1,
-                color: Colors.white,
-                child: Row(
-                  children: [
-                    headerCell(flex: 1, label: index.toString()),
-                    headerCell(flex: 2, label: 'Md.Tayob ali'),
-                    headerCell(flex: 3, label: 'Mdtayobali@gmail.com'),
-                    headerCell(flex: 2, label: '12/03/2025'),
-                    headerCell(flex: 2, label: 'ACTIONS'),
-                  ],
-                ),
-              );
-            },),
-          )
-        ],
-      ),
-    );
-  }
-  Widget headerCell({required int flex, required String label}) {
-    return Expanded(
-      flex: flex,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            label,
-            style: const TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 13,
-              letterSpacing: 0.5,
+                return Card(
+                  elevation: 1,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      HeaderCell(flex: 1, label: index.toString()),
+                      HeaderCell(flex: 2, label: 'Md.Tayob ali'),
+                      HeaderCell(flex: 3, label: 'Mdtayobali@gmail.com'),
+                      HeaderCell(flex: 2, label: '12/03/2025'),
+                      HeaderCell(
+                        flex: 2,
+                        icons: [
+                          Icons.visibility,
+                          Icons.edit_calendar,
+                          Icons.delete_rounded,
+                        ],
+                        iconColors: [
+                          Colors.blue,
+                          Colors.yellow.shade300,
+                          Colors.red,
+                        ],
+                        onIconPressed: (value) {
+                          if (value == Icons.edit_calendar) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Edit User',
+                              onConfirmed: () {
+
+                                print('User edited.');
+                              },
+                              confirmText: 'Save',
+                              cancelText: 'Cancel',
+                              isEdit: true,
+                              initialValue1: 'Md.Tayob ali',
+                              initialValue2: 'Mdtayobali@gmail.com',
+                            );
+                          } else if (value == Icons.delete_rounded) {
+
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Delete User',
+                              onConfirmed: () {
+
+                                print('User deleted.');
+                              },
+                              confirmText: 'Delete',
+                              cancelText: 'Cancel',
+                            );
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
-        ),
+        ],
       ),
     );
   }
