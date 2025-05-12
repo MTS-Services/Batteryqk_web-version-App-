@@ -74,7 +74,7 @@ class _NotificationPageState extends State<NotificationPage> {
         backgroundColor: AppColor.whiteColor,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: CustomAppBar(isBack: false),
+          child: CustomAppBar(isBack: true),
         ),
         body: Column(
           children: [
