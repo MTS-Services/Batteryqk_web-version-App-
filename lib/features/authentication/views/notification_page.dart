@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -47,42 +48,9 @@ class _NotificationPageState extends State<NotificationPage> {
       child: Scaffold(
         backgroundColor:
             AppColor.whiteColor, // Set whole page background to white
-        appBar: AppBar(
-          backgroundColor: AppColor.whiteColor,
-          title: TextField(
-            decoration: InputDecoration(
-              hintText: 'Search...',
-              prefixIcon: const Icon(Icons.search),
-              contentPadding: const EdgeInsets.symmetric(vertical: 0),
-              filled: true,
-              fillColor: Colors.grey.shade200,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: markAllAsRead,
-              child: const Text(
-                "ALL READ",
-                style: TextStyle(
-                  color: AppColor.blueColor,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-          bottom: TabBar(
-            dividerColor: const Color.fromARGB(255, 226, 226, 226),
-            tabs: tabs,
-            isScrollable: false,
-            labelColor: AppColor.blueColor,
-            indicatorColor: AppColor.blueColor,
-            indicatorWeight: 0.5,
-            unselectedLabelColor: Colors.black,
-          ),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight),
+          child: CustomAppBar(isBack: true),
         ),
         body: TabBarView(
           children: [
