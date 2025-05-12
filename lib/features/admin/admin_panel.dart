@@ -1,7 +1,9 @@
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/features/admin/bookings_tab.dart';
 import 'package:batteryqk_web_app/features/admin/listings_tab.dart';
 import 'package:batteryqk_web_app/features/admin/reviews_tab.dart';
 import 'package:batteryqk_web_app/features/admin/users_tab.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class AdminPanel extends StatefulWidget {
@@ -25,58 +27,63 @@ class _AdminPanelState extends State<AdminPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          const SizedBox(height: 100),
-
-          /// ✅ Custom tab pill container
-          Container(
-            padding: const EdgeInsets.all(4),
-            margin: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.grey.shade300),
-            ),
-            child: Row(
-              children: List.generate(labels.length, (index) {
-                final isSelected = selectedIndex == index;
-                return Expanded(
-                  child: GestureDetector(
-                    onTap: () => setState(() => selectedIndex = index),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: BoxDecoration(
-                        color: isSelected ? Colors.white : Colors.transparent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          labels[index],
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight:
-                            isSelected ? FontWeight.w600 : FontWeight.w400,
-                            color: Colors.black,
+      backgroundColor: AppColor.whiteColor,
+      appBar: CustomAppBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30),
+            Text('Admin Dashboard',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 24)),
+            const SizedBox(height: 30),
+            /// ✅ Custom tab pill container
+            Container(
+              padding: const EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.grey.shade300),
+              ),
+              child: Row(
+                children: List.generate(labels.length, (index) {
+                  final isSelected = selectedIndex == index;
+                  return Expanded(
+                    child: GestureDetector(
+                      onTap: () => setState(() => selectedIndex = index),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 0),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          color: isSelected ? Colors.white : Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            labels[index],
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight:
+                              isSelected ? FontWeight.w600 : FontWeight.w400,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                }),
+              ),
             ),
-          ),
 
-          const SizedBox(height: 24),
+            const SizedBox(height: 24),
 
-          /// ✅ Tab content view
-          Expanded(
-            child: tabs[selectedIndex], // 👈 Load actual widget
-          ),
-        ],
+            /// ✅ Tab content view
+            Expanded(
+              child: tabs[selectedIndex], // 👈 Load actual widget
+            ),
+          ],
+        ),
       ),
     );
   }
