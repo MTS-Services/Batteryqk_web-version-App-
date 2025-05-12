@@ -77,10 +77,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             children: [
               Icon(
                 icon,
-                size: 24,
+                size: 26,
                 color: isSelected ? AppColor.blueColor : AppColor.orangeColor,
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 10),
               Text(
                 label,
                 style: TextStyle(
