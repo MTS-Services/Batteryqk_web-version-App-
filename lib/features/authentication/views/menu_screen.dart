@@ -26,7 +26,6 @@ class _MenuScreenState extends State<MenuScreen> {
   final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Logout'];
 
   final _icons = [
-    Icons.person,
     Icons.card_membership_rounded,
     Icons.build_circle_outlined,
     Icons.help_outline_rounded,
