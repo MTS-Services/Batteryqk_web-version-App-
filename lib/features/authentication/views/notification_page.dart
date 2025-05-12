@@ -17,12 +17,26 @@ class _NotificationPageState extends State<NotificationPage> {
     Tab(text: "SYSTEM"),
   ];
 
-  // Read status list
-  List<bool> isRead = List.generate(10, (index) => false);
+  // Simulated notifications
+  final List<Map<String, dynamic>> notifications = List.generate(10, (index) {
+    return {
+      "title": "Notification #${index + 1}",
+      "message": "This is a sample notification message.",
+      "category":
+          index % 4 == 0
+              ? "SYSTEM"
+              : index % 3 == 0
+              ? "BOOKING"
+              : "GENERAL",
+      "isRead": false,
+    };
+  });
 
   void markAllAsRead() {
     setState(() {
-      isRead = List.filled(isRead.length, true);
+      for (var notif in notifications) {
+        notif["isRead"] = true;
+      }
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -34,29 +48,72 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   void markAsRead(int index) {
-    if (!isRead[index]) {
-      setState(() {
-        isRead[index] = true;
-      });
+    setState(() {
+      notifications[index]["isRead"] = true;
+    });
+  }
+
+  List<Map<String, dynamic>> getFilteredNotifications(String type) {
+    switch (type) {
+      case "UNREAD":
+        return notifications.where((n) => !n["isRead"]).toList();
+      case "BOOKING":
+        return notifications.where((n) => n["category"] == "BOOKING").toList();
+      case "SYSTEM":
+        return notifications.where((n) => n["category"] == "SYSTEM").toList();
+      default:
+        return notifications;
     }
   }
-  
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: tabs.length,
       child: Scaffold(
-        backgroundColor:
-            AppColor.whiteColor, // Set whole page background to white
+        backgroundColor: AppColor.whiteColor,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: CustomAppBar(isBack: true),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: CustomAppBar(isBack: false),
         ),
-        body: TabBarView(
+        body: Column(
           children: [
-            _buildNotificationList("All Notifications"),
-            _buildNotificationList("Unread Notifications"),
-            _buildNotificationList("Booking Updates"),
-            _buildNotificationList("System Alerts"),
+            // ✅ Mark All as Read button ABOVE TabBar
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: ElevatedButton(
+                onPressed: markAllAsRead,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.blueColor,
+                ),
+                child: const Text(
+                  "Mark All as Read",
+                  style: TextStyle(color: AppColor.whiteColor),
+                ),
+              ),
+            ),
+
+            // ✅ TabBar just below the button
+            Container(
+              color: AppColor.whiteColor,
+              child: TabBar(
+                tabs: tabs,
+                labelColor: AppColor.blueColor,
+                unselectedLabelColor: Colors.black54,
+                indicatorColor: AppColor.blueColor,
+              ),
+            ),
+
+            // ✅ TabBarView displays the notification lists
+            Expanded(
+              child: TabBarView(
+                children:
+                    tabs.map((tab) {
+                      return _buildNotificationList(tab.text!);
+                    }).toList(),
+              ),
+            ),
           ],
         ),
       ),
@@ -64,17 +121,22 @@ class _NotificationPageState extends State<NotificationPage> {
   }
 
   Widget _buildNotificationList(String type) {
+    final filteredList = getFilteredNotifications(type);
+
     return Container(
-      color: AppColor.whiteColor, // Ensure list background is white too
+      color: AppColor.whiteColor,
       child: ListView.builder(
         padding: const EdgeInsets.all(12),
-        itemCount: isRead.length,
+        itemCount: filteredList.length,
         itemBuilder: (context, index) {
+          final notif = filteredList[index];
+          final globalIndex = notifications.indexOf(notif);
+
           return Card(
             color:
-                isRead[index]
-                    ? const Color.fromARGB(255, 252, 252, 252)
-                    : const Color.fromARGB(255, 240, 240, 240),
+                notif["isRead"]
+                    ? const Color(0xFFFDFDFD)
+                    : const Color(0xFFF0F0F0),
             elevation: 0,
             margin: const EdgeInsets.symmetric(vertical: 8),
             shape: RoundedRectangleBorder(
@@ -82,13 +144,13 @@ class _NotificationPageState extends State<NotificationPage> {
             ),
             child: ListTile(
               leading: Icon(Icons.notifications, color: AppColor.blueColor),
-              title: Text("$type #${index + 1}"),
-              subtitle: const Text("This is a sample notification message."),
+              title: Text(notif["title"]),
+              subtitle: Text(notif["message"]),
               trailing:
-                  isRead[index]
+                  notif["isRead"]
                       ? null
                       : const Icon(Icons.circle, size: 8, color: Colors.red),
-              onTap: () => markAsRead(index),
+              onTap: () => markAsRead(globalIndex),
             ),
           );
         },

@@ -1,7 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../util/colors.dart';
 
 class CustomDropdownListings extends StatefulWidget {
@@ -37,18 +35,21 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.grey.shade600,
             ),
           ),
-          items: widget.itemList
-              .map((item) => DropdownMenuItem(
-            value: item,
-            child: Text(
-              item,
-              style: const TextStyle(
-                fontSize: 15,
-                color: Colors.black87,
-              ),
-            ),
-          ))
-              .toList(),
+          items:
+              widget.itemList
+                  .map(
+                    (item) => DropdownMenuItem(
+                      value: item,
+                      child: Text(
+                        item,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
           onChanged: (value) {
             setState(() {
               selectedItem = value;
@@ -80,7 +81,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             ),
           ),
           buttonStyleData: ButtonStyleData(
-            height: 46,
+            height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               color: Colors.grey.shade100,

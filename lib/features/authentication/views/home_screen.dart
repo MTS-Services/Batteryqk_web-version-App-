@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
       ),
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
 
-          _buildSectionTitle("Featured Activities",),
+          _buildSectionTitle("Featured Activities"),
           const SizedBox(height: 12),
           _buildGridListings(),
           const SizedBox(height: 24),
@@ -88,10 +88,8 @@ class HomeScreen extends StatelessWidget {
             location: "Swimming | Downtown",
             tag: "Paid",
             rating: 4.5,
-            description:
-                AppText.academies1Details,
-            imageUrl:
-                AppImages.academies1a,
+            description: AppText.academies1Details,
+            imageUrl: AppImages.academies1a,
           ),
           _buildListingCard(
             context: context,
@@ -99,10 +97,8 @@ class HomeScreen extends StatelessWidget {
             location: "Gym | Uptown",
             tag: "Free",
             rating: 4.0,
-            description:
-            AppText.academies2Details,
-            imageUrl:
-                AppImages.academies2a,
+            description: AppText.academies2Details,
+            imageUrl: AppImages.academies2a,
           ),
           _buildListingCard(
             context: context,
@@ -110,10 +106,8 @@ class HomeScreen extends StatelessWidget {
             location: "Tennis | West Side",
             tag: "Paid",
             rating: 5.0,
-            description:
-                AppText.academies3Details,
-            imageUrl:
-                AppImages.academies3a,
+            description: AppText.academies3Details,
+            imageUrl: AppImages.academies3a,
           ),
           _buildListingCard(
             context: context,
@@ -121,10 +115,8 @@ class HomeScreen extends StatelessWidget {
             location: "Basketball | Downtown",
             tag: "Paid",
             rating: 4.5,
-            description:
-            AppText.academies4Details,
-            imageUrl:
-            AppImages.academies4a,
+            description: AppText.academies4Details,
+            imageUrl: AppImages.academies4a,
           ),
           _buildListingCard(
             context: context,
@@ -132,10 +124,8 @@ class HomeScreen extends StatelessWidget {
             location: "Tennis | south Side",
             tag: "Paid",
             rating: 5.0,
-            description:
-            AppText.academies5Details,
-            imageUrl:
-            AppImages.academies5a,
+            description: AppText.academies5Details,
+            imageUrl: AppImages.academies5a,
           ),
         ],
       ),
@@ -392,7 +382,13 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text("Book Now",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),),
+                      child: const Text(
+                        "Book Now",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ],
                 ),

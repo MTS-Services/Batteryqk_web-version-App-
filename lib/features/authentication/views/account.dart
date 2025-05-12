@@ -61,7 +61,7 @@ class _AccountState extends State<Account> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: true),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
