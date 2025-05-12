@@ -49,14 +49,18 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
                 image1d: AppImages.academies1d,
                 image1e: AppImages.academies1e,
               ),
+              //listings_details_custom
               SizedBox(height: 20),
               CustomDetails(facilities: facilitiesList, starCount: 5),
+
+              //listings_details_custom
               CustomListingsBookingSection(
                 dateController: TextEditingController(),
                 number: '555-123-4567',
                 gmail: 'info@eliteswimmingacademy.com',
                 web: 'www.eliteswimmingacademy.com',
               ),
+              //listings_details_custom
             ],
           ),
         ),
