@@ -45,7 +45,10 @@ class CustomReviews extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(designation,style: TextStyle(fontWeight: FontWeight.w400),),
+              child: Text(
+                designation,
+                style: TextStyle(fontWeight: FontWeight.w400),
+              ),
             ),
           ),
         ],

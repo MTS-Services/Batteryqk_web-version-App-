@@ -8,7 +8,14 @@ class CustomDetailsImageGroup extends StatelessWidget {
   final String image1d;
   final String image1e;
 
-  const CustomDetailsImageGroup({super.key, required this.image1a, required this.image1b, required this.image1c, required this.image1d, required this.image1e, });
+  const CustomDetailsImageGroup({
+    super.key,
+    required this.image1a,
+    required this.image1b,
+    required this.image1c,
+    required this.image1d,
+    required this.image1e,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
       children: [
         // Top large image
         ClipRRect(
-          borderRadius: BorderRadius.circular(10), // More reduced roundness
+          borderRadius: BorderRadius.circular(10),
           child: Container(
             height: size.height * 0.35,
             width: double.infinity,

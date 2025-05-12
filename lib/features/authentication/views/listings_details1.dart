@@ -35,7 +35,7 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: true),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -6,7 +6,8 @@ class CalenderScreen extends StatelessWidget {
     super.key,
     required DateTime? selectedDate,
     required DateFormat formatter,
-  }) : _selectedDate = selectedDate, _formatter = formatter;
+  }) : _selectedDate = selectedDate,
+       _formatter = formatter;
 
   final DateTime? _selectedDate;
   final DateFormat _formatter;
@@ -22,17 +23,11 @@ class CalenderScreen extends StatelessWidget {
               : _formatter.format(_selectedDate!),
           style: TextStyle(
             fontSize: 16,
-            color:
-            _selectedDate == null
-                ? Colors.black54
-                : Colors.black54,
+            color: _selectedDate == null ? Colors.black54 : Colors.black54,
           ),
         ),
         Spacer(),
-        Icon(
-          Icons.calendar_today,
-          color: Colors.grey[700],
-        ),
+        Icon(Icons.calendar_today, color: Colors.grey[700]),
       ],
     );
   }

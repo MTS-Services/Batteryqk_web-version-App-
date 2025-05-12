@@ -4,19 +4,22 @@ import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 import 'custom_reviews.dart';
 
-
 class CustomDetails extends StatefulWidget {
   final List facilities;
   final int starCount;
 
-  const CustomDetails({super.key, required, required this.facilities, required this.starCount});
+  const CustomDetails({
+    super.key,
+    required,
+    required this.facilities,
+    required this.starCount,
+  });
 
   @override
   State<CustomDetails> createState() => _CustomDetailsState();
 }
 
 class _CustomDetailsState extends State<CustomDetails> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -99,15 +102,6 @@ class _CustomDetailsState extends State<CustomDetails> {
           'Mon-Fri: 7:00 AM - 9:00PM, Sat-Sun: 8:00AM - 7:00PM',
         ),
         SizedBox(height: 30),
-        CustomSectionHeaderText('Location'),
-        Container(
-          height: 250,
-          width: 400,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: AppColor.whiteColor,
-          ),
-        ),
         SizedBox(height: 30),
         CustomSectionHeaderText('Reviews'),
         CustomReviews(
