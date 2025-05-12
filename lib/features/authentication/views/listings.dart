@@ -99,10 +99,7 @@ class _ListingsState extends State<Listings> {
                 itemList: location,
                 listType: 'All Location',
               ),
-              CustomDropdownListings(
-                itemList: ageGroup,
-                listType: 'Age Group',
-              ),
+              CustomDropdownListings(itemList: ageGroup, listType: 'Age Group'),
               CustomDropdownListings(itemList: rating, listType: 'Rating'),
               CustomDropdownListings(itemList: price, listType: 'Price'),
 
@@ -123,9 +120,7 @@ class _ListingsState extends State<Listings> {
                       label: const Text('Apply Filters'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            islogin
-                                ? AppColor.blueColor
-                                : Colors.grey.shade200,
+                            islogin ? AppColor.blueColor : Colors.grey.shade200,
                         foregroundColor:
                             islogin ? Colors.white : Colors.black87,
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -143,9 +138,7 @@ class _ListingsState extends State<Listings> {
                       label: const Text('Reset'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            islogin
-                                ? Colors.grey.shade200
-                                : AppColor.blueColor,
+                            islogin ? Colors.grey.shade200 : AppColor.blueColor,
                         foregroundColor:
                             islogin ? Colors.black87 : Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 12),
@@ -327,7 +320,6 @@ class _ListingsState extends State<Listings> {
               ),
             ),
           ),
-
         ],
       ),
     );
