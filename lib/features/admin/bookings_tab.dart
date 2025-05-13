@@ -1,71 +1,245 @@
+import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
+import 'package:batteryqk_web_app/features/admin/confirm_dialog_widget.dart';
+import 'package:batteryqk_web_app/features/admin/header_cell_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class BookingsTab extends StatelessWidget {
+import '../../common/widgets/calender_screen.dart';
+import '../../util/colors.dart';
+
+class BookingsTab extends StatefulWidget {
   const BookingsTab({super.key});
+
+  @override
+  State<BookingsTab> createState() => _BookingsTabState();
+}
+
+class _BookingsTabState extends State<BookingsTab> {
+  final List<String> academies = [
+    'Elite Swimming Academy',
+    'Champions Football Academy',
+    'Little Stars Nursery',
+    'Hoops Basketball Center',
+    'Ace Tennis Club',
+    'Bright Beginnings Nursery',
+  ];
+  final List<String> status = ['Confirm', 'Pending', 'Cancelled'];
+
+  DateTime? _selectedDate;
+  final DateFormat _formatter = DateFormat('MM/dd/yyyy');
+
+  Future<void> _pickDate(BuildContext context) async {
+    final DateTime? datePicked = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+    if (datePicked != null && datePicked != _selectedDate) {
+      setState(() {
+        _selectedDate = datePicked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-          title: const Text("Bookings")),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text("Booking Management",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20,color: Color(
-            0xFF1F2937)),),
-            const SizedBox(height: 10,),
-            Row(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Booking Management",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 20,
+              color: Color(0xFF1F2937),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Card(
+            color: Colors.white,
+            elevation: 0.5,
+            shadowColor: Colors.white.withOpacity(0.7),
+            child: Row(
               children: [
-              _headCall(text: "ID",),
-              _headCall(text: "User",),
-              _headCall(text: "Academy",),
-              _headCall(text: "Date & Time",),
-              _headCall(text: "Status",),
-              _headCall(text: "Payment",),
-              _headCall(text: "Actions",),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'All Statuses',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF374151),
+                        ),
+                      ),
+                      CustomDropdownButton(
+                        itemList: status,
+                        listType: 'Select a Status',
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8,),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'All Academies',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF374151),
+                        ),
+                      ),
+                      CustomDropdownButton(
+                        itemList: academies,
+                        listType: 'Select a Academies',
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8,),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Date',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF374151),
+                        ),
+                      ),
+                      Card(
+                        elevation: 3,
+                        shadowColor: Colors.white.withOpacity(0.5),
+                        color: Colors.white,
+                        child: GestureDetector(
+                          onTap: () => _pickDate(context),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                                color: Colors.white70),
+                            child: CalenderScreen(
+                              selectedDate: _selectedDate,
+                              formatter: _formatter,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 8,),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 20),
+                    child: SizedBox(
+                      height: 38,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: MaterialButton(
+                          onPressed: () {},
+                          color: AppColor.blueColor,
+                          child: Text('Apply Filters'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
+          ),
+        
+          const SizedBox(height: 20),
+          Card(
+            color: Colors.white,
+            elevation: 2,
+            shadowColor: Colors.white.withOpacity(0.9),
+            child: Row(
+              children: [
+                HeaderCell(flex: 1, label: 'Id',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 2, label: 'User',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 3, label: 'Academy',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 2, label: 'Date & Time',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 2, label: 'Status',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 1, label: 'Payment',color: Color(0xFF6B7280),),
+                HeaderCell(flex: 2, label: 'Actions',color: Color(0xFF6B7280),),
+              ],
+            ),
+          ),
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                return  Card(
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Card(
                   elevation: 0.5,
                   shadowColor: Colors.white.withOpacity(0.7),
                   color: Colors.white,
                   child: Row(
-                      children: [
-                        _headCall( text: index.toString(), ),
-                        _headCall(text: 'Remon', ),
-                        _headCall(text: 'dfasdfdas',),
-                        _headCall( text: '5/12/25',),
-                        _headCall( text: 'Confirm', ),
-                        _headCall( text: 'Unpaid', ),
-                        _headCall( text: 'Success', ),
-                      ],
-
+                    children: [
+                      HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
+                      HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF6B7280),),
+                      HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF6B7280)),
+                      HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF6B7280)),
+                      HeaderCell(flex: 2, label: 'confirm'),
+                      HeaderCell(flex: 1, label: 'Unpaid'),
+                      HeaderCell(
+                        flex: 2,
+                        icons: [
+                          Icons.visibility,
+                          Icons.edit_calendar_outlined,
+                          Icons.delete_outline_outlined,
+                        ],
+                        iconColors: [
+                          Colors.blue,
+                          Colors.yellow.shade300,
+                          Colors.red,
+                        ],
+                        onIconPressed: (value) {
+                          if (value == Icons.edit_calendar) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Edit User',
+                              onConfirmed: () {
+                                print('User edited.');
+                              },
+                              confirmText: 'Save',
+                              cancelText: 'Cancel',
+                              isEdit: true,
+                              initialValue1: 'Remon Howlader',
+                              initialValue2: 'remonhowlader869@gmail.com',
+                            );
+                          } else if (value == Icons.delete_rounded) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Delete User',
+                              onConfirmed: () {
+                                print('User deleted.');
+                              },
+                              confirmText: 'Delete',
+                              cancelText: 'Cancel',
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 );
-              },),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _headCall({required String text}) {
-    return Expanded(
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(text, style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color: Color(0xFF1F2937)),),
-        ),
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
