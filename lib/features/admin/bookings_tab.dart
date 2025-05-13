@@ -83,7 +83,7 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8,),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +103,7 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8,),
+                const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,8 +127,7 @@ class _BookingsTabState extends State<BookingsTab> {
                               horizontal: 8,
                               vertical: 8,
                             ),
-                            decoration: BoxDecoration(
-                                color: Colors.white70),
+                            decoration: BoxDecoration(color: Colors.white70),
                             child: CalenderScreen(
                               selectedDate: _selectedDate,
                               formatter: _formatter,
@@ -139,7 +138,8 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8,),
+                const SizedBox(width: 8),
+
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(top: 20),
@@ -150,7 +150,14 @@ class _BookingsTabState extends State<BookingsTab> {
                         child: MaterialButton(
                           onPressed: () {},
                           color: AppColor.blueColor,
-                          child: Text('Apply Filters'),
+                          child: Text(
+                            'Apply Filters',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -159,22 +166,27 @@ class _BookingsTabState extends State<BookingsTab> {
               ],
             ),
           ),
-        
+
           const SizedBox(height: 20),
           Card(
-            color: Colors.white,
-            elevation: 2,
-            shadowColor: Colors.white.withOpacity(0.9),
-            child: Row(
-              children: [
-                HeaderCell(flex: 1, label: 'Id',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 2, label: 'User',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 3, label: 'Academy',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 2, label: 'Date & Time',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 2, label: 'Status',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 1, label: 'Payment',color: Color(0xFF6B7280),),
-                HeaderCell(flex: 2, label: 'Actions',color: Color(0xFF6B7280),),
-              ],
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            color: const Color(0xFFF3F4F6),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+              child: Row(
+                children: const [
+                  HeaderCell(flex: 1, label: 'ID'),
+                  HeaderCell(flex: 2, label: 'User'),
+                  HeaderCell(flex: 3, label: 'Academy'),
+                  HeaderCell(flex: 2, label: 'Date & Time'),
+                  HeaderCell(flex: 2, label: 'Status'),
+                  HeaderCell(flex: 1, label: 'Payment'),
+                  HeaderCell(flex: 2, label: 'Actions'),
+                ],
+              ),
             ),
           ),
 
@@ -183,57 +195,70 @@ class _BookingsTabState extends State<BookingsTab> {
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Card(
-                  elevation: 0.5,
-                  shadowColor: Colors.white.withOpacity(0.7),
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  elevation: 2,
+                  shadowColor: Colors.grey.withOpacity(0.2),
                   color: Colors.white,
-                  child: Row(
-                    children: [
-                      HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
-                      HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF6B7280),),
-                      HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF6B7280)),
-                      HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF6B7280)),
-                      HeaderCell(flex: 2, label: 'confirm'),
-                      HeaderCell(flex: 1, label: 'Unpaid'),
-                      HeaderCell(
-                        flex: 2,
-                        icons: [
-                          Icons.visibility,
-                          Icons.edit_calendar_outlined,
-                          Icons.delete_outline_outlined,
-                        ],
-                        iconColors: [
-                          Colors.blue,
-                          Colors.yellow.shade300,
-                          Colors.red,
-                        ],
-                        onIconPressed: (value) {
-                          if (value == Icons.edit_calendar) {
-                            showConfirmDialog(
-                              context: context,
-                              title: 'Edit User',
-                              onConfirmed: () {
-                                print('User edited.');
-                              },
-                              confirmText: 'Save',
-                              cancelText: 'Cancel',
-                              isEdit: true,
-                              initialValue1: 'Remon Howlader',
-                              initialValue2: 'remonhowlader869@gmail.com',
-                            );
-                          } else if (value == Icons.delete_rounded) {
-                            showConfirmDialog(
-                              context: context,
-                              title: 'Delete User',
-                              onConfirmed: () {
-                                print('User deleted.');
-                              },
-                              confirmText: 'Delete',
-                              cancelText: 'Cancel',
-                            );
-                          }
-                        },
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
+                        HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF1F2937),),
+                        HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF1F2937),),
+                        HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF1F2937)),
+                        HeaderCell(flex: 2, label: 'Confirm',color: Color(0xFF1F2937)),
+                        HeaderCell(flex: 1, label: 'Unpaid',color: Color(0xFF1F2937)),
+                        HeaderCell(
+                          flex: 2,
+                          icons: [
+                            Icons.visibility_outlined,
+                            Icons.edit_calendar_outlined,
+                            Icons.delete_outline_outlined,
+                          ],
+                          iconColors: [
+                            Colors.blueAccent,
+                            Colors.brown.shade800,
+                            Colors.redAccent,
+                          ],
+                          onIconPressed: (value) {
+                            if (value == Icons.edit_calendar_outlined) {
+                              showConfirmDialog(
+                                context: context,
+                                title: 'Edit User',
+                                onConfirmed: () {
+                                  print('User edited.');
+                                },
+                                confirmText: 'Save',
+                                cancelText: 'Cancel',
+                                isEdit: true,
+                                initialValue1: 'Remon Howlader',
+                                initialValue2: 'remonhowlader969@gmal.com',
+                              );
+                            } else if (value == Icons.delete_outline_outlined) {
+                              showConfirmDialog(
+                                context: context,
+                                title: 'Delete User',
+                                onConfirmed: () {
+                                  print('User deleted.');
+                                },
+                                confirmText: 'Delete',
+                                cancelText: 'Cancel',
+                              );
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
