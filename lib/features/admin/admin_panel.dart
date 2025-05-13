@@ -35,7 +35,10 @@ class _AdminPanelState extends State<AdminPanel> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 30),
-            Text('Admin Dashboard',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 24)),
+            Text(
+              'Admin Dashboard',
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24,),
+            ),
             const SizedBox(height: 30),
             Container(
               padding: const EdgeInsets.all(2),
@@ -63,7 +66,9 @@ class _AdminPanelState extends State<AdminPanel> {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight:
-                              isSelected ? FontWeight.w600 : FontWeight.w400,
+                                  isSelected
+                                      ? FontWeight.w600
+                                      : FontWeight.w400,
                               color: Colors.black,
                             ),
                           ),
@@ -77,9 +82,7 @@ class _AdminPanelState extends State<AdminPanel> {
 
             const SizedBox(height: 24),
 
-            Expanded(
-              child: tabs[selectedIndex],
-            ),
+            Expanded(child: tabs[selectedIndex]),
           ],
         ),
       ),
