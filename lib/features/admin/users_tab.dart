@@ -27,11 +27,11 @@ class _UsersTabState extends State<UsersTab> {
             color: Colors.white,
             child: Row(
               children: [
-                HeaderCell(flex: 1, label: 'ID'),
-                HeaderCell(flex: 2, label: 'NAME'),
-                HeaderCell(flex: 3, label: 'EMAIL'),
-                HeaderCell(flex: 2, label: 'JOIN DATE'),
-                HeaderCell(flex: 2, label: 'ACTIONS'),
+                HeaderCell(flex: 1, label: 'ID', color: Colors.black),
+                HeaderCell(flex: 2, label: 'NAME', color: Colors.black),
+                HeaderCell(flex: 3, label: 'EMAIL', color: Colors.black),
+                HeaderCell(flex: 2, label: 'JOIN DATE', color: Colors.black),
+                HeaderCell(flex: 2, label: 'ACTIONS', color: Colors.black),
               ],
             ),
           ),
@@ -44,10 +44,26 @@ class _UsersTabState extends State<UsersTab> {
                   color: Colors.white,
                   child: Row(
                     children: [
-                      HeaderCell(flex: 1, label: index.toString()),
-                      HeaderCell(flex: 2, label: 'Md.Tayob ali'),
-                      HeaderCell(flex: 3, label: 'Mdtayobali@gmail.com'),
-                      HeaderCell(flex: 2, label: '12/03/2025'),
+                      HeaderCell(
+                        flex: 1,
+                        label: index.toString(),
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        label: 'Md.Tayob ali',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 3,
+                        label: 'Mdtayobali@gmail.com',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        label: '12/03/2025',
+                        color: Colors.black,
+                      ),
                       HeaderCell(
                         flex: 2,
                         icons: [
@@ -66,7 +82,6 @@ class _UsersTabState extends State<UsersTab> {
                               context: context,
                               title: 'Edit User',
                               onConfirmed: () {
-
                                 print('User edited.');
                               },
                               confirmText: 'Save',
@@ -76,12 +91,10 @@ class _UsersTabState extends State<UsersTab> {
                               initialValue2: 'Mdtayobali@gmail.com',
                             );
                           } else if (value == Icons.delete_rounded) {
-
                             showConfirmDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {
-
                                 print('User deleted.');
                               },
                               confirmText: 'Delete',

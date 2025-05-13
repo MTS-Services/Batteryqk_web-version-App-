@@ -9,14 +9,14 @@ class HeaderCell extends StatelessWidget {
   final void Function(IconData)? onIconPressed;
 
   const HeaderCell({
-    Key? key,
+    super.key,
     required this.flex,
     this.label,
     this.icons,
     this.iconColors,
     this.color,
     this.onIconPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,10 @@ class HeaderCell extends StatelessWidget {
 
           return Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 4.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 6.0,
+                vertical: 4.0,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
@@ -59,22 +62,29 @@ class HeaderCell extends StatelessWidget {
                     Row(
                       children: List.generate(icons!.length, (index) {
                         final iconData = icons![index];
-                        final iconColor = iconColors != null && index < iconColors!.length
-                            ? iconColors![index]
-                            : color ?? Colors.grey;
+                        final iconColor =
+                            iconColors != null && index < iconColors!.length
+                                ? iconColors![index]
+                                : color ?? Colors.grey;
 
                         return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: iconPadding / 2),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: iconPadding / 2,
+                          ),
                           child: IconButton(
                             onPressed: () => onIconPressed?.call(iconData),
                             icon: Icon(iconData),
                             iconSize: iconSize,
                             color: iconColor,
                             padding: EdgeInsets.all(iconPadding),
-                            constraints: const BoxConstraints(minWidth: 28, minHeight: 28),
+                            constraints: const BoxConstraints(
+                              minWidth: 11,
+                              minHeight: 11,
+                            ),
                           ),
                         );
-                      }),
+                      },
+                      ),
                     ),
                 ],
               ),
