@@ -1,7 +1,4 @@
-
-import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/splash_screen.dart';
-
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -21,16 +18,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         canvasColor: Colors.white,
         inputDecorationTheme: InputDecorationTheme(
-               focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(color:AppColor.blueColor),
-                 borderRadius: BorderRadius.circular(6),
-               ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.blueColor),
+            borderRadius: BorderRadius.circular(6),
+          ),
 
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(6),
           ),
-
         ),
         textTheme: TextTheme(
           bodyMedium: TextStyle(
@@ -38,8 +34,8 @@ class MyApp extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w500,
           ),
-        )
+        ),
       ),
     );
   }
-}  
+}
