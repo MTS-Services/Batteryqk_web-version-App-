@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class HeaderCell extends StatelessWidget {
   final int flex;
-  final String? label;
+   final String? label;
   final List<IconData>? icons;
   final List<Color>? iconColors;
   final Color? color;

@@ -3,6 +3,8 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../common/widgets/built_sccial_button.dart';
@@ -30,7 +32,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               Text(
                 'Pin Verification',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -68,7 +70,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 children: [
                   Text(
                     "If you didn't receive a code",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey),
                   ),
                   MyCustomTextButton(text: 'Resend', onPressed: () {}),
                 ],
@@ -84,16 +86,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                    backgroundColor: AppColor.blueColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
                   child: Text(
                     'Send',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
+                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),
