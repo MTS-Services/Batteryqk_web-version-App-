@@ -61,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                           isLoginSelected = true;
                         });
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => LoginScreen()),
+                          MaterialPageRoute(builder: (context) => LogInScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(

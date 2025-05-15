@@ -3,9 +3,12 @@ import 'package:batteryqk_web_app/features/authentication/views/login_screen.dar
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../../common/widgets/built_sccial_button.dart';
+import '../../../common/widgets/show_snack_bar.dart';
+import '../../../data/services/firebase_service.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -18,11 +21,11 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-
-  final  TextEditingController _emailTEController=TextEditingController();
-  final  TextEditingController _passwordTEController=TextEditingController();
-  final  TextEditingController _confirmPTEController=TextEditingController();
-  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _confirmPTEController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +43,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Text(
                   'Create Account',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: AppColor.blueColor,
@@ -48,9 +51,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  "Create an account so you can explore \n all the  existing jobs",
+                  "Create an account so you can explore all the \n existing jobs",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -63,7 +66,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Email is required';
                     }
-                    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                    final emailRegex = RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                    );
                     if (!emailRegex.hasMatch(value)) {
                       return 'Enter a valid email';
                     }
@@ -104,7 +109,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   decoration: InputDecoration(
                     hintText: 'Password',
                     filled: true,
-                    fillColor:Colors.blue.shade50,
+                    fillColor: Colors.blue.shade50,
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 14,
@@ -184,15 +189,30 @@ class _SignupScreenState extends State<SignupScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
+                      if (_formKey.currentState!.validate()) {
                         setState(() {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(), ));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LogInScreen(),
+                            ),
+                          );
                         });
                       }
                     },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
+                      backgroundColor: AppColor.blueColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     child: Text(
                       'Sign up',
-                      style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),
@@ -202,7 +222,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     text: 'Already have an account',
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(builder: (context) => LogInScreen()),
                       );
                     },
                   ),
@@ -211,7 +231,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                   child: Text(
                     'Or continue with',
-                    style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -231,8 +251,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Handle Facebook login
                       },
                     ),
-
-
                   ],
                 ),
               ],

@@ -36,16 +36,37 @@ class ConfirmDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             const SizedBox(height: 8),
             if (isEdit) ...[
-              TextField(controller: controller1, decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder())),
+              TextField(
+                controller: controller1,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  border: OutlineInputBorder(),
+                ),
+              ),
               const SizedBox(height: 8),
-              TextField(controller: controller2, decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder())),
+              TextField(
+                controller: controller2,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ] else ...[
-              const Text('Are you sure you want to delete this item?', style: TextStyle(fontSize: 14)),
+              const Text(
+                'Are you sure you want to delete this item?',
+                style: TextStyle(fontSize: 14),
+              ),
               const SizedBox(height: 4),
-              const Text('This action cannot be undone.', style: TextStyle(fontSize: 12, color: Colors.grey)),
+              const Text(
+                'This action cannot be undone.',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
             ],
             const SizedBox(height: 16),
             Row(
@@ -53,10 +74,15 @@ class ConfirmDialogWidget extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text(cancelText),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.black87),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                  ),
+                  child: Text(
+                    cancelText,
+                    style: TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -71,9 +97,11 @@ class ConfirmDialogWidget extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isEdit ? Colors.blue : Colors.red,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
                   ),
-                  child: Text(confirmText),
+                  child: Text(confirmText,style: TextStyle(color: Colors.white),),
                 ),
               ],
             ),
