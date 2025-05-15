@@ -3,8 +3,6 @@ import 'package:batteryqk_web_app/features/authentication/views/login_screen.dar
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../common/widgets/built_sccial_button.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -40,7 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Text(
                   'Create Account',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
                     color: AppColor.blueColor,
@@ -50,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Text(
                   "Create an account so you can explore \n all the  existing jobs",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 16,
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -192,7 +190,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     child: Text(
                       'Sign up',
-                      style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),
@@ -211,7 +209,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                   child: Text(
                     'Or continue with',
-                    style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(height: 20),

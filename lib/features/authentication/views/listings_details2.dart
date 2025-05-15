@@ -5,7 +5,7 @@ import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class ListingsDetails2 extends StatefulWidget {
   const ListingsDetails2({super.key});

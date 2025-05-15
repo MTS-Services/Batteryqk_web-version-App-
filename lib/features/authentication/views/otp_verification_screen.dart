@@ -3,8 +3,6 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../common/widgets/built_sccial_button.dart';
@@ -32,7 +30,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               Text(
                 'Pin Verification',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -70,7 +68,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 children: [
                   Text(
                     "If you didn't receive a code",
-                    style: GoogleFonts.poppins(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                   MyCustomTextButton(text: 'Resend', onPressed: () {}),
                 ],
@@ -88,7 +86,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                   },
                   child: Text(
                     'Send',
-                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),

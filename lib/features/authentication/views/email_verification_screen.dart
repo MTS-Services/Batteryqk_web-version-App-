@@ -3,8 +3,6 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../common/widgets/built_sccial_button.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -30,7 +28,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Text(
                 'Forgot Password',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+                style: TextStyle(
                   fontSize: 26,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -40,7 +38,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Text(
                 'Enter Email Address',
                 textAlign: TextAlign.center,
-                style:GoogleFonts.poppins(
+                style:TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -71,7 +69,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Center(
                 child: Text(
                   'Back to sign in',
-                  style: GoogleFonts.poppins(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: 16),
                 ),
               ),
               const SizedBox(height: 25),
@@ -87,7 +85,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   },
                   child: Text(
                     'Send',
-                    style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                    style:TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),
@@ -95,7 +93,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Center(
                 child: Text(
                   'Or',
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     color: AppColor.blackColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -125,7 +123,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Text(
                 'Do you have an account?',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(color: Colors.grey, fontSize: 16),
+                style: TextStyle(color: Colors.grey, fontSize: 16),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -146,7 +144,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                   child: Text(
                     'Sign up',
-                    style: GoogleFonts.poppins(fontSize: 18, color: AppColor.blueColor),
+                    style:TextStyle(fontSize: 18, color: AppColor.blueColor),
                   ),
                 ),
               ),
