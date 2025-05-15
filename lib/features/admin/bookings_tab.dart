@@ -230,7 +230,7 @@ class _BookingsTabState extends State<BookingsTab> {
                           ],
                           onIconPressed: (value) {
                             if (value == Icons.edit_calendar_outlined) {
-                              EditDialogBox(
+                              showConfirmDialog(
                                 context: context,
                                 title: 'Edit User',
                                 onConfirmed: () {
@@ -243,7 +243,7 @@ class _BookingsTabState extends State<BookingsTab> {
                                 initialValue2: 'remonhowlader969@gmal.com',
                               );
                             } else if (value == Icons.delete_outline_outlined) {
-                              EditDialogBox(
+                              showConfirmDialog(
                                 context: context,
                                 title: 'Delete User',
                                 onConfirmed: () {

@@ -76,7 +76,7 @@ class _UsersTabState extends State<UsersTab> {
                         ],
                         onIconPressed: (value) {
                           if (value == Icons.edit_calendar) {
-                            EditDialogBox(
+                            showConfirmDialog(
                               context: context,
                               title: 'Edit User',
                               onConfirmed: () {
@@ -89,7 +89,7 @@ class _UsersTabState extends State<UsersTab> {
                               initialValue2: 'Mdtayobali@gmail.com',
                             );
                           } else if (value == Icons.delete_rounded) {
-                            EditDialogBox(
+                            showConfirmDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {
