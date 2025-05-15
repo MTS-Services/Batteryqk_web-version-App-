@@ -7,6 +7,7 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../common/widgets/built_sccial_button.dart';
 
@@ -40,11 +41,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   'Login here',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.blackColor,
-                  ),
+                  style:TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.blackColor,
+                  )
                 ),
                 const SizedBox(height: 15),
                 Text(
@@ -54,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
+
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -145,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
+
                     text: 'Forgot your Password?',
                   ),
                 ),
@@ -161,25 +164,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               builder: (context) => CustomBottomNavigationBar(),
                             ),
                           );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CustomBottomNavigationBar(),
-                            ),
-                          );
                         });
                       }
                     },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 12,
-                      ),
-                      backgroundColor: AppColor.blueColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
+
                     child: Text(
                       'Sign In',
                       style: TextStyle(fontSize: 18, color: Colors.white),

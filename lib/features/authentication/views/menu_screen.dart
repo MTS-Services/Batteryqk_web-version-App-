@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
@@ -20,17 +21,18 @@ class _MenuScreenState extends State<MenuScreen> {
     CarService(),
     Faqs(),
     NotificationPage(),
+    AdminPanel(),
     LoginScreen(),
   ];
 
-  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Logout'];
+  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Admin','Logout'];
 
   final _icons = [
-    Icons.person,
     Icons.card_membership_rounded,
     Icons.build_circle_outlined,
     Icons.help_outline_rounded,
     Icons.notifications_active_outlined,
+    Icons.admin_panel_settings,
     Icons.logout,
   ];
 
