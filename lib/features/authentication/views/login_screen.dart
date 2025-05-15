@@ -41,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   'Login here',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style:TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
                       color: AppColor.blackColor,
@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text(
                   "Welcome back you've \n been missed!",
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
+                  style: TextStyle(
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     child: Text(
                       'Sign In',
-                      style: GoogleFonts.poppins(fontSize: 18, color: Colors.white),
+                      style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
                 ),
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Text(
                     'Or continue with',
-                    style: GoogleFonts.poppins(fontWeight: FontWeight.w500, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                   ),
                 ),
                 const SizedBox(height: 20),

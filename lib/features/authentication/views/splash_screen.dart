@@ -14,12 +14,12 @@ class SplashScreen extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 30),
+              const SizedBox(height: 40),
               SizedBox(
                 height: 430,
-                width: 260,
+                width: double.infinity,
                 child: Image.asset(
-                  'assets/images/splash.png',
+                  'assets/images/penguen.png',
                   fit: BoxFit.fitHeight,
                 ),
               ),
