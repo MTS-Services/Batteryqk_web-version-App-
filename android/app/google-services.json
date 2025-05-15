@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953237213749",
+    "project_id": "batteryqk-webapp",
+    "storage_bucket": "batteryqk-webapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953237213749:android:8ed11de6f625abb3ee577c",
+        "android_client_info": {
+          "package_name": "com.example.batteryqk_web_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMX-2-OV4pT6sCd6nqePO4d9rjb8yOtUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

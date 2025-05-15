@@ -22,7 +22,7 @@ class _MenuScreenState extends State<MenuScreen> {
     Faqs(),
     NotificationPage(),
     AdminPanel(),
-    LoginScreen(),
+    LogInScreen(),
   ];
 
   final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Admin','Logout'];
