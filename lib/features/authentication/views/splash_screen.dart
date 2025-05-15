@@ -24,7 +24,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
               Text(
-                'Batteriqk',
+                'Batteryqk',
                 style: TextStyle(
                   fontSize: 55,
                   letterSpacing: 1,

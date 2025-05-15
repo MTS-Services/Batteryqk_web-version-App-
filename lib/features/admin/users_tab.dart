@@ -67,18 +67,16 @@ class _UsersTabState extends State<UsersTab> {
                       HeaderCell(
                         flex: 2,
                         icons: [
-                          Icons.visibility,
                           Icons.edit_calendar,
                           Icons.delete_rounded,
                         ],
                         iconColors: [
-                          Colors.blue,
                           Colors.yellow.shade300,
                           Colors.red,
                         ],
                         onIconPressed: (value) {
                           if (value == Icons.edit_calendar) {
-                            showConfirmDialog(
+                            EditDialogBox(
                               context: context,
                               title: 'Edit User',
                               onConfirmed: () {
@@ -91,7 +89,7 @@ class _UsersTabState extends State<UsersTab> {
                               initialValue2: 'Mdtayobali@gmail.com',
                             );
                           } else if (value == Icons.delete_rounded) {
-                            showConfirmDialog(
+                            EditDialogBox(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {

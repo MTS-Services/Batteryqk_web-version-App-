@@ -84,7 +84,7 @@ class ConfirmDialogWidget extends StatelessWidget {
   }
 }
 
-void showConfirmDialog({
+void EditDialogBox({
   required BuildContext context,
   required String title,
   required VoidCallback onConfirmed,

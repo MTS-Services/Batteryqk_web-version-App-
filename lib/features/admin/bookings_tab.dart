@@ -221,18 +221,16 @@ class _BookingsTabState extends State<BookingsTab> {
                         HeaderCell(
                           flex: 2,
                           icons: [
-                            Icons.visibility_outlined,
                             Icons.edit_calendar_outlined,
                             Icons.delete_outline_outlined,
                           ],
                           iconColors: [
-                            Colors.blueAccent,
                             Colors.brown.shade800,
                             Colors.redAccent,
                           ],
                           onIconPressed: (value) {
                             if (value == Icons.edit_calendar_outlined) {
-                              showConfirmDialog(
+                              EditDialogBox(
                                 context: context,
                                 title: 'Edit User',
                                 onConfirmed: () {
@@ -245,7 +243,7 @@ class _BookingsTabState extends State<BookingsTab> {
                                 initialValue2: 'remonhowlader969@gmal.com',
                               );
                             } else if (value == Icons.delete_outline_outlined) {
-                              showConfirmDialog(
+                              EditDialogBox(
                                 context: context,
                                 title: 'Delete User',
                                 onConfirmed: () {
