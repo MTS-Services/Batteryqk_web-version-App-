@@ -1,5 +1,7 @@
 
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
+import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
@@ -9,7 +11,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import '../../../common/widgets/built_sccial_button.dart';
-import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -157,7 +158,20 @@ class _LogInScreenState extends State<LogInScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        handleSignIn(context);
+                        setState(() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomBottomNavigationBar(),
+                            ),
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomBottomNavigationBar(),
+                            ),
+                          );
+                        });
                       }
                     },
                     style: ElevatedButton.styleFrom(

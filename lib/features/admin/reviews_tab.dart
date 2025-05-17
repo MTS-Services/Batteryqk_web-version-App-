@@ -65,17 +65,6 @@ class _ReviewsTabState extends State<ReviewsTab> {
                       ),
                       HeaderCell(
                         flex: 2,
-                        icons: [
-                          Icons.star,
-                          Icons.star,
-                          Icons.star,
-                          Icons.star,
-                          Icons.star,
-                        ],
-                        color: Colors.amber,
-                      ),
-                      HeaderCell(
-                        flex: 2,
                         label: 'Excellent facilities and coaches!',
                         color: Colors.black,
                       ),

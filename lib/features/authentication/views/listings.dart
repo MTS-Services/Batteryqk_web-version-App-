@@ -290,38 +290,22 @@ class _ListingsState extends State<Listings> {
               ],
             ),
           ),
-          Positioned(
-            bottom: 100,
-            right: 30,
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColor.blueColor.withOpacity(0.4),
-                    blurRadius: 16,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 6),
-                  ),
-                ],
-              ),
-              child: FloatingActionButton(
-                onPressed: _showFilterModal,
-                backgroundColor: AppColor.blueColor,
-                elevation: 6,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Icon(
-                  Icons.filter_alt_outlined,
-                  size: 28,
-                  color: AppColor.whiteColor,
-                ),
-              ),
-            ),
-          ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showFilterModal,
+        backgroundColor: AppColor.blueColor,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: const Icon(
+          Icons.filter_alt_outlined,
+          size: 28,
+          color: AppColor.whiteColor,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
