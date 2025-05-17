@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmDialogWidget extends StatelessWidget {
@@ -20,12 +21,18 @@ class ConfirmDialogWidget extends StatelessWidget {
     this.initialValue1,
     this.initialValue2,
     this.onEditConfirmed,
+
   });
 
   @override
   Widget build(BuildContext context) {
     final controller1 = TextEditingController(text: initialValue1);
     final controller2 = TextEditingController(text: initialValue2);
+
+
+
+    final List<String> status = ['Confirm', 'Pending', 'Cancelled'];
+    final List<String> payment = ['Paid', 'Unpaid'];
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -36,16 +43,50 @@ class ConfirmDialogWidget extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             const SizedBox(height: 8),
             if (isEdit) ...[
-              TextField(controller: controller1, decoration: const InputDecoration(labelText: 'Name', border: OutlineInputBorder())),
+              TextField(
+                controller: controller1,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  border: OutlineInputBorder(),
+                ),
+              ),
               const SizedBox(height: 8),
-              TextField(controller: controller2, decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder())),
-            ] else ...[
-              const Text('Are you sure you want to delete this item?', style: TextStyle(fontSize: 14)),
+              TextField(
+                controller: controller2,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ] else if(!isEdit)...[
+              const Text(
+                'Are you sure you want to delete this item?',
+                style: TextStyle(fontSize: 14),
+              ),
               const SizedBox(height: 4),
-              const Text('This action cannot be undone.', style: TextStyle(fontSize: 12, color: Colors.grey)),
+              const Text(
+                'This action cannot be undone.',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ]else...[
+              const Text(
+                'All Status',
+                style: TextStyle(fontSize: 14),
+              ),
+             CustomDropdownButton(itemList: status, listType: 'Select a status'),
+              const SizedBox(height: 4),
+              const Text(
+                'Payment Status',
+                style: TextStyle(fontSize: 14),
+              ),
+              CustomDropdownButton(itemList: payment, listType: 'Select'),
+
             ],
             const SizedBox(height: 16),
             Row(
@@ -56,7 +97,9 @@ class ConfirmDialogWidget extends StatelessWidget {
                   child: Text(cancelText),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.black87),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -71,7 +114,9 @@ class ConfirmDialogWidget extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: isEdit ? Colors.blue : Colors.red,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
                   ),
                   child: Text(confirmText),
                 ),
@@ -83,6 +128,7 @@ class ConfirmDialogWidget extends StatelessWidget {
     );
   }
 }
+
 
 
 void showConfirmDialog({
@@ -112,4 +158,3 @@ void showConfirmDialog({
     },
   );
 }
-

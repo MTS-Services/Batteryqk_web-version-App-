@@ -68,7 +68,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                 children: [
                   Text(
                     "If you didn't receive a code",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w500),
                   ),
                   MyCustomTextButton(text: 'Resend', onPressed: () {}),
                 ],
@@ -94,7 +94,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               Center(
                 child: Text(
                   'Or',
-                  style: TextStyle(fontSize: 16, color: AppColor.blueColor),
+                  style: TextStyle(fontSize: 16, color: AppColor.blackColor,fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(height: 20),

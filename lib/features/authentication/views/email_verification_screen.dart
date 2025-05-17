@@ -40,7 +40,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 textAlign: TextAlign.center,
                 style:TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
@@ -69,7 +69,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Center(
                 child: Text(
                   'Back to sign in',
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  style: TextStyle(color: Colors.grey, fontSize: 16,fontWeight: FontWeight.w500),
                 ),
               ),
               const SizedBox(height: 25),
@@ -123,7 +123,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               Text(
                 'Do you have an account?',
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 16),
+                style: TextStyle(color: Colors.grey, fontSize: 16,fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 10),
               SizedBox(

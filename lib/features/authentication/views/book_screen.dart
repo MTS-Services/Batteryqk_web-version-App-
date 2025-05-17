@@ -7,6 +7,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../common/widgets/terms_and_booking_card.dart';
+
+
 class BookScreen extends StatefulWidget {
   const BookScreen({super.key});
 
@@ -102,7 +105,7 @@ class _BookScreenState extends State<BookScreen> {
                       style: TextStyle(
                         color: Color(0xFF1F2937),
                         fontSize: 24,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -269,145 +272,15 @@ class _BookScreenState extends State<BookScreen> {
                         const SizedBox(height: 10),
                         Divider(color: Colors.grey.shade300),
                         const SizedBox(height: 10),
-                        Container(
-                          width: double.infinity,
-                          //padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.grey.shade100),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Checkbox(
-                                    value: isChecked,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isChecked = value!;
-                                      });
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10),
-                                    child: Expanded(
-                                      child: RichText(
-                                        text: TextSpan(
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.black,
-                                          ),
-                                          children: [
-                                            TextSpan(
-                                              text:
-                                                  'I agree to the terms and conditions\n',
-                                              style:
-                                                  Theme.of(
-                                                    context,
-                                                  ).textTheme.bodyMedium,
-                                            ),
+                        TermsAndBookingCard(
+                          onCancel: () {
 
-                                            TextSpan(
-                                              text:
-                                                  'By booking a session, you agree to our\n ',
-                                              style: TextStyle(
-                                                color: Color(0xFF6B7280),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
+                          },
+                          onSubmit: () {
 
-                                            TextSpan(
-                                              text: 'Terms of Service',
-                                              style: TextStyle(
-                                                color: AppColor.blueColor,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {},
-                                            ),
-                                            TextSpan(
-                                              text: ' and ',
-                                              style: TextStyle(
-                                                color: Color(0xFF6B7280),
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: 'Privacy Policy',
-                                              style: TextStyle(
-                                                color: AppColor.blueColor,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14,
-                                              ),
-                                              recognizer:
-                                                  TapGestureRecognizer()
-                                                    ..onTap = () {},
-                                            ),
-                                            TextSpan(text: '.'),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 20),
-
-                              Row(
-                                children: [
-                                  Spacer(),
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      print('Cancel pressed');
-                                    },
-                                    style: OutlinedButton.styleFrom(
-                                      backgroundColor: AppColor.blueColor,
-                                    ),
-                                    child: Text(
-                                      'Cancel',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 10),
-                                  ElevatedButton(
-                                    onPressed:
-                                        isChecked
-                                            ? () {
-                                              print('Submit Booking pressed');
-                                            }
-                                            : null,
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColor.orangeColor,
-                                      foregroundColor: Colors.white,
-                                    ),
-                                    child: Text(
-                                      'Submit Booking',
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                ],
-                              ),
-                            ],
-                          ),
+                          },
                         ),
-                        const SizedBox(height: 60,),
+                        const SizedBox(height: 50,),
 
                       ],
                     ),
@@ -421,3 +294,5 @@ class _BookScreenState extends State<BookScreen> {
     );
   }
 }
+
+

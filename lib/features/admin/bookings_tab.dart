@@ -83,6 +83,7 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
+
                 const SizedBox(width: 8),
                 Expanded(
                   child: Column(
@@ -212,12 +213,36 @@ class _BookingsTabState extends State<BookingsTab> {
                     ),
                     child: Row(
                       children: [
-                        HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF1F2937)),
-                        HeaderCell(flex: 2, label: 'Confirm',color: Color(0xFF1F2937)),
-                        HeaderCell(flex: 1, label: 'Unpaid',color: Color(0xFF1F2937)),
+                        HeaderCell(
+                          flex: 1,
+                          label: index.toString(),
+                          color: Color(0xFF1F2937),
+                        ),
+                        HeaderCell(
+                          flex: 2,
+                          label: 'Remon',
+                          color: Color(0xFF1F2937),
+                        ),
+                        HeaderCell(
+                          flex: 3,
+                          label: 'Mts soft',
+                          color: Color(0xFF1F2937),
+                        ),
+                        HeaderCell(
+                          flex: 2,
+                          label: '13/5/25',
+                          color: Color(0xFF1F2937),
+                        ),
+                        HeaderCell(
+                          flex: 2,
+                          label: 'Confirm',
+                          color: Color(0xFF1F2937),
+                        ),
+                        HeaderCell(
+                          flex: 1,
+                          label: 'Unpaid',
+                          color: Color(0xFF1F2937),
+                        ),
                         HeaderCell(
                           flex: 2,
                           icons: [
@@ -231,7 +256,7 @@ class _BookingsTabState extends State<BookingsTab> {
                             Colors.redAccent,
                           ],
                           onIconPressed: (value) {
-                            if (value == Icons.edit_calendar_outlined) {
+                            if (value == Icons.edit_calendar) {
                               showConfirmDialog(
                                 context: context,
                                 title: 'Edit User',
@@ -241,10 +266,10 @@ class _BookingsTabState extends State<BookingsTab> {
                                 confirmText: 'Save',
                                 cancelText: 'Cancel',
                                 isEdit: true,
-                                initialValue1: 'Remon Howlader',
-                                initialValue2: 'remonhowlader969@gmal.com',
+                                initialValue1: 'Md.Tayob ali',
+                                initialValue2: 'Mdtayobali@gmail.com',
                               );
-                            } else if (value == Icons.delete_outline_outlined) {
+                            } else if (value == Icons.delete_rounded) {
                               showConfirmDialog(
                                 context: context,
                                 title: 'Delete User',
@@ -269,3 +294,4 @@ class _BookingsTabState extends State<BookingsTab> {
     );
   }
 }
+

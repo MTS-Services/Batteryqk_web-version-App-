@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                   style:TextStyle(
                       fontSize: 26,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.bold,
                       color: AppColor.blackColor,
                   )
 
@@ -49,10 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Welcome back you've \n been missed!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     color: Colors.black,
-                    fontWeight: FontWeight.bold,
-
+                    fontWeight: FontWeight.w500
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -187,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: Text(
                     'Or continue with',
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black, fontSize: 16),
                   ),
                 ),
                 const SizedBox(height: 20),

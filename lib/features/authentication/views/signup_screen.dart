@@ -41,7 +41,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.blueColor,
+                    color: AppColor.blackColor,
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -209,7 +209,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 Center(
                   child: Text(
                     'Or continue with',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 16,color: Colors.black, fontWeight: FontWeight.w500),
                   ),
                 ),
                 const SizedBox(height: 20),
