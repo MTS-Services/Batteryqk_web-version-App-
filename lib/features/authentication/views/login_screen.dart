@@ -5,21 +5,28 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../common/widgets/built_sccial_button.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../../../common/widgets/built_sccial_button.dart';
+import '../../../common/widgets/show_snack_bar.dart';
+import '../../../data/services/firebase_service.dart';
+import 'home_screen.dart';
+
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LogInScreenState extends State<LogInScreen> {
   bool _obscurePassword = true;
 
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +151,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-
                     text: 'Forgot your Password?',
                   ),
                 ),
@@ -154,14 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
-                        setState(() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CustomBottomNavigationBar(),
-                            ),
-                          );
-                        });
+                        handleSignIn(context);
                       }
                     },
 
@@ -215,5 +214,20 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+  void handleSignIn(BuildContext context) async {
+    final email = _emailTEController.text.trim();
+    final password = _passwordTEController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      showSnackbar(context, "Error", "Email and password cannot be empty");
+      return;
+    }
+
+    await authController.signIn(email, password, context);
+
+    if (authController.isLoggedIn.value) {
+      Get.offAll(() => HomeScreen());
+    }
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
 import '../../../common/widgets/built_sccial_button.dart';
 import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
@@ -21,10 +20,11 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-  final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _passwordTEController = TextEditingController();
-  final TextEditingController _confirmPTEController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final  TextEditingController _emailTEController=TextEditingController();
+  final  TextEditingController _passwordTEController=TextEditingController();
+  final  TextEditingController _confirmPTEController=TextEditingController();
+  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   final AuthController authController = Get.put(AuthController());
 
   @override
@@ -66,9 +66,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Email is required';
                     }
-                    final emailRegex = RegExp(
-                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                    );
+                    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                     if (!emailRegex.hasMatch(value)) {
                       return 'Enter a valid email';
                     }
@@ -109,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   decoration: InputDecoration(
                     hintText: 'Password',
                     filled: true,
-                    fillColor: Colors.blue.shade50,
+                    fillColor:Colors.blue.shade50,
                     contentPadding: EdgeInsets.symmetric(
                       horizontal: 16,
                       vertical: 14,
@@ -190,16 +188,11 @@ class _SignupScreenState extends State<SignupScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
-                        setState(() {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen(), ));
-                        });
+                        handleSignup(context);
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 12,
-                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
                       backgroundColor: AppColor.blueColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -246,6 +239,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Handle Facebook login
                       },
                     ),
+
+
                   ],
                 ),
               ],
@@ -255,4 +250,22 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+  void handleSignup(BuildContext context) async {
+    final email = _emailTEController.text.trim();
+    final password = _passwordTEController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      showSnackbar(context, "Error", "Email and password cannot be empty");
+      return;
+    }
+
+    bool success = await authController.signUp(email, password, context);
+
+    if (success) {
+      Get.to(() => LogInScreen());
+    }
+  }
+
+
+
 }
