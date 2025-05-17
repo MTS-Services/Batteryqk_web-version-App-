@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: Listings(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
