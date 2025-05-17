@@ -67,12 +67,10 @@ class _UsersTabState extends State<UsersTab> {
                       HeaderCell(
                         flex: 2,
                         icons: [
-                          Icons.visibility,
                           Icons.edit_calendar,
                           Icons.delete_rounded,
                         ],
                         iconColors: [
-                          Colors.blue,
                           Colors.yellow.shade300,
                           Colors.red,
                         ],

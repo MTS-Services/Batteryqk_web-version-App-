@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ConfirmDialogWidget extends StatelessWidget {
+class EditDialogBox1 extends StatelessWidget {
   final String title;
   final VoidCallback onConfirmed;
   final String confirmText;
@@ -8,9 +8,14 @@ class ConfirmDialogWidget extends StatelessWidget {
   final bool isEdit;
   final String? initialValue1;
   final String? initialValue2;
+  final String? initialValue3;
+  final String? initialValue4;
+  final String? initialValue5;
+  final String? initialValue6;
+  final String? initialValue7;
   final void Function(String, String)? onEditConfirmed;
 
-  const ConfirmDialogWidget({
+  const EditDialogBox1({
     super.key,
     required this.title,
     required this.onConfirmed,
@@ -20,12 +25,23 @@ class ConfirmDialogWidget extends StatelessWidget {
     this.initialValue1,
     this.initialValue2,
     this.onEditConfirmed,
+    this.initialValue3,
+    this.initialValue4,
+    this.initialValue5,
+    this.initialValue6,
+    this.initialValue7,
+    required BuildContext context,
   });
 
   @override
   Widget build(BuildContext context) {
     final controller1 = TextEditingController(text: initialValue1);
     final controller2 = TextEditingController(text: initialValue2);
+    final controller3 = TextEditingController(text: initialValue3);
+    final controller4 = TextEditingController(text: initialValue4);
+    final controller5 = TextEditingController(text: initialValue5);
+    final controller6 = TextEditingController(text: initialValue6);
+    final controller7 = TextEditingController(text: initialValue7);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -40,7 +56,7 @@ class ConfirmDialogWidget extends StatelessWidget {
               title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 40),
             if (isEdit) ...[
               TextField(
                 controller: controller1,
@@ -49,11 +65,52 @@ class ConfirmDialogWidget extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 40),
               TextField(
                 controller: controller2,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
+                  labelText: 'Category',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextField(
+                controller: controller3,
+                decoration: const InputDecoration(
+                  labelText: 'Location',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextField(
+                controller: controller4,
+                decoration: const InputDecoration(
+                  labelText: 'Age Group',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextField(
+                controller: controller5,
+                decoration: const InputDecoration(
+                  labelText: 'Price',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextField(
+                controller: controller6,
+                decoration: const InputDecoration(
+                  labelText: 'Image url',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 40),
+              TextField(
+                maxLines: 4,
+                controller: controller7,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -74,15 +131,12 @@ class ConfirmDialogWidget extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () => Navigator.of(context).pop(),
+                  child: Text(cancelText),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.black87),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
-                  ),
-                  child: Text(
-                    cancelText,
-                    style: TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -101,7 +155,7 @@ class ConfirmDialogWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                  child: Text(confirmText,style: TextStyle(color: Colors.white),),
+                  child: Text(confirmText),
                 ),
               ],
             ),
@@ -112,7 +166,6 @@ class ConfirmDialogWidget extends StatelessWidget {
   }
 }
 
-
 void showConfirmDialog({
   required BuildContext context,
   required String title,
@@ -122,12 +175,17 @@ void showConfirmDialog({
   bool isEdit = false,
   String? initialValue1,
   String? initialValue2,
+  String? initialValue3,
+  String? initialValue4,
+  String? initialValue5,
+  String? initialValue6,
+  String? initialValue7,
   void Function(String, String)? onEditConfirmed,
 }) {
   showDialog(
     context: context,
     builder: (context) {
-      return ConfirmDialogWidget(
+      return EditDialogBox1(
         title: title,
         onConfirmed: onConfirmed,
         confirmText: confirmText,
@@ -136,8 +194,13 @@ void showConfirmDialog({
         initialValue1: initialValue1,
         initialValue2: initialValue2,
         onEditConfirmed: onEditConfirmed,
+        initialValue3: initialValue3,
+        initialValue4: initialValue4,
+        initialValue5: initialValue5,
+        initialValue6: initialValue6,
+        initialValue7: initialValue7,
+        context: context,
       );
     },
   );
 }
-

@@ -221,12 +221,10 @@ class _BookingsTabState extends State<BookingsTab> {
                         HeaderCell(
                           flex: 2,
                           icons: [
-                            Icons.visibility_outlined,
                             Icons.edit_calendar_outlined,
                             Icons.delete_outline_outlined,
                           ],
                           iconColors: [
-                            Colors.blueAccent,
                             Colors.brown.shade800,
                             Colors.redAccent,
                           ],
