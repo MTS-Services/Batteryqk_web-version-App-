@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/admin/bookings_tab.dart';
 import 'package:batteryqk_web_app/features/authentication/views/splash_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
