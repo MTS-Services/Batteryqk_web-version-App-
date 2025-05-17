@@ -90,6 +90,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
               ),
               const SizedBox(height: 50),
+              //added line
               Center(
                 child: Text(
                   'Or',
