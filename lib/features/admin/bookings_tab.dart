@@ -57,7 +57,7 @@ class _BookingsTabState extends State<BookingsTab> {
               color: Color(0xFF1F2937),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 30),
           Card(
             color: Colors.white,
             elevation: 0.5,

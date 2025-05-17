@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EditDialogBox1 extends StatelessWidget {
+class EditDialogBox1 extends StatefulWidget {
   final String title;
   final VoidCallback onConfirmed;
   final String confirmText;
@@ -34,15 +34,56 @@ class EditDialogBox1 extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final controller1 = TextEditingController(text: initialValue1);
-    final controller2 = TextEditingController(text: initialValue2);
-    final controller3 = TextEditingController(text: initialValue3);
-    final controller4 = TextEditingController(text: initialValue4);
-    final controller5 = TextEditingController(text: initialValue5);
-    final controller6 = TextEditingController(text: initialValue6);
-    final controller7 = TextEditingController(text: initialValue7);
+  State<EditDialogBox1> createState() => _EditDialogBox1State();
+}
 
+class _EditDialogBox1State extends State<EditDialogBox1> {
+  @override
+  Widget build(BuildContext context) {
+    final controller1 = TextEditingController(text: widget.initialValue1);
+    final controller2 = TextEditingController(text: widget.initialValue2);
+    final controller3 = TextEditingController(text: widget.initialValue3);
+    final controller4 = TextEditingController(text: widget.initialValue4);
+    final controller5 = TextEditingController(text: widget.initialValue5);
+    final controller6 = TextEditingController(text: widget.initialValue6);
+    final controller7 = TextEditingController(text: widget.initialValue7);
+
+    final Map<String, Map<String, bool>> sportsCategories = {
+      'A.1 Combat Sports': {
+        'Karate': false,
+        'Taekwondo': false,
+        'Judo': false,
+        'Kung Fu': false,
+        'Boxing': false,
+        'MMA': false,
+      },
+      'A.2 Water Sports': {
+        'Swimming': true,
+        'Diving': false,
+        'Rowing': false,
+        'Kayaking': false,
+        'Surfing': false,
+      },
+      'A.3 Artistic & Performance': {
+        'Gymnastics': false,
+        'Ballet': false,
+        'Modern Dance': false,
+        'Ice Skating': false,
+      },
+      'A.4 Mind & Strategy': {
+        'Chess': false,
+        'Shooting': false,
+        'Archery': false,
+        'Table Tennis': false,
+      },
+      'A.5 Strength & Endurance': {
+        'Weightlifting': false,
+        'Running': false,
+        'Mountain Climbing': false,
+        'CrossFit': false,
+        'Road Cycling': false,
+      },
+    };
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
@@ -53,11 +94,11 @@ class EditDialogBox1 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              widget.title,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 40),
-            if (isEdit) ...[
+            if (widget.isEdit) ...[
               TextField(
                 controller: controller1,
                 decoration: const InputDecoration(
@@ -66,12 +107,31 @@ class EditDialogBox1 extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              TextField(
-                controller: controller2,
-                decoration: const InputDecoration(
-                  labelText: 'Category',
-                  border: OutlineInputBorder(),
+              ExpansionTile(
+                title: const Text(
+                  'A. Individual Sports',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
+                children: sportsCategories.entries.map((category) {
+                  return ExpansionTile(
+                    title: Text(
+                      category.key,
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                    children: category.value.entries.map((entry) {
+                      return CheckboxListTile(
+                        value: entry.value,
+                        title: Text(entry.key),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        onChanged: (bool? newValue) {
+                          setState(() {
+                            sportsCategories[category.key]![entry.key] = newValue!;
+                          });
+                        },
+                      );
+                    }).toList(),
+                  );
+                }).toList(),
               ),
               const SizedBox(height: 40),
               TextField(
@@ -131,7 +191,7 @@ class EditDialogBox1 extends StatelessWidget {
               children: [
                 OutlinedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: Text(cancelText),
+                  child: Text(widget.cancelText),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.black87),
                     shape: RoundedRectangleBorder(
@@ -143,19 +203,19 @@ class EditDialogBox1 extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    if (isEdit && onEditConfirmed != null) {
-                      onEditConfirmed!(controller1.text, controller2.text);
+                    if (widget.isEdit && widget.onEditConfirmed != null) {
+                      widget.onEditConfirmed!(controller1.text, controller2.text);
                     } else {
-                      onConfirmed();
+                      widget.onConfirmed();
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isEdit ? Colors.blue : Colors.red,
+                    backgroundColor: widget.isEdit ? Colors.blue : Colors.red,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                  child: Text(confirmText),
+                  child: Text(widget.confirmText),
                 ),
               ],
             ),
