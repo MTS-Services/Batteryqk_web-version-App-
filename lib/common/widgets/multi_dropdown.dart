@@ -77,6 +77,10 @@ class _MultiDropDownState extends State<MultiDropDown> {
       children: [
         // Dropdown 1 - Category
         DropdownButtonFormField2<String>(
+          dropdownStyleData: DropdownStyleData(
+            maxHeight: 150,
+            useSafeArea: true
+          ),
 
           isExpanded: true,
           decoration: const InputDecoration(
@@ -128,6 +132,10 @@ class _MultiDropDownState extends State<MultiDropDown> {
 
         // Dropdown 2 - Subcategories
         DropdownButtonFormField2<String>(
+          dropdownStyleData: DropdownStyleData(
+              maxHeight: 250,
+              useSafeArea: true
+          ),
           isExpanded: true,
           decoration: const InputDecoration(
             labelText: 'Select Subcategories',
@@ -181,6 +189,10 @@ class _MultiDropDownState extends State<MultiDropDown> {
 
         // Dropdown 3 - Sports with checkboxes
         DropdownButtonFormField2<String>(
+    dropdownStyleData: DropdownStyleData(
+    maxHeight: 150,
+    useSafeArea: true
+    ),
           isExpanded: true,
           decoration: const InputDecoration(
             labelText: 'Select Sports',
