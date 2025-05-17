@@ -1,0 +1,53 @@
+import 'package:get/get.dart';
+
+class Language extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+    'en_US': {
+      'get_started': 'Get started',
+      'login_here': 'Login here',
+      'welcome_back': "Welcome back you've \n been missed!",
+      'email': 'Email',
+      'email_required': 'Email is required',
+      'email_invalid': 'Enter a valid email',
+      'password': 'Password',
+      'password_required': 'Password is required',
+      'password_length': 'Password must be at least 6 characters',
+      'forgot_password': 'Forgot your Password?',
+      'sign_in': 'Sign In',
+      'create_account': 'Create new account',
+      'or_continue_with': 'Or continue with',
+      'google_login': 'Login with Google',
+      'facebook_login': 'Login with Facebook',
+      'enter_email_address': 'Enter Email Address',
+      'back_to_sign_in': 'Back to sign in',
+      'send': 'Send',
+      'or': 'Or',
+      'have_account': 'Do you have an account?',
+      'sign_up': 'Sign up',
+    },
+    'ar_AE': {
+      'get_started': 'ابدء',
+      'login_here': 'تسجيل الدخول',
+      'welcome_back': 'مرحباً بك مرة أخرى\nلقد افتقدناك!',
+      'email': 'البريد الإلكتروني',
+      'email_required': 'البريد الإلكتروني مطلوب',
+      'email_invalid': 'أدخل بريدًا إلكترونيًا صالحًا',
+      'password': 'كلمة المرور',
+      'password_required': 'كلمة المرور مطلوبة',
+      'password_length': 'يجب أن تكون كلمة المرور 6 أحرف على الأقل',
+      'forgot_password': 'هل نسيت كلمة المرور؟',
+      'sign_in': 'تسجيل الدخول',
+      'create_account': 'إنشاء حساب جديد',
+      'or_continue_with': 'أو تابع باستخدام',
+      'google_login': 'تسجيل الدخول عبر جوجل',
+      'facebook_login': 'تسجيل الدخول عبر فيسبوك',
+      'enter_email_address': 'أدخل البريد الإلكتروني',
+      'back_to_sign_in': 'العودة لتسجيل الدخول',
+      'send': 'إرسال',
+      'or': 'أو',
+      'have_account': 'هل لديك حساب؟',
+      'sign_up': 'إنشاء حساب',
+    },
+  };
+}
