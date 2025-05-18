@@ -73,9 +73,9 @@ class Faqs extends StatelessWidget {
             const SizedBox(height: 16),
             ...faqData.map((faq) {
               return Card(
-                color: const Color.fromARGB(255, 240, 240, 240),
+                color: Color.fromARGB(255, 255, 253, 245),
 
-                elevation: 0,
+                elevation: 1,
                 margin: const EdgeInsets.only(bottom: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
