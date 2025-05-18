@@ -12,7 +12,12 @@
           "package_name": "com.example.batteryqk_web_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDMX-2-OV4pT6sCd6nqePO4d9rjb8yOtUI"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "953237213749-pktpe9rte9uvkf57potkipt9rl0dbipc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.batteryqkWebApp"
+              }
+            }
+          ]
         }
       }
     }
