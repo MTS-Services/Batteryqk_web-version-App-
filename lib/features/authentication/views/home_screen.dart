@@ -6,6 +6,11 @@ import 'package:batteryqk_web_app/util/colors.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  void _onViewAllPressed() {
+    // TODO: Implement what happens when "View All" is pressed
+    print('View All pressed!');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,23 +66,37 @@ class HomeScreen extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: AppColor.whiteColor,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
               ),
             ),
             child: Column(
               children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    "POPULAR SERVICES",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColor.blackColor,
+                // Header Row with title and View All button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "POPULAR SERVICES",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.blackColor,
+                      ),
                     ),
-                  ),
+                    TextButton(
+                      onPressed: _onViewAllPressed,
+                      child: const Text(
+                        "View All",
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.blueColor,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
                 Card(
@@ -86,6 +105,7 @@ class HomeScreen extends StatelessWidget {
                         'https://models-online-persist.shakker.cloud/img/d23aaa828448417abbfbb8e2345e4dff/78ea614f0438afd7b6c2b90d90e1c429e08c973d80d1edd26aeb1a56d8d4c50d.png?x-oss-process=image/resize,w_764,m_lfit/format,webp',
                     title: "AFC Sports Academy",
                     subtitle: "Ages 3+",
+                    showNotification: true,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -95,6 +115,7 @@ class HomeScreen extends StatelessWidget {
                         'https://huggingface.co/maywell/Synatra-10.7B-v0.4/resolve/main/Synatra.png',
                     title: "Blue Skies Nursery",
                     subtitle: "Ages 5-6",
+                    showNotification: true,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -104,6 +125,7 @@ class HomeScreen extends StatelessWidget {
                         'https://img.freepik.com/premium-vector/penguin-with-white-face-blue-background_1187092-70841.jpg',
                     title: "Happy Feet",
                     subtitle: "Ages 3-5",
+                    showNotification: true,
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -113,6 +135,7 @@ class HomeScreen extends StatelessWidget {
                         'https://img.freepik.com/premium-photo/cute-cartoon-penguin-illustration_1132516-706.jpg',
                     title: "Little Explorers",
                     subtitle: "Ages 4-6",
+                    showNotification: true,
                   ),
                 ),
               ],
@@ -127,7 +150,7 @@ class HomeScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 247, 247, 247),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(width: 2, color: AppColor.orangeColor),
       ),
       padding: const EdgeInsets.all(16),
@@ -141,13 +164,17 @@ class HomeScreen extends StatelessWidget {
             fit: BoxFit.contain,
             errorBuilder:
                 (context, error, stackTrace) =>
-                    Icon(Icons.error, size: 40, color: Colors.red),
+                    const Icon(Icons.error, size: 40, color: Colors.red),
           ),
           const SizedBox(height: 12),
           Text(
             label,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 17,
+              color: AppColor.blackColor,
+            ),
           ),
         ],
       ),
@@ -158,6 +185,7 @@ class HomeScreen extends StatelessWidget {
     required String iconPath,
     required String title,
     required String subtitle,
+    bool showNotification = false,
   }) {
     return Container(
       decoration: BoxDecoration(
@@ -170,12 +198,14 @@ class HomeScreen extends StatelessWidget {
           child: Image.network(
             iconPath,
             width: 55,
-            height: 100,
-
+            height: 55,
             fit: BoxFit.cover,
             errorBuilder:
-                (context, error, stackTrace) =>
-                    Icon(Icons.broken_image, color: Colors.grey, size: 48),
+                (context, error, stackTrace) => const Icon(
+                  Icons.broken_image,
+                  color: Colors.grey,
+                  size: 48,
+                ),
           ),
         ),
         title: Text(
@@ -183,6 +213,18 @@ class HomeScreen extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         subtitle: Text(subtitle),
+        trailing:
+            showNotification
+                ? Container(
+                  width: 12,
+                  height: 12,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 2),
+                  ),
+                )
+                : null,
         onTap: () {},
       ),
     );
