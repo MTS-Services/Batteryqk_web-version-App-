@@ -1,6 +1,6 @@
+import 'package:get/get.dart'; // For .tr
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
-import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
       ),
@@ -58,17 +58,20 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+
           const SizedBox(height: 24),
 
-          _buildSectionTitle("Featured Activities"),
+          _buildSectionTitle('featured_activities'.tr),
           const SizedBox(height: 12),
+
           _buildGridListings(),
+
           const SizedBox(height: 24),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildSectionTitle("Top Listings"),
+              _buildSectionTitle('top_listings'.tr),
               TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -76,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Listings()),
                   );
                 },
-                child: const Text("View All"),
+                child: Text('view_all'.tr),
               ),
             ],
           ),
@@ -84,47 +87,47 @@ class HomeScreen extends StatelessWidget {
 
           _buildListingCard(
             context: context,
-            title: AppText.academies1Title,
+            title: 'academies_1_title'.tr,
             location: "Swimming | Downtown",
-            tag: "Paid",
+            tag: 'paid'.tr,
             rating: 4.5,
-            description: AppText.academies1Details,
+            description: 'academies_1_details'.tr,
             imageUrl: AppImages.academies1a,
           ),
           _buildListingCard(
             context: context,
-            title: AppText.academies2Title,
+            title: 'academies_2_title'.tr,  
             location: "Gym | Uptown",
-            tag: "Free",
+            tag: 'free'.tr,
             rating: 4.0,
-            description: AppText.academies2Details,
+            description: 'academies_2_details'.tr,
             imageUrl: AppImages.academies2a,
           ),
           _buildListingCard(
             context: context,
-            title: AppText.academies3Title,
+            title: 'academies_3_title'.tr,
             location: "Tennis | West Side",
-            tag: "Paid",
+            tag: 'paid'.tr,
             rating: 5.0,
-            description: AppText.academies3Details,
+            description: 'academies_3_details'.tr,
             imageUrl: AppImages.academies3a,
           ),
           _buildListingCard(
             context: context,
-            title: AppText.academies4Title,
+            title: 'academies_4_title'.tr,
             location: "Basketball | Downtown",
-            tag: "Paid",
+            tag: 'paid'.tr,
             rating: 4.5,
-            description: AppText.academies4Details,
+            description: 'academies_4_details'.tr,
             imageUrl: AppImages.academies4a,
           ),
           _buildListingCard(
             context: context,
-            title: AppText.academies5Title,
-            location: "Tennis | south Side",
-            tag: "Paid",
+            title: 'academies_5_title'.tr,
+            location: "Tennis | South Side",
+            tag: 'paid'.tr,
             rating: 5.0,
-            description: AppText.academies5Details,
+            description: 'academies_5_details'.tr,
             imageUrl: AppImages.academies5a,
           ),
         ],
@@ -146,22 +149,22 @@ class HomeScreen extends StatelessWidget {
   Widget _buildGridListings() {
     final items = [
       {
-        "title": "Football",
+        "title": 'football'.tr,
         "img":
             "https://assets.publishing.service.gov.uk/media/63f62823d3bf7f62e4409e3a/s960_Football_gov.uk.jpg",
       },
       {
-        "title": "Gym",
+        "title": 'gym'.tr,
         "img":
             "https://i.shgcdn.com/62f0a505-76f9-4160-847f-f3dbe2ed71d0/-/format/auto/-/preview/3000x3000/-/quality/lighter/",
       },
       {
-        "title": "Swimming",
+        "title": 'swimming'.tr,
         "img":
             "https://i0.wp.com/blog.myswimpro.com/wp-content/uploads/2023/10/freestyle-stroke-breathing-technique-myswimpro.jpeg?resize=1024%2C683&ssl=1",
       },
       {
-        "title": "Tennis",
+        "title": 'tennis'.tr,
         "img":
             "https://www.tennisireland.ie/wp-content/uploads/2024/11/2724520-1024x625.jpg",
       },
@@ -303,7 +306,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color:
-                            tag == "Paid"
+                            tag == 'paid'.tr
                                 ? Colors.blue.shade100
                                 : Colors.green.shade100,
                         borderRadius: BorderRadius.circular(10),
@@ -367,7 +370,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text("View Details"),
+                      child: Text('view_details'.tr),
                     ),
                     const SizedBox(width: 10),
                     OutlinedButton(
@@ -382,9 +385,9 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
-                        "Book Now",
-                        style: TextStyle(
+                      child: Text(
+                        'book_now'.tr,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
                         ),

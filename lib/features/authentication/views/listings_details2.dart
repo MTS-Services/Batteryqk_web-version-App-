@@ -15,7 +15,7 @@ class ListingsDetails2 extends StatefulWidget {
 }
 
 class _ListingsDetails2State extends State<ListingsDetails2> {
-  final List facilitiesList = [
+  final List<String> facilitiesList = [
     'Olympic-sized Gym',
     'Changing rooms',
     'Shower facilities',

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/authentication/views/listings_details1.dart';
 import '../../../util/colors.dart';
 
 class BuildListingCard extends StatelessWidget {

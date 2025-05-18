@@ -1,3 +1,4 @@
+import 'package:get/get.dart'; // Add this import for .tr
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,7 @@ class TermsAndBookingCard extends StatefulWidget {
   final VoidCallback? onSubmit;
   final VoidCallback? onCancel;
 
-  const TermsAndBookingCard({
-    Key? key,
-    this.onSubmit,
-    this.onCancel,
-  }) : super(key: key);
+  const TermsAndBookingCard({super.key, this.onSubmit, this.onCancel});
 
   @override
   _TermsAndBookingCardState createState() => _TermsAndBookingCardState();
@@ -49,52 +46,53 @@ class _TermsAndBookingCardState extends State<TermsAndBookingCard> {
                   padding: const EdgeInsets.only(top: 10),
                   child: RichText(
                     text: TextSpan(
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                       children: [
                         TextSpan(
-                          text: 'I agree to the terms and conditions\n',
+                          text: 'agree_terms'.tr,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
-                        const TextSpan(
-                          text: 'By booking a session, you agree to our\n',
-                          style: TextStyle(
-                            color: Color(0xFF6B7280),
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
                         TextSpan(
-                          text: 'Terms of Service',
+                          text: 'booking_agreement'.tr,
                           style: const TextStyle(
-                            color:AppColor.blueColor,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),
-                          recognizer: TapGestureRecognizer()..onTap = () {
-                            // Handle Terms of Service tap
-                          },
-                        ),
-                        const TextSpan(
-                          text: ' and ',
-                          style: TextStyle(
                             color: Color(0xFF6B7280),
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                         TextSpan(
-                          text: 'Privacy Policy',
+                          text: 'terms_of_service'.tr,
                           style: const TextStyle(
                             color: AppColor.blueColor,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
                           ),
-                          recognizer: TapGestureRecognizer()..onTap = () {
-                            // Handle Privacy Policy tap
-                          },
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  // Handle Terms of Service tap
+                                },
+                        ),
+                        TextSpan(
+                          text: 'and'.tr,
+                          style: const TextStyle(
+                            color: Color(0xFF6B7280),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'privacy_policy'.tr,
+                          style: const TextStyle(
+                            color: AppColor.blueColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                          ),
+                          recognizer:
+                              TapGestureRecognizer()
+                                ..onTap = () {
+                                  // Handle Privacy Policy tap
+                                },
                         ),
                         const TextSpan(text: '.'),
                       ],
@@ -113,9 +111,9 @@ class _TermsAndBookingCardState extends State<TermsAndBookingCard> {
                 style: OutlinedButton.styleFrom(
                   backgroundColor: AppColor.blueColor,
                 ),
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
+                child: Text(
+                  'cancel'.tr,
+                  style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
@@ -129,9 +127,9 @@ class _TermsAndBookingCardState extends State<TermsAndBookingCard> {
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.white,
                 ),
-                child: const Text(
-                  'Submit Booking',
-                  style: TextStyle(
+                child: Text(
+                  'submit_booking'.tr,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: Colors.white,
@@ -140,7 +138,7 @@ class _TermsAndBookingCardState extends State<TermsAndBookingCard> {
               ),
               const SizedBox(width: 5),
             ],
-          )
+          ),
         ],
       ),
     );

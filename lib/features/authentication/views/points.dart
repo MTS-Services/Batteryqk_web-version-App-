@@ -1,7 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Points extends StatelessWidget {
   const Points({super.key});
@@ -11,8 +11,8 @@ class Points extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: const CustomAppBar(isBack: true),
       ),
 
       body: SingleChildScrollView(
@@ -68,9 +68,9 @@ class Points extends StatelessWidget {
                               color: AppColor.whiteColor,
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: const Text(
-                              'Gold Member',
-                              style: TextStyle(
+                            child: Text(
+                              'gold_member'.tr,
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                                 color: AppColor.blueColor,
@@ -92,9 +92,9 @@ class Points extends StatelessWidget {
                             color: AppColor.blackColor,
                           ),
                         ),
-                        const Text(
-                          'Points',
-                          style: TextStyle(color: AppColor.blackColor),
+                        Text(
+                          'points'.tr,
+                          style: const TextStyle(color: AppColor.blackColor),
                         ),
                       ],
                     ),
@@ -106,9 +106,9 @@ class Points extends StatelessWidget {
             const SizedBox(height: 20),
 
             // HOW IT WORKS SECTION
-            const Text(
-              'How It Works',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Text(
+              'how_it_works'.tr,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -138,15 +138,13 @@ class Points extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Reward ${index + 1}',
+                              '${'reward'.tr} ${index + 1}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Text(
-                              'Earn 10 points for every booking you make through our platform. ${index + 1}',
-                            ),
+                            Text('${'earn_points_info'.tr} ${index + 1}'),
                           ],
                         ),
                       ),
@@ -159,9 +157,9 @@ class Points extends StatelessWidget {
             const SizedBox(height: 20),
 
             // POINTS EARN HISTORY SECTION
-            const Text(
-              'Points Earn History',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Text(
+              'points_earn_history'.tr,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             ListView.builder(
@@ -173,8 +171,7 @@ class Points extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    color:
-                        AppColor.whiteColor, // Changed from gradient to white
+                    color: AppColor.whiteColor,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.2),
@@ -199,7 +196,7 @@ class Points extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Booking #${index + 1}',
+                              '${'booking'.tr} #${index + 1}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -208,7 +205,7 @@ class Points extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              'Earned 10 points on April ${20 - index}, 2025',
+                              '${'earned_points_on'.tr} ${20 - index}, 2025',
                               style: const TextStyle(
                                 color: AppColor.blackColor,
                                 fontSize: 13,
@@ -234,9 +231,9 @@ class Points extends StatelessWidget {
             const SizedBox(height: 20),
 
             // AVAILABLE REWARDS SECTION
-            const Text(
-              'Available Rewards',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Text(
+              'available_rewards'.tr,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             ListView.builder(
               shrinkWrap: true,
@@ -260,13 +257,11 @@ class Points extends StatelessWidget {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          '10% Off Next Booking ${index + 1}',
+                          '${'off_next_booking'.tr} ${index + 1}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: 8),
-                        Text(
-                          'Get 10% off your next booking at any academy. ${index + 1}',
-                        ),
+                        Text('get_discount_text'.tr),
                         const SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {},
@@ -274,9 +269,9 @@ class Points extends StatelessWidget {
                             backgroundColor: Colors.white,
                             side: const BorderSide(color: AppColor.blueColor),
                           ),
-                          child: const Text(
-                            "Redeem",
-                            style: TextStyle(color: AppColor.blueColor),
+                          child: Text(
+                            'redeem'.tr,
+                            style: const TextStyle(color: AppColor.blueColor),
                           ),
                         ),
                       ],

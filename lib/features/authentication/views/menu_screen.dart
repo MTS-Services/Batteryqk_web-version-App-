@@ -1,5 +1,5 @@
+import 'package:get/get.dart';  // add this import
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
-import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
@@ -16,36 +16,46 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final pageList = [
-    Points(),
-    CarService(),
-    Faqs(),
-    NotificationPage(),
-    AdminPanel(),
-    LoginScreen(),
-  ];
-
-  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Admin','Logout'];
-
-  final _icons = [
-    Icons.card_membership_rounded,
-    Icons.build_circle_outlined,
-    Icons.help_outline_rounded,
-    Icons.notifications_active_outlined,
-    Icons.admin_panel_settings,
-    Icons.logout,
-  ];
+  late final List<Widget> pageList;
+  late final List<String> _title;
+  late final List<IconData> _icons;
 
   final Color primaryColor = AppColor.blueColor;
-  final TextEditingController nameController = TextEditingController(
-    text: 'Emon Halder',
-  );
+  final TextEditingController nameController = TextEditingController(text: 'Emon Halder');
   final FocusNode _focusNode = FocusNode();
-
-  final TextEditingController _locationController = TextEditingController(
-    text: 'Dhaka, Bangladesh',
-  );
+  final TextEditingController _locationController = TextEditingController(text: 'Dhaka, Bangladesh');
   final FocusNode _locationFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    pageList = [
+      Points(),
+      CarService(),
+      Faqs(),
+      NotificationPage(),
+      AdminPanel(),
+      LoginScreen(),
+    ];
+
+    _title = [
+      'reward'.tr,
+      'car_services'.tr,
+      'faqs'.tr,
+      'notifications'.tr,
+      'admin'.tr,
+      'logout'.tr,
+    ];
+
+    _icons = [
+      Icons.card_membership_rounded,
+      Icons.build_circle_outlined,
+      Icons.help_outline_rounded,
+      Icons.notifications_active_outlined,
+      Icons.admin_panel_settings,
+      Icons.logout,
+    ];
+  }
 
   @override
   void dispose() {
@@ -120,7 +130,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         color: Colors.white,
                         size: 20,
                       ),
-                      tooltip: 'Edit Name',
+                      tooltip: 'edit_name'.tr,
                     ),
                   ],
                 ),
@@ -137,12 +147,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(Icons.star, size: 18, color: AppColor.orangeColor),
-                      SizedBox(width: 8),
+                    children: [
+                      const Icon(Icons.star, size: 18, color: AppColor.orangeColor),
+                      const SizedBox(width: 8),
                       Text(
-                        'Gold Member - 1200 Points',
-                        style: TextStyle(
+                        'gold_member_points'.tr,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -248,9 +258,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Location",
-                        style: TextStyle(
+                      Text(
+                        'location'.tr,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -262,8 +272,8 @@ class _MenuScreenState extends State<MenuScreen> {
                             child: TextField(
                               controller: _locationController,
                               focusNode: _locationFocusNode,
-                              decoration: const InputDecoration(
-                                hintText: "Enter your location",
+                              decoration: InputDecoration(
+                                hintText: 'enter_your_location'.tr,
                                 border: InputBorder.none,
                                 isDense: true,
                               ),
@@ -272,9 +282,7 @@ class _MenuScreenState extends State<MenuScreen> {
                           IconButton(
                             icon: const Icon(Icons.edit_location_alt),
                             onPressed: () {
-                              FocusScope.of(
-                                context,
-                              ).requestFocus(_locationFocusNode);
+                              FocusScope.of(context).requestFocus(_locationFocusNode);
                             },
                           ),
                         ],

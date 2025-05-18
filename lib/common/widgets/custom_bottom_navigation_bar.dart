@@ -5,6 +5,7 @@ import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:get/get.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
@@ -46,10 +47,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home_filled, "Home", 0),
-                _buildNavItem(Icons.work_outline, "Jobs", 1),
-                _buildNavItem(Icons.calendar_today_outlined, "Book", 2),
-                _buildNavItem(Icons.menu, "Menu", 3),
+                _buildNavItem(Icons.home_filled, 'home'.tr, 0),
+                _buildNavItem(Icons.work_outline, 'jobs'.tr, 1),
+                _buildNavItem(Icons.calendar_today_outlined, 'book'.tr, 2),
+                _buildNavItem(Icons.menu, 'menu'.tr, 3),
               ],
             ),
           ),

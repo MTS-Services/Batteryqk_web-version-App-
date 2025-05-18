@@ -2,7 +2,6 @@ import 'package:batteryqk_web_app/features/authentication/views/splash_screen.da
 import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
@@ -17,8 +16,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       home: SplashScreen(),
       debugShowCheckedModeBanner: false,
-      locale: Locale('ar', 'AE'),
-      fallbackLocale: Locale('ar', 'AE'),
+      locale: Locale('en', 'US'),
+      fallbackLocale: Locale('en', 'US'),
       translations: Language(),
       themeMode: ThemeMode.dark,
       theme: ThemeData(
