@@ -61,7 +61,7 @@ class _ListingsState extends State<Listings> {
                 ),
                 const SizedBox(height: 12),
 
-                MultiDropDown(onChange:(val){},),
+                MultiDropDown(onChange: (val) {}),
 
                 CustomDropdownListings(
                   itemList: DropDownMenuItem.location,
@@ -140,7 +140,7 @@ class _ListingsState extends State<Listings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: Color.fromARGB(255, 255, 253, 245),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
@@ -148,7 +148,7 @@ class _ListingsState extends State<Listings> {
       body: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
