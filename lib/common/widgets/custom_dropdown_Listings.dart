@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import '../../util/colors.dart';
+import '../../util/dropdown_menu_item.dart';
 
 class CustomDropdownListings extends StatefulWidget {
   final String listType;
@@ -18,6 +19,9 @@ class CustomDropdownListings extends StatefulWidget {
 
 class _CustomDropdownListingsState extends State<CustomDropdownListings> {
   String? selectedItem;
+  bool _hasCheckbox(String item) {
+    return DropDownMenuItem.getAllSports().contains(item);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,21 +39,59 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.grey.shade600,
             ),
           ),
-          items:
-              widget.itemList
-                  .map(
-                    (item) => DropdownMenuItem(
-                      value: item,
-                      child: Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black87,
+          items: widget.itemList.map((item) {
+            return DropdownMenuItem<String>(
+              value: item,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    item,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  if (_hasCheckbox(item))
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (selectedItem == item) {
+                            selectedItem = null;
+                          } else {
+                            selectedItem = item;
+                          }
+                          Navigator.pop(context);
+                        });
+                      },
+                      child: Container(
+                        width: 22,
+                        height: 22,
+                        decoration: BoxDecoration(
+                          color: selectedItem == item
+                              ? AppColor.blueColor
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(
+                            color: selectedItem == item
+                                ? AppColor.blueColor
+                                : Colors.grey.shade400,
+                            width: 2,
+                          ),
                         ),
+                        child: selectedItem == item
+                            ? const Icon(
+                          Icons.check,
+                          size: 18,
+                          color: Colors.white,
+                        )
+                            : null,
                       ),
                     ),
-                  )
-                  .toList(),
+                ],
+              ),
+            );
+          }).toList(),
           onChanged: (value) {
             setState(() {
               selectedItem = value;
@@ -57,8 +99,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
           },
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
-            iconSize: 20,
-            iconEnabledColor: AppColor.blueColor,
+            iconSize: 25,
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 300,
@@ -74,7 +115,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               ],
             ),
             scrollbarTheme: ScrollbarThemeData(
-              thumbColor: WidgetStateProperty.all(
+              thumbColor: MaterialStateProperty.all(
                 AppColor.blueColor.withOpacity(0.7),
               ),
               radius: const Radius.circular(8),
@@ -84,10 +125,10 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade100,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColor.blueColor.withOpacity(0.4),
+                color: Colors.grey.shade400,
                 width: 1,
               ),
               boxShadow: [

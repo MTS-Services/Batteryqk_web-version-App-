@@ -17,7 +17,7 @@ class _AdminPanelState extends State<AdminPanel> {
   final List<Widget> tabs = [
     const UsersTab(),
     const BookingsTab(),
-    const ListingsTab(),
+    const ListingTab(),
     const ReviewsTab(),
   ];
 

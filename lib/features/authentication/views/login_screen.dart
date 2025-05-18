@@ -6,8 +6,6 @@ import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
 import '../../../common/widgets/built_sccial_button.dart';
 import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
@@ -27,6 +25,13 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   final AuthController authController = Get.put(AuthController());
+
+  @override
+  void initState() {
+    _emailTEController.text = "example@gmail.com";
+    _passwordTEController.text = "123456";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +64,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -162,8 +166,18 @@ class _LogInScreenState extends State<LogInScreen> {
                       if (_globalKey.currentState!.validate()) {
                         handleSignIn(context);
                       }
-                    },
 
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
+                      backgroundColor: AppColor.blueColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     child: Text(
                       'Sign In',
                       style: TextStyle(fontSize: 18, color: Colors.white),
@@ -227,7 +241,7 @@ class _LogInScreenState extends State<LogInScreen> {
     await authController.signIn(email, password, context);
 
     if (authController.isLoggedIn.value) {
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => CustomBottomNavigationBar());
     }
   }
 }

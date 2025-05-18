@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+
 import '../../../common/widgets/built_sccial_button.dart';
 import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
@@ -239,7 +240,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Handle Facebook login
                       },
                     ),
-
                   ],
                 ),
               ],
