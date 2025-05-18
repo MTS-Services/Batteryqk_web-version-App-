@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
@@ -30,12 +30,12 @@ class HomeScreen extends StatelessWidget {
               "Hi, Ahmed",
               style: TextStyle(
                 fontSize: 26,
-                fontWeight: FontWeight.w900,
-                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                color: AppColor.blackColor,
               ),
             ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 18),
 
           // Quick Access Grid with images
           GridView.count(
@@ -52,8 +52,8 @@ class HomeScreen extends StatelessWidget {
                 AppImages.penguinHead,
               ),
               _buildQuickAccessCardWithImage("Nurseries", AppImages.houseShape),
-              _buildQuickAccessCardWithImage("Car Garages", AppImages.car2),
-              _buildQuickAccessCardWithImage("Car Clinic", AppImages.car1),
+              _buildQuickAccessCardWithImage("Loyality Points", AppImages.car2),
+              _buildQuickAccessCardWithImage("Coming Soon", AppImages.car1),
             ],
           ),
 
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
               bottom: 30,
             ),
             decoration: BoxDecoration(
-              color: AppColor.whiteColor,
+              color: const Color.fromARGB(12, 255, 168, 38),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
@@ -107,6 +107,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Card(
+                  // shadowColor: const Color.fromARGB(0, 255, 255, 255),
                   child: _buildPopularServiceItem(
                     iconPath:
                         'https://models-online-persist.shakker.cloud/img/d23aaa828448417abbfbb8e2345e4dff/78ea614f0438afd7b6c2b90d90e1c429e08c973d80d1edd26aeb1a56d8d4c50d.png?x-oss-process=image/resize,w_764,m_lfit/format,webp',
@@ -115,8 +116,9 @@ class HomeScreen extends StatelessWidget {
                     showNotification: true,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 Card(
+                  // shadowColor: const Color.fromARGB(0, 255, 255, 255),
                   child: _buildPopularServiceItem(
                     iconPath:
                         'https://huggingface.co/maywell/Synatra-10.7B-v0.4/resolve/main/Synatra.png',
@@ -125,8 +127,9 @@ class HomeScreen extends StatelessWidget {
                     showNotification: true,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 Card(
+                  // shadowColor: const Color.fromARGB(0, 255, 255, 255),
                   child: _buildPopularServiceItem(
                     iconPath:
                         'https://img.freepik.com/premium-vector/penguin-with-white-face-blue-background_1187092-70841.jpg',
@@ -135,8 +138,9 @@ class HomeScreen extends StatelessWidget {
                     showNotification: true,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 8),
                 Card(
+                  // shadowColor: const Color.fromARGB(0, 255, 255, 255),
                   child: _buildPopularServiceItem(
                     iconPath:
                         'https://img.freepik.com/premium-photo/cute-cartoon-penguin-illustration_1132516-706.jpg',
@@ -156,9 +160,12 @@ class HomeScreen extends StatelessWidget {
   Widget _buildQuickAccessCardWithImage(String label, String imageUrl) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 247, 247, 247),
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(width: 2, color: AppColor.orangeColor),
+        color: const Color.fromARGB(76, 0, 187, 212),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          width: 1,
+          color: const Color.fromARGB(31, 0, 187, 212),
+        ),
       ),
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -166,7 +173,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           Image.asset(
             imageUrl,
-            width: 80,
+            width: 100,
             height: 80,
             fit: BoxFit.contain,
             errorBuilder:
