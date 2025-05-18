@@ -28,29 +28,35 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 300),
-        child: _pages[_currentIndex],
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.zero, // No border radius
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
-          child: Container(
-            height: 70,
-            width: double.infinity, // Make it fill the entire width
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.9), // Slight opacity
-              borderRadius: BorderRadius.zero, // Remove rounded corners
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildNavItem(Icons.home_filled, "Home", 0),
-                _buildNavItem(Icons.work_outline, "Jobs", 1),
-                _buildNavItem(Icons.calendar_today_outlined, "Book", 2),
-                _buildNavItem(Icons.menu, "Menu", 3),
-              ],
+      body: _pages[_currentIndex],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0, left: 24, right: 24),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              height: 70,
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.85),
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 12,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildNavItem(Icons.home_filled, 0),
+                  _buildNavItem(Icons.work_outline, 1),
+                  _buildNavItem(Icons.calendar_today_outlined, 2),
+                  _buildNavItem(Icons.person, 3),
+                ],
+              ),
             ),
           ),
         ),
@@ -58,39 +64,27 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
+  Widget _buildNavItem(IconData icon, int index) {
     final bool isSelected = _currentIndex == index;
 
-    return Expanded(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(30),
-        onTap: () => setState(() => _currentIndex = index),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(
-            color: isSelected ? AppColor.blueColor.withOpacity(0.1) : null,
-            borderRadius: BorderRadius.circular(0),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                icon,
-                size: 26,
-                color: isSelected ? AppColor.blueColor : AppColor.orangeColor,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  color: isSelected ? AppColor.blueColor : Colors.grey.shade600,
-                ),
-              ),
-            ],
-          ),
+    return GestureDetector(
+      onTap: () => setState(() => _currentIndex = index),
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color:
+              isSelected
+                  ? const Color.fromARGB(255, 255, 255, 255).withOpacity(0.15)
+                  : Colors.transparent,
+        ),
+        child: Icon(
+          icon,
+          size: 30,
+          color:
+              isSelected
+                  ? AppColor.blueColor
+                  : const Color.fromARGB(255, 65, 65, 65),
         ),
       ),
     );
