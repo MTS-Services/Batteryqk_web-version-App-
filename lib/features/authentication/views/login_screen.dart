@@ -29,6 +29,13 @@ class _LogInScreenState extends State<LogInScreen> {
   final AuthController authController = Get.put(AuthController());
 
   @override
+  void initState() {
+    _emailTEController.text = "example@gmail.com";
+    _passwordTEController.text = "123456";
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
@@ -162,8 +169,18 @@ class _LogInScreenState extends State<LogInScreen> {
                       if (_globalKey.currentState!.validate()) {
                         handleSignIn(context);
                       }
-                    },
 
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
+                      backgroundColor: AppColor.blueColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     child: Text(
                       'Sign In',
                       style: TextStyle(fontSize: 18, color: Colors.white),
@@ -227,7 +244,7 @@ class _LogInScreenState extends State<LogInScreen> {
     await authController.signIn(email, password, context);
 
     if (authController.isLoggedIn.value) {
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => CustomBottomNavigationBar());
     }
   }
 }

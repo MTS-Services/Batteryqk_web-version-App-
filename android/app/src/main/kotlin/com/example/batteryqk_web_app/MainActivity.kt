@@ -1,5 +1,3 @@
-package com.example.batteryqk_web_app
+package com.example.batteryqk_Webappimport
 
-import io.flutter.embedding.android.FlutterActivity
-
-class MainActivity : FlutterActivity()
+io.flutter.embedding.android.FlutterActivityclass MainActivity : FlutterActivity()

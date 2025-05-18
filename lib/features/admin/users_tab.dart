@@ -20,8 +20,9 @@ class _UsersTabState extends State<UsersTab> {
         children: [
           Text(
             "User Management",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
+          SizedBox(height: 30),
           Card(
             elevation: 1,
             color: Colors.white,
@@ -67,12 +68,10 @@ class _UsersTabState extends State<UsersTab> {
                       HeaderCell(
                         flex: 2,
                         icons: [
-                          Icons.visibility,
                           Icons.edit_calendar,
                           Icons.delete_rounded,
                         ],
                         iconColors: [
-                          Colors.blue,
                           Colors.yellow.shade300,
                           Colors.red,
                         ],
