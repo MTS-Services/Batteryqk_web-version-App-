@@ -1,7 +1,9 @@
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:get/route_manager.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -86,7 +88,12 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                      onPressed: _onViewAllPressed,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Listings()),
+                        );
+                      },
                       child: const Text(
                         "View All",
                         style: TextStyle(
