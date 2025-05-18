@@ -189,8 +189,8 @@ class HomeScreen extends StatelessWidget {
             label,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 17,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
               color: AppColor.blackColor,
             ),
           ),
@@ -228,7 +228,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
         ),
         subtitle: Text(subtitle),
         trailing:
