@@ -34,6 +34,7 @@ class _ListingsState extends State<Listings> {
 
   void _showFilterModal() {
     showModalBottomSheet(
+      backgroundColor: AppColor.whiteColor,
       elevation: 4,
       context: context,
       shape: const RoundedRectangleBorder(
