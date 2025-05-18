@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
@@ -20,16 +21,25 @@ class _MenuScreenState extends State<MenuScreen> {
     CarService(),
     Faqs(),
     NotificationPage(),
-    LoginScreen(),
+    AdminPanel(),
+    LogInScreen(),
   ];
 
-  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Logout'];
+  final _title = [
+    'Reward',
+    'Car Services',
+    'FAQs',
+    'Notifications',
+    'Admin',
+    'Logout',
+  ];
 
   final _icons = [
     Icons.card_membership_rounded,
     Icons.build_circle_outlined,
     Icons.help_outline_rounded,
     Icons.notifications_active_outlined,
+    Icons.admin_panel_settings,
     Icons.logout,
   ];
 
@@ -198,7 +208,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                 child: Icon(
                                   _icons[index],
                                   color: primaryColor,
-                                  size: 22,
+                                  size: 25,
                                 ),
                               ),
                               const SizedBox(width: 12),
@@ -206,8 +216,8 @@ class _MenuScreenState extends State<MenuScreen> {
                                 child: Text(
                                   _title[index],
                                   style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: Colors.black87,
                                   ),
@@ -215,8 +225,8 @@ class _MenuScreenState extends State<MenuScreen> {
                               ),
                               const Icon(
                                 Icons.arrow_forward_ios_rounded,
-                                size: 16,
-                                color: Colors.grey,
+                                size: 20,
+                                color: AppColor.orangeColor,
                               ),
                             ],
                           ),

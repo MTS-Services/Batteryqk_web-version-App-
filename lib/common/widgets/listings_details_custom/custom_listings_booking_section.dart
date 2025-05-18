@@ -13,7 +13,13 @@ class CustomListingsBookingSection extends StatefulWidget {
   final String gmail;
   final String web;
 
-  const CustomListingsBookingSection({super.key, required this.dateController, required this.number, required this.gmail, required this.web});
+  const CustomListingsBookingSection({
+    super.key,
+    required this.dateController,
+    required this.number,
+    required this.gmail,
+    required this.web,
+  });
 
   @override
   State<CustomListingsBookingSection> createState() =>
@@ -114,7 +120,7 @@ class _CustomListingsBookingSectionState
           ),
         ),
         SizedBox(height: 30),
-        Text('Time',),
+        Text('Time'),
         CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
         SizedBox(height: 30),
         Text('Number of person'),
@@ -124,9 +130,7 @@ class _CustomListingsBookingSectionState
         SizedBox(height: 30),
         Container(height: .3, width: double.infinity, color: Colors.grey),
         SizedBox(height: 30),
-        Text(
-          'Contact Information'
-        ),
+        Text('Contact Information'),
         Row(
           children: [
             Padding(

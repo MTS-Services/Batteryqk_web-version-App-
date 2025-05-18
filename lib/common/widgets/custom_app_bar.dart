@@ -6,53 +6,83 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isBack;
 
-  CustomAppBar({super.key, this.isBack = false});
+  const CustomAppBar({super.key, this.isBack = false});
 
   @override
   Size get preferredSize => const Size.fromHeight(70);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        height: 100,
-        color: Colors.white, // ✅ Force solid white background
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                if (isBack)
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.black),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                if (!isBack) const SizedBox(width: 0),
-                Image.asset(AppImages.logo, height: 50, width: 65),
-                const SizedBox(width: 5),
-                Text(
-                  'Batteriqk',
-                  style: GoogleFonts.openSans(
-                    letterSpacing: 1.2,
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    color: AppColor.blackColor,
-                  ),
-                ),
-                const Spacer(),
+    return Material(
+      elevation: 4,
+      color: Colors.white,
+      shadowColor: Colors.black12,
+      child: SafeArea(
+        child: Container(
+          height: 70,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            children: [
+              if (isBack)
                 IconButton(
                   icon: const Icon(
-                    Icons.notifications_none,
+                    Icons.arrow_back_ios_new,
                     color: Colors.black87,
-                    size: 26,
                   ),
-                  onPressed: () {
-                    // TODO: Handle notification click
-                  },
+                  onPressed: () => Navigator.pop(context),
+                  tooltip: 'Back',
                 ),
-              ],
-            ),
+              if (!isBack) const SizedBox(width: 0),
+
+              /// Logo & Branding
+              Image.asset(AppImages.logo, height: 40, width: 55),
+              const SizedBox(width: 10),
+              Text(
+                'Batteryqk',
+                style: GoogleFonts.openSans(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: AppColor.blackColor,
+                  letterSpacing: 1.0,
+                ),
+              ),
+
+              const Spacer(),
+
+              /// Notification Icon
+              InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: () {
+                  // TODO: Handle notification click
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const Icon(
+                        Icons.notifications_none,
+                        size: 26,
+                        color: Colors.black87,
+                      ),
+                      // Optional: Notification badge
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),

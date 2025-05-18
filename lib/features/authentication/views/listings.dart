@@ -1,6 +1,8 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown_Listings.dart';
+import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/widgets/listings_details_custom/build_listing_card.dart';
@@ -18,39 +20,6 @@ class Listings extends StatefulWidget {
 }
 
 class _ListingsState extends State<Listings> {
-  final List<String> categoryItem = [
-    'Swimming',
-    'Football',
-    'Basketball',
-    'Tennis',
-    'Badminton',
-    'Cricket',
-    'Gymnastics',
-    'Other',
-  ];
-  final List<String> location = [
-    'New York',
-    'London',
-    'Dubai',
-    'Tokyo',
-    'Berlin',
-    'Toronto',
-    'Paris',
-    'Other',
-  ];
-  final List<String> ageGroup = [
-    'Toddlers (0-5 years)',
-    'Children (6-12 years)',
-    'Teenagers (13-18 years)',
-    'Adults (18+)',
-  ];
-  final List<String> rating = [
-    '1 Star',
-    '2 Stars',
-    '3 Stars',
-    '4 Stars',
-    '5 Stars',
-  ];
   final List<String> price = ['Free', 'Paid', 'Subscription'];
 
   bool islogin = true;
@@ -90,16 +59,26 @@ class _ListingsState extends State<Listings> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 16),
-            
-                CustomDropdownListings(itemList: categoryItem, listType: 'Category'),
-                CustomDropdownListings(itemList: location, listType: 'All Location'),
-                CustomDropdownListings(itemList: ageGroup, listType: 'Age Group'),
-                CustomDropdownListings(itemList: rating, listType: 'Rating'),
+                const SizedBox(height: 12),
+
+                MultiDropDown(onChange:(val){},),
+
+                CustomDropdownListings(
+                  itemList: DropDownMenuItem.location,
+                  listType: 'All Location',
+                ),
+                CustomDropdownListings(
+                  itemList: DropDownMenuItem.ageGroup,
+                  listType: 'Age Group',
+                ),
+                CustomDropdownListings(
+                  itemList: DropDownMenuItem.rating,
+                  listType: 'Rating',
+                ),
                 CustomDropdownListings(itemList: price, listType: 'Price'),
-            
-                const SizedBox(height: 20),
-            
+
+                const SizedBox(height: 15),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -114,9 +93,13 @@ class _ListingsState extends State<Listings> {
                         icon: const Icon(Icons.check_circle_outline),
                         label: const Text('Apply Filters'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: islogin ? AppColor.blueColor : Colors.grey.shade200,
-                          foregroundColor: islogin ? Colors.white : Colors.black87,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          backgroundColor:
+                              islogin
+                                  ? AppColor.blueColor
+                                  : Colors.grey.shade200,
+                          foregroundColor:
+                              islogin ? Colors.white : Colors.black87,
+                          padding: const EdgeInsets.symmetric(vertical: 6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -130,9 +113,13 @@ class _ListingsState extends State<Listings> {
                         icon: const Icon(Icons.refresh),
                         label: const Text('Reset'),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: islogin ? Colors.grey.shade200 : AppColor.blueColor,
-                          foregroundColor: islogin ? Colors.black87 : Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          backgroundColor:
+                              islogin
+                                  ? Colors.grey.shade200
+                                  : AppColor.blueColor,
+                          foregroundColor:
+                              islogin ? Colors.black87 : Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -154,129 +141,148 @@ class _ListingsState extends State<Listings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      appBar:  PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-            ),
-            const SizedBox(height: 24),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(),
+                const SizedBox(height: 24),
 
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies1Title,
-                      location: "Swimming | Downtown",
-                      tag: "Paid",
-                      rating: 4.5,
-                      description:
-                      AppText.academies1Details,
-                      imageUrl:
-                      AppImages.academies1a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails1()));
-                      },
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies1Title,
+                          location: "Swimming | Downtown",
+                          tag: "Paid",
+                          rating: 4.5,
+                          description: AppText.academies1Details,
+                          imageUrl: AppImages.academies1a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails1(),
+                              ),
+                            );
+                          },
+                        ),
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies2Title,
+                          location: "Gym | Uptown",
+                          tag: "Free",
+                          rating: 4.0,
+                          description: AppText.academies2Details,
+                          imageUrl: AppImages.academies2a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails2(),
+                              ),
+                            );
+                          },
+                        ),
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies3Title,
+                          location: "Tennis | West Side",
+                          tag: "Paid",
+                          rating: 5.0,
+                          description: AppText.academies3Details,
+                          imageUrl: AppImages.academies3a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails3(),
+                              ),
+                            );
+                          },
+                        ),
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies4Title,
+                          location: "Basketball | Downtown",
+                          tag: "Paid",
+                          rating: 4.5,
+                          description: AppText.academies4Details,
+                          imageUrl: AppImages.academies4a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails1(),
+                              ),
+                            );
+                          },
+                        ),
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies5Title,
+                          location: "Tennis | south Side",
+                          tag: "Free",
+                          rating: 5.0,
+                          description: AppText.academies5Details,
+                          imageUrl: AppImages.academies5a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails1(),
+                              ),
+                            );
+                          },
+                        ),
+                        BuildListingCard(
+                          context: context,
+                          title: AppText.academies6Title,
+                          location: "School | south Side",
+                          tag: "Paid",
+                          rating: 4.8,
+                          description: AppText.academies6Details,
+                          imageUrl: AppImages.academies6a,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ListingsDetails1(),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies2Title,
-                      location: "Gym | Uptown",
-                      tag: "Free",
-                      rating: 4.0,
-                      description:
-                      AppText.academies2Details,
-                      imageUrl:
-                      AppImages.academies2a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails2()));
-                      },
-
-                    ),
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies3Title,
-                      location: "Tennis | West Side",
-                      tag: "Paid",
-                      rating: 5.0,
-                      description:
-                      AppText.academies3Details,
-                      imageUrl:
-                      AppImages.academies3a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails3()));
-                      },
-                    ),
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies4Title,
-                      location: "Basketball | Downtown",
-                      tag: "Paid",
-                      rating: 4.5,
-                      description:
-                      AppText.academies4Details,
-                      imageUrl:
-                      AppImages.academies4a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails1()));
-                      },
-                    ),
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies5Title,
-                      location: "Tennis | south Side",
-                      tag: "Free",
-                      rating: 5.0,
-                      description:
-                      AppText.academies5Details,
-                      imageUrl:
-                      AppImages.academies5a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails1()));
-                      },
-                    ),
-                    BuildListingCard(
-                      context: context,
-                      title: AppText.academies6Title,
-                      location: "School | south Side",
-                      tag: "Paid",
-                      rating: 4.8,
-                      description:
-                      AppText.academies6Details,
-                      imageUrl:
-                      AppImages.academies6a,
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListingsDetails1()));
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                // Your listing cards would go here...
+              ],
             ),
-            // Your listing cards would go here...
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showFilterModal,
         backgroundColor: AppColor.blueColor,
         elevation: 6,
-        splashColor: AppColor.orangeColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: const Icon(
           Icons.filter_alt_outlined,
+          size: 28,
           color: AppColor.whiteColor,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

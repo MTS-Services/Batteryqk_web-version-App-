@@ -5,7 +5,6 @@ import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/widgets/custom_bottom_navigation_bar.dart';
 import '../../../util/colors.dart';
 
 class ListingsDetails1 extends StatefulWidget {
@@ -35,7 +34,7 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(isBack: true,),
+        child: CustomAppBar(isBack: true),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -49,14 +48,18 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
                 image1d: AppImages.academies1d,
                 image1e: AppImages.academies1e,
               ),
+              //listings_details_custom
               SizedBox(height: 20),
               CustomDetails(facilities: facilitiesList, starCount: 5),
+
+              //listings_details_custom
               CustomListingsBookingSection(
                 dateController: TextEditingController(),
                 number: '555-123-4567',
                 gmail: 'info@eliteswimmingacademy.com',
                 web: 'www.eliteswimmingacademy.com',
               ),
+              //listings_details_custom
             ],
           ),
         ),
