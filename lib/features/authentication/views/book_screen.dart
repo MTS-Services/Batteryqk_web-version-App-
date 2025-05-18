@@ -70,7 +70,7 @@ class _BookScreenState extends State<BookScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: Color.fromARGB(255, 255, 253, 245),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: false),
@@ -407,8 +407,7 @@ class _BookScreenState extends State<BookScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(height: 60,),
-
+                        const SizedBox(height: 60),
                       ],
                     ),
                   ),
