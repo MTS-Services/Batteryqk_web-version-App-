@@ -1,4 +1,5 @@
-import 'package:get/get.dart';  // add this import
+import 'package:batteryqk_web_app/features/authentication/views/language_page.dart';
+import 'package:get/get.dart'; // add this import
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
@@ -21,9 +22,13 @@ class _MenuScreenState extends State<MenuScreen> {
   late final List<IconData> _icons;
 
   final Color primaryColor = AppColor.blueColor;
-  final TextEditingController nameController = TextEditingController(text: 'Emon Halder');
+  final TextEditingController nameController = TextEditingController(
+    text: 'Emon Halder',
+  );
   final FocusNode _focusNode = FocusNode();
-  final TextEditingController _locationController = TextEditingController(text: 'Dhaka, Bangladesh');
+  final TextEditingController _locationController = TextEditingController(
+    text: 'Dhaka, Bangladesh',
+  );
   final FocusNode _locationFocusNode = FocusNode();
 
   @override
@@ -35,6 +40,7 @@ class _MenuScreenState extends State<MenuScreen> {
       Faqs(),
       NotificationPage(),
       AdminPanel(),
+      LanguagePage(),
       LoginScreen(),
     ];
 
@@ -44,6 +50,7 @@ class _MenuScreenState extends State<MenuScreen> {
       'faqs'.tr,
       'notifications'.tr,
       'admin'.tr,
+      'language'.tr,
       'logout'.tr,
     ];
 
@@ -53,6 +60,7 @@ class _MenuScreenState extends State<MenuScreen> {
       Icons.help_outline_rounded,
       Icons.notifications_active_outlined,
       Icons.admin_panel_settings,
+      Icons.language_rounded,
       Icons.logout,
     ];
   }
@@ -148,7 +156,11 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.star, size: 18, color: AppColor.orangeColor),
+                      const Icon(
+                        Icons.star,
+                        size: 18,
+                        color: AppColor.orangeColor,
+                      ),
                       const SizedBox(width: 8),
                       Text(
                         'gold_member_points'.tr,
@@ -282,7 +294,9 @@ class _MenuScreenState extends State<MenuScreen> {
                           IconButton(
                             icon: const Icon(Icons.edit_location_alt),
                             onPressed: () {
-                              FocusScope.of(context).requestFocus(_locationFocusNode);
+                              FocusScope.of(
+                                context,
+                              ).requestFocus(_locationFocusNode);
                             },
                           ),
                         ],

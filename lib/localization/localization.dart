@@ -197,6 +197,8 @@ class Language extends Translations {
       'faq_q10': 'What happens if a session is canceled by the academy?',
       'faq_a10':
           'You will be notified immediately and offered a reschedule or full refund.',
+      'english_language': 'English',
+      'language': 'Language',
     },
     'ar_AE': {
       'get_started': 'ابدء',
@@ -381,6 +383,8 @@ class Language extends Translations {
 
       'faq_q10': 'ماذا يحدث إذا ألغت الأكاديمية الجلسة؟',
       'faq_a10': 'ستتم إعلامك فوراً وعرض إعادة جدولة أو استرداد كامل.',
+      'Arabic': 'عربى',
+      'language': 'اللغة',
     },
   };
 }
