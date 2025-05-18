@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 class CarService extends StatelessWidget {
@@ -8,17 +9,12 @@ class CarService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: const Color.fromARGB(255, 255, 253, 245),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
       ),
-      body: Center(
-        child: Text(
-          "Coming Soon",
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
-        ),
-      ),
+      body: Center(child: Image.asset(AppImages.comingSoon)),
     );
   }
 }

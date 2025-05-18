@@ -135,8 +135,8 @@ class _NotificationPageState extends State<NotificationPage> {
           return Card(
             color:
                 notif["isRead"]
-                    ? const Color(0xFFFDFDFD)
-                    : const Color(0xFFF0F0F0),
+                    ? const Color.fromARGB(255, 255, 255, 255)
+                    : Color.fromARGB(255, 255, 253, 245),
             elevation: 0,
             margin: const EdgeInsets.symmetric(vertical: 8),
             shape: RoundedRectangleBorder(
