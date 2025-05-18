@@ -2,6 +2,7 @@ import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -57,4 +58,46 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<bool> googleSignIn() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+        showSnackbar(Get.context!, 'Cancelled', 'Google sign-in was cancelled');
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      if (googleAuth.accessToken == null) {
+        showSnackbar(Get.context!, 'Error', 'Missing access token');
+        return false;
+      }
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user != null) {
+        showSnackbar(Get.context!, 'Success', 'Logged in with Google');
+        return true;
+      } else {
+        showSnackbar(Get.context!, 'Error', 'Failed to retrieve user');
+        return false;
+      }
+    } catch (e) {
+      showSnackbar(Get.context!, 'Google Sign-In Error', e.toString());
+      return false;
+    }
+  }
+
+
+
 }
