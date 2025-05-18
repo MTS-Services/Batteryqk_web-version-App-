@@ -32,7 +32,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              color: Colors.grey.shade600,
+              color: Colors.grey.shade500,
             ),
           ),
 
@@ -59,6 +59,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 25,
+            iconEnabledColor: Colors.grey
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 300,
@@ -87,7 +88,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: Colors.grey.shade400,
+                color: Colors.black,
                 width: 1,
               ),
               boxShadow: [

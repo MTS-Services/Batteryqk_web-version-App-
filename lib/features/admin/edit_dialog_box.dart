@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
 import 'package:flutter/material.dart';
 
 class EditDialogBox1 extends StatefulWidget {
@@ -48,178 +49,112 @@ class _EditDialogBox1State extends State<EditDialogBox1> {
     final controller6 = TextEditingController(text: widget.initialValue6);
     final controller7 = TextEditingController(text: widget.initialValue7);
 
-    final Map<String, Map<String, bool>> sportsCategories = {
-      'A.1 Combat Sports': {
-        'Karate': false,
-        'Taekwondo': false,
-        'Judo': false,
-        'Kung Fu': false,
-        'Boxing': false,
-        'MMA': false,
-      },
-      'A.2 Water Sports': {
-        'Swimming': true,
-        'Diving': false,
-        'Rowing': false,
-        'Kayaking': false,
-        'Surfing': false,
-      },
-      'A.3 Artistic & Performance': {
-        'Gymnastics': false,
-        'Ballet': false,
-        'Modern Dance': false,
-        'Ice Skating': false,
-      },
-      'A.4 Mind & Strategy': {
-        'Chess': false,
-        'Shooting': false,
-        'Archery': false,
-        'Table Tennis': false,
-      },
-      'A.5 Strength & Endurance': {
-        'Weightlifting': false,
-        'Running': false,
-        'Mountain Climbing': false,
-        'CrossFit': false,
-        'Road Cycling': false,
-      },
-    };
-    return Dialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Container(
-        width: 500,
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              widget.title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
-            const SizedBox(height: 40),
-            if (widget.isEdit) ...[
-              TextField(
-                controller: controller1,
-                decoration: const InputDecoration(
-                  labelText: 'Name',
-                  border: OutlineInputBorder(),
+    return SingleChildScrollView(
+      child: Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Container(
+          width: 500,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                widget.title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
-              const SizedBox(height: 40),
-              ExpansionTile(
-                title: const Text(
-                  'A. Individual Sports',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+
+              if (widget.isEdit) ...[
+                CustomTextField(controller: controller1, label: 'Name'),
+                MultiDropDown(),
+                CustomTextField(controller: controller3, label: 'Location'),
+                CustomTextField(controller: controller4, label: 'Age Group'),
+                CustomTextField(controller: controller5, label: 'Price'),
+                CustomTextField(controller: controller6, label: 'Image url'),
+                CustomTextField(controller: controller7, label: 'Description'),
+              ] else ...[
+                const Text(
+                  'Are you sure you want to delete this item?',
+                  style: TextStyle(fontSize: 14),
                 ),
-                children: sportsCategories.entries.map((category) {
-                  return ExpansionTile(
-                    title: Text(
-                      category.key,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    children: category.value.entries.map((entry) {
-                      return CheckboxListTile(
-                        value: entry.value,
-                        title: Text(entry.key),
-                        controlAffinity: ListTileControlAffinity.leading,
-                        onChanged: (bool? newValue) {
-                          setState(() {
-                            sportsCategories[category.key]![entry.key] = newValue!;
-                          });
-                        },
-                      );
-                    }).toList(),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                controller: controller3,
-                decoration: const InputDecoration(
-                  labelText: 'Location',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                controller: controller4,
-                decoration: const InputDecoration(
-                  labelText: 'Age Group',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                controller: controller5,
-                decoration: const InputDecoration(
-                  labelText: 'Price',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                controller: controller6,
-                decoration: const InputDecoration(
-                  labelText: 'Image url',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(height: 40),
-              TextField(
-                maxLines: 4,
-                controller: controller7,
-                decoration: const InputDecoration(
-                  labelText: 'Description',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ] else ...[
-              const Text(
-                'Are you sure you want to delete this item?',
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                'This action cannot be undone.',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-            ],
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                OutlinedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text(widget.cancelText),
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(color: Colors.black87),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                    if (widget.isEdit && widget.onEditConfirmed != null) {
-                      widget.onEditConfirmed!(controller1.text, controller2.text);
-                    } else {
-                      widget.onConfirmed();
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: widget.isEdit ? Colors.blue : Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                  ),
-                  child: Text(widget.confirmText),
+                const SizedBox(height: 4),
+                const Text(
+                  'This action cannot be undone.',
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
               ],
-            ),
-          ],
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  OutlinedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(widget.cancelText),
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.black87),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      if (widget.isEdit && widget.onEditConfirmed != null) {
+                        widget.onEditConfirmed!(
+                          controller1.text,
+                          controller2.text,
+                        );
+                      } else {
+                        widget.onConfirmed();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: widget.isEdit ? Colors.blue : Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                    ),
+                    child: Text(widget.confirmText,style: TextStyle(color: Colors.white),),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  final String label;
+
+  const CustomTextField({
+    super.key,
+    required this.controller,
+    required this.label,
+  });
+
+  final TextEditingController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: TextField(
+        style: TextStyle(color: Colors.grey.shade500),
+        controller: controller,
+        decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(10),
+          fillColor: Colors.white,
+          filled: true,
+          labelText: label,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     );

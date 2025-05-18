@@ -44,7 +44,7 @@ class _ListingTabState extends State<ListingTab> {
                 return Card(
                   elevation: 1,
                   color: Colors.white,
-                  child: Row(
+                  child: Row(// i need this scrowlable
                     children: [
                       HeaderCell(
                         flex: 1,

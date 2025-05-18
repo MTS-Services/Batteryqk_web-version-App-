@@ -30,8 +30,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
               children: [
                 HeaderCell(flex: 1, label: 'ID', color: Colors.black),
                 HeaderCell(flex: 2, label: 'User', color: Colors.black),
-                HeaderCell(flex: 3, label: 'Listing', color: Colors.black),
-                HeaderCell(flex: 2, label: 'Rating', color: Colors.black),
+                HeaderCell(flex: 2, label: 'Listing', color: Colors.black),
                 HeaderCell(flex: 2, label: 'Comment', color: Colors.black),
                 HeaderCell(flex: 2, label: 'Date', color: Colors.black),
                 HeaderCell(flex: 2, label: 'Status', color: Colors.black),
@@ -59,7 +58,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
                         color: Colors.black,
                       ),
                       HeaderCell(
-                        flex: 3,
+                        flex: 2,
                         label: 'Elite Swimming Academy',
                         color: Colors.black,
                       ),

@@ -71,15 +71,15 @@ class HeaderCell extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                             horizontal: iconPadding / 2,
                           ),
-                          child: IconButton(
-                            onPressed: () => onIconPressed?.call(iconData),
-                            icon: Icon(iconData),
-                            iconSize: iconSize,
-                            color: iconColor,
-                            padding: EdgeInsets.all(iconPadding),
-                            constraints: const BoxConstraints(
-                              minWidth: 11,
-                              minHeight: 11,
+                          child: GestureDetector(
+                            onTap: () => onIconPressed?.call(iconData),
+                            child: Padding(
+                              padding: EdgeInsets.all(iconPadding),
+                              child: Icon(
+                                iconData,
+                                size: iconSize,
+                                color: iconColor,
+                              ),
                             ),
                           ),
                         );

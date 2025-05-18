@@ -61,18 +61,18 @@ class _ListingsState extends State<Listings> {
                 ),
                 const SizedBox(height: 12),
 
-                MultiDropDown(onChange:(val){},),
+                MultiDropDown(),
 
                 CustomDropdownListings(
-                  itemList: DropDownMenuItem.location,
+                  itemList: DropDownMenuItemList.location,
                   listType: 'All Location',
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItem.ageGroup,
+                  itemList: DropDownMenuItemList.ageGroup,
                   listType: 'Age Group',
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItem.rating,
+                  itemList: DropDownMenuItemList.rating,
                   listType: 'Rating',
                 ),
                 CustomDropdownListings(itemList: price, listType: 'Price'),

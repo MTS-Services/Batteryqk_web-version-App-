@@ -71,7 +71,7 @@ class _BookingsTabState extends State<BookingsTab> {
                       Text(
                         'All Statuses',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 10,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF374151),
                         ),
@@ -83,7 +83,7 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 2),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +91,7 @@ class _BookingsTabState extends State<BookingsTab> {
                       Text(
                         'All Academies',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 10,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF374151),
                         ),
@@ -111,7 +111,7 @@ class _BookingsTabState extends State<BookingsTab> {
                       Text(
                         'Date',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 10,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF374151),
                         ),
@@ -142,7 +142,7 @@ class _BookingsTabState extends State<BookingsTab> {
 
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 20),
+                    padding: EdgeInsets.only(top: 10),
                     child: SizedBox(
                       height: 38,
                       child: ClipRRect(
@@ -169,24 +169,20 @@ class _BookingsTabState extends State<BookingsTab> {
 
           const SizedBox(height: 20),
           Card(
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
             color: const Color(0xFFF3F4F6),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-              child: Row(
-                children: const [
-                  HeaderCell(flex: 1, label: 'ID'),
-                  HeaderCell(flex: 2, label: 'User'),
-                  HeaderCell(flex: 3, label: 'Academy'),
-                  HeaderCell(flex: 2, label: 'Date & Time'),
-                  HeaderCell(flex: 2, label: 'Status'),
-                  HeaderCell(flex: 1, label: 'Payment'),
-                  HeaderCell(flex: 2, label: 'Actions'),
-                ],
-              ),
+            child: Row(
+              children: const [
+                HeaderCell(flex: 1, label: 'ID'),
+                HeaderCell(flex: 2, label: 'User'),
+                HeaderCell(flex: 3, label: 'Academy'),
+                HeaderCell(flex: 2, label: 'Date & Time'),
+                HeaderCell(flex: 2, label: 'Status'),
+                HeaderCell(flex: 1, label: 'Payment'),
+                HeaderCell(flex: 2, label: 'Actions'),
+              ],
             ),
           ),
 
@@ -195,68 +191,58 @@ class _BookingsTabState extends State<BookingsTab> {
               itemCount: 5,
               itemBuilder: (context, index) {
                 return Card(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 2,
                   shadowColor: Colors.grey.withOpacity(0.2),
                   color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 8,
-                    ),
-                    child: Row(
-                      children: [
-                        HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF1F2937),),
-                        HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF1F2937)),
-                        HeaderCell(flex: 2, label: 'Confirm',color: Color(0xFF1F2937)),
-                        HeaderCell(flex: 1, label: 'Unpaid',color: Color(0xFF1F2937)),
-                        HeaderCell(
-                          flex: 2,
-                          icons: [
-                            Icons.edit_calendar_outlined,
-                            Icons.delete_outline_outlined,
-                          ],
-                          iconColors: [
-                            Colors.brown.shade800,
-                            Colors.redAccent,
-                          ],
-                          onIconPressed: (value) {
-                            if (value == Icons.edit_calendar_outlined) {
-                              showConfirmDialog(
-                                context: context,
-                                title: 'Edit User',
-                                onConfirmed: () {
-                                  print('User edited.');
-                                },
-                                confirmText: 'Save',
-                                cancelText: 'Cancel',
-                                isEdit: true,
-                                initialValue1: 'Remon Howlader',
-                                initialValue2: 'remonhowlader969@gmal.com',
-                              );
-                            } else if (value == Icons.delete_outline_outlined) {
-                              showConfirmDialog(
-                                context: context,
-                                title: 'Delete User',
-                                onConfirmed: () {
-                                  print('User deleted.');
-                                },
-                                confirmText: 'Delete',
-                                cancelText: 'Cancel',
-                              );
-                            }
-                          },
-                        ),
-                      ],
-                    ),
+                  child: Row(
+                    children: [
+                      HeaderCell(flex: 1, label: index.toString(),color: Color(0xFF1F2937),),
+                      HeaderCell(flex: 2, label: 'Remon',color: Color(0xFF1F2937),),
+                      HeaderCell(flex: 3, label: 'Mts soft',color: Color(0xFF1F2937),),
+                      HeaderCell(flex: 2, label: '13/5/25',color: Color(0xFF1F2937)),
+                      HeaderCell(flex: 2, label: 'Confirm',color: Color(0xFF1F2937)),
+                      HeaderCell(flex: 1, label: 'Unpaid',color: Color(0xFF1F2937)),
+                      HeaderCell(
+                        flex: 2,
+                        icons: [
+                          Icons.edit_calendar_outlined,
+                          Icons.delete_outline_outlined,
+                        ],
+                        iconColors: [
+                          Colors.brown.shade800,
+                          Colors.redAccent,
+                        ],
+                        onIconPressed: (value) {
+                          if (value == Icons.edit_calendar_outlined) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Edit User',
+                              onConfirmed: () {
+                                print('User edited.');
+                              },
+                              confirmText: 'Save',
+                              cancelText: 'Cancel',
+                              isEdit: true,
+                              initialValue1: 'Remon Howlader',
+                              initialValue2: 'remonhowlader969@gmal.com',
+                            );
+                          } else if (value == Icons.delete_outline_outlined) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Delete User',
+                              onConfirmed: () {
+                                print('User deleted.');
+                              },
+                              confirmText: 'Delete',
+                              cancelText: 'Cancel',
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 );
               },

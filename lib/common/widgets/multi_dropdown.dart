@@ -1,232 +1,285 @@
+import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
-
-import '../../util/dropdown_menu_item.dart';
 
 class MultiDropDown extends StatefulWidget {
-  final void Function(List<String> selectedSports) onChange;
-  const MultiDropDown({super.key, required this.onChange});
-
   @override
-  State<MultiDropDown> createState() => _MultiDropDownState();
+  _MultiDropDownState createState() =>
+      _MultiDropDownState();
 }
 
-class _MultiDropDownState extends State<MultiDropDown> {
-  final List<String> firstOptions = ['A. Individual Sports', 'B. Team Sports'];
-  final Set<String> selectedFirst = {};
-  final Set<String> selectedSubcategories = {};
+class _MultiDropDownState
+    extends State<MultiDropDown> {
+  List<String> selectedMainCategories = [];
+  List<String> selectedSubCategories = [];
+  List<String> selectedSports = [];
 
-
-  // Local map to track selected sports for immediate UI update
-  Map<String, bool> selectedSportsMap = {};
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize selectedSportsMap empty or from sportsCategories if needed
-    // Here we keep it empty initially
-  }
-
-  List<String> getAvailableSubcategories() {
-    List<String> all = [];
-    for (var selected in selectedFirst) {
-      all.addAll(DropDownMenuItem.sportsCategories[selected]!.keys);
+  List<String> getAvailableSubCategories() {
+    List<String> subs = [];
+    for (var cat in selectedMainCategories) {
+      subs.addAll(DropDownMenuItemList.sportsCategories[cat]!.keys);
     }
-    return all;
+    return subs;
   }
 
-  Map<String, bool> getSelectedSports() {
-    final Map<String, bool> result = {};
-    for (var sportType in selectedFirst) {
-      final subcats =DropDownMenuItem.sportsCategories[sportType]!;
-      for (var sub in selectedSubcategories) {
-        final items = subcats[sub];
-        if (items != null) {
-          for (var entry in items.entries) {
-            // Initialize in selectedSportsMap if not present
-            if (!selectedSportsMap.containsKey(entry.key)) {
-              selectedSportsMap[entry.key] = entry.value;
-            }
-            result[entry.key] = selectedSportsMap[entry.key]!;
-          }
+  List<String> getAvailableSports() {
+    List<String> sports = [];
+    for (String sub in selectedSubCategories) {
+      for (var cat in selectedMainCategories) {
+        if (DropDownMenuItemList.sportsCategories[cat]?[sub] != null) {
+          sports.addAll(DropDownMenuItemList.sportsCategories[cat]![sub]!.keys);
         }
       }
     }
-    return result;
-  }
-
-  void toggleSportSelection(String sport, bool? value) {
-    for (var type in selectedFirst) {
-      for (var sub in selectedSubcategories) {
-        if (DropDownMenuItem.sportsCategories[type]?[sub]?.containsKey(sport) == true) {
-          DropDownMenuItem.sportsCategories[type]![sub]![sport] = value!;
-        }
-      }
-    }
-    setState(() {
-      selectedSportsMap[sport] = value ?? false;
-    });
+    return sports.toSet().toList(); // remove duplicates
   }
 
   @override
   Widget build(BuildContext context) {
-    final subcategories = getAvailableSubcategories();
-    final selectedSports = getSelectedSports();
-
+    List<String> mainOptions =
+        DropDownMenuItemList.sportsCategories.keys.toList();
     return Column(
       children: [
-        // Dropdown 1 - Category
-        DropdownButtonFormField2<String>(
-          dropdownStyleData: DropdownStyleData(
-            maxHeight: 150,
-            useSafeArea: true
-          ),
-
-          isExpanded: true,
-          decoration: const InputDecoration(
-            labelText: 'Select Category',
-            border: OutlineInputBorder(),
-          ),
-          value: null,
-          hint: Text(
-            selectedFirst.isEmpty ? 'Select A / B' : selectedFirst.join(', '),
-            overflow: TextOverflow.ellipsis,
-          ),
-          items: firstOptions.map((e) {
-            return DropdownMenuItem<String>(
-              value: e,
-              child: StatefulBuilder(
-                builder: (context, setInnerState) {
-                  final isChecked = selectedFirst.contains(e);
-                  return CheckboxListTile(
-                    value: isChecked,
-                    title: Text(e),
-                    onChanged: (val) {
-                      setInnerState(() {
-                        setState(() {
-                          if (val == true) {
-                            selectedFirst.add(e);
-                          } else {
-                            selectedFirst.remove(e);
-                            selectedSubcategories.removeWhere(
-                                  (s) => DropDownMenuItem.sportsCategories[e]!.containsKey(s),
-                            );
-                            // Remove any sports of that category from selectedSportsMap
-                            selectedSportsMap.removeWhere((key, _) {
-                              final subcats = DropDownMenuItem.sportsCategories[e]!;
-                              return subcats.values.any((map) => map.containsKey(key));
-                            });
-                          }
-                        });
-                      });
-                    },
-                  );
-                },
-              ),
-            );
-          }).toList(),
-          onChanged: (_) {},
+        CustomMultiSelectDropdown(
+          title: "All Main Categories",
+          options: mainOptions,
+          selectedValues: selectedMainCategories,
+          onSelectionChanged: (selected) {
+            setState(() {
+              selectedMainCategories = selected;
+              selectedSubCategories = [];
+              selectedSports = [];
+            });
+          },
         ),
-
-        const SizedBox(height: 20),
-
-        // Dropdown 2 - Subcategories
-        DropdownButtonFormField2<String>(
-          dropdownStyleData: DropdownStyleData(
-              maxHeight: 250,
-              useSafeArea: true
-          ),
-          isExpanded: true,
-          decoration: const InputDecoration(
-            labelText: 'Select Subcategories',
-            border: OutlineInputBorder(),
-          ),
-          value: null,
-          hint: Text(
-            selectedSubcategories.isEmpty
-                ? 'Choose subcategories'
-                : selectedSubcategories.join(', '),
-            overflow: TextOverflow.ellipsis,
-          ),
-          items: subcategories.map((e) {
-            return DropdownMenuItem<String>(
-              value: e,
-              child: StatefulBuilder(
-                builder: (context, setInnerState) {
-                  final isChecked = selectedSubcategories.contains(e);
-                  return CheckboxListTile(
-                    value: isChecked,
-                    title: Text(e),
-                    onChanged: (val) {
-                      setInnerState(() {
-                        setState(() {
-                          if (val == true) {
-                            selectedSubcategories.add(e);
-                          } else {
-                            selectedSubcategories.remove(e);
-                            // Remove sports of this subcategory from selectedSportsMap
-                            for (var type in selectedFirst) {
-                              final subcatSports = DropDownMenuItem.sportsCategories[type]?[e];
-                              if (subcatSports != null) {
-                                subcatSports.keys.forEach((sport) {
-                                  selectedSportsMap.remove(sport);
-                                });
-                              }
-                            }
-                          }
-                        });
-                      });
-                    },
-                  );
-                },
-              ),
-            );
-          }).toList(),
-          onChanged: (_) {},
+        CustomMultiSelectDropdown(
+          title: "All Subcategories",
+          options: getAvailableSubCategories(),
+          selectedValues: selectedSubCategories,
+          onSelectionChanged: (selected) {
+            setState(() {
+              selectedSubCategories = selected;
+              selectedSports = [];
+            });
+          },
         ),
-
-        const SizedBox(height: 20),
-
-        // Dropdown 3 - Sports with checkboxes
-        DropdownButtonFormField2<String>(
-    dropdownStyleData: DropdownStyleData(
-    maxHeight: 150,
-    useSafeArea: true
-    ),
-          isExpanded: true,
-          decoration: const InputDecoration(
-            labelText: 'Select Sports',
-            border: OutlineInputBorder(),
-          ),
-          value: null,
-          hint: Text(
-            selectedSports.entries.where((e) => e.value).isEmpty
-                ? 'Tap to select'
-                : selectedSports.entries
-                .where((e) => e.value)
-                .map((e) => e.key)
-                .join(', '),
-            overflow: TextOverflow.ellipsis,
-          ),
-          items: selectedSports.entries.map((entry) {
-            return DropdownMenuItem<String>(
-              value: entry.key,
-              // remove enabled: false to allow interaction
-              child: StatefulBuilder(
-                builder: (context, setInnerState) {
-                  return CheckboxListTile(
-                      value: entry.value,
-                      title: Text(entry.key),
-                      controlAffinity: ListTileControlAffinity.leading,
-                      onChanged:(val)=>widget.onChange
-                  );
-                },
-              ),
-            );
-          }).toList(),
-          onChanged: (_) {},
+        CustomMultiSelectDropdown(
+          title: "All Sports",
+          options: getAvailableSports(),
+          selectedValues: selectedSports,
+          onSelectionChanged: (selected) {
+            setState(() {
+              selectedSports = selected;
+            });
+          },
         ),
       ],
+    );
+  }
+}
+
+class CustomMultiSelectDropdown extends StatefulWidget {
+  final String title;
+  final List<String> options;
+  final List<String> selectedValues;
+  final void Function(List<String>) onSelectionChanged;
+
+  const CustomMultiSelectDropdown({
+    Key? key,
+    required this.title,
+    required this.options,
+    required this.selectedValues,
+    required this.onSelectionChanged,
+  }) : super(key: key);
+
+  @override
+  State<CustomMultiSelectDropdown> createState() =>
+      _CustomMultiSelectDropdownState();
+}
+
+class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
+  bool _isDropdownOpened = false;
+  final LayerLink _layerLink = LayerLink();
+  OverlayEntry? _overlayEntry;
+
+  late List<String> _localSelectedValues;
+
+  @override
+  void initState() {
+    super.initState();
+    _localSelectedValues = List.from(widget.selectedValues);
+  }
+
+  @override
+  void didUpdateWidget(covariant CustomMultiSelectDropdown oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.selectedValues != oldWidget.selectedValues) {
+      _localSelectedValues = List.from(widget.selectedValues);
+    }
+  }
+
+  void _toggleDropdown() {
+    if (_isDropdownOpened) {
+      _closeDropdown();
+    } else {
+      _openDropdown();
+    }
+  }
+
+  void _openDropdown() {
+    final overlay = Overlay.of(context)!;
+    _overlayEntry = _createOverlayEntry();
+    overlay.insert(_overlayEntry!);
+    _isDropdownOpened = true;
+  }
+
+  void _closeDropdown() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+    _isDropdownOpened = false;
+  }
+
+  OverlayEntry _createOverlayEntry() {
+    RenderBox renderBox = context.findRenderObject() as RenderBox;
+    var size = renderBox.size;
+    var offset = renderBox.localToGlobal(Offset.zero);
+
+    return OverlayEntry(
+      builder:
+          (context) => Positioned(
+            left: offset.dx,
+            width: size.width,
+            top: offset.dy + size.height + 5,
+            child: CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: Offset(0, size.height + 5),
+              child: Material(
+                elevation: 4,
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  constraints: BoxConstraints(maxHeight: 250),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child:
+                      widget.options.isEmpty
+                          ? Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              'No options available',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          )
+                          : ListView(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            children:
+                                widget.options.map((option) {
+                                  bool checked = _localSelectedValues.contains(
+                                    option,
+                                  );
+                                  return CheckboxListTile(
+                                    title: Text(option),
+                                    value: checked,
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        if (val == true) {
+                                          if (!_localSelectedValues.contains(
+                                            option,
+                                          ))
+                                            _localSelectedValues.add(option);
+                                        } else {
+                                          _localSelectedValues.remove(option);
+                                        }
+                                      });
+
+                                      widget.onSelectionChanged(
+                                        List.from(_localSelectedValues),
+                                      );
+
+                                      // Close & reopen overlay to force rebuild and update UI
+                                      _closeDropdown();
+                                      Future.delayed(
+                                        Duration(milliseconds: 1),
+                                        () {
+                                          _openDropdown();
+                                        },
+                                      );
+                                    },
+                                  );
+                                }).toList(),
+                          ),
+                ),
+              ),
+            ),
+          ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _closeDropdown();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    String displayText;
+    if (_localSelectedValues.isEmpty) {
+      displayText = widget.title;
+    } else {
+      displayText = _localSelectedValues.join(", ");
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0),
+      child: CompositedTransformTarget(
+        link: _layerLink,
+        child: GestureDetector(
+          onTap: _toggleDropdown,
+          child: Container(
+            height: 42,
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.black),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.03),
+                  blurRadius: 6,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    displayText,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color:
+                          _localSelectedValues.isEmpty
+                              ? Colors.grey
+                              : Colors.black,
+                    ),
+                  ),
+                ),
+                Icon(
+                  _isDropdownOpened
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
+                  color: Colors.grey.shade500,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
