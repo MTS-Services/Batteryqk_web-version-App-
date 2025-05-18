@@ -67,14 +67,10 @@ class HomeScreen extends StatelessWidget {
               bottom: 30,
             ),
             decoration: BoxDecoration(
-              color: const Color.fromARGB(12, 255, 168, 38),
+              color: const Color.fromARGB(255, 255, 253, 245),
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(25),
                 topRight: Radius.circular(25),
-              ),
-              border: Border.all(
-                width: 1,
-                color: const Color.fromARGB(104, 255, 168, 38),
               ),
             ),
             child: Column(
