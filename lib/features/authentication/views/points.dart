@@ -9,7 +9,7 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 253, 245),
+      backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: const CustomAppBar(isBack: true),

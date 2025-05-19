@@ -136,7 +136,7 @@ class _NotificationPageState extends State<NotificationPage> {
             color:
                 notif["isRead"]
                     ? const Color.fromARGB(255, 255, 255, 255)
-                    : Color.fromARGB(255, 255, 253, 245),
+                    : Colors.grey.shade100,
             elevation: 0,
             margin: const EdgeInsets.symmetric(vertical: 8),
             shape: RoundedRectangleBorder(
