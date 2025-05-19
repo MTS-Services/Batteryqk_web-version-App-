@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmDialogWidget extends StatelessWidget {
@@ -30,6 +31,7 @@ class ConfirmDialogWidget extends StatelessWidget {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
+        color: AppColor.whiteColor,
         width: 500,
         padding: const EdgeInsets.all(16.0),
         child: Column(

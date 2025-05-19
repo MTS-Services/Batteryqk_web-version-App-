@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class EditDialogBox1 extends StatefulWidget {
@@ -53,6 +54,7 @@ class _EditDialogBox1State extends State<EditDialogBox1> {
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         child: Container(
+          color: AppColor.whiteColor,
           width: 500,
           padding: const EdgeInsets.all(16.0),
           child: Column(
