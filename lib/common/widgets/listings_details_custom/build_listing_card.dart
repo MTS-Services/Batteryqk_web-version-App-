@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../util/colors.dart';
 
@@ -144,7 +145,7 @@ class BuildListingCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text("View Details"),
+                      child: Text("view_details".tr),
                     ),
                     const SizedBox(width: 10),
                     OutlinedButton(
@@ -160,8 +161,8 @@ class BuildListingCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
-                        "Book Now",
+                      child: Text(
+                        "book_now".tr,
                         style: TextStyle(color: AppColor.whiteColor),
                       ),
                     ),
