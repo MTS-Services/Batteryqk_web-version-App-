@@ -1,5 +1,6 @@
+import 'package:batteryqk_web_app/features/authentication/views/language_page.dart';
+import 'package:get/get.dart'; // add this import
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
-import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
@@ -7,6 +8,10 @@ import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../common/widgets/show_snack_bar.dart';
+import '../../../data/services/firebase_service.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -16,34 +21,8 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  final pageList = [
-    Points(),
-    CarService(),
-    Faqs(),
-    NotificationPage(),
-    AdminPanel(),
-    LogInScreen(),
-  ];
-
-  final _title = [
-    'Reward',
-    'Car Services',
-    'FAQs',
-    'Notifications',
-    'Admin',
-    'Logout',
-  ];
-
-  final _icons = [
-    Icons.card_membership_rounded,
-    Icons.build_circle_outlined,
-    Icons.help_outline_rounded,
-    Icons.notifications_active_outlined,
-    Icons.admin_panel_settings,
-    Icons.logout,
-  ];
-
   final Color primaryColor = AppColor.blueColor;
+
   final TextEditingController nameController = TextEditingController(
     text: 'Emon Halder',
   );
@@ -53,6 +32,8 @@ class _MenuScreenState extends State<MenuScreen> {
     text: 'Dhaka, Bangladesh',
   );
   final FocusNode _locationFocusNode = FocusNode();
+
+  final AuthController authController = Get.put(AuthController());
 
   @override
   void dispose() {
@@ -66,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 253, 245),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           // Header
@@ -95,8 +76,6 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                 ),
                 const SizedBox(height: 12),
-
-                // Editable name with pencil icon
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -131,25 +110,21 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 5,
-                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children:  [
                       Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                       SizedBox(width: 8),
                       Text(
-                        'Gold Member - 1200 Points',
-                        style: TextStyle(
+                        'gold_member_points'.tr,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -164,83 +139,55 @@ class _MenuScreenState extends State<MenuScreen> {
 
           const SizedBox(height: 20),
 
-          // Menu List + Location
+          // Menu Buttons + Location Section
           Expanded(
-            child: ListView(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: [
-                ...List.generate(_title.length, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (_) => pageList[index]),
-                        );
-                      },
-                      borderRadius: BorderRadius.circular(12),
-                      child: Ink(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.08),
-                              blurRadius: 8,
-                              offset: const Offset(0, 4),
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                            vertical: 15,
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: primaryColor.withOpacity(0.1),
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  _icons[index],
-                                  color: primaryColor,
-                                  size: 22,
-                                ),
-                              ),
-                              const SizedBox(width: 12),
-                              Expanded(
-                                child: Text(
-                                  _title[index],
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400,
-                                    letterSpacing: 0.5,
-                                    color: Colors.black87,
-                                  ),
-                                ),
-                              ),
-                              const Icon(
-                                Icons.arrow_forward_ios_rounded,
-                                size: 16,
-                                color: Colors.grey,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
+              child: Column(
+                children: [
+                  _buildMenuButton(
+                    icon: Icons.card_membership_rounded,
+                    title: 'Reward',
+                    onTap: () => Get.to(() => Points()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.build_circle_outlined,
+                    title: 'Car Services',
+                    onTap: () => Get.to(() => CarService()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.help_outline_rounded,
+                    title: 'FAQs',
+                    onTap: () => Get.to(() => Faqs()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.notifications_active_outlined,
+                    title: 'Notifications',
+                    onTap: () => Get.to(() => NotificationPage()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.notifications_active_outlined,
+                    title: 'language'.tr,
+                    onTap: () => Get.to(() => LanguagePage()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.admin_panel_settings,
+                    title: 'Admin',
+                    onTap: () => Get.to(() => AdminPanel()),
+                  ),
+                  _buildMenuButton(
+                    icon: Icons.logout,
+                    title: 'Logout',
+                    onTap: (){
+                      signOut(context);
+                    },
+                  ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
                 // Location Section
                 Container(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -255,9 +202,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Location",
-                        style: TextStyle(
+                      Text(
+                        'location'.tr,
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -269,8 +216,8 @@ class _MenuScreenState extends State<MenuScreen> {
                             child: TextField(
                               controller: _locationController,
                               focusNode: _locationFocusNode,
-                              decoration: const InputDecoration(
-                                hintText: "Enter your location",
+                              decoration: InputDecoration(
+                                hintText: 'enter_your_location'.tr,
                                 border: InputBorder.none,
                                 isDense: true,
                               ),
@@ -289,12 +236,60 @@ class _MenuScreenState extends State<MenuScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 30),
               ],
             ),
+          ),
           ),
         ],
       ),
     );
+  }
+
+  Widget _buildMenuButton({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        width: double.infinity,
+        height: 60,
+        child: ElevatedButton.icon(
+          onPressed: onTap,
+          icon: Icon(icon, color: AppColor.blueColor),
+          label: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            child: Text(
+              title,
+              style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            alignment: Alignment.centerLeft,
+            foregroundColor: AppColor.blueColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            elevation: 2,
+            shadowColor: Colors.black12,
+          ),
+        ),
+      ),
+    );
+  }
+  Future<void> signOut(BuildContext context) async {
+    try {
+      await authController.logOut(context);
+      showSnackbar(context, 'Success', 'Logged out successfully');
+      Get.offAll(() => LogInScreen());
+    } catch (e) {
+      showSnackbar(context, 'Logout Error', e.toString().split('] ').last);
+    }
   }
 }

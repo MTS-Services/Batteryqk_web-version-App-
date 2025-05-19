@@ -5,8 +5,6 @@ import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';    
-
 class ListingsDetails3 extends StatefulWidget {
   const ListingsDetails3({super.key});
 
@@ -15,7 +13,7 @@ class ListingsDetails3 extends StatefulWidget {
 }
 
 class _ListingsDetails3State extends State<ListingsDetails3> {
-  final List facilitiesList = [
+  final List<String> facilitiesList = [
     'Olympic-sized field',
     'Changing rooms',
     'Shower facilities',

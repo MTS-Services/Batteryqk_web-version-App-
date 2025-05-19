@@ -1,7 +1,6 @@
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 
@@ -41,7 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               const SizedBox(width: 10),
               Text(
                 'Batteryqk',
-                style: GoogleFonts.openSans(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
                   color: AppColor.blackColor,

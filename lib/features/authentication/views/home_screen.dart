@@ -58,8 +58,12 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15),
             child: Text(
-              "Featured Activities".toUpperCase(),
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              "Featured Activities",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                color: Color(0xff212121),
+              ),
             ),
           ),
           GridView.count(
@@ -93,10 +97,11 @@ class HomeScreen extends StatelessWidget {
 
                     children: [
                       Text(
-                        "Top Listings".toUpperCase(),
+                        "Top Listings",
                         style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xff212121),
                         ),
                       ),
                       TextButton(
@@ -165,57 +170,6 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListingsDetails3(),
-                      ),
-                    );
-                  },
-                ),
-                BuildListingCard(
-                  context: context,
-                  title: AppText.academies4Title,
-                  location: "Basketball | Downtown",
-                  tag: "Paid",
-                  rating: 4.5,
-                  description: AppText.academies4Details,
-                  imageUrl: AppImages.academies4a,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListingsDetails1(),
-                      ),
-                    );
-                  },
-                ),
-                BuildListingCard(
-                  context: context,
-                  title: AppText.academies5Title,
-                  location: "Tennis | South Side",
-                  tag: "Free",
-                  rating: 5.0,
-                  description: AppText.academies5Details,
-                  imageUrl: AppImages.academies5a,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListingsDetails1(),
-                      ),
-                    );
-                  },
-                ),
-                BuildListingCard(
-                  context: context,
-                  title: AppText.academies6Title,
-                  location: "School | South Side",
-                  tag: "Paid",
-                  rating: 4.8,
-                  description: AppText.academies6Details,
-                  imageUrl: AppImages.academies6a,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ListingsDetails1(),
                       ),
                     );
                   },

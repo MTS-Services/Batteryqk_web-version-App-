@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomDetailsImageGroup extends StatelessWidget {
   final String image1a;
@@ -55,8 +56,8 @@ class CustomDetailsImageGroup extends StatelessWidget {
                       color: Colors.black.withAlpha((0.5 * 255).toInt()), // 127
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Text(
-                      'Academy Overview',
+                    child: Text(
+                      'academy_overview'.tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,

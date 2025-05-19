@@ -1,4 +1,3 @@
-import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +24,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               Center(
                 child: Text(
                   'Reset Password',
-
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
@@ -38,7 +36,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 'Enter New Password',
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
@@ -67,7 +65,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 'Confirm Password',
                 style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),

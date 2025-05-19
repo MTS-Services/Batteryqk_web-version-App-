@@ -1,3 +1,4 @@
+import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -21,10 +22,11 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-  final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _passwordTEController = TextEditingController();
-  final TextEditingController _confirmPTEController = TextEditingController();
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final  TextEditingController _emailTEController=TextEditingController();
+  final  TextEditingController _passwordTEController=TextEditingController();
+  final  TextEditingController _confirmPTEController=TextEditingController();
+  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
   final AuthController authController = Get.put(AuthController());
 
   @override
@@ -41,17 +43,17 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 const SizedBox(height: 80),
                 Text(
-                  'Create Account',
+                  'create_account'.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: AppColor.blueColor,
+                    color: AppColor.blackColor,
                   ),
                 ),
                 const SizedBox(height: 15),
                 Text(
-                  "Create an account so you can explore all the \n existing jobs",
+                  'create_account_subtitle'.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
@@ -64,18 +66,18 @@ class _SignupScreenState extends State<SignupScreen> {
                   controller: _emailTEController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Email is required';
+                      return 'email_required'.tr;
                     }
                     final emailRegex = RegExp(
                       r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                     );
                     if (!emailRegex.hasMatch(value)) {
-                      return 'Enter a valid email';
+                      return 'email_invalid'.tr;
                     }
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'Email',
+                    hintText: 'email'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
                     border: OutlineInputBorder(
@@ -93,21 +95,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-
                 TextFormField(
                   controller: _passwordTEController,
                   obscureText: _obscurePassword,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Password is required';
+                      return 'password_required'.tr;
                     }
                     if (value.length < 6) {
-                      return 'Password must be at least 6 characters';
+                      return 'password_length'.tr;
                     }
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'Password',
+                    hintText: 'password'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
                     contentPadding: EdgeInsets.symmetric(
@@ -137,23 +138,21 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 10),
-
                 TextFormField(
                   controller: _confirmPTEController,
                   obscureText: _obscureConfirmPassword,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Confirm your password';
+                      return 'confirm_password_required'.tr;
                     }
                     if (value != _passwordTEController.text) {
-                      return 'Passwords do not match';
+                      return 'passwords_not_match'.tr;
                     }
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'Confirm Password',
+                    hintText: 'confirm_password'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
                     contentPadding: EdgeInsets.symmetric(
@@ -183,21 +182,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 15),
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        setState(() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LogInScreen(),
-                            ),
-                          );
-                        });
+                      if(_formKey.currentState!.validate()){
+                        handleSignup(context);
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -211,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     child: Text(
-                      'Sign up',
+                      'sign_up'.tr,
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
                   ),
@@ -219,7 +210,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 20),
                 Center(
                   child: MyCustomTextButton(
-                    text: 'Already have an account',
+                    text: 'already_have_account'.tr,
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => LogInScreen()),
@@ -230,8 +221,12 @@ class _SignupScreenState extends State<SignupScreen> {
                 const SizedBox(height: 50),
                 Center(
                   child: Text(
-                    'Or continue with',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    'or_continue_with'.tr,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -251,6 +246,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Handle Facebook login
                       },
                     ),
+
+
                   ],
                 ),
               ],
@@ -260,4 +257,22 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+  void handleSignup(BuildContext context) async {
+    final email = _emailTEController.text.trim();
+    final password = _passwordTEController.text.trim();
+
+    if (email.isEmpty || password.isEmpty) {
+      showSnackbar(context, "Error", "Email and password cannot be empty");
+      return;
+    }
+
+    bool success = await authController.signUp(email, password, context);
+
+    if (success) {
+      Get.to(() => LogInScreen());
+    }
+  }
+
+
+
 }

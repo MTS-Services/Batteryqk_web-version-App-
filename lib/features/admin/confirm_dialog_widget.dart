@@ -1,5 +1,29 @@
 import 'package:flutter/material.dart';
 
+// Dummy dropdown for now
+class ConfirmCustomDropdownButton extends StatelessWidget {
+  final List<String> itemList;
+  final String listType;
+
+  const ConfirmCustomDropdownButton({
+    super.key,
+    required this.itemList,
+    required this.listType,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      items: itemList.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
+      onChanged: (value) {},
+      decoration: InputDecoration(
+        labelText: listType,
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
+}
+
 class ConfirmDialogWidget extends StatelessWidget {
   final String title;
   final VoidCallback onConfirmed;
@@ -27,6 +51,9 @@ class ConfirmDialogWidget extends StatelessWidget {
     final controller1 = TextEditingController(text: initialValue1);
     final controller2 = TextEditingController(text: initialValue2);
 
+    final List<String> status = ['Confirm', 'Pending', 'Cancelled'];
+    final List<String> payment = ['Paid', 'Unpaid'];
+
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Container(
@@ -41,6 +68,8 @@ class ConfirmDialogWidget extends StatelessWidget {
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             const SizedBox(height: 8),
+
+            // Conditional Form Fields
             if (isEdit) ...[
               TextField(
                 controller: controller1,
@@ -67,8 +96,17 @@ class ConfirmDialogWidget extends StatelessWidget {
                 'This action cannot be undone.',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
+              const SizedBox(height: 8),
+              const Text('All Status', style: TextStyle(fontSize: 14)),
+              ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
+              const SizedBox(height: 8),
+              const Text('Payment Status', style: TextStyle(fontSize: 14)),
+              ConfirmCustomDropdownButton(itemList: payment, listType: 'Select'),
             ],
+
             const SizedBox(height: 16),
+
+            // Action Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -82,7 +120,7 @@ class ConfirmDialogWidget extends StatelessWidget {
                   ),
                   child: Text(
                     cancelText,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -101,7 +139,7 @@ class ConfirmDialogWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                  child: Text(confirmText,style: TextStyle(color: Colors.white),),
+                  child: Text(confirmText, style: const TextStyle(color: Colors.white)),
                 ),
               ],
             ),
@@ -111,7 +149,6 @@ class ConfirmDialogWidget extends StatelessWidget {
     );
   }
 }
-
 
 void showConfirmDialog({
   required BuildContext context,
@@ -140,4 +177,3 @@ void showConfirmDialog({
     },
   );
 }
-
