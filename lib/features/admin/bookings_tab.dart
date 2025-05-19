@@ -1,10 +1,10 @@
-import 'package:batteryqk_web_app/common/widgets/admin_multi_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/features/admin/confirm_dialog_widget.dart';
 import 'package:batteryqk_web_app/features/admin/header_cell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../common/widgets/admin_multi_dropdown.dart';
 import '../../common/widgets/calender_screen.dart';
 import '../../util/colors.dart';
 
@@ -25,7 +25,6 @@ class _BookingsTabState extends State<BookingsTab> {
     'Bright Beginnings Nursery',
   ];
   final List<String> status = ['Confirm', 'Pending', 'Cancelled'];
-
   DateTime? _selectedDate;
   final DateFormat _formatter = DateFormat('MM/dd/yyyy');
 

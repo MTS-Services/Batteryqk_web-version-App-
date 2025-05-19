@@ -2,6 +2,9 @@ import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../common/widgets/custom_bottom_navigation_bar.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -50,11 +53,53 @@ class AuthController extends GetxController {
     try {
       isLoading.value = true;
       await _auth.signOut();
-      showSnackbar(context, 'Logged Out', 'You have been signed out');
     } catch (e) {
       showSnackbar(context, 'Logout Error', e.toString().split('] ').last);
     } finally {
       isLoading.value = false;
     }
   }
+
+  Future<bool> googleSignIn() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+        showSnackbar(Get.context!, 'Cancelled', 'Google sign-in was cancelled');
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      if (googleAuth.accessToken == null) {
+        showSnackbar(Get.context!, 'Error', 'Missing access token');
+        return false;
+      }
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user != null) {
+        showSnackbar(Get.context!, 'Success', 'Logged in with Google');
+        Get.offAll(() => CustomBottomNavigationBar());
+        return true;
+      } else {
+        showSnackbar(Get.context!, 'Error', 'Failed to retrieve user');
+        return false;
+      }
+    } catch (e) {
+      showSnackbar(Get.context!, 'Google Sign-In Error', e.toString());
+      return false;
+    }
+  }
+
+
+
 }
