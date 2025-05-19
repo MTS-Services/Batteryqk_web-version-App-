@@ -1,11 +1,9 @@
+import 'package:get/get.dart'; // import for .tr
 import 'package:flutter/material.dart';
-
 import '../../../util/colors.dart';
 import '../../styles/styles.dart';
 import '../custom_button.dart';
-import '../custom_dropdown.dart';
 import '../custom_dropdown_Listings.dart';
-import 'custom_icon.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
   final TextEditingController dateController;
@@ -56,6 +54,7 @@ class _CustomListingsBookingSectionState
     "11:00 PM",
     "12:00 AM",
   ];
+
   final List<String> personNumber = [
     '1',
     '2',
@@ -84,17 +83,17 @@ class _CustomListingsBookingSectionState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 50),
-        CustomSectionHeaderText('Book a Session'),
-        SizedBox(height: 30),
-        Text('Date'),
+        const SizedBox(height: 50),
+        CustomSectionHeaderText('book_a_session'.tr),
+        const SizedBox(height: 30),
+        Text('date'.tr),
         TextField(
           controller: widget.dateController,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: AppColor.blueColor),
             ),
-            labelText: 'Date/Month/year',
+            labelText: 'date_month_year'.tr,
             suffixIcon: IconButton(
               onPressed: () async {
                 DateTime? pickedDate = await showDatePicker(
@@ -119,18 +118,18 @@ class _CustomListingsBookingSectionState
             ),
           ),
         ),
-        SizedBox(height: 30),
-        Text('Time'),
+        const SizedBox(height: 30),
+        Text('time'.tr),
         CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
-        SizedBox(height: 30),
-        Text('Number of person'),
+        const SizedBox(height: 30),
+        Text('number_of_person'.tr),
         CustomDropdownListings(itemList: personNumber, listType: '1'),
-        SizedBox(height: 30),
-        CustomButton(buttonText: 'Book Now'),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
+        CustomButton(buttonText: 'book_now'.tr),
+        const SizedBox(height: 30),
         Container(height: .3, width: double.infinity, color: Colors.grey),
-        SizedBox(height: 30),
-        Text('Contact Information'),
+        const SizedBox(height: 30),
+        Text('contact_information'.tr),
         Row(
           children: [
             Padding(
@@ -161,7 +160,7 @@ class _CustomListingsBookingSectionState
             Text(widget.web),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(height: .3, width: double.infinity, color: Colors.grey),
       ],
     );

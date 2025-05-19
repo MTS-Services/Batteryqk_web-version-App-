@@ -13,7 +13,7 @@ class ListingsDetails3 extends StatefulWidget {
 }
 
 class _ListingsDetails3State extends State<ListingsDetails3> {
-  final List facilitiesList = [
+  final List<String> facilitiesList = [
     'Olympic-sized field',
     'Changing rooms',
     'Shower facilities',

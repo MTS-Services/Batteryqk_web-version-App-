@@ -1,3 +1,4 @@
+import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details_image_group.dart';
@@ -15,24 +16,29 @@ class ListingsDetails1 extends StatefulWidget {
 }
 
 class _ListingsDetails1State extends State<ListingsDetails1> {
-  final List facilitiesList = [
-    'Olympic-sized pool',
-    'Changing rooms',
-    'Shower facilities',
-    'Spectator area',
-  ];
-
-  final List contractInfos = [
+  late final List<String> facilitiesList;
+  final List<String> contractInfos = [
     '555-123-4567',
     'info@eliteswimmingacademy.com',
     'www.eliteswimmingacademy.com',
   ];
 
   @override
+  void initState() {
+    super.initState();
+    facilitiesList = [
+      'olympic_pool'.tr,
+      'changing_rooms'.tr,
+      'shower_facilities'.tr,
+      'spectator_area'.tr,
+    ];
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      appBar: PreferredSize(
+      appBar: const PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
       ),
@@ -48,18 +54,15 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
                 image1d: AppImages.academies1d,
                 image1e: AppImages.academies1e,
               ),
-              //listings_details_custom
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               CustomDetails(facilities: facilitiesList, starCount: 5),
 
-              //listings_details_custom
               CustomListingsBookingSection(
                 dateController: TextEditingController(),
-                number: '555-123-4567',
-                gmail: 'info@eliteswimmingacademy.com',
-                web: 'www.eliteswimmingacademy.com',
+                number: contractInfos[0],
+                gmail: contractInfos[1],
+                web: contractInfos[2],
               ),
-              //listings_details_custom
             ],
           ),
         ),

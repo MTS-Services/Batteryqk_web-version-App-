@@ -1,3 +1,4 @@
+import 'package:get/get.dart'; // for .tr
 import 'package:batteryqk_web_app/features/authentication/views/otp_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -26,7 +27,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             children: [
               const SizedBox(height: 80),
               Text(
-                'Forgot Password',
+                'forgot_password'.tr,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 26,
@@ -36,18 +37,18 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               const SizedBox(height: 25),
               Text(
-                'Enter Email Address',
+                'enter_email_address'.tr,
                 textAlign: TextAlign.center,
-                style:TextStyle(
+                style: TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),
               const SizedBox(height: 10),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'Email',
+                  hintText: 'email'.tr,
                   filled: true,
                   fillColor: Colors.blue.shade50,
                   border: OutlineInputBorder(
@@ -64,12 +65,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 10),
               Center(
                 child: Text(
-                  'Back to sign in',
-                  style: TextStyle(color: Colors.grey, fontSize: 16),
+                  'back_to_sign_in'.tr,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
               const SizedBox(height: 25),
@@ -84,15 +88,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                     );
                   },
                   child: Text(
-                    'Send',
-                    style:TextStyle(fontSize: 18, color: Colors.white),
+                    'send'.tr,
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),
               ),
               const SizedBox(height: 50),
               Center(
                 child: Text(
-                  'Or',
+                  'or'.tr,
                   style: TextStyle(
                     color: AppColor.blackColor,
                     fontSize: 16,
@@ -121,9 +125,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               ),
               const SizedBox(height: 50),
               Text(
-                'Do you have an account?',
+                'have_account'.tr,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.grey, fontSize: 16),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               const SizedBox(height: 10),
               SizedBox(
@@ -136,15 +144,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
-
                     shape: RoundedRectangleBorder(
                       side: BorderSide(color: AppColor.blueColor),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
-                    'Sign up',
-                    style:TextStyle(fontSize: 18, color: AppColor.blueColor),
+                    'sign_up'.tr,
+                    style: TextStyle(fontSize: 18, color: AppColor.blueColor),
                   ),
                 ),
               ),

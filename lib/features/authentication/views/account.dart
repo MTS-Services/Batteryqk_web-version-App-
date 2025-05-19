@@ -1,5 +1,4 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {

@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -30,7 +31,6 @@ class SplashScreen extends StatelessWidget {
                   letterSpacing: 1,
                   fontWeight: FontWeight.bold,
                   color: AppColor.blackColor,
-
                 ),
               ),
               Spacer(),
@@ -51,7 +51,7 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Get Started',
+                    'get_started'.tr,
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                 ),

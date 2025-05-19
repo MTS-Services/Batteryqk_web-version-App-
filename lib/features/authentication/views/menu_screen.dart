@@ -1,5 +1,6 @@
+import 'package:batteryqk_web_app/features/authentication/views/language_page.dart';
+import 'package:get/get.dart'; // add this import
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
-import 'package:batteryqk_web_app/features/authentication/views/account.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
@@ -118,12 +119,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children:  [
                       Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                       SizedBox(width: 8),
                       Text(
-                        'Gold Member - 1200 Points',
-                        style: TextStyle(
+                        'gold_member_points'.tr,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -165,6 +166,11 @@ class _MenuScreenState extends State<MenuScreen> {
                     onTap: () => Get.to(() => NotificationPage()),
                   ),
                   _buildMenuButton(
+                    icon: Icons.notifications_active_outlined,
+                    title: 'language'.tr,
+                    onTap: () => Get.to(() => LanguagePage()),
+                  ),
+                  _buildMenuButton(
                     icon: Icons.admin_panel_settings,
                     title: 'Admin',
                     onTap: () => Get.to(() => AdminPanel()),
@@ -179,59 +185,60 @@ class _MenuScreenState extends State<MenuScreen> {
 
                   const SizedBox(height: 24),
 
-                  // Location Section
-                  Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.08),
-                          blurRadius: 8,
-                          offset: const Offset(0, 4),
+                // Location Section
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.08),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'location'.tr,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Location",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                controller: _locationController,
-                                focusNode: _locationFocusNode,
-                                decoration: const InputDecoration(
-                                  hintText: "Enter your location",
-                                  border: InputBorder.none,
-                                  isDense: true,
-                                ),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              controller: _locationController,
+                              focusNode: _locationFocusNode,
+                              decoration: InputDecoration(
+                                hintText: 'enter_your_location'.tr,
+                                border: InputBorder.none,
+                                isDense: true,
                               ),
                             ),
-                            IconButton(
-                              icon: const Icon(Icons.edit_location_alt),
-                              onPressed: () {
-                                FocusScope.of(context).requestFocus(_locationFocusNode);
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.edit_location_alt),
+                            onPressed: () {
+                              FocusScope.of(
+                                context,
+                              ).requestFocus(_locationFocusNode);
+                            },
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 30),
-                ],
-              ),
+                ),
+              ],
             ),
+          ),
           ),
         ],
       ),
