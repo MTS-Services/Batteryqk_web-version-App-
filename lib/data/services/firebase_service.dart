@@ -2,6 +2,7 @@ import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -57,4 +58,36 @@ class AuthController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  Future<bool> googleSignIn() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+
+        showSnackbar(Get.context!, 'Cancelled', 'Google sign-in was cancelled');
+        return false;
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await _auth.signInWithCredential(credential);
+
+      print("User signed in with Google: ${_auth.currentUser?.email}");
+
+      showSnackbar(Get.context!, 'Success', 'Logged in with Google');
+      return true;
+    } catch (e) {
+      print("Google Sign-In Error: $e");
+      showSnackbar(Get.context!, 'Error', 'Google sign-in failed. Please try again.');
+      return false;
+    }
+  }
+
 }
