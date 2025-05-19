@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
 import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
@@ -205,6 +206,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       icon: FontAwesomeIcons.google,
                       onTap: ()  {
                         authController.googleSignIn();
+
                       },
                     ),
                     SizedBox(width: 16),
@@ -235,7 +237,7 @@ class _LogInScreenState extends State<LogInScreen> {
     await authController.signIn(email, password, context);
 
     if (authController.isLoggedIn.value) {
-      Get.offAll(() => HomeScreen());
+      Get.offAll(() => CustomBottomNavigationBar());
     }
   }
 }
