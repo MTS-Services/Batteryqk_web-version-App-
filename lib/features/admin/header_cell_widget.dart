@@ -25,8 +25,7 @@ class HeaderCell extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final double maxWidth = constraints.maxWidth;
-          final bool isSmallScreen = maxWidth < 100;
-
+          final bool isSmallScreen = maxWidth < 350;
           final double iconSize = isSmallScreen ? 14 : 18;
           final double iconPadding = isSmallScreen ? 2 : 4;
           final double spacing = isSmallScreen ? 3 : 6;
