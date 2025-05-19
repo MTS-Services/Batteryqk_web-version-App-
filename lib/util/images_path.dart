@@ -45,4 +45,5 @@ class AppImages {
   static const String penguinHead = "assets/images/penguinHead.png";
   static const String houseShape = "assets/images/house.png";
   static const String comingSoon = "assets/images/coming soon.jpg";
+  static const String bannerImages = "assets/images/bannerImages.jpg";
 }
