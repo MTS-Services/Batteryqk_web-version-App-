@@ -1,5 +1,7 @@
+import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
+import 'add_category_dialog.dart';
 import 'edit_dialog_box.dart';
 import 'header_cell_widget.dart';
 
@@ -18,9 +20,43 @@ class _ListingTabState extends State<ListingTab> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Listing Management",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            children: [
+              Text(
+                "Listing Management",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+              Row(
+                children: [
+                  CustomElevatedIconButton(color: AppColor.blueColor,buttonText: "Add Category",onPressed: (){showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (context) => const AddCategoryDialog(),
+                  );
+                  },),
+                  const SizedBox(width: 12),
+                  CustomElevatedIconButton(color: AppColor.blueColor,icon: Icon(Icons.add),buttonText: "New Listing",onPressed: (){showConfirmDialog(
+                    context: context,
+                    title: 'Edit User',
+                    onConfirmed: () {
+                      print('User edited.');
+                    },
+                    confirmText: 'Add Listing',
+                    cancelText: 'Cancel',
+                    isEdit: true,
+                    initialValue1: 'Elite Swimming Academy',
+                    initialValue2: 'Swimming',
+                    initialValue3: 'Downtown',
+                    initialValue4: '3-5 years, 6-12 years, adults',
+                    initialValue5: 'Paid',
+                    initialValue6: AppImages.academies1a,
+                    initialValue7:
+                    'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                  );},),
+                ],
+              )
+            ],
           ),
           SizedBox(height: 30),
           Card(
@@ -115,6 +151,38 @@ class _ListingTabState extends State<ListingTab> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomElevatedIconButton extends StatelessWidget {
+  final String buttonText;
+  final Widget? icon;
+  final Function()? onPressed;
+  final Color color;
+  const CustomElevatedIconButton({
+    super.key, required this.buttonText, this.icon, this.onPressed, required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: icon,
+      label: Text(
+        buttonText,
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+      ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
       ),
     );
   }
