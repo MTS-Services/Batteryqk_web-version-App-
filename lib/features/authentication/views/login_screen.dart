@@ -1,5 +1,5 @@
-import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
+import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
@@ -59,7 +59,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     fontSize: 18,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-
                   ),
                 ),
                 const SizedBox(height: 50),
@@ -163,7 +162,16 @@ class _LogInScreenState extends State<LogInScreen> {
                         handleSignIn(context);
                       }
                     },
-
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 12,
+                      ),
+                      backgroundColor: AppColor.blueColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
                     child: Text(
                       'Sign In',
                       style: TextStyle(fontSize: 18, color: Colors.white),

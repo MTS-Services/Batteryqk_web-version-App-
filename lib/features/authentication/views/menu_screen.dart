@@ -25,7 +25,14 @@ class _MenuScreenState extends State<MenuScreen> {
     LogInScreen(),
   ];
 
-  final _title = ['Reward', 'Car Services', 'FAQs', 'Notifications', 'Admin','Logout'];
+  final _title = [
+    'Reward',
+    'Car Services',
+    'FAQs',
+    'Notifications',
+    'Admin',
+    'Logout',
+  ];
 
   final _icons = [
     Icons.card_membership_rounded,
@@ -59,7 +66,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: Color.fromARGB(255, 255, 253, 245),
       body: Column(
         children: [
           // Header
@@ -68,8 +75,8 @@ class _MenuScreenState extends State<MenuScreen> {
             padding: const EdgeInsets.fromLTRB(20, 70, 20, 40),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(50),
-                bottomRight: Radius.circular(50),
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
               ),
               gradient: LinearGradient(
                 colors: [primaryColor, primaryColor.withOpacity(0.9)],
@@ -187,8 +194,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 12,
+                            horizontal: 15,
+                            vertical: 15,
                           ),
                           child: Row(
                             children: [
@@ -233,7 +240,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
                 // Location Section
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
@@ -282,6 +289,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 30),
               ],
             ),
           ),

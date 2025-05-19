@@ -5,7 +5,6 @@ import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
-import '../../../common/widgets/custom_bottom_navigation_bar.dart';
 import '../../../util/colors.dart';
 
 class ListingsDetails1 extends StatefulWidget {

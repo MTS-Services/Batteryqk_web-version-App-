@@ -32,9 +32,10 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w500,
-              color: Colors.grey.shade600,
+              color: Colors.grey.shade500,
             ),
           ),
+
           items:
               widget.itemList
                   .map(
@@ -57,8 +58,8 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
           },
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
-            iconSize: 20,
-            iconEnabledColor: AppColor.blueColor,
+            iconSize: 25,
+            iconEnabledColor: Colors.grey
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 300,
@@ -84,10 +85,10 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              color: Colors.grey.shade100,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColor.blueColor.withOpacity(0.4),
+                color: Colors.black,
                 width: 1,
               ),
               boxShadow: [

@@ -1,189 +1,120 @@
-import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
+import 'edit_dialog_box.dart';
+import 'header_cell_widget.dart';
 
-class ListingsTab extends StatelessWidget {
-  const ListingsTab({super.key});
+class ListingTab extends StatefulWidget {
+  const ListingTab({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final List listings = [
-      {
-        'id': 1,
-        'name': 'Elite Swimming Academy',
-        'category': 'Swimming',
-        'location': 'Downtown',
-        'age': 'All Ages',
-        'rating': 5,
-        'featured': false,
-      },
-      {
-        'id': 2,
-        'name': 'Champions Football Academy',
-        'category': 'Football',
-        'location': 'North Side',
-        'age': 'All Ages',
-        'rating': 4,
-        'featured': false,
-      },
-      {
-        'id': 3,
-        'name': 'Little Stars Nursery',
-        'category': 'Other',
-        'location': 'East Side',
-        'age': 'All Ages',
-        'rating': 5,
-        'featured': false,
-      },
-      {
-        'id': 4,
-        'name': 'Hoops Basketball Center',
-        'category': 'Basketball',
-        'location': 'West Side',
-        'age': 'All Ages',
-        'rating': 4,
-        'featured': false,
-      },
-      {
-        'id': 5,
-        'name': 'Ace Tennis Club',
-        'category': 'Tennis',
-        'location': 'South Side',
-        'age': 'All Ages',
-        'rating': 5,
-        'featured': false,
-      },
-      {
-        'id': 6,
-        'name': 'Bright Beginnings Nursery',
-        'category': 'Other',
-        'location': 'Central',
-        'age': 'All Ages',
-        'rating': 4,
-        'featured': false,
-      },
-    ];
+  State<ListingTab> createState() => _ListingTabState();
+}
 
+class _ListingTabState extends State<ListingTab> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Listings Management',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-
-            /// Action Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Listing Management",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ),
+          SizedBox(height: 30),
+          Card(
+            elevation: 1,
+            color: Colors.white,
+            child: Row(
               children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.blueColor,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 14),
-                  ), child: Text('Add Category'),
-                ),
-                const SizedBox(width: 12),
-                ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.add),
-                  label: const Text('New Listing'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColor.blueColor,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 14),
-                  ),
-                ),
+                HeaderCell(flex: 1, label: 'ID', color: Colors.black),
+                HeaderCell(flex: 2, label: 'NAME', color: Colors.black),
+                HeaderCell(flex: 3, label: 'CATEGORY', color: Colors.black),
+                HeaderCell(flex: 2, label: 'LOCATION', color: Colors.black),
+                HeaderCell(flex: 2, label: 'AGE GROUP', color: Colors.black),
+                HeaderCell(flex: 2, label: 'ACTION', color: Colors.black),
               ],
             ),
-            const SizedBox(height: 24),
-
-            /// Table
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 1,
+                  color: Colors.white,
+                  child: Row(// i need this scrowlable
+                    children: [
+                      HeaderCell(
+                        flex: 1,
+                        label: index.toString(),
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        label: 'Elite Swimming Academy',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 3,
+                        label: 'Swimming',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        label: 'Downtown',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        label: 'Age Group',
+                        color: Colors.black,
+                      ),
+                      HeaderCell(
+                        flex: 2,
+                        icons: [Icons.edit, Icons.delete_rounded],
+                        iconColors: [Colors.yellow.shade300, Colors.red],
+                        onIconPressed: (value) {
+                          if (value == Icons.edit) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Edit User',
+                              onConfirmed: () {
+                                print('User edited.');
+                              },
+                              confirmText: 'Save',
+                              cancelText: 'Cancel',
+                              isEdit: true,
+                              initialValue1: 'Elite Swimming Academy',
+                              initialValue2: 'Swimming',
+                              initialValue3: 'Downtown',
+                              initialValue4: '3-5 years, 6-12 years, adults',
+                              initialValue5: 'Paid',
+                              initialValue6: AppImages.academies1a,
+                              initialValue7:
+                                  'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                            );
+                          } else if (value == Icons.delete_rounded) {
+                            showConfirmDialog(
+                              context: context,
+                              title: 'Delete User',
+                              onConfirmed: () {
+                                print('User deleted.');
+                              },
+                              confirmText: 'Delete',
+                              cancelText: 'Cancel',
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: DataTable(
-                headingRowColor:
-                WidgetStateProperty.all(Colors.grey.shade100),
-                columnSpacing: 20,
-                dataRowMaxHeight: 60,
-                headingTextStyle: const TextStyle(
-                    fontWeight: FontWeight.bold, color: AppColor.blackColor),
-                columns: const [
-                  DataColumn(label: Text('ID')),
-                  DataColumn(label: Text('NAME')),
-                  DataColumn(label: Text('CATEGORY')),
-                  DataColumn(label: Text('LOCATION')),
-                  DataColumn(label: Text('AGE GROUP')),
-                  DataColumn(label: Text('RATING')),
-                  DataColumn(label: Text('FEATURED')),
-                  DataColumn(label: Text('ACTIONS')),
-                ],
-                rows: listings.map((item) {
-                  return DataRow(cells: [
-                    DataCell(Text(item['id'].toString())),
-                    DataCell(Text(item['name'])),
-                    DataCell(Text(item['category'])),
-                    DataCell(Text(item['location'])),
-                    DataCell(Text(item['age'])),
-                    DataCell(Row(
-                      children: List.generate(5, (index) {
-                        return Icon(
-                          index < item['rating']
-                              ? Icons.star
-                              : Icons.star_border,
-                          color: AppColor.orangeColor,
-                          size: 20,
-                        );
-                      }),
-                    )),
-                    DataCell(Icon(
-                      item['featured']
-                          ? Icons.check_circle
-                          : Icons.cancel_outlined,
-                      color: item['featured'] ? Colors.green : Colors.red,
-                    )),
-                    DataCell(Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.visibility,
-                              color: Colors.blueAccent),
-                          tooltip: 'View',
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon:
-                          const Icon(Icons.edit, color: Colors.orangeAccent),
-                          tooltip: 'Edit',
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon:
-                          const Icon(Icons.delete, color: Colors.redAccent),
-                          tooltip: 'Delete',
-                        ),
-                      ],
-                    )),
-                  ]);
-                }).toList(),
-              ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

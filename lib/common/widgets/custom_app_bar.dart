@@ -1,3 +1,5 @@
+import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
@@ -52,7 +54,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
-                  // TODO: Handle notification click
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NotificationPage()),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -61,7 +66,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     children: [
                       const Icon(
                         Icons.notifications_none,
-                        size: 26,
+                        size: 28,
                         color: Colors.black87,
                       ),
                       // Optional: Notification badge

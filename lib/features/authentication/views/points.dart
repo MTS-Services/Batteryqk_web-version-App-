@@ -9,7 +9,7 @@ class Points extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.whiteColor,
+      backgroundColor: Color.fromARGB(255, 255, 253, 245),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
@@ -22,6 +22,7 @@ class Points extends StatelessWidget {
           children: [
             // USER INFO CARD
             Card(
+              shadowColor: const Color.fromARGB(0, 255, 255, 255),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
               ),
@@ -121,6 +122,7 @@ class Points extends StatelessWidget {
                     width: 250,
                     margin: const EdgeInsets.only(right: 10),
                     child: Card(
+                      shadowColor: const Color.fromARGB(83, 255, 255, 255),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -244,6 +246,7 @@ class Points extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Card(
+                  shadowColor: const Color.fromARGB(83, 255, 255, 255),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
