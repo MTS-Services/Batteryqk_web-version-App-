@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 
 class CustomDropdownButton extends StatefulWidget {
   final String listType;
+  double? fontSize=16;
   final List<String> itemList;
 
-  const CustomDropdownButton({
+  CustomDropdownButton({
     super.key,
     required this.itemList,
     required this.listType,
+    this.fontSize,
   });
 
   @override
@@ -55,7 +57,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             hint: Text(
               widget.listType,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: widget.fontSize,
                 fontWeight: FontWeight.w400,
                 color: Theme.of(context).hintColor,
               ),
@@ -109,10 +111,10 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             ),
             buttonStyleData: ButtonStyleData(
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.7),
+                color: AppColor.whiteColor,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: isFocused ? AppColor.blueColor : Colors.grey.withOpacity(0.2),
+                  color: Colors.black,
                   width: isFocused ? 2 : 1.2,
                 ),
                 boxShadow: [

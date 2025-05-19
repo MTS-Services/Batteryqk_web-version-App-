@@ -103,7 +103,6 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,8 +137,6 @@ class _BookingsTabState extends State<BookingsTab> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 8),
-
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(top: 10),

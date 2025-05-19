@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/admin/listings_tab.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),
+      home: CustomBottomNavigationBar(),
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       theme: ThemeData(
