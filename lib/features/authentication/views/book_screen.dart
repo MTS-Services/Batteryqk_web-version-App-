@@ -2,6 +2,7 @@ import 'package:batteryqk_web_app/common/widgets/calender_screen.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
+import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -18,31 +19,9 @@ class BookScreen extends StatefulWidget {
 }
 
 class _BookScreenState extends State<BookScreen> {
-  String? selectedAcademy;
-  String? selectedCategory;
   String? selectedAgeGroup;
 
   bool isChecked = true;
-
-  final List<String> academies = [
-    'Elite Swimming Academy',
-    'Champions Football Academy',
-    'Little Stars Nursery',
-    'Hoops Basketball Center',
-    'Ace Tennis Club',
-    'Bright Beginnings Nursery',
-  ];
-
-  final List<String> categories = [
-    'Swimming',
-    'Football',
-    'Basketball',
-    'Tennis',
-    'Badminton',
-    'Cricket',
-    'Gymnastics',
-    'Other',
-  ];
 
   final List<String> ageGroups = [
     'Toddlers(0-5 years',
@@ -167,21 +146,7 @@ class _BookScreenState extends State<BookScreen> {
                         const SizedBox(height: 10),
                         Text('select_academy'.tr),
                         const SizedBox(height: 3),
-                        CustomDropdownButton(
-                          itemList: academies,
-                          listType: 'select_an_academy'.tr,
-                        ),
-
-                        Text(
-                          'category'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const SizedBox(height: 3),
-                        CustomDropdownButton(
-                          itemList: categories,
-                          listType: 'select_a_category'.tr,
-                        ),
-
+                        MultiDropDown(),
                         const SizedBox(height: 3),
                         Text(
                           'date'.tr,

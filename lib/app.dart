@@ -33,6 +33,7 @@ class App extends StatelessWidget {
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(6),
             ),
+
           ),
           textTheme: TextTheme(
             bodyMedium: TextStyle(

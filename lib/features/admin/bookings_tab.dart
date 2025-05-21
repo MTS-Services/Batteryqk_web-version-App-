@@ -3,6 +3,8 @@ import 'package:batteryqk_web_app/features/admin/confirm_dialog_widget.dart';
 import 'package:batteryqk_web_app/features/admin/header_cell_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../common/widgets/admin_multi_dropdown.dart';
 import '../../common/widgets/calender_screen.dart';
 import '../../util/colors.dart';
 
@@ -62,8 +64,8 @@ class _BookingsTabState extends State<BookingsTab> {
             shadowColor: Colors.white.withOpacity(0.7),
             child: Column(
               children: [
+                AdminMultiDropdown(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: Column(
@@ -84,31 +86,7 @@ class _BookingsTabState extends State<BookingsTab> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 2),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'All Academies',
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              color: Color(0xFF374151),
-                            ),
-                          ),
-                          CustomDropdownButton(
-                            itemList: academies,
-                            listType: 'Select a Academies',
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                    const SizedBox(width: 8),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,12 +111,9 @@ class _BookingsTabState extends State<BookingsTab> {
                                   vertical: 8,
                                 ),
                                 decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
                                   color: Colors.white70,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                  ),
+                                  border: Border.all(color: Colors.black, width: 1),
                                 ),
                                 child: CalenderScreen(
                                   selectedDate: _selectedDate,
@@ -150,6 +125,8 @@ class _BookingsTabState extends State<BookingsTab> {
                         ],
                       ),
                     ),
+                    const SizedBox(width: 8),
+
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(top: 10),
@@ -178,6 +155,7 @@ class _BookingsTabState extends State<BookingsTab> {
               ],
             ),
           ),
+
           const SizedBox(height: 20),
           Card(
             shape: RoundedRectangleBorder(
@@ -196,6 +174,7 @@ class _BookingsTabState extends State<BookingsTab> {
               ],
             ),
           ),
+
           Expanded(
             child: ListView.builder(
               itemCount: 5,

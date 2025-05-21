@@ -1,3 +1,5 @@
+import 'package:batteryqk_web_app/common/widgets/admin_multi_dropdown.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown_Listings.dart';
 import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
@@ -25,6 +27,7 @@ class _ListingsState extends State<Listings> {
   bool islogin = true;
 
   void _resetFilters() {
+    // Add reset logic for each dropdown if necessary
     setState(() {
       islogin = false;
     });
@@ -58,8 +61,8 @@ class _ListingsState extends State<Listings> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              MultiDropDown(),
               const SizedBox(height: 12),
-
               CustomDropdownListings(
                 itemList: DropDownMenuItemList.categoryItem,
                 listType: 'category'.tr,
@@ -148,7 +151,9 @@ class _ListingsState extends State<Listings> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Center(),
                 const SizedBox(height: 24),
+
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
