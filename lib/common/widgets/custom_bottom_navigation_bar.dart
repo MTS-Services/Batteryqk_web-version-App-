@@ -1,17 +1,10 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
-
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
-
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
-
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
-
 import 'package:batteryqk_web_app/util/colors.dart';
-
 import 'package:get/get.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
