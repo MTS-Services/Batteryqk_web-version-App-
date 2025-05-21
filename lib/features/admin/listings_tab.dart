@@ -21,7 +21,7 @@ class _ListingTabState extends State<ListingTab> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Listing Management",
@@ -29,33 +29,45 @@ class _ListingTabState extends State<ListingTab> {
               ),
               Row(
                 children: [
-                  CustomElevatedIconButton(color: AppColor.blueColor,buttonText: "Add Category",onPressed: (){showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => const AddCategoryDialog(),
-                  );
-                  },),
-                  const SizedBox(width: 12),
-                  CustomElevatedIconButton(color: AppColor.blueColor,icon: Icon(Icons.add),buttonText: "New Listing",onPressed: (){showConfirmDialog(
-                    context: context,
-                    title: 'Edit User',
-                    onConfirmed: () {
-                      print('User edited.');
+                  CustomElevatedIconButton(
+                    color: AppColor.blueColor,
+                    buttonText: "Add Category",
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => const AddCategoryDialog(),
+                      );
                     },
-                    confirmText: 'Add Listing',
-                    cancelText: 'Cancel',
-                    isEdit: true,
-                    initialValue1: 'Elite Swimming Academy',
-                    initialValue2: 'Swimming',
-                    initialValue3: 'Downtown',
-                    initialValue4: '3-5 years, 6-12 years, adults',
-                    initialValue5: 'Paid',
-                    initialValue6: AppImages.academies1a,
-                    initialValue7:
-                    'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
-                  );},),
+                  ),
+                  const SizedBox(width: 12),
+                  CustomElevatedIconButton(
+                    color: AppColor.blueColor,
+                    icon: Icon(Icons.add),
+                    buttonText: "New Listing",
+                    onPressed: () {
+                      showEditDialog(
+                        context: context,
+                        title: 'Edit User',
+                        onConfirmed: () {
+                          print('User edited.');
+                        },
+                        confirmText: 'Add Listing',
+                        cancelText: 'Cancel',
+                        isEdit: true,
+                        initialValue1: 'Elite Swimming Academy',
+                        initialValue2: 'Swimming',
+                        initialValue3: 'Downtown',
+                        initialValue4: '3-5 years, 6-12 years, adults',
+                        initialValue5: 'Paid',
+                        initialValue6: AppImages.academies1a,
+                        initialValue7:
+                            'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                      );
+                    },
+                  ),
                 ],
-              )
+              ),
             ],
           ),
           SizedBox(height: 30),
@@ -64,12 +76,42 @@ class _ListingTabState extends State<ListingTab> {
             color: Colors.white,
             child: Row(
               children: [
-                HeaderCell(flex: 1, label: 'ID', color: Colors.black),
-                HeaderCell(flex: 2, label: 'NAME', color: Colors.black),
-                HeaderCell(flex: 3, label: 'CATEGORY', color: Colors.black),
-                HeaderCell(flex: 2, label: 'LOCATION', color: Colors.black),
-                HeaderCell(flex: 2, label: 'AGE GROUP', color: Colors.black),
-                HeaderCell(flex: 2, label: 'ACTION', color: Colors.black),
+                HeaderCell(
+                  flex: 1,
+                  label: 'ID',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'NAME',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 3,
+                  label: 'CATEGORY',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'LOCATION',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'AGE GROUP',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'ACTION',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ],
             ),
           ),
@@ -80,40 +122,46 @@ class _ListingTabState extends State<ListingTab> {
                 return Card(
                   elevation: 1,
                   color: Colors.white,
-                  child: Row(// i need this scrowlable
+                  child: Row(
                     children: [
                       HeaderCell(
                         flex: 1,
                         label: index.toString(),
                         color: Colors.black,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Elite Swimming Academy',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 3,
                         label: 'Swimming',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Downtown',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Age Group',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
+                        fontWeight: FontWeight.normal,
                         flex: 2,
                         icons: [Icons.edit, Icons.delete_rounded],
                         iconColors: [Colors.yellow.shade300, Colors.red],
                         onIconPressed: (value) {
                           if (value == Icons.edit) {
-                            showConfirmDialog(
+                            showEditDialog(
                               context: context,
                               title: 'Edit User',
                               onConfirmed: () {
@@ -132,7 +180,7 @@ class _ListingTabState extends State<ListingTab> {
                                   'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
                             );
                           } else if (value == Icons.delete_rounded) {
-                            showConfirmDialog(
+                            showEditDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {
@@ -161,8 +209,13 @@ class CustomElevatedIconButton extends StatelessWidget {
   final Widget? icon;
   final Function()? onPressed;
   final Color color;
+
   const CustomElevatedIconButton({
-    super.key, required this.buttonText, this.icon, this.onPressed, required this.color,
+    super.key,
+    required this.buttonText,
+    this.icon,
+    this.onPressed,
+    required this.color,
   });
 
   @override
@@ -172,17 +225,12 @@ class CustomElevatedIconButton extends StatelessWidget {
       icon: icon,
       label: Text(
         buttonText,
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/auth_chack.dart';
 import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/admin/listings_tab.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
@@ -15,7 +16,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),//added splash screen
+      home:AuthCheck(),//added splash screen
       locale: Locale('en','US'),
       fallbackLocale: Locale('en','US'),
       translations: Language(),

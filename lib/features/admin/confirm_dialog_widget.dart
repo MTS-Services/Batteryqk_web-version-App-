@@ -31,6 +31,7 @@ class ConfirmDialogWidget extends StatelessWidget {
   final String confirmText;
   final String cancelText;
   final bool isEdit;
+  final bool isChange;
   final String? initialValue1;
   final String? initialValue2;
   final void Function(String, String)? onEditConfirmed;
@@ -45,6 +46,7 @@ class ConfirmDialogWidget extends StatelessWidget {
     this.initialValue1,
     this.initialValue2,
     this.onEditConfirmed,
+    this.isChange = false,
   });
 
   @override
@@ -72,7 +74,7 @@ class ConfirmDialogWidget extends StatelessWidget {
             const SizedBox(height: 8),
 
             // Conditional Form Fields
-            if (isEdit) ...[
+            if (isChange) ...[
               TextField(
                 controller: controller1,
                 decoration: const InputDecoration(
@@ -89,15 +91,6 @@ class ConfirmDialogWidget extends StatelessWidget {
                 ),
               ),
             ] else ...[
-              const Text(
-                'Are you sure you want to delete this item?',
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                'This action cannot be undone.',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
               const SizedBox(height: 8),
               const Text('All Status', style: TextStyle(fontSize: 14)),
               ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
@@ -129,20 +122,21 @@ class ConfirmDialogWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    if (isEdit && onEditConfirmed != null) {
+                    if (isChange && onEditConfirmed != null) {
                       onEditConfirmed!(controller1.text, controller2.text);
                     } else {
                       onConfirmed();
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isEdit ? Colors.blue : Colors.red,
+                    backgroundColor: (isEdit || !isChange) ?  Colors.blue:Colors.red ,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
                   child: Text(confirmText, style: const TextStyle(color: Colors.white)),
                 ),
+
               ],
             ),
           ],
@@ -159,6 +153,7 @@ void showConfirmDialog({
   String confirmText = 'Delete',
   String cancelText = 'Cancel',
   bool isEdit = false,
+  bool isChange = false,
   String? initialValue1,
   String? initialValue2,
   void Function(String, String)? onEditConfirmed,
@@ -174,7 +169,7 @@ void showConfirmDialog({
         isEdit: isEdit,
         initialValue1: initialValue1,
         initialValue2: initialValue2,
-        onEditConfirmed: onEditConfirmed,
+        onEditConfirmed: onEditConfirmed, isChange: isChange,
       );
     },
   );

@@ -163,7 +163,7 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-void showConfirmDialog({
+void showEditDialog({
   required BuildContext context,
   required String title,
   required VoidCallback onConfirmed,

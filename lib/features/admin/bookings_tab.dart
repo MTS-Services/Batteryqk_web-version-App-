@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import '../../common/widgets/admin_multi_dropdown.dart';
 import '../../common/widgets/calender_screen.dart';
 import '../../util/colors.dart';
+import 'edit_dialog_box.dart';
 
 class BookingsTab extends StatefulWidget {
   const BookingsTab({super.key});
@@ -164,13 +165,13 @@ class _BookingsTabState extends State<BookingsTab> {
             color: const Color(0xFFF3F4F6),
             child: Row(
               children: const [
-                HeaderCell(flex: 1, label: 'ID'),
-                HeaderCell(flex: 2, label: 'User'),
-                HeaderCell(flex: 3, label: 'Academy'),
-                HeaderCell(flex: 2, label: 'Date & Time'),
-                HeaderCell(flex: 2, label: 'Status'),
-                HeaderCell(flex: 1, label: 'Payment'),
-                HeaderCell(flex: 2, label: 'Actions'),
+                HeaderCell(flex: 1, label: 'ID',fontWeight: FontWeight.bold,),
+                HeaderCell(flex: 2, label: 'User',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 3, label: 'Academy',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'Date & Time',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'Status',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 1, label: 'Payment',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'Actions',fontWeight: FontWeight.bold),
               ],
             ),
           ),
@@ -191,56 +192,62 @@ class _BookingsTabState extends State<BookingsTab> {
                       HeaderCell(
                         flex: 1,
                         label: index.toString(),
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Remon',
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 3,
                         label: 'Mts soft',
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: '13/5/25',
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
+
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Confirm',
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 1,
                         label: 'Unpaid',
-                        color: Color(0xFF1F2937),
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
+                        fontWeight: FontWeight.bold,
                         flex: 2,
                         icons: [
                           Icons.edit_calendar_outlined,
                           Icons.delete_outline_outlined,
+
                         ],
                         iconColors: [Colors.brown.shade800, Colors.redAccent],
                         onIconPressed: (value) {
                           if (value == Icons.edit_calendar_outlined) {
                             showConfirmDialog(
                               context: context,
-                              title: 'Edit User',
+                              title: 'Edit Booking',
                               onConfirmed: () {
-                                print('User edited.');
+                                print('User deleted.');
                               },
-                              confirmText: 'Save',
+                              confirmText: 'Save Changes',
                               cancelText: 'Cancel',
-                              isEdit: true,
-                              initialValue1: 'Remon Howlader',
-                              initialValue2: 'remonhowlader969@gmal.com',
                             );
                           } else if (value == Icons.delete_outline_outlined) {
-                            showConfirmDialog(
+                            showEditDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {

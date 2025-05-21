@@ -7,6 +7,7 @@ class HeaderCell extends StatelessWidget {
   final List<Color>? iconColors;
   final Color? color;
   final void Function(IconData)? onIconPressed;
+  final FontWeight fontWeight;
 
   const HeaderCell({
     super.key,
@@ -16,6 +17,7 @@ class HeaderCell extends StatelessWidget {
     this.iconColors,
     this.color,
     this.onIconPressed,
+    required this.fontWeight,
   });
 
   @override
@@ -46,7 +48,7 @@ class HeaderCell extends StatelessWidget {
                       child: Text(
                         label!,
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                          fontWeight: fontWeight,
                           fontSize: textSize,
                           letterSpacing: 0.5,
                           color: color ?? Colors.grey,

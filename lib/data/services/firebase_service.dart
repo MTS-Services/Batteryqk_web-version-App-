@@ -42,12 +42,29 @@ class AuthController extends GetxController {
       isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       showSnackbar(context, 'Success', 'Logged in successfully');
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'The email address is not valid.';
+          break;
+        case 'user-not-found':
+          errorMessage = 'No account found with this email.';
+          break;
+        case 'wrong-password':
+          errorMessage = 'The password you entered is incorrect.';
+          break;
+        default:
+          errorMessage = 'Login failed. Please try again.';
+      }
+      showSnackbar(context, 'Sign In Error', errorMessage);
     } catch (e) {
-      showSnackbar(context, 'Sign In Error', e.toString().split('] ').last);
+      showSnackbar(context, 'Error', 'Something went wrong. Please try again later.');
     } finally {
       isLoading.value = false;
     }
   }
+
 
   Future<void> logOut(BuildContext context) async {
     try {
