@@ -12,7 +12,9 @@ class UsersTab extends StatefulWidget {
 }
 
 class _UsersTabState extends State<UsersTab> {
-  @override
+  final TextEditingController _nameTEController =  TextEditingController();
+  final TextEditingController _passwordTEController =  TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -94,8 +96,8 @@ class _UsersTabState extends State<UsersTab> {
                               confirmText: 'Save',
                               cancelText: 'Cancel',
                               isEdit: true,
-                              initialValue1: 'Md.Tayob ali',
-                              initialValue2: 'Mdtayobali@gmail.com',
+                              initialValue1: _nameTEController.text,
+                              initialValue2: _passwordTEController.text,
                             );
                           } else if (value == Icons.delete_rounded) {
                             showEditDialog(

@@ -1,30 +1,7 @@
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
-// Dummy dropdown for now
-class ConfirmCustomDropdownButton extends StatelessWidget {
-  final List<String> itemList;
-  final String listType;
-
-  const ConfirmCustomDropdownButton({
-    super.key,
-    required this.itemList,
-    required this.listType,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      items: itemList.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-      onChanged: (value) {},
-      decoration: InputDecoration(
-        labelText: listType,
-        border: OutlineInputBorder(),
-      ),
-    );
-  }
-}
-
+import '../../common/widgets/confirme_custom_dropdown_button.dart';
 class ConfirmDialogWidget extends StatelessWidget {
   final String title;
   final VoidCallback onConfirmed;
@@ -77,25 +54,42 @@ class ConfirmDialogWidget extends StatelessWidget {
             if (isChange) ...[
               TextField(
                 controller: controller1,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Name',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.grey.shade400),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
               TextField(
                 controller: controller2,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.grey.shade400),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
                 ),
               ),
+
             ] else ...[
               const SizedBox(height: 8),
-              const Text('All Status', style: TextStyle(fontSize: 14)),
+           Text('All Status', style: TextStyle(fontSize: 14 , color: Colors.grey.shade400)),
               ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
               const SizedBox(height: 8),
-              const Text('Payment Status', style: TextStyle(fontSize: 14)),
+           Text('Payment Status', style: TextStyle(fontSize: 14 , color: Colors.grey.shade400)),
               ConfirmCustomDropdownButton(itemList: payment, listType: 'Select'),
             ],
 

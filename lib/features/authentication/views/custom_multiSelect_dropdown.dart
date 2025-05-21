@@ -170,7 +170,7 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.black),
+              border: Border.all(color: Colors.grey.shade400),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.03),

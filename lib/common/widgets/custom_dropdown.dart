@@ -114,8 +114,8 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 color: AppColor.whiteColor,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: Colors.black,
-                  width: isFocused ? 2 : 1.2,
+                  color: Colors.grey.shade400,
+                  width: 1,
                 ),
                 boxShadow: [
                   BoxShadow(

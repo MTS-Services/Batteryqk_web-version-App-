@@ -114,7 +114,7 @@ class _BookingsTabState extends State<BookingsTab> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   color: Colors.white70,
-                                  border: Border.all(color: Colors.black, width: 1),
+                                  border: Border.all(color: Colors.grey.shade400, width: 1),
                                 ),
                                 child: CalenderScreen(
                                   selectedDate: _selectedDate,
@@ -162,7 +162,7 @@ class _BookingsTabState extends State<BookingsTab> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
-            color: const Color(0xFFF3F4F6),
+            color: Colors.white60,
             child: Row(
               children: const [
                 HeaderCell(flex: 1, label: 'ID',fontWeight: FontWeight.bold,),
