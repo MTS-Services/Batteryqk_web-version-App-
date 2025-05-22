@@ -21,7 +21,7 @@ class _ListingTabState extends State<ListingTab> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "Listing Management",
@@ -29,33 +29,45 @@ class _ListingTabState extends State<ListingTab> {
               ),
               Row(
                 children: [
-                  CustomElevatedIconButton(color: AppColor.blueColor,buttonText: "Add Category",onPressed: (){showDialog(
-                    context: context,
-                    barrierDismissible: false,
-                    builder: (context) => const AddCategoryDialog(),
-                  );
-                  },),
-                  const SizedBox(width: 12),
-                  CustomElevatedIconButton(color: AppColor.blueColor,icon: Icon(Icons.add),buttonText: "New Listing",onPressed: (){showConfirmDialog(
-                    context: context,
-                    title: 'Edit User',
-                    onConfirmed: () {
-                      print('User edited.');
+                  CustomElevatedIconButton(
+                    color: AppColor.blueColor,
+                    buttonText: "Add Category",
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (context) => const AddCategoryDialog(),
+                      );
                     },
-                    confirmText: 'Add Listing',
-                    cancelText: 'Cancel',
-                    isEdit: true,
-                    initialValue1: 'Elite Swimming Academy',
-                    initialValue2: 'Swimming',
-                    initialValue3: 'Downtown',
-                    initialValue4: '3-5 years, 6-12 years, adults',
-                    initialValue5: 'Paid',
-                    initialValue6: AppImages.academies1a,
-                    initialValue7:
-                    'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
-                  );},),
+                  ),
+                  const SizedBox(width: 12),
+                  CustomElevatedIconButton(
+                    color: AppColor.blueColor,
+                    icon: Icon(Icons.add),
+                    buttonText: "New Listing",
+                    onPressed: () {
+                      showConfirmDialog(
+                        context: context,
+                        title: 'Edit User',
+                        onConfirmed: () {
+                          print('User edited.');
+                        },
+                        confirmText: 'Add Listing',
+                        cancelText: 'Cancel',
+                        isEdit: true,
+                        initialValue1: '',
+                        initialValue2: 'Swimming',
+                        initialValue3: 'Downtown',
+                        initialValue4: '3-5 years, 6-12 years, adults',
+                        initialValue5: 'Paid',
+                        initialValue6: AppImages.academies1a,
+                        initialValue7:
+                            'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                      );
+                    },
+                  ),
                 ],
-              )
+              ),
             ],
           ),
           SizedBox(height: 30),
@@ -80,7 +92,8 @@ class _ListingTabState extends State<ListingTab> {
                 return Card(
                   elevation: 1,
                   color: Colors.white,
-                  child: Row(// i need this scrowlable
+                  child: Row(
+                    // i need this scrowlable
                     children: [
                       HeaderCell(
                         flex: 1,
@@ -161,8 +174,13 @@ class CustomElevatedIconButton extends StatelessWidget {
   final Widget? icon;
   final Function()? onPressed;
   final Color color;
+
   const CustomElevatedIconButton({
-    super.key, required this.buttonText, this.icon, this.onPressed, required this.color,
+    super.key,
+    required this.buttonText,
+    this.icon,
+    this.onPressed,
+    required this.color,
   });
 
   @override
@@ -172,17 +190,12 @@ class CustomElevatedIconButton extends StatelessWidget {
       icon: icon,
       label: Text(
         buttonText,
-        style: TextStyle(
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
+        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     );
   }

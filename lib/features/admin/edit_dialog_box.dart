@@ -121,7 +121,10 @@ class _EditDialogBox1State extends State<EditDialogBox1> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                     ),
-                    child: Text(widget.confirmText,style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      widget.confirmText,
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),

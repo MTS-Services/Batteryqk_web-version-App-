@@ -88,6 +88,11 @@ class ConfirmDialogWidget extends StatelessWidget {
                   border: OutlineInputBorder(),
                 ),
               ),
+              const Text('All Status', style: TextStyle(fontSize: 14)),
+              ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
+              const SizedBox(height: 8),
+              const Text('Payment Status', style: TextStyle(fontSize: 14)),
+              ConfirmCustomDropdownButton(itemList: payment, listType: 'Select'),
             ] else ...[
               const Text(
                 'Are you sure you want to delete this item?',

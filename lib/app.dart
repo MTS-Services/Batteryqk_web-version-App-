@@ -1,6 +1,4 @@
-import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
-import 'package:batteryqk_web_app/features/admin/listings_tab.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+
 import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
