@@ -1,10 +1,10 @@
-
 import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 
+import 'auth_chack.dart';
 import 'features/authentication/views/splash_screen.dart';
 
 class App extends StatelessWidget {
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),//added splash screen
+      home:AuthCheck(),//added splash screen
       locale: Locale('en','US'),
       fallbackLocale: Locale('en','US'),
       translations: Language(),

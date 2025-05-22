@@ -164,13 +164,13 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
         child: GestureDetector(
           onTap: _toggleDropdown,
           child: Container(
-            width: MediaQuery.of(context).size.width*0.315,
+            width: double.infinity,
             height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.black),
+              border: Border.all(color: Colors.grey.shade400),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.03),

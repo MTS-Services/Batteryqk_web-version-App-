@@ -27,7 +27,7 @@ class CalenderScreen extends StatelessWidget {
           ),
         ),
         Spacer(),
-        Icon(Icons.calendar_today, color: Colors.grey[700]),
+        Icon(Icons.calendar_today, color: Colors.grey.shade400),
       ],
     );
   }

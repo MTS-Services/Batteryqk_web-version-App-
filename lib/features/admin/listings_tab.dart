@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/util/colors.dart';
-import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
+import '../../common/widgets/custom_elevated_Icon_Button.dart';
+import '../../common/widgets/dialog_BoxFor_Admin_Listing.dart';
 import 'add_category_dialog.dart';
 import 'edit_dialog_box.dart';
 import 'header_cell_widget.dart';
@@ -13,6 +14,12 @@ class ListingTab extends StatefulWidget {
 }
 
 class _ListingTabState extends State<ListingTab> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _downTownController = TextEditingController();
+  final TextEditingController _ageGroupController = TextEditingController();
+  final TextEditingController _priceController = TextEditingController();
+  final TextEditingController _imageUrlController = TextEditingController();
+  final TextEditingController _discreptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +53,7 @@ class _ListingTabState extends State<ListingTab> {
                     icon: Icon(Icons.add),
                     buttonText: "New Listing",
                     onPressed: () {
-                      showConfirmDialog(
+                      showEditDialog(
                         context: context,
                         title: 'Edit User',
                         onConfirmed: () {
@@ -55,14 +62,12 @@ class _ListingTabState extends State<ListingTab> {
                         confirmText: 'Add Listing',
                         cancelText: 'Cancel',
                         isEdit: true,
-                        initialValue1: '',
-                        initialValue2: 'Swimming',
-                        initialValue3: 'Downtown',
-                        initialValue4: '3-5 years, 6-12 years, adults',
-                        initialValue5: 'Paid',
-                        initialValue6: AppImages.academies1a,
-                        initialValue7:
-                            'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                        initialValue1: _nameController.text,
+                        initialValue3: _downTownController.text,
+                        initialValue4: _ageGroupController.text,
+                        initialValue5: _priceController.text,
+                        initialValue6: _imageUrlController.text,
+                        initialValue7 :_discreptionController.text
                       );
                     },
                   ),
@@ -76,12 +81,42 @@ class _ListingTabState extends State<ListingTab> {
             color: Colors.white,
             child: Row(
               children: [
-                HeaderCell(flex: 1, label: 'ID', color: Colors.black),
-                HeaderCell(flex: 2, label: 'NAME', color: Colors.black),
-                HeaderCell(flex: 3, label: 'CATEGORY', color: Colors.black),
-                HeaderCell(flex: 2, label: 'LOCATION', color: Colors.black),
-                HeaderCell(flex: 2, label: 'AGE GROUP', color: Colors.black),
-                HeaderCell(flex: 2, label: 'ACTION', color: Colors.black),
+                HeaderCell(
+                  flex: 1,
+                  label: 'ID',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'NAME',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 3,
+                  label: 'CATEGORY',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'LOCATION',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'AGE GROUP',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'ACTION',
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ],
             ),
           ),
@@ -93,59 +128,63 @@ class _ListingTabState extends State<ListingTab> {
                   elevation: 1,
                   color: Colors.white,
                   child: Row(
-                    // i need this scrowlable
                     children: [
                       HeaderCell(
                         flex: 1,
                         label: index.toString(),
                         color: Colors.black,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Elite Swimming Academy',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 3,
                         label: 'Swimming',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Downtown',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Age Group',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight: FontWeight.normal,
                       ),
                       HeaderCell(
+                        fontWeight: FontWeight.normal,
                         flex: 2,
-                        icons: [Icons.edit, Icons.delete_rounded],
-                        iconColors: [Colors.yellow.shade300, Colors.red],
+                        icons: [Icons.visibility,Icons.edit, Icons.delete_rounded , ],
+                        iconColors: [Colors.blue ,Colors.yellow.shade300, Colors.red ],
+
                         onIconPressed: (value) {
                           if (value == Icons.edit) {
-                            showConfirmDialog(
-                              context: context,
-                              title: 'Edit User',
-                              onConfirmed: () {
-                                print('User edited.');
-                              },
-                              confirmText: 'Save',
-                              cancelText: 'Cancel',
-                              isEdit: true,
-                              initialValue1: 'Elite Swimming Academy',
-                              initialValue2: 'Swimming',
-                              initialValue3: 'Downtown',
-                              initialValue4: '3-5 years, 6-12 years, adults',
-                              initialValue5: 'Paid',
-                              initialValue6: AppImages.academies1a,
-                              initialValue7:
-                                  'Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.',
+                            showEditDialog(
+                                context: context,
+                                title: 'Edit User',
+                                onConfirmed: () {
+                                  print('User edited.');
+                                },
+                                confirmText: 'Save',
+                                cancelText: 'Cancel',
+                                isEdit: true,
+                                initialValue1: _nameController.text,
+                                initialValue3: _downTownController.text,
+                                initialValue4: _ageGroupController.text,
+                                initialValue5: _priceController.text,
+                                initialValue6: _imageUrlController.text,
+                                initialValue7 :_discreptionController.text
                             );
                           } else if (value == Icons.delete_rounded) {
-                            showConfirmDialog(
+                            showEditDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {
@@ -153,6 +192,11 @@ class _ListingTabState extends State<ListingTab> {
                               },
                               confirmText: 'Delete',
                               cancelText: 'Cancel',
+                            );
+                          }else if(value == Icons.visibility){
+                            showDialog(
+                              context: context,
+                              builder: (context) => const DialogBoxForAdminListing(),
                             );
                           }
                         },
@@ -169,34 +213,3 @@ class _ListingTabState extends State<ListingTab> {
   }
 }
 
-class CustomElevatedIconButton extends StatelessWidget {
-  final String buttonText;
-  final Widget? icon;
-  final Function()? onPressed;
-  final Color color;
-
-  const CustomElevatedIconButton({
-    super.key,
-    required this.buttonText,
-    this.icon,
-    this.onPressed,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton.icon(
-      onPressed: onPressed,
-      icon: icon,
-      label: Text(
-        buttonText,
-        style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-      ),
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      ),
-    );
-  }
-}

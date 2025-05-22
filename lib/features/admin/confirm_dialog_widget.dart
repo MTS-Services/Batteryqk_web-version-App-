@@ -1,36 +1,14 @@
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
-// Dummy dropdown for now
-class ConfirmCustomDropdownButton extends StatelessWidget {
-  final List<String> itemList;
-  final String listType;
-
-  const ConfirmCustomDropdownButton({
-    super.key,
-    required this.itemList,
-    required this.listType,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
-      items: itemList.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-      onChanged: (value) {},
-      decoration: InputDecoration(
-        labelText: listType,
-        border: OutlineInputBorder(),
-      ),
-    );
-  }
-}
-
+import '../../common/widgets/confirme_custom_dropdown_button.dart';
 class ConfirmDialogWidget extends StatelessWidget {
   final String title;
   final VoidCallback onConfirmed;
   final String confirmText;
   final String cancelText;
   final bool isEdit;
+  final bool isChange;
   final String? initialValue1;
   final String? initialValue2;
   final void Function(String, String)? onEditConfirmed;
@@ -45,6 +23,7 @@ class ConfirmDialogWidget extends StatelessWidget {
     this.initialValue1,
     this.initialValue2,
     this.onEditConfirmed,
+    this.isChange = false,
   });
 
   @override
@@ -72,42 +51,45 @@ class ConfirmDialogWidget extends StatelessWidget {
             const SizedBox(height: 8),
 
             // Conditional Form Fields
-            if (isEdit) ...[
+            if (isChange) ...[
               TextField(
                 controller: controller1,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Name',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.grey.shade400),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
               TextField(
                 controller: controller2,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email',
-                  border: OutlineInputBorder(),
+                  labelStyle: TextStyle(color: Colors.grey.shade400),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                  ),
                 ),
               ),
-              const Text('All Status', style: TextStyle(fontSize: 14)),
-              ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
-              const SizedBox(height: 8),
-              const Text('Payment Status', style: TextStyle(fontSize: 14)),
-              ConfirmCustomDropdownButton(itemList: payment, listType: 'Select'),
+
             ] else ...[
-              const Text(
-                'Are you sure you want to delete this item?',
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 4),
-              const Text(
-                'This action cannot be undone.',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
               const SizedBox(height: 8),
-              const Text('All Status', style: TextStyle(fontSize: 14)),
+           Text('All Status', style: TextStyle(fontSize: 14 , color: Colors.grey.shade400)),
               ConfirmCustomDropdownButton(itemList: status, listType: 'Select a status'),
               const SizedBox(height: 8),
-              const Text('Payment Status', style: TextStyle(fontSize: 14)),
+           Text('Payment Status', style: TextStyle(fontSize: 14 , color: Colors.grey.shade400)),
               ConfirmCustomDropdownButton(itemList: payment, listType: 'Select'),
             ],
 
@@ -134,20 +116,21 @@ class ConfirmDialogWidget extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    if (isEdit && onEditConfirmed != null) {
+                    if (isChange && onEditConfirmed != null) {
                       onEditConfirmed!(controller1.text, controller2.text);
                     } else {
                       onConfirmed();
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isEdit ? Colors.blue : Colors.red,
+                    backgroundColor: (isEdit || !isChange) ?  Colors.blue:Colors.red ,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
                   child: Text(confirmText, style: const TextStyle(color: Colors.white)),
                 ),
+
               ],
             ),
           ],
@@ -164,6 +147,7 @@ void showConfirmDialog({
   String confirmText = 'Delete',
   String cancelText = 'Cancel',
   bool isEdit = false,
+  bool isChange = false,
   String? initialValue1,
   String? initialValue2,
   void Function(String, String)? onEditConfirmed,
@@ -179,7 +163,7 @@ void showConfirmDialog({
         isEdit: isEdit,
         initialValue1: initialValue1,
         initialValue2: initialValue2,
-        onEditConfirmed: onEditConfirmed,
+        onEditConfirmed: onEditConfirmed, isChange: isChange,
       );
     },
   );

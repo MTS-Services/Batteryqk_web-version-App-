@@ -1,6 +1,7 @@
 import 'package:batteryqk_web_app/features/admin/confirm_dialog_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'edit_dialog_box.dart';
 import 'header_cell_widget.dart';
 
 class UsersTab extends StatefulWidget {
@@ -11,7 +12,9 @@ class UsersTab extends StatefulWidget {
 }
 
 class _UsersTabState extends State<UsersTab> {
-  @override
+  final TextEditingController _nameTEController =  TextEditingController();
+  final TextEditingController _passwordTEController =  TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -28,11 +31,11 @@ class _UsersTabState extends State<UsersTab> {
             color: Colors.white,
             child: Row(
               children: [
-                HeaderCell(flex: 1, label: 'ID', color: Colors.black),
-                HeaderCell(flex: 2, label: 'NAME', color: Colors.black),
-                HeaderCell(flex: 3, label: 'EMAIL', color: Colors.black),
-                HeaderCell(flex: 2, label: 'JOIN DATE', color: Colors.black),
-                HeaderCell(flex: 2, label: 'ACTIONS', color: Colors.black),
+                HeaderCell(flex: 1, label: 'ID', color: Colors.black,fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'NAME', color: Colors.black, fontWeight: FontWeight.bold),
+                HeaderCell(flex: 3, label: 'EMAIL', color: Colors.black,fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'JOIN DATE', color: Colors.black,fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'ACTIONS', color: Colors.black,fontWeight: FontWeight.bold),
               ],
             ),
           ),
@@ -49,27 +52,33 @@ class _UsersTabState extends State<UsersTab> {
                         flex: 1,
                         label: index.toString(),
                         color: Colors.black,
+                        fontWeight:FontWeight.bold ,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: 'Md.Tayob ali',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight:FontWeight.normal ,
                       ),
                       HeaderCell(
                         flex: 3,
                         label: 'Mdtayobali@gmail.com',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight:FontWeight.normal ,
                       ),
                       HeaderCell(
                         flex: 2,
                         label: '12/03/2025',
-                        color: Colors.black,
+                        color: Colors.grey.shade900,
+                        fontWeight:FontWeight.normal ,
                       ),
                       HeaderCell(
+                        fontWeight:FontWeight.normal ,
                         flex: 2,
                         icons: [
                           Icons.edit_calendar,
                           Icons.delete_rounded,
+
                         ],
                         iconColors: [
                           Colors.yellow.shade300,
@@ -78,6 +87,7 @@ class _UsersTabState extends State<UsersTab> {
                         onIconPressed: (value) {
                           if (value == Icons.edit_calendar) {
                             showConfirmDialog(
+                              isChange: true,
                               context: context,
                               title: 'Edit User',
                               onConfirmed: () {
@@ -86,11 +96,11 @@ class _UsersTabState extends State<UsersTab> {
                               confirmText: 'Save',
                               cancelText: 'Cancel',
                               isEdit: true,
-                              initialValue1: 'Md.Tayob ali',
-                              initialValue2: 'Mdtayobali@gmail.com',
+                              initialValue1: _nameTEController.text,
+                              initialValue2: _passwordTEController.text,
                             );
                           } else if (value == Icons.delete_rounded) {
-                            showConfirmDialog(
+                            showEditDialog(
                               context: context,
                               title: 'Delete User',
                               onConfirmed: () {
