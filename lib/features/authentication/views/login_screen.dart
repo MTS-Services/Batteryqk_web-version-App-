@@ -211,9 +211,9 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     SizedBox(width: 16),
                     buildSocialButton(
-                      icon: FontAwesomeIcons.facebook,
+                      icon: FontAwesomeIcons.apple,
                       onTap: () {
-                        // Handle Facebook login
+                        authController.signInWithApple();
                       },
                     ),
                   ],
