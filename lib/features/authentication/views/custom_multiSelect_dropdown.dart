@@ -52,12 +52,10 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
   void _openDropdown() {
     Future.microtask(() {
       final overlay = Overlay.of(context);
-      if (overlay != null) {
-        _overlayEntry = _createOverlayEntry();
-        overlay.insert(_overlayEntry!);
-        _isDropdownOpened = true;
-      }
-    });
+      _overlayEntry = _createOverlayEntry();
+      overlay.insert(_overlayEntry!);
+      _isDropdownOpened = true;
+        });
   }
 
   void _closeDropdown() {

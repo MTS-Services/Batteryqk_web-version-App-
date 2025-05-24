@@ -1,8 +1,6 @@
-import 'package:batteryqk_web_app/common/widgets/admin_multi_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown_Listings.dart';
 import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
@@ -68,23 +66,20 @@ class _ListingsState extends State<Listings> {
                 listType: 'category'.tr,
               ),
               CustomDropdownListings(
-                itemList:  DropDownMenuItemList.location,
+                itemList: DropDownMenuItemList.location,
                 listType: 'all_location'.tr,
               ),
               CustomDropdownListings(
-                itemList:  DropDownMenuItemList.ageGroup,
+                itemList: DropDownMenuItemList.ageGroup,
                 listType: 'age_group'.tr,
               ),
               CustomDropdownListings(
-                itemList:  DropDownMenuItemList.rating,
+                itemList: DropDownMenuItemList.rating,
                 listType: 'rating'.tr,
               ),
-              CustomDropdownListings(
-                itemList: price,
-                listType: 'price'.tr,
-              ),
+              CustomDropdownListings(itemList: price, listType: 'price'.tr),
 
-                const SizedBox(height: 15),
+              const SizedBox(height: 15),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,7 +97,8 @@ class _ListingsState extends State<Listings> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             islogin ? AppColor.blueColor : Colors.grey.shade200,
-                        foregroundColor: islogin ? Colors.white : Colors.black87,
+                        foregroundColor:
+                            islogin ? Colors.white : Colors.black87,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -119,7 +115,8 @@ class _ListingsState extends State<Listings> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
                             islogin ? Colors.grey.shade200 : AppColor.blueColor,
-                        foregroundColor: islogin ? Colors.black87 : Colors.white,
+                        foregroundColor:
+                            islogin ? Colors.black87 : Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
@@ -162,8 +159,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_1_title'.tr,
-                          location: "Swimming | Downtown",
-                          tag: "Paid",
+                          location: "activity.swimming.downtown".tr,
+                          tag: "paid".tr,
                           rating: 4.5,
                           description: 'academies_1_details'.tr,
                           imageUrl: AppImages.academies1a,
@@ -179,8 +176,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_2_title'.tr,
-                          location: "Gym | Uptown",
-                          tag: "Free",
+                          location: "activity.gym.uptown".tr,
+                          tag: "free".tr,
                           rating: 4.0,
                           description: 'academies_2_details'.tr,
                           imageUrl: AppImages.academies2a,
@@ -196,8 +193,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_3_title'.tr,
-                          location: "Tennis | West Side",
-                          tag: "Paid",
+                          location: "activity.tennis.westside".tr,
+                          tag: "paid".tr,
                           rating: 5.0,
                           description: 'academies_3_details'.tr,
                           imageUrl: AppImages.academies3a,
@@ -213,8 +210,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_4_title'.tr,
-                          location: "Basketball | Downtown",
-                          tag: "Paid",
+                          location: "activity.basketball.downtown".tr,
+                          tag: "paid".tr,
                           rating: 4.5,
                           description: 'academies_4_details'.tr,
                           imageUrl: AppImages.academies4a,
@@ -230,8 +227,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_5_title'.tr,
-                          location: "Tennis | south Side",
-                          tag: "Free",
+                          location: "activity.tennis.southside".tr,
+                          tag: "free".tr,
                           rating: 5.0,
                           description: 'academies_5_details'.tr,
                           imageUrl: AppImages.academies5a,
@@ -247,8 +244,8 @@ class _ListingsState extends State<Listings> {
                         BuildListingCard(
                           context: context,
                           title: 'academies_6_title'.tr,
-                          location: "School | south Side",
-                          tag: "Paid",
+                          location: 'activity.school.southside'.tr,
+                          tag: "paid".tr,
                           rating: 4.8,
                           description: 'academies_6_details'.tr,
                           imageUrl: AppImages.academies6a,
