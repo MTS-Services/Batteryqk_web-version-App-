@@ -3,6 +3,7 @@ import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
 class EditDialogBox1 extends StatefulWidget {
+  final String level;
   final String title;
   final VoidCallback onConfirmed;
   final String confirmText;
@@ -33,6 +34,7 @@ class EditDialogBox1 extends StatefulWidget {
     this.initialValue6,
     this.initialValue7,
     required BuildContext context,
+    required this.level,
   });
 
   @override
@@ -121,7 +123,10 @@ class _EditDialogBox1State extends State<EditDialogBox1> {
                         borderRadius: BorderRadius.circular(6),
                       ),
                     ),
-                    child: Text(widget.confirmText,style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      widget.confirmText,
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -149,21 +154,30 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: TextField(
-        style: TextStyle(color: Colors.grey.shade500),
+        style: TextStyle(color: Colors.grey.shade800),
         controller: controller,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(10),
           fillColor: Colors.white,
           filled: true,
           labelText: label,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          labelStyle: TextStyle(color: Colors.grey.shade400),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: Colors.grey.shade400),
+          ),
         ),
       ),
+
     );
   }
 }
 
-void showConfirmDialog({
+void showEditDialog({
   required BuildContext context,
   required String title,
   required VoidCallback onConfirmed,
@@ -197,6 +211,7 @@ void showConfirmDialog({
         initialValue6: initialValue6,
         initialValue7: initialValue7,
         context: context,
+        level: '',
       );
     },
   );

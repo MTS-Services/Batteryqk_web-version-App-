@@ -1,4 +1,3 @@
-import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/util/colors.dart';

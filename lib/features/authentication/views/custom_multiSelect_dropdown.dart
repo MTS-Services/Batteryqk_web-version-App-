@@ -52,12 +52,10 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
   void _openDropdown() {
     Future.microtask(() {
       final overlay = Overlay.of(context);
-      if (overlay != null) {
-        _overlayEntry = _createOverlayEntry();
-        overlay.insert(_overlayEntry!);
-        _isDropdownOpened = true;
-      }
-    });
+      _overlayEntry = _createOverlayEntry();
+      overlay.insert(_overlayEntry!);
+      _isDropdownOpened = true;
+        });
   }
 
   void _closeDropdown() {
@@ -170,7 +168,7 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.black),
+              border: Border.all(color: Colors.grey.shade400),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.03),

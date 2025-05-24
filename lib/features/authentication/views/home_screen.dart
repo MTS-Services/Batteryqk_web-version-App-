@@ -4,19 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/build_listing_card.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details1.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details2.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details3.dart';
-import 'package:batteryqk_web_app/util/text_string.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  void _onViewAllPressed() {
-    print('View All pressed!');
-  }
+ 
 
   @override
   Widget build(BuildContext context) {

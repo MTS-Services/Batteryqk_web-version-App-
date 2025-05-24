@@ -1,13 +1,10 @@
-import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
-import 'package:batteryqk_web_app/features/admin/listings_tab.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/auth_chack.dart';
 import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 
-import 'features/authentication/views/splash_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -15,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      home: SplashScreen(),//added splash screen
+      home:AuthCheck(),//added splash screen
       locale: Locale('en','US'),
       fallbackLocale: Locale('en','US'),
       translations: Language(),
