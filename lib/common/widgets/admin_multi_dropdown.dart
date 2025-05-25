@@ -37,12 +37,13 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> mainOptions = DropDownMenuItemList.sportsCategories.keys.toList();
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          CustomMultiSelectDropdown(
+    List<String> mainOptions =
+        DropDownMenuItemList.sportsCategories.keys.toList();
+    return Row(
+      spacing: 10,
+      children: [
+        Expanded(
+          child: CustomMultiSelectDropdown(
             title: "All Main Categories",
             options: mainOptions,
             selectedValues: selectedMainCategories,
@@ -54,8 +55,9 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-          SizedBox(width: 10),
-          CustomMultiSelectDropdown(
+        ),
+        Expanded(
+          child: CustomMultiSelectDropdown(
             title: "All Subcategories",
             options: getAvailableSubCategories(),
             selectedValues: selectedSubCategories,
@@ -66,8 +68,9 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-          SizedBox(width: 10),
-          CustomMultiSelectDropdown(
+        ),
+        Expanded(
+          child: CustomMultiSelectDropdown(
             title: "All Sports",
             options: getAvailableSports(),
             selectedValues: selectedSports,
@@ -77,8 +80,8 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

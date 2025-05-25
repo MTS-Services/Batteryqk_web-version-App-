@@ -62,7 +62,7 @@ class _BookingsTabState extends State<BookingsTab> {
           Card(
             color: Colors.white,
             elevation: 0.5,
-            shadowColor: Colors.white.withOpacity(0.7),
+            shadowColor: Colors.white.withAlpha(179),
             child: Column(
               children: [
                 AdminMultiDropdown(),
@@ -114,7 +114,10 @@ class _BookingsTabState extends State<BookingsTab> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
                                   color: Colors.white70,
-                                  border: Border.all(color: Colors.grey.shade400, width: 1),
+                                  border: Border.all(
+                                    color: Colors.grey.shade400,
+                                    width: 1,
+                                  ),
                                 ),
                                 child: CalenderScreen(
                                   selectedDate: _selectedDate,
@@ -165,13 +168,33 @@ class _BookingsTabState extends State<BookingsTab> {
             color: Colors.white60,
             child: Row(
               children: const [
-                HeaderCell(flex: 1, label: 'ID',fontWeight: FontWeight.bold,),
-                HeaderCell(flex: 2, label: 'User',fontWeight: FontWeight.bold),
-                HeaderCell(flex: 3, label: 'Academy',fontWeight: FontWeight.bold),
-                HeaderCell(flex: 2, label: 'Date & Time',fontWeight: FontWeight.bold),
-                HeaderCell(flex: 2, label: 'Status',fontWeight: FontWeight.bold),
-                HeaderCell(flex: 1, label: 'Payment',fontWeight: FontWeight.bold),
-                HeaderCell(flex: 2, label: 'Actions',fontWeight: FontWeight.bold),
+                HeaderCell(flex: 1, label: 'ID', fontWeight: FontWeight.bold),
+                HeaderCell(flex: 2, label: 'User', fontWeight: FontWeight.bold),
+                HeaderCell(
+                  flex: 3,
+                  label: 'Academy',
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'Date & Time',
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'Status',
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 1,
+                  label: 'Payment',
+                  fontWeight: FontWeight.bold,
+                ),
+                HeaderCell(
+                  flex: 2,
+                  label: 'Actions',
+                  fontWeight: FontWeight.bold,
+                ),
               ],
             ),
           ),
@@ -212,7 +235,6 @@ class _BookingsTabState extends State<BookingsTab> {
                         label: '13/5/25',
                         color: Colors.grey.shade900,
                         fontWeight: FontWeight.normal,
-
                       ),
                       HeaderCell(
                         flex: 2,
@@ -232,7 +254,6 @@ class _BookingsTabState extends State<BookingsTab> {
                         icons: [
                           Icons.edit_calendar_outlined,
                           Icons.delete_outline_outlined,
-
                         ],
                         iconColors: [Colors.brown.shade800, Colors.redAccent],
                         onIconPressed: (value) {

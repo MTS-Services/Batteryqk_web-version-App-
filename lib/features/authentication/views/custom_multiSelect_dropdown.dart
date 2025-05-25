@@ -55,7 +55,7 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
       _overlayEntry = _createOverlayEntry();
       overlay.insert(_overlayEntry!);
       _isDropdownOpened = true;
-        });
+    });
   }
 
   void _closeDropdown() {
@@ -70,76 +70,78 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
     var offset = renderBox.localToGlobal(Offset.zero);
 
     return OverlayEntry(
-      builder: (context) => Positioned(
-        left: offset.dx,
-        width: size.width,
-        top: offset.dy + size.height + 5,
-        child: CompositedTransformFollower(
-          link: _layerLink,
-          showWhenUnlinked: false,
-          offset: Offset(0, size.height + 5),
-          child: Material(
-            elevation: 4,
-            borderRadius: BorderRadius.circular(12),
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 250),
-              decoration: BoxDecoration(
+      builder:
+          (context) => Positioned(
+            left: offset.dx,
+            width: size.width,
+            top: offset.dy + size.height + 5,
+            child: CompositedTransformFollower(
+              link: _layerLink,
+              showWhenUnlinked: false,
+              offset: Offset(0, size.height + 5),
+              child: Material(
+                elevation: 4,
                 borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
-              ),
-              child: widget.options.isEmpty
-                  ? const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  'No options available',
-                  style: TextStyle(color: Colors.black),
+                child: Container(
+                  constraints: const BoxConstraints(maxHeight: 250),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child:
+                      widget.options.isEmpty
+                          ? const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text(
+                              'No options available',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          )
+                          : ListView(
+                            padding: EdgeInsets.zero,
+                            shrinkWrap: true,
+                            children:
+                                widget.options.map((option) {
+                                  bool checked = _localSelectedValues.contains(
+                                    option,
+                                  );
+                                  return CheckboxListTile(
+                                    title: Text(option),
+                                    value: checked,
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    onChanged: (val) {
+                                      setState(() {
+                                        if (val == true) {
+                                          if (!_localSelectedValues.contains(
+                                            option,
+                                          ))
+                                            _localSelectedValues.add(option);
+                                        } else {
+                                          _localSelectedValues.remove(option);
+                                        }
+                                      });
+
+                                      widget.onSelectionChanged(
+                                        List.from(_localSelectedValues),
+                                      );
+
+                                      // Close & reopen overlay to force rebuild and update UI
+                                      _closeDropdown();
+                                      Future.delayed(
+                                        Duration(milliseconds: 1),
+                                        () {
+                                          _openDropdown();
+                                        },
+                                      );
+                                    },
+                                  );
+                                }).toList(),
+                          ),
                 ),
-              )
-                  : ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                children:
-                widget.options.map((option) {
-                  bool checked = _localSelectedValues.contains(
-                    option,
-                  );
-                  return CheckboxListTile(
-                    title: Text(option),
-                    value: checked,
-                    controlAffinity:
-                    ListTileControlAffinity.leading,
-                    onChanged: (val) {
-                      setState(() {
-                        if (val == true) {
-                          if (!_localSelectedValues.contains(
-                            option,
-                          ))
-                            _localSelectedValues.add(option);
-                        } else {
-                          _localSelectedValues.remove(option);
-                        }
-                      });
-
-                      widget.onSelectionChanged(
-                        List.from(_localSelectedValues),
-                      );
-
-                      // Close & reopen overlay to force rebuild and update UI
-                      _closeDropdown();
-                      Future.delayed(
-                        Duration(milliseconds: 1),
-                            () {
-                          _openDropdown();
-                        },
-                      );
-                    },
-                  );
-                }).toList(),
               ),
             ),
           ),
-        ),
-      ),
     );
   }
 
@@ -151,9 +153,10 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    String displayText = _localSelectedValues.isEmpty
-        ? widget.title
-        : _localSelectedValues.join(", ");
+    String displayText =
+        _localSelectedValues.isEmpty
+            ? widget.title
+            : _localSelectedValues.join(", ");
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
@@ -162,7 +165,6 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
         child: GestureDetector(
           onTap: _toggleDropdown,
           child: Container(
-            width: MediaQuery.of(context).size.width*0.315,
             height: 42,
             padding: const EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
@@ -184,9 +186,10 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
                     displayText,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: _localSelectedValues.isEmpty
-                          ? Colors.grey
-                          : Colors.black,
+                      color:
+                          _localSelectedValues.isEmpty
+                              ? Colors.grey
+                              : Colors.black,
                     ),
                   ),
                 ),

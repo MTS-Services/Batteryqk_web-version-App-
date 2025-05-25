@@ -47,7 +47,7 @@ class _ListingTabState extends State<ListingTab> {
                       );
                     },
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 5),
                   CustomElevatedIconButton(
                     color: AppColor.blueColor,
                     icon: Icon(Icons.add),
@@ -67,7 +67,7 @@ class _ListingTabState extends State<ListingTab> {
                         initialValue4: _ageGroupController.text,
                         initialValue5: _priceController.text,
                         initialValue6: _imageUrlController.text,
-                        initialValue7 :_discreptionController.text
+                        initialValue7: _discreptionController.text,
                       );
                     },
                   ),
@@ -162,26 +162,34 @@ class _ListingTabState extends State<ListingTab> {
                       HeaderCell(
                         fontWeight: FontWeight.normal,
                         flex: 2,
-                        icons: [Icons.visibility,Icons.edit, Icons.delete_rounded , ],
-                        iconColors: [Colors.blue ,Colors.yellow.shade300, Colors.red ],
+                        icons: [
+                          Icons.visibility,
+                          Icons.edit,
+                          Icons.delete_rounded,
+                        ],
+                        iconColors: [
+                          Colors.blue,
+                          Colors.yellow.shade300,
+                          Colors.red,
+                        ],
 
                         onIconPressed: (value) {
                           if (value == Icons.edit) {
                             showEditDialog(
-                                context: context,
-                                title: 'Edit User',
-                                onConfirmed: () {
-                                  print('User edited.');
-                                },
-                                confirmText: 'Save',
-                                cancelText: 'Cancel',
-                                isEdit: true,
-                                initialValue1: _nameController.text,
-                                initialValue3: _downTownController.text,
-                                initialValue4: _ageGroupController.text,
-                                initialValue5: _priceController.text,
-                                initialValue6: _imageUrlController.text,
-                                initialValue7 :_discreptionController.text
+                              context: context,
+                              title: 'Edit User',
+                              onConfirmed: () {
+                                print('User edited.');
+                              },
+                              confirmText: 'Save',
+                              cancelText: 'Cancel',
+                              isEdit: true,
+                              initialValue1: _nameController.text,
+                              initialValue3: _downTownController.text,
+                              initialValue4: _ageGroupController.text,
+                              initialValue5: _priceController.text,
+                              initialValue6: _imageUrlController.text,
+                              initialValue7: _discreptionController.text,
                             );
                           } else if (value == Icons.delete_rounded) {
                             showEditDialog(
@@ -193,10 +201,11 @@ class _ListingTabState extends State<ListingTab> {
                               confirmText: 'Delete',
                               cancelText: 'Cancel',
                             );
-                          }else if(value == Icons.visibility){
+                          } else if (value == Icons.visibility) {
                             showDialog(
                               context: context,
-                              builder: (context) => const DialogBoxForAdminListing(),
+                              builder:
+                                  (context) => const DialogBoxForAdminListing(),
                             );
                           }
                         },
@@ -212,4 +221,3 @@ class _ListingTabState extends State<ListingTab> {
     );
   }
 }
-
