@@ -1,7 +1,6 @@
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/styles/styles.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
-import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 import 'custom_reviews.dart';
 

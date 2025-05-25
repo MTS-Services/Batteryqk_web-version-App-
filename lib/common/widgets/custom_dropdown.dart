@@ -76,8 +76,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                   ),
                 ),
               ),
-            )
-                .toList(),
+            ).toList(),
             onChanged: (value) {
               setState(() {
                 selectedItem = value;

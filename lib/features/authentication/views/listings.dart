@@ -1,8 +1,6 @@
-import 'package:batteryqk_web_app/common/widgets/admin_multi_dropdown.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_dropdown_Listings.dart';
 import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +8,7 @@ import 'package:get/get.dart';
 
 import '../../../common/widgets/listings_details_custom/build_listing_card.dart';
 import '../../../util/images_path.dart';
+import 'book_screen.dart';
 import 'listings_details1.dart';
 import 'listings_details2.dart';
 import 'listings_details3.dart';
@@ -43,94 +42,91 @@ class _ListingsState extends State<Listings> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
-        return Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom,
-            left: 20,
-            right: 20,
-            top: 20,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'apply_filters'.tr,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                  fontWeight: FontWeight.w600,
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              left: 20,
+              right: 20,
+              top: 20,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'apply_filters'.tr,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              MultiDropDown(),
-              const SizedBox(height: 12),
-              CustomDropdownListings(
-                itemList: DropDownMenuItemList.categoryItem,
-                listType: 'category'.tr,
-              ),
-              CustomDropdownListings(
-                itemList:  DropDownMenuItemList.location,
-                listType: 'all_location'.tr,
-              ),
-              CustomDropdownListings(
-                itemList:  DropDownMenuItemList.ageGroup,
-                listType: 'age_group'.tr,
-              ),
-              CustomDropdownListings(
-                itemList:  DropDownMenuItemList.rating,
-                listType: 'rating'.tr,
-              ),
-              CustomDropdownListings(
-                itemList: price,
-                listType: 'price'.tr,
-              ),
-
-                const SizedBox(height: 15),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          islogin = true;
-                        });
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(Icons.check_circle_outline),
-                      label: Text('apply_filters'.tr),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            islogin ? AppColor.blueColor : Colors.grey.shade200,
-                        foregroundColor: islogin ? Colors.white : Colors.black87,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                MultiDropDown(),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.location,
+                  listType: 'all_location'.tr,
+                ),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.ageGroup,
+                  listType: 'age_group'.tr,
+                ),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.rating,
+                  listType: 'rating'.tr,
+                ),
+                CustomDropdownListings(
+                  itemList: price,
+                  listType: 'price'.tr,
+                ),
+          
+                  const SizedBox(height: 15),
+          
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            islogin = true;
+                          });
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.check_circle_outline),
+                        label: Text('apply_filters'.tr),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              islogin ? AppColor.blueColor : Colors.grey.shade200,
+                          foregroundColor: islogin ? Colors.white : Colors.black87,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      onPressed: _resetFilters,
-                      icon: const Icon(Icons.refresh),
-                      label: Text('reset'.tr),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            islogin ? Colors.grey.shade200 : AppColor.blueColor,
-                        foregroundColor: islogin ? Colors.black87 : Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: _resetFilters,
+                        icon: const Icon(Icons.refresh),
+                        label: Text('reset'.tr),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              islogin ? Colors.grey.shade200 : AppColor.blueColor,
+                          foregroundColor: islogin ? Colors.black87 : Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-            ],
+                  ],
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         );
       },
@@ -175,6 +171,9 @@ class _ListingsState extends State<Listings> {
                               ),
                             );
                           },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
+                          },
                         ),
                         BuildListingCard(
                           context: context,
@@ -191,6 +190,9 @@ class _ListingsState extends State<Listings> {
                                 builder: (context) => const ListingsDetails2(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -209,6 +211,9 @@ class _ListingsState extends State<Listings> {
                               ),
                             );
                           },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
+                          },
                         ),
                         BuildListingCard(
                           context: context,
@@ -225,6 +230,9 @@ class _ListingsState extends State<Listings> {
                                 builder: (context) => const ListingsDetails1(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -243,6 +251,9 @@ class _ListingsState extends State<Listings> {
                               ),
                             );
                           },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
+                          },
                         ),
                         BuildListingCard(
                           context: context,
@@ -259,6 +270,9 @@ class _ListingsState extends State<Listings> {
                                 builder: (context) => const ListingsDetails1(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                       ],

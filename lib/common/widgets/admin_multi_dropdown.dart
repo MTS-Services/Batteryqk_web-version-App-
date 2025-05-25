@@ -1,7 +1,7 @@
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/authentication/views/custom_multiSelect_dropdown.dart';
+import 'custom_multiSelect_dropdown.dart';
 
 class AdminMultiDropdown extends StatefulWidget {
   const AdminMultiDropdown({super.key});
@@ -41,6 +41,7 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CustomMultiSelectDropdown(
             title: "All Main Categories",
@@ -56,6 +57,7 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
           ),
           SizedBox(width: 10),
           CustomMultiSelectDropdown(
+
             title: "All Subcategories",
             options: getAvailableSubCategories(),
             selectedValues: selectedSubCategories,
@@ -68,6 +70,7 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
           ),
           SizedBox(width: 10),
           CustomMultiSelectDropdown(
+
             title: "All Sports",
             options: getAvailableSports(),
             selectedValues: selectedSports,

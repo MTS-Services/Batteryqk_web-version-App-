@@ -8,9 +8,7 @@ import 'package:batteryqk_web_app/features/authentication/views/points.dart';
 import 'package:batteryqk_web_app/features/authentication/views/notification_page.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -112,14 +110,17 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 const SizedBox(height: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 5,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children:  [
+                    children: [
                       Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                       SizedBox(width: 8),
                       Text(
@@ -178,67 +179,67 @@ class _MenuScreenState extends State<MenuScreen> {
                   _buildMenuButton(
                     icon: Icons.logout,
                     title: 'Logout',
-                    onTap: (){
+                    onTap: () {
                       signOut(context);
                     },
                   ),
 
                   const SizedBox(height: 24),
 
-                // Location Section
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 8,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'location'.tr,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                  // Location Section
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.08),
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              controller: _locationController,
-                              focusNode: _locationFocusNode,
-                              decoration: InputDecoration(
-                                hintText: 'enter_your_location'.tr,
-                                border: InputBorder.none,
-                                isDense: true,
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'location'.tr,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: _locationController,
+                                focusNode: _locationFocusNode,
+                                decoration: InputDecoration(
+                                  hintText: 'enter_your_location'.tr,
+                                  border: InputBorder.none,
+                                  isDense: true,
+                                ),
                               ),
                             ),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.edit_location_alt),
-                            onPressed: () {
-                              FocusScope.of(
-                                context,
-                              ).requestFocus(_locationFocusNode);
-                            },
-                          ),
-                        ],
-                      ),
-                    ],
+                            IconButton(
+                              icon: const Icon(Icons.edit_location_alt),
+                              onPressed: () {
+                                FocusScope.of(
+                                  context,
+                                ).requestFocus(_locationFocusNode);
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
           ),
         ],
       ),
@@ -283,13 +284,14 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
+
   Future<void> signOut(BuildContext context) async {
     try {
       await authController.logOut(context);
-      showSnackbar(context, 'Success', 'Logged out successfully');
+      Get.snackbar('Success', 'Logged out successfully');
       Get.offAll(() => LogInScreen());
     } catch (e) {
-      showSnackbar(context, 'Logout Error', e.toString().split('] ').last);
+      Get.snackbar('Logout Error', e.toString().split('] ').last);
     }
   }
 }

@@ -88,7 +88,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: Colors.black,
+                color: Colors.grey.shade400,
                 width: 1,
               ),
               boxShadow: [

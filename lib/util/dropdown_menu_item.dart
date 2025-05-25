@@ -9,16 +9,6 @@ class DropDownMenuItemList {
     'Paris',
     'Other',
   ];
-  static final List<String> categoryItem = [
-    'Swimming',
-    'Football',
-    'Basketball',
-    'Tennis',
-    'Badminton',
-    'Cricket',
-    'Gymnastics',
-    'Other',
-  ];
   static final List<String> ageGroup = [
     'Toddlers (0-5 years)',
     'Children (6-12 years)',

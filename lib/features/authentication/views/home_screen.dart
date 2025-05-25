@@ -1,9 +1,9 @@
+import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
 import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
-import 'package:get/route_manager.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/build_listing_card.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details1.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details2.dart';
@@ -11,11 +11,8 @@ import 'package:batteryqk_web_app/features/authentication/views/listings_details
 import 'package:batteryqk_web_app/util/text_string.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
-  void _onViewAllPressed() {
-    print('View All pressed!');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +135,9 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => ListingsDetails1(),
                       ),
                     );
-                  },
+                  }, bookingOnPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
+                },
                 ),
                 BuildListingCard(
                   context: context,
@@ -156,6 +155,9 @@ class HomeScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  bookingOnPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
+                  },
                 ),
                 BuildListingCard(
                   context: context,
@@ -172,6 +174,9 @@ class HomeScreen extends StatelessWidget {
                         builder: (context) => ListingsDetails3(),
                       ),
                     );
+                  },
+                  bookingOnPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                   },
                 ),
               ],

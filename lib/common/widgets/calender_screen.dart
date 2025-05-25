@@ -20,7 +20,7 @@ class CalenderScreen extends StatelessWidget {
         Text(
           _selectedDate == null
               ? 'mm/dd/yyyy'
-              : _formatter.format(_selectedDate!),
+              : _formatter.format(_selectedDate),
           style: TextStyle(
             fontSize: 16,
             color: _selectedDate == null ? Colors.black54 : Colors.black54,

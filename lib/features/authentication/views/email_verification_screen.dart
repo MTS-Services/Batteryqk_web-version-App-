@@ -4,7 +4,7 @@ import 'package:batteryqk_web_app/features/authentication/views/signup_screen.da
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../common/widgets/built_sccial_button.dart';
+import '../../../common/widgets/built_social_button.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});

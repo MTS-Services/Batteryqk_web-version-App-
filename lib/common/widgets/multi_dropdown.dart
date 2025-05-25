@@ -1,6 +1,6 @@
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
-import '../../features/authentication/views/custom_multiSelect_dropdown.dart';
+import 'custom_multiSelect_dropdown.dart';
 
 class MultiDropDown extends StatefulWidget {
   @override
@@ -41,6 +41,7 @@ class _MultiDropDownState
     return Column(
       children: [
         CustomMultiSelectDropdown(
+
           title: "All Main Categories",
           options: mainOptions,
           selectedValues: selectedMainCategories,
@@ -53,6 +54,7 @@ class _MultiDropDownState
           },
         ),
         CustomMultiSelectDropdown(
+
           title: "All Subcategories",
           options: getAvailableSubCategories(),
           selectedValues: selectedSubCategories,
@@ -64,6 +66,7 @@ class _MultiDropDownState
           },
         ),
         CustomMultiSelectDropdown(
+
           title: "All Sports",
           options: getAvailableSports(),
           selectedValues: selectedSports,

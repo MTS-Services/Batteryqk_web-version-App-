@@ -5,7 +5,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 
 import 'auth_chack.dart';
-import 'features/authentication/views/splash_screen.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

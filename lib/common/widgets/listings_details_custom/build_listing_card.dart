@@ -11,6 +11,7 @@ class BuildListingCard extends StatelessWidget {
   final String imageUrl;
   final BuildContext context;
   final Function() onPressed;
+  final Function() bookingOnPressed;
 
   const BuildListingCard({
     super.key,
@@ -21,7 +22,7 @@ class BuildListingCard extends StatelessWidget {
     required this.description,
     required this.imageUrl,
     required this.context,
-    required this.onPressed,
+    required this.onPressed, required this.bookingOnPressed,
   });
 
   @override
@@ -148,7 +149,7 @@ class BuildListingCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     OutlinedButton(
-                      onPressed: () {},
+                      onPressed: bookingOnPressed,
                       style: OutlinedButton.styleFrom(
                         backgroundColor: AppColor.orangeColor,
                         padding: const EdgeInsets.symmetric(

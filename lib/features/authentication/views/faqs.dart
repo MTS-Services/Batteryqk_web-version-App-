@@ -66,7 +66,7 @@ class Faqs extends StatelessWidget {
                   ],
                 ),
               );
-            }).toList(),
+            }),
           ],
         ),
       ),
