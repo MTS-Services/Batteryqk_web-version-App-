@@ -47,7 +47,7 @@ class _ListingTabState extends State<ListingTab> {
                       );
                     },
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 5),
                   CustomElevatedIconButton(
                     color: AppColor.blueColor,
                     icon: Icon(Icons.add),

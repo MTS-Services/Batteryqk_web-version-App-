@@ -30,18 +30,18 @@ class _AdminPanelState extends State<AdminPanel> {
       backgroundColor: AppColor.whiteColor,
       appBar: CustomAppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 30),
             Text(
               'Admin Dashboard',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24,),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 24),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             Container(
-              padding: const EdgeInsets.all(2),
+              padding: const EdgeInsets.symmetric(vertical: 4),
               decoration: BoxDecoration(
                 color: Colors.grey.shade200,
                 borderRadius: BorderRadius.circular(12),
@@ -80,7 +80,7 @@ class _AdminPanelState extends State<AdminPanel> {
               ),
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             Expanded(child: tabs[selectedIndex]),
           ],
