@@ -4,15 +4,14 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:get/get.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/build_listing_card.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details1.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details2.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings_details3.dart';
-import 'package:batteryqk_web_app/util/text_string.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15),
             child: Text(
-              "Featured Activities",
+              "featured_activities".tr,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
@@ -73,12 +72,18 @@ class HomeScreen extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             children: [
               _buildQuickAccessCardWithImage(
-                "Sports Academies",
+                "sprots_academies".tr,
                 AppImages.penguinHead,
               ),
-              _buildQuickAccessCardWithImage("Nurseries", AppImages.houseShape),
-              _buildQuickAccessCardWithImage("Loyality Points", AppImages.car2),
-              _buildQuickAccessCardWithImage("Coming Soon", AppImages.car1),
+              _buildQuickAccessCardWithImage(
+                "nurseries".tr,
+                AppImages.houseShape,
+              ),
+              _buildQuickAccessCardWithImage(
+                "loyalty_points".tr,
+                AppImages.car2,
+              ),
+              _buildQuickAccessCardWithImage("comming_soon".tr, AppImages.car1),
             ],
           ),
           const SizedBox(height: 30),
@@ -94,7 +99,7 @@ class HomeScreen extends StatelessWidget {
 
                     children: [
                       Text(
-                        "Top Listings",
+                        "top_listings".tr,
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w900,
@@ -109,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          "View All",
+                          "view_all".tr,
                           style: TextStyle(
                             color: AppColor.blueColor,
                             fontWeight: FontWeight.bold,
@@ -122,17 +127,17 @@ class HomeScreen extends StatelessWidget {
                 ),
                 BuildListingCard(
                   context: context,
-                  title: AppText.academies1Title,
-                  location: "Swimming | Downtown",
-                  tag: "Paid",
+                  title: 'academies_1_title'.tr,
+                  location: "activity.swimming.downtown".tr,
+                  tag: "paid".tr,
                   rating: 4.5,
-                  description: AppText.academies1Details,
+                  description: 'academies_1_details'.tr,
                   imageUrl: AppImages.academies1a,
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListingsDetails1(),
+                        builder: (context) => const ListingsDetails1(),
                       ),
                     );
                   }, bookingOnPressed: () {
@@ -141,17 +146,17 @@ class HomeScreen extends StatelessWidget {
                 ),
                 BuildListingCard(
                   context: context,
-                  title: AppText.academies2Title,
-                  location: "Gym | Uptown",
-                  tag: "Free",
+                  title: 'academies_2_title'.tr,
+                  location: "activity.gym.uptown".tr,
+                  tag: "free".tr,
                   rating: 4.0,
-                  description: AppText.academies2Details,
+                  description: 'academies_2_details'.tr,
                   imageUrl: AppImages.academies2a,
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListingsDetails2(),
+                        builder: (context) => const ListingsDetails2(),
                       ),
                     );
                   },
@@ -161,17 +166,17 @@ class HomeScreen extends StatelessWidget {
                 ),
                 BuildListingCard(
                   context: context,
-                  title: AppText.academies3Title,
-                  location: "Tennis | West Side",
-                  tag: "Paid",
+                  title: 'academies_3_title'.tr,
+                  location: "activity.tennis.westside".tr,
+                  tag: "paid".tr,
                   rating: 5.0,
-                  description: AppText.academies3Details,
+                  description: 'academies_3_details'.tr,
                   imageUrl: AppImages.academies3a,
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListingsDetails3(),
+                        builder: (context) => const ListingsDetails3(),
                       ),
                     );
                   },

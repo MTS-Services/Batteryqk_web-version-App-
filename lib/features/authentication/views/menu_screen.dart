@@ -9,6 +9,7 @@ import 'package:batteryqk_web_app/features/authentication/views/notification_pag
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -148,37 +149,37 @@ class _MenuScreenState extends State<MenuScreen> {
                 children: [
                   _buildMenuButton(
                     icon: Icons.card_membership_rounded,
-                    title: 'Reward',
+                    title: 'reward'.tr,
                     onTap: () => Get.to(() => Points()),
                   ),
                   _buildMenuButton(
                     icon: Icons.build_circle_outlined,
-                    title: 'Car Services',
+                    title: 'car_services'.tr,
                     onTap: () => Get.to(() => CarService()),
                   ),
                   _buildMenuButton(
                     icon: Icons.help_outline_rounded,
-                    title: 'FAQs',
+                    title: 'faqs'.tr,
                     onTap: () => Get.to(() => Faqs()),
                   ),
                   _buildMenuButton(
                     icon: Icons.notifications_active_outlined,
-                    title: 'Notifications',
+                    title: 'notifications'.tr,
                     onTap: () => Get.to(() => NotificationPage()),
                   ),
                   _buildMenuButton(
-                    icon: Icons.notifications_active_outlined,
+                    icon: Icons.language_outlined,
                     title: 'language'.tr,
                     onTap: () => Get.to(() => LanguagePage()),
                   ),
                   _buildMenuButton(
                     icon: Icons.admin_panel_settings,
-                    title: 'Admin',
+                    title: 'admin'.tr,
                     onTap: () => Get.to(() => AdminPanel()),
                   ),
                   _buildMenuButton(
                     icon: Icons.logout,
-                    title: 'Logout',
+                    title: 'logout'.tr,
                     onTap: () {
                       signOut(context);
                     },
@@ -284,14 +285,13 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
-
   Future<void> signOut(BuildContext context) async {
     try {
       await authController.logOut(context);
-      Get.snackbar('Success', 'Logged out successfully');
+      showSnackbar(context, 'Success', 'Logged out successfully');
       Get.offAll(() => LogInScreen());
     } catch (e) {
-      Get.snackbar('Logout Error', e.toString().split('] ').last);
+      showSnackbar(context, 'Logout Error', e.toString().split('] ').last);
     }
   }
 }
