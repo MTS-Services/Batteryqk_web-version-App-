@@ -6,10 +6,7 @@ import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:get/get.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/build_listing_card.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings_details1.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings_details2.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings_details3.dart';
-
+import 'package:batteryqk_web_app/features/authentication/views/listings_details.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -137,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ListingsDetails1(),
+                        builder: (context) => const ListingsDetails(),
                       ),
                     );
                   }, bookingOnPressed: () {
@@ -156,7 +153,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ListingsDetails2(),
+                        builder: (context) => const ListingsDetails(),
                       ),
                     );
                   },
@@ -176,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ListingsDetails3(),
+                        builder: (context) => const ListingsDetails(),
                       ),
                     );
                   },

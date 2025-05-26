@@ -9,9 +9,7 @@ import 'package:get/get.dart';
 import '../../../common/widgets/listings_details_custom/build_listing_card.dart';
 import '../../../util/images_path.dart';
 import 'book_screen.dart';
-import 'listings_details1.dart';
-import 'listings_details2.dart';
-import 'listings_details3.dart';
+import 'listings_details.dart';
 
 class Listings extends StatefulWidget {
   const Listings({super.key});
@@ -167,7 +165,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },
@@ -187,7 +185,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails2(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },
@@ -207,7 +205,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails3(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },
@@ -227,7 +225,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },
@@ -247,7 +245,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },
@@ -267,7 +265,7 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
                           },

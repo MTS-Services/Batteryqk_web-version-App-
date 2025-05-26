@@ -1,5 +1,7 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/controllers/language_controller.dart';
+import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,6 +35,7 @@ class _LanguagePageState extends State<LanguagePage> {
                 title: Text("english_language".tr),
                 onTap: () {
                   languageController.toggleLanguage(true);
+                  Get.to(CustomBottomNavigationBar());
                 },
               ),
             ),
@@ -48,6 +51,7 @@ class _LanguagePageState extends State<LanguagePage> {
                 title: Text("Arabic".tr),
                 onTap: () {
                   languageController.toggleLanguage(false);
+                  Get.to(CustomBottomNavigationBar());
                 },
               ),
             ),
