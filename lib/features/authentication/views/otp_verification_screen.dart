@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../common/widgets/built_sccial_button.dart';
-import '../../../common/widgets/custom_text_buttom.dart';
+import '../../../common/widgets/built_social_button.dart';
+import '../../../common/widgets/custom_text_button.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
   const OtpVerificationScreen({super.key});

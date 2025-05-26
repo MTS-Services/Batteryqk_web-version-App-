@@ -8,9 +8,8 @@ import 'package:get/get.dart';
 
 import '../../../common/widgets/listings_details_custom/build_listing_card.dart';
 import '../../../util/images_path.dart';
-import 'listings_details1.dart';
-import 'listings_details2.dart';
-import 'listings_details3.dart';
+import 'book_screen.dart';
+import 'listings_details.dart';
 
 class Listings extends StatefulWidget {
   const Listings({super.key});
@@ -61,27 +60,25 @@ class _ListingsState extends State<Listings> {
                   ),
                 ),
                 MultiDropDown(),
-                const SizedBox(height: 12),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.categoryItem,
-                  listType: 'category'.tr,
-                ),
-                CustomDropdownListings(
-                  itemList: DropDownMenuItemList.location,
+                  itemList:  DropDownMenuItemList.location,
                   listType: 'all_location'.tr,
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.ageGroup,
+                  itemList:  DropDownMenuItemList.ageGroup,
                   listType: 'age_group'.tr,
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.rating,
+                  itemList:  DropDownMenuItemList.rating,
                   listType: 'rating'.tr,
                 ),
-                CustomDropdownListings(itemList: price, listType: 'price'.tr),
-
-                const SizedBox(height: 15),
-
+                CustomDropdownListings(
+                  itemList: price,
+                  listType: 'price'.tr,
+                ),
+          
+                  const SizedBox(height: 15),
+          
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -97,11 +94,8 @@ class _ListingsState extends State<Listings> {
                         label: Text('apply_filters'.tr),
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              islogin
-                                  ? AppColor.blueColor
-                                  : Colors.grey.shade200,
-                          foregroundColor:
-                              islogin ? Colors.white : Colors.black87,
+                              islogin ? AppColor.blueColor : Colors.grey.shade200,
+                          foregroundColor: islogin ? Colors.white : Colors.black87,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -117,11 +111,8 @@ class _ListingsState extends State<Listings> {
                         label: Text('reset'.tr),
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                              islogin
-                                  ? Colors.grey.shade200
-                                  : AppColor.blueColor,
-                          foregroundColor:
-                              islogin ? Colors.black87 : Colors.white,
+                              islogin ? Colors.grey.shade200 : AppColor.blueColor,
+                          foregroundColor: islogin ? Colors.black87 : Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -174,9 +165,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -191,9 +185,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails2(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -208,9 +205,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails3(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -225,9 +225,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -242,9 +245,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                         BuildListingCard(
@@ -259,9 +265,12 @@ class _ListingsState extends State<Listings> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ListingsDetails1(),
+                                builder: (context) => const ListingsDetails(),
                               ),
                             );
+                          },
+                          bookingOnPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen()));
                           },
                         ),
                       ],

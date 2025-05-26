@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 
 import '../../../util/colors.dart';
 
-class ListingsDetails1 extends StatefulWidget {
-  const ListingsDetails1({super.key});
+class ListingsDetails extends StatefulWidget {
+  const ListingsDetails({super.key});
 
   @override
-  State<ListingsDetails1> createState() => _ListingsDetails1State();
+  State<ListingsDetails> createState() => _ListingsDetailsState();
 }
 
-class _ListingsDetails1State extends State<ListingsDetails1> {
+class _ListingsDetailsState extends State<ListingsDetails> {
   late final List<String> facilitiesList;
   final List<String> contractInfos = [
     '555-123-4567',
@@ -55,7 +55,7 @@ class _ListingsDetails1State extends State<ListingsDetails1> {
                 image1e: AppImages.academies1e,
               ),
               const SizedBox(height: 20),
-              CustomDetails(facilities: facilitiesList, starCount: 5),
+              CustomDetails(facilities: facilitiesList, starCount: 5, tag: 'Paid'.tr,),
 
               CustomListingsBookingSection(
                 dateController: TextEditingController(),

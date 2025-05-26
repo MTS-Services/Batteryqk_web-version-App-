@@ -285,7 +285,6 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
-
   Future<void> signOut(BuildContext context) async {
     try {
       await authController.logOut(context);

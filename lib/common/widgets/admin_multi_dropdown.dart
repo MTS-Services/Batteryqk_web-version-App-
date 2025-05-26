@@ -1,7 +1,7 @@
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/authentication/views/custom_multiSelect_dropdown.dart';
+import 'custom_multiSelect_dropdown.dart';
 
 class AdminMultiDropdown extends StatefulWidget {
   const AdminMultiDropdown({super.key});
@@ -37,13 +37,13 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> mainOptions =
-        DropDownMenuItemList.sportsCategories.keys.toList();
-    return Row(
-      spacing: 10,
-      children: [
-        Expanded(
-          child: CustomMultiSelectDropdown(
+    List<String> mainOptions = DropDownMenuItemList.sportsCategories.keys.toList();
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CustomMultiSelectDropdown(
             title: "All Main Categories",
             options: mainOptions,
             selectedValues: selectedMainCategories,
@@ -55,9 +55,9 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-        ),
-        Expanded(
-          child: CustomMultiSelectDropdown(
+          SizedBox(width: 10),
+          CustomMultiSelectDropdown(
+
             title: "All Subcategories",
             options: getAvailableSubCategories(),
             selectedValues: selectedSubCategories,
@@ -68,9 +68,9 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-        ),
-        Expanded(
-          child: CustomMultiSelectDropdown(
+          SizedBox(width: 10),
+          CustomMultiSelectDropdown(
+
             title: "All Sports",
             options: getAvailableSports(),
             selectedValues: selectedSports,
@@ -80,8 +80,8 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
               });
             },
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

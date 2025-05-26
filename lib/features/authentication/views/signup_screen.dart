@@ -1,11 +1,12 @@
 import 'package:get/get.dart'; // add for .tr
-import 'package:batteryqk_web_app/common/widgets/custom_text_buttom.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_text_button.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../../../common/widgets/built_sccial_button.dart';
+import '../../../common/widgets/built_social_button.dart';
 import '../../../common/widgets/show_snack_bar.dart';
 import '../../../data/services/firebase_service.dart';
 

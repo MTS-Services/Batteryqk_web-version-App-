@@ -1,18 +1,18 @@
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/styles/styles.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
-import 'package:batteryqk_web_app/util/text_string.dart';
 import 'package:flutter/material.dart';
 import 'custom_reviews.dart';
 
 class CustomDetails extends StatefulWidget {
   final List<String> facilities;
   final int starCount;
+  final String tag;
 
   const CustomDetails({
     super.key,
     required this.facilities,
-    required this.starCount,
+    required this.starCount, required this.tag,
   });
 
   @override
@@ -29,15 +29,25 @@ class _CustomDetailsState extends State<CustomDetails> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomTitleText('academies_1_title'.tr),
-            Badge(
-              label: Text('paid'.tr),
-              backgroundColor: AppColor.whiteColor,
-              textColor: Colors.black,
-              textStyle: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 12,
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 5,
               ),
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+              decoration: BoxDecoration(
+                color:
+                widget.tag == "Paid".tr
+                    ? Colors.blue.shade100
+                    : Colors.green.shade100,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                widget.tag,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
           ],
         ),
