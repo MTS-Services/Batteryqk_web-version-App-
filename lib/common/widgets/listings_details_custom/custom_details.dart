@@ -97,35 +97,37 @@ class _CustomDetailsState extends State<CustomDetails> {
         CustomSectionHeaderText('facilities'.tr),
         Column(
           children:
-              widget.facilities.map((facility) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.check, color: Colors.green),
-                      const SizedBox(width: 6),
-                      Text(facility),
-                    ],
-                  ),
-                );
-              }).toList(),
+          widget.facilities.map((facility) {
+            return Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                children: [
+                  const Icon(Icons.check, color: Colors.green),
+                  const SizedBox(width: 6),
+                  Text(facility),
+                ],
+              ),
+            );
+          }).toList(),
         ),
         const SizedBox(height: 30),
         CustomSectionHeaderText('opening_hours'.tr),
         CustomParagraphText('opening_hours_detail'.tr),
         const SizedBox(height: 30),
         CustomSectionHeaderText('reviews'.tr),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Mark T.',
-          designation: 'Excellent facilities and coaches',
-        ),
-        const SizedBox(height: 20),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Sarah L.',
-          designation: 'My kids love coming here. Very professional.',
-        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: 2,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: CustomReviews(
+                  starCount: widget.starCount,
+                  name: 'Mark T.',
+                  designation: 'Excellent facilities and coaches',
+                ),
+              );
+            }),
       ],
     );
   }
