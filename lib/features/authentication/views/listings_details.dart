@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details.dart';

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../common/widgets/custom_dropdown_Listings.dart';
 import '../../../common/widgets/terms_and_booking_card.dart';
 
 class BookScreen extends StatefulWidget {
@@ -28,6 +29,57 @@ class _BookScreenState extends State<BookScreen> {
     'Teenagers(13-18 years',
     'Adults(18+',
   ];
+
+  final List<String> timeList = [
+    "1:00 AM",
+    "2:00 AM",
+    "3:00 AM",
+    "4:00 AM",
+    "5:00 AM",
+    "6:00 AM",
+    "7:00 AM",
+    "8:00 AM",
+    "9:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "1:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
+    "6:00 PM",
+    "7:00 PM",
+    "8:00 PM",
+    "9:00 PM",
+    "10:00 PM",
+    "11:00 PM",
+    "12:00 AM",
+  ];
+
+  final List<String> personNumber = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+  ];
+
 
   DateTime? _selectedDate;
   final DateFormat _formatter = DateFormat('MM/dd/yyyy');
@@ -92,48 +144,7 @@ class _BookScreenState extends State<BookScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'personal_information'.tr,
-                          style: const TextStyle(
-                            color: Color(0xFF1F2937),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-
-                        Text(
-                          'first_name'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-                        const SizedBox(height: 10),
-
-                        Text(
-                          'last_name'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-
-                        const SizedBox(height: 10),
-
-                        Text(
-                          'email_address'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-
-                        const SizedBox(height: 10),
-
-                        Text(
-                          'password'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-                        const SizedBox(height: 10),
-
-                        Divider(color: Colors.grey.shade300),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 2),
                         Text(
                           'booking_details'.tr,
                           style: const TextStyle(
@@ -173,32 +184,12 @@ class _BookScreenState extends State<BookScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 3),
-                        Text(
-                          'number_of_participants'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Card(
-                          elevation: 3,
-                          shadowColor: Colors.white.withOpacity(0.5),
-                          color: Colors.white,
-                          child: Container(
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white60,
-                                  blurRadius: 12,
-                                  spreadRadius: 1,
-                                  offset:  Offset(0, 6),
-                                ),
-                              ],
-                            ),
-                            child: TextFormField(),
-                          ),
-                        ),
-                        const SizedBox(height: 3),
+                        Text('time'.tr),
+                        CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
+                        const SizedBox(height: 8),
+                        Text('number_of_person'.tr),
+                        CustomDropdownListings(itemList: personNumber, listType: '1'),
+                        const SizedBox(height: 8),
                         Text(
                           'age_group'.tr,
                           style: Theme.of(context).textTheme.bodyMedium,
