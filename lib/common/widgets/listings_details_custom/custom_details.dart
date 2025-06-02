@@ -52,6 +52,7 @@ class _CustomDetailsState extends State<CustomDetails> {
           ],
         ),
         Text('downtown'.tr, style: TextStyle(color: Colors.grey.shade600)),
+        Text('price : \$81'.tr, style: TextStyle(color: Colors.grey.shade600)),
         Row(
           children: [
             Row(
@@ -76,6 +77,7 @@ class _CustomDetailsState extends State<CustomDetails> {
         CustomParagraphText('academies_1_details'.tr),
         const SizedBox(height: 30),
         CustomSectionHeaderText('age_groups'.tr),
+
         Row(
           children: [
             Badge(
@@ -92,6 +94,23 @@ class _CustomDetailsState extends State<CustomDetails> {
               textColor: Colors.black,
             ),
           ],
+        ),
+        const SizedBox(height: 30),
+        CustomSectionHeaderText('Category'.tr),
+        Column(
+          children:
+          widget.facilities.map((facility) {
+            return Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                children: [
+                  const Icon(Icons.check_box, color: Colors.green),
+                  const SizedBox(width: 6),
+                  Text(facility),
+                ],
+              ),
+            );
+          }).toList(),
         ),
         const SizedBox(height: 30),
         CustomSectionHeaderText('facilities'.tr),

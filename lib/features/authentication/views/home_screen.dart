@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(15),
             child: Container(
               width: double.infinity,
-              height: 200,
+              height: MediaQuery.of(context).size.height*0.2,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -65,22 +65,25 @@ class HomeScreen extends StatelessWidget {
             crossAxisCount: 2,
             crossAxisSpacing: 16,
             mainAxisSpacing: 16,
-            childAspectRatio: 1.1,
+            childAspectRatio:MediaQuery.of(context).size.height*0.001,
             physics: const NeverScrollableScrollPhysics(),
             children: [
               _buildQuickAccessCardWithImage(
                 "sprots_academies".tr,
                 AppImages.penguinHead,
+                context
               ),
               _buildQuickAccessCardWithImage(
                 "nurseries".tr,
                 AppImages.houseShape,
+                context
               ),
               _buildQuickAccessCardWithImage(
                 "loyalty_points".tr,
                 AppImages.car2,
+                context
               ),
-              _buildQuickAccessCardWithImage("comming_soon".tr, AppImages.car1),
+              _buildQuickAccessCardWithImage("comming_soon".tr, AppImages.car1, context),
             ],
           ),
           const SizedBox(height: 30),
@@ -89,38 +92,35 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                    children: [
-                      Text(
-                        "top_listings".tr,
+                  children: [
+                    Text(
+                      "top_listings".tr,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff212121),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Listings()),
+                        );
+                      },
+                      child: Text(
+                        "view_all".tr,
                         style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xff212121),
+                          color: AppColor.blueColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
                         ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Listings()),
-                          );
-                        },
-                        child: Text(
-                          "view_all".tr,
-                          style: TextStyle(
-                            color: AppColor.blueColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 BuildListingCard(
                   context: context,
@@ -189,8 +189,9 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildQuickAccessCardWithImage(String label, String imageUrl) {
+  Widget _buildQuickAccessCardWithImage(String label, String imageUrl , BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height*1,
       decoration: BoxDecoration(
         color: const Color.fromARGB(76, 0, 187, 212),
         borderRadius: BorderRadius.circular(20),
@@ -212,7 +213,7 @@ class HomeScreen extends StatelessWidget {
                 (context, error, stackTrace) =>
                     const Icon(Icons.error, size: 40, color: Colors.red),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: MediaQuery.of(context).size.height*0.01,),
           Text(
             label,
             textAlign: TextAlign.center,

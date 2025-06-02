@@ -38,7 +38,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
           child: Container(
-            height: 70,
+            height: MediaQuery.of(context).size.height*0.1,
             width: double.infinity, // Make it fill the entire width
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.9), // Slight opacity
