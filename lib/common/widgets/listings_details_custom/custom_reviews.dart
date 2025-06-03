@@ -16,7 +16,7 @@ class CustomReviews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      width: 400,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.blue.shade50,
         borderRadius: BorderRadius.circular(15),

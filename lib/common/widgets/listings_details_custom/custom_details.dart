@@ -1,7 +1,9 @@
+import 'package:batteryqk_web_app/features/authentication/views/review_screen.dart';
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/styles/styles.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import '../../../features/authentication/views/listings.dart';
 import 'custom_reviews.dart';
 
 class CustomDetails extends StatefulWidget {
@@ -114,7 +116,28 @@ class _CustomDetailsState extends State<CustomDetails> {
         CustomSectionHeaderText('opening_hours'.tr),
         CustomParagraphText('opening_hours_detail'.tr),
         const SizedBox(height: 30),
-        CustomSectionHeaderText('reviews'.tr),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomSectionHeaderText('reviews'.tr),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReviewScreen()),
+                );
+              },
+              child: Text(
+                "view_all".tr,
+                style: TextStyle(
+                  color: AppColor.blueColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
         ListView.builder(
           shrinkWrap: true,
           itemCount: 2,
