@@ -21,8 +21,13 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
+
             canvasColor: Colors.white,
             inputDecorationTheme: InputDecorationTheme(
+              contentPadding: EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
               focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color:AppColor.blueColor),
                 borderRadius: BorderRadius.circular(6),

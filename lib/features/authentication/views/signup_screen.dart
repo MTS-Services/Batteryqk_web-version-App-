@@ -1,3 +1,5 @@
+import 'package:batteryqk_web_app/data/services/api_services.dart';
+import 'package:batteryqk_web_app/features/authentication/models/user_data.dart';
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_text_button.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
@@ -21,7 +23,8 @@ class _SignupScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-
+  final TextEditingController _fNameTEController = TextEditingController();
+  final TextEditingController _lNameTEController = TextEditingController();
   final  TextEditingController _emailTEController=TextEditingController();
   final  TextEditingController _passwordTEController=TextEditingController();
   final  TextEditingController _confirmPTEController=TextEditingController();
@@ -62,6 +65,36 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 50),
                 TextFormField(
+                  controller: _fNameTEController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'FastName_required'.tr;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Last Name'.tr,
+                    filled: true,
+                    fillColor: Colors.blue.shade50,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
+                  controller: _lNameTEController,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'LastName_required'.tr;
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    hintText: 'Last Name'.tr,
+                    filled: true,
+                    fillColor: Colors.blue.shade50,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                TextFormField(
                   controller: _emailTEController,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -79,18 +112,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     hintText: 'email'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.blueColor),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -110,18 +131,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     hintText: 'password'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.blueColor),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword
@@ -154,18 +163,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     hintText: 'confirm_password'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 14,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColor.blueColor),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirmPassword
@@ -188,6 +185,15 @@ class _SignupScreenState extends State<SignupScreen> {
                     onPressed: () {
                       if(_formKey.currentState!.validate()){
                         handleSignup(context);
+                        final user = UserCreate(
+                            fname: _fNameTEController.text,
+                            lname: _lNameTEController.text,
+                            email: _emailTEController.text.trim(),
+                            password: _passwordTEController.text,
+                            uid:UserCreate.generateUID()
+                        );
+                        ApiService.createUser(user, context);
+                        Get.to(() => LogInScreen());
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -245,8 +251,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         // Handle Facebook login
                       },
                     ),
-
-
                   ],
                 ),
               ],

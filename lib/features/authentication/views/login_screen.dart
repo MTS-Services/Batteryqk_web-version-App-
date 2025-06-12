@@ -1,3 +1,5 @@
+import 'package:batteryqk_web_app/data/services/api_services.dart';
+import 'package:batteryqk_web_app/features/authentication/models/user_login.dart';
 import 'package:get/get.dart'; // add this import for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_button.dart';
@@ -155,7 +157,10 @@ class _LogInScreenState extends State<LogInScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         handleSignIn(context);
+                        UserLogin userLogin = UserLogin(email: _emailTEController.text.trim(), password: _passwordTEController.text);
+                       ApiService.userLogIn(userLogin, context);
                       }
+
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
