@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /// Custom large title text
 class CustomTitleText extends StatelessWidget {
@@ -10,10 +11,7 @@ class CustomTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.w600,
-      ),
+      style: TextStyle(fontSize: 25.sp, fontWeight: FontWeight.w600),
     );
   }
 }
@@ -28,10 +26,7 @@ class CustomSectionHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-      ),
+      style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
     );
   }
 }
@@ -46,11 +41,38 @@ class CustomParagraphText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: const TextStyle(
-        fontSize: 16,
+      style: TextStyle(
+        fontSize: 16.sp,
         height: 1.5,
-        fontWeight: FontWeight.w400
+        fontWeight: FontWeight.w400,
       ),
+    );
+  }
+}
+
+class CustomSectionSubtitleText extends StatelessWidget {
+  const CustomSectionSubtitleText({super.key, required this.subtitle});
+  final String subtitle;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      subtitle,
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
+    );
+  }
+}
+
+class CustomSectionTitleText extends StatelessWidget {
+  const CustomSectionTitleText({super.key, required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
     );
   }
 }

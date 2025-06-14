@@ -1,6 +1,6 @@
+import 'package:batteryqk_web_app/features/authentication/views/history.dart';
 import 'package:batteryqk_web_app/features/authentication/views/language_page.dart';
 import 'package:get/get.dart'; // add this import
-import 'package:batteryqk_web_app/features/admin/admin_panel.dart';
 import 'package:batteryqk_web_app/features/authentication/views/car_service.dart';
 import 'package:batteryqk_web_app/features/authentication/views/faqs.dart';
 import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
@@ -173,9 +173,9 @@ class _MenuScreenState extends State<MenuScreen> {
                     onTap: () => Get.to(() => LanguagePage()),
                   ),
                   _buildMenuButton(
-                    icon: Icons.admin_panel_settings,
-                    title: 'admin'.tr,
-                    onTap: () => Get.to(() => AdminPanel()),
+                    icon: Icons.history,
+                    title: 'history'.tr,
+                    onTap: () => Get.to(() => HistoryScreen()),
                   ),
                   _buildMenuButton(
                     icon: Icons.logout,
@@ -285,6 +285,7 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
+
   Future<void> signOut(BuildContext context) async {
     try {
       await authController.logOut(context);
