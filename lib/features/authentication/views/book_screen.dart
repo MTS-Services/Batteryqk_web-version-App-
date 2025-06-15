@@ -1,13 +1,10 @@
-import 'package:batteryqk_web_app/common/widgets/calender_screen.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_dropdown.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_text_field.dart';
-import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../common/widgets/custom_dropdown_Listings.dart';
 import '../../../common/widgets/terms_and_booking_card.dart';
 
 class BookScreen extends StatefulWidget {
@@ -21,6 +18,54 @@ class _BookScreenState extends State<BookScreen> {
   String? selectedAgeGroup;
 
   bool isChecked = true;
+  final List<String> timeList = [
+    "1:00 AM",
+    "2:00 AM",
+    "3:00 AM",
+    "4:00 AM",
+    "5:00 AM",
+    "6:00 AM",
+    "7:00 AM",
+    "8:00 AM",
+    "9:00 AM",
+    "10:00 AM",
+    "11:00 AM",
+    "12:00 PM",
+    "1:00 PM",
+    "2:00 PM",
+    "3:00 PM",
+    "4:00 PM",
+    "5:00 PM",
+    "6:00 PM",
+    "7:00 PM",
+    "8:00 PM",
+    "9:00 PM",
+    "10:00 PM",
+    "11:00 PM",
+    "12:00 AM",
+  ];
+  final List<String> personNumber = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+  ];
 
   final List<String> ageGroups = [
     'Toddlers(0-5 years',
@@ -31,6 +76,7 @@ class _BookScreenState extends State<BookScreen> {
 
   DateTime? _selectedDate;
   final DateFormat _formatter = DateFormat('MM/dd/yyyy');
+  final controller = TextEditingController();
 
   Future<void> _pickDate(BuildContext context) async {
     final DateTime? datePicked = await showDatePicker(
@@ -92,135 +138,179 @@ class _BookScreenState extends State<BookScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'personal_information'.tr,
-                          style: const TextStyle(
-                            color: Color(0xFF1F2937),
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
+                        // Text(
+                        //   'personal_information'.tr,
+                        //   style: const TextStyle(
+                        //     color: Color(0xFF1F2937),
+                        //     fontWeight: FontWeight.w600,
+                        //     fontSize: 18,
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 10),
 
-                        Text(
-                          'first_name'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-                        const SizedBox(height: 10),
+                        // Text(
+                        //   'first_name'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // const CustomTextField(),
+                        // const SizedBox(height: 10),
 
-                        Text(
-                          'last_name'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
+                        // Text(
+                        //   'last_name'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // const CustomTextField(),
 
-                        const SizedBox(height: 10),
+                        // const SizedBox(height: 10),
 
-                        Text(
-                          'email_address'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
+                        // Text(
+                        //   'email_address'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // const CustomTextField(),
 
-                        const SizedBox(height: 10),
+                        // const SizedBox(height: 10),
 
-                        Text(
-                          'password'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        const CustomTextField(),
-                        const SizedBox(height: 10),
+                        // Text(
+                        //   'password'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // const CustomTextField(),
+                        // const SizedBox(height: 10),
 
-                        Divider(color: Colors.grey.shade300),
-                        const SizedBox(height: 10),
-                        Text(
-                          'booking_details'.tr,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF1F2937),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text('select_academy'.tr),
-                        const SizedBox(height: 3),
-                        MultiDropDown(),
-                        const SizedBox(height: 3),
-                        Text(
-                          'date'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        Card(
-                          elevation: 3,
-                          shadowColor: Colors.white.withOpacity(0.5),
-                          color: Colors.white,
-                          child: GestureDetector(
-                            onTap: () => _pickDate(context),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                                vertical: 9,
-                              ),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              child: CalenderScreen(
-                                selectedDate: _selectedDate,
-                                formatter: _formatter,
+                        // Divider(color: Colors.grey.shade300),
+                        // const SizedBox(height: 10),
+                        // Text(
+                        //   'booking_details'.tr,
+                        //   style: const TextStyle(
+                        //     fontWeight: FontWeight.w600,
+                        //     fontSize: 18,
+                        //     color: Color(0xFF1F2937),
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 10),
+                        // Text('select_academy'.tr),
+                        // const SizedBox(height: 3),
+                        // MultiDropDown(),
+                        // const SizedBox(height: 3),
+                        // Text(
+                        //   'date'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // Card(
+                        //   elevation: 3,
+                        //   shadowColor: Colors.white.withOpacity(0.5),
+                        //   color: Colors.white,
+                        //   child: GestureDetector(
+                        //     onTap: () => _pickDate(context),
+                        //     child: Container(
+                        //       padding: const EdgeInsets.symmetric(
+                        //         horizontal: 8,
+                        //         vertical: 9,
+                        //       ),
+                        //       decoration: const BoxDecoration(
+                        //         color: Colors.white,
+                        //       ),
+                        //       child: CalenderScreen(
+                        //         selectedDate: _selectedDate,
+                        //         formatter: _formatter,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+
+                        // const SizedBox(height: 3),
+                        // Text(
+                        //   'number_of_participants'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // Card(
+                        //   elevation: 3,
+                        //   shadowColor: Colors.white.withOpacity(0.5),
+                        //   color: Colors.white,
+                        //   child: Container(
+                        //     height: 40,
+                        //     decoration: const BoxDecoration(
+                        //       color: Colors.white,
+                        //       boxShadow: [
+                        //         BoxShadow(
+                        //           color: Colors.white60,
+                        //           blurRadius: 12,
+                        //           spreadRadius: 1,
+                        //           offset:  Offset(0, 6),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //     child: TextFormField(),
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 3),
+                        // Text(
+                        //   'age_group'.tr,
+                        //   style: Theme.of(context).textTheme.bodyMedium,
+                        // ),
+                        // CustomDropdownButton(
+                        //   itemList: ageGroups,
+                        //   listType: 'select_an_age_group'.tr,
+                        // ),
+
+                        // const SizedBox(height: 10),
+
+                        // Divider(color: Colors.grey.shade300),
+                        // const SizedBox(height: 10),
+                        // Text(
+                        //   'special_request'.tr,
+                        //   style: const TextStyle(
+                        //     fontWeight: FontWeight.w600,
+                        //     fontSize: 18,
+                        //     color: Color(0xFF1F2937),
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 25),
+                        Text('date'.tr),
+                        TextField(
+                          controller: controller,
+                          decoration: InputDecoration(
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: AppColor.blueColor),
+                            ),
+                            labelText: 'date_month_year'.tr,
+                            suffixIcon: IconButton(
+                              onPressed: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                  initialDate: _selectedDate ?? DateTime.now(),
+                                );
+                                if (pickedDate != null) {
+                                  _selectedDate = pickedDate;
+                                  final formattedDate =
+                                      "${pickedDate.day.toString().padLeft(2, '0')}/"
+                                      "${pickedDate.month.toString().padLeft(2, '0')}/"
+                                      "${pickedDate.year.toString().substring(2)}";
+                                  controller.text = formattedDate;
+                                }
+                              },
+                              icon: Icon(
+                                Icons.calendar_today_outlined,
+                                color: AppColor.blueColor,
                               ),
                             ),
                           ),
                         ),
-
-                        const SizedBox(height: 3),
-                        Text(
-                          'number_of_participants'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        const SizedBox(height: 30),
+                        Text('time'.tr),
+                        CustomDropdownListings(
+                          itemList: timeList,
+                          listType: '9:00 AM',
                         ),
-                        Card(
-                          elevation: 3,
-                          shadowColor: Colors.white.withOpacity(0.5),
-                          color: Colors.white,
-                          child: Container(
-                            height: 40,
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.white60,
-                                  blurRadius: 12,
-                                  spreadRadius: 1,
-                                  offset:  Offset(0, 6),
-                                ),
-                              ],
-                            ),
-                            child: TextFormField(),
-                          ),
+                        const SizedBox(height: 30),
+                        Text('number_of_person'.tr),
+                        CustomDropdownListings(
+                          itemList: personNumber,
+                          listType: '1',
                         ),
-                        const SizedBox(height: 3),
-                        Text(
-                          'age_group'.tr,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                        CustomDropdownButton(
-                          itemList: ageGroups,
-                          listType: 'select_an_age_group'.tr,
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        Divider(color: Colors.grey.shade300),
-                        const SizedBox(height: 10),
-                        Text(
-                          'special_request'.tr,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Color(0xFF1F2937),
-                          ),
-                        ),
-                        const SizedBox(height: 25),
                         Text(
                           'additional_request'.tr,
                           style: Theme.of(context).textTheme.bodyMedium,

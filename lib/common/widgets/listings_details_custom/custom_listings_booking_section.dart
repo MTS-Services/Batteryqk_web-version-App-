@@ -1,9 +1,7 @@
 import 'package:get/get.dart'; // import for .tr
 import 'package:flutter/material.dart';
 import '../../../util/colors.dart';
-import '../../styles/styles.dart';
 import '../custom_button.dart';
-import '../custom_dropdown_Listings.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
   final TextEditingController dateController;
@@ -83,47 +81,47 @@ class _CustomListingsBookingSectionState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 50),
-        CustomSectionHeaderText('book_a_session'.tr),
-        const SizedBox(height: 30),
-        Text('date'.tr),
-        TextField(
-          controller: widget.dateController,
-          decoration: InputDecoration(
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: AppColor.blueColor),
-            ),
-            labelText: 'date_month_year'.tr,
-            suffixIcon: IconButton(
-              onPressed: () async {
-                DateTime? pickedDate = await showDatePicker(
-                  context: context,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2100),
-                  initialDate: selectedDate ?? DateTime.now(),
-                );
-                if (pickedDate != null) {
-                  selectedDate = pickedDate;
-                  final formattedDate =
-                      "${pickedDate.day.toString().padLeft(2, '0')}/"
-                      "${pickedDate.month.toString().padLeft(2, '0')}/"
-                      "${pickedDate.year.toString().substring(2)}";
-                  widget.dateController.text = formattedDate;
-                }
-              },
-              icon: Icon(
-                Icons.calendar_today_outlined,
-                color: AppColor.blueColor,
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 30),
-        Text('time'.tr),
-        CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
-        const SizedBox(height: 30),
-        Text('number_of_person'.tr),
-        CustomDropdownListings(itemList: personNumber, listType: '1'),
+        // const SizedBox(height: 50),
+        // CustomSectionHeaderText('book_a_session'.tr),
+        // const SizedBox(height: 30),
+        // Text('date'.tr),
+        // TextField(
+        //   controller: widget.dateController,
+        //   decoration: InputDecoration(
+        //     enabledBorder: UnderlineInputBorder(
+        //       borderSide: BorderSide(color: AppColor.blueColor),
+        //     ),
+        //     labelText: 'date_month_year'.tr,
+        //     suffixIcon: IconButton(
+        //       onPressed: () async {
+        //         DateTime? pickedDate = await showDatePicker(
+        //           context: context,
+        //           firstDate: DateTime(2000),
+        //           lastDate: DateTime(2100),
+        //           initialDate: selectedDate ?? DateTime.now(),
+        //         );
+        //         if (pickedDate != null) {
+        //           selectedDate = pickedDate;
+        //           final formattedDate =
+        //               "${pickedDate.day.toString().padLeft(2, '0')}/"
+        //               "${pickedDate.month.toString().padLeft(2, '0')}/"
+        //               "${pickedDate.year.toString().substring(2)}";
+        //           widget.dateController.text = formattedDate;
+        //         }
+        //       },
+        //       icon: Icon(
+        //         Icons.calendar_today_outlined,
+        //         color: AppColor.blueColor,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // const SizedBox(height: 30),
+        // Text('time'.tr),
+        // CustomDropdownListings(itemList: timeList, listType: '9:00 AM'),
+        // const SizedBox(height: 30),
+        // Text('number_of_person'.tr),
+        // CustomDropdownListings(itemList: personNumber, listType: '1'),
         const SizedBox(height: 30),
         CustomButton(buttonText: 'book_now'.tr),
         const SizedBox(height: 30),
