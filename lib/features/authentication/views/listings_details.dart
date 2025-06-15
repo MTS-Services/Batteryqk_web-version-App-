@@ -55,11 +55,7 @@ class _ListingsDetailsState extends State<ListingsDetails> {
                 image1e: AppImages.academies1e,
               ),
               const SizedBox(height: 20),
-              CustomDetails(
-                facilities: facilitiesList,
-                starCount: 5,
-                tag: 'Paid'.tr,
-              ),
+              CustomDetails(facilities: facilitiesList, starCount: 5,  tag: 'Paid'.tr,),
 
               CustomListingsBookingSection(
                 dateController: TextEditingController(),

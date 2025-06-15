@@ -21,7 +21,7 @@ class CustomReviewIcons extends StatelessWidget {
     final iconController = Get.find<IconController>();
     return Row(
       children: [
-        for (int i = 0; i < 5; i++)
+        for (int i = 1; i < 6; i++)
           Obx(
             () => InkWell(
               // onDoubleTap: () {

@@ -16,6 +16,7 @@ class BookingContainer extends StatelessWidget {
     required this.date,
     required this.description,
     required this.numOfStar,
+    required this.bookingNumber,
   });
 
   final TextEditingController reviewController;
@@ -24,8 +25,8 @@ class BookingContainer extends StatelessWidget {
   final String location;
   final String date;
   final String description;
-
   final String numOfStar;
+  final String bookingNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class BookingContainer extends StatelessWidget {
           CustomReviewIcons(
             showText: true,
             numOfStar: numOfStar,
-            tappable: false   ,
+            tappable: false,
           ),
           SizedBox(height: 18),
           CustomSectionTitleText(title: "Description"),
@@ -87,7 +88,7 @@ class BookingContainer extends StatelessWidget {
           Divider(thickness: 1, color: Colors.grey.shade300),
           SizedBox(height: 18),
           Text(
-            'Booking #7',
+            'Booking #$bookingNumber',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ],

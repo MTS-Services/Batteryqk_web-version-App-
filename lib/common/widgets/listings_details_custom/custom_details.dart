@@ -1,7 +1,9 @@
+import 'package:batteryqk_web_app/features/authentication/views/review_screen.dart';
 import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/styles/styles.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import '../../../features/authentication/views/listings.dart';
 import 'custom_reviews.dart';
 
 class CustomDetails extends StatefulWidget {
@@ -116,35 +118,58 @@ class _CustomDetailsState extends State<CustomDetails> {
         CustomSectionHeaderText('facilities'.tr),
         Column(
           children:
-              widget.facilities.map((facility) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.check, color: Colors.green),
-                      const SizedBox(width: 6),
-                      Text(facility),
-                    ],
-                  ),
-                );
-              }).toList(),
+          widget.facilities.map((facility) {
+            return Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                children: [
+                  const Icon(Icons.check, color: Colors.green),
+                  const SizedBox(width: 6),
+                  Text(facility),
+                ],
+              ),
+            );
+          }).toList(),
         ),
         const SizedBox(height: 30),
         CustomSectionHeaderText('opening_hours'.tr),
         CustomParagraphText('opening_hours_detail'.tr),
         const SizedBox(height: 30),
-        CustomSectionHeaderText('reviews'.tr),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Mark T.',
-          designation: 'Excellent facilities and coaches',
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomSectionHeaderText('reviews'.tr),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReviewScreen()),
+                );
+              },
+              child: Text(
+                "view_all".tr,
+                style: TextStyle(
+                  color: AppColor.blueColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 20),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Sarah L.',
-          designation: 'My kids love coming here. Very professional.',
-        ),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: 2,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: CustomReviews(
+                  starCount: widget.starCount,
+                  name: 'Mark T.',
+                  designation: 'Excellent facilities and coaches',
+                ),
+              );
+            }),
       ],
     );
   }
