@@ -15,6 +15,7 @@ class BookingContainer extends StatelessWidget {
     required this.location,
     required this.date,
     required this.description,
+    required this.numOfStar,
   });
 
   final TextEditingController reviewController;
@@ -23,6 +24,8 @@ class BookingContainer extends StatelessWidget {
   final String location;
   final String date;
   final String description;
+
+  final String numOfStar;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,11 @@ class BookingContainer extends StatelessWidget {
           CustomSectionSubtitleText(subtitle: date),
           SizedBox(height: 18),
           CustomSectionTitleText(title: "Academy Ratings:"),
-          CustomReviewIcons(showText: true),
+          CustomReviewIcons(
+            showText: true,
+            numOfStar: numOfStar,
+            tappable: false   ,
+          ),
           SizedBox(height: 18),
           CustomSectionTitleText(title: "Description"),
           CustomSectionSubtitleText(subtitle: description),
@@ -79,18 +86,9 @@ class BookingContainer extends StatelessWidget {
           SizedBox(height: 18),
           Divider(thickness: 1, color: Colors.grey.shade300),
           SizedBox(height: 18),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Booking #7',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-              Text(
-                'Booked on 5/29/20025',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-            ],
+          Text(
+            'Booking #7',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
           ),
         ],
       ),

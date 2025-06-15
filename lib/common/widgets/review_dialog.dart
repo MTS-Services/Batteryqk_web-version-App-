@@ -40,7 +40,7 @@ class ReviewDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomSectionHeaderText('Rating'),
-                  CustomReviewIcons(),
+                  CustomReviewIcons(tappable: true,),
                   SizedBox(height: 10.h),
                   CustomSectionHeaderText('Your Review'),
                 ],

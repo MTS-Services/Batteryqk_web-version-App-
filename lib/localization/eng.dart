@@ -1,0 +1,204 @@
+Map<String, String> eng = {
+  'get_started': 'Get started',
+  'login_here': 'Login here',
+  'welcome_back': "Welcome back you've \n been missed!",
+  'email': 'Email',
+  'email_required': 'Email is required',
+  'email_invalid': 'Enter a valid email',
+  'password': 'Password',
+  'password_required': 'Password is required',
+  'password_length': 'Password must be at least 6 characters',
+  'forgot_password': 'Forgot your Password?',
+  'sign_in': 'Sign In',
+  'create_account': 'Create new account',
+  'or_continue_with': 'Or continue with',
+  'google_login': 'Login with Google',
+  'facebook_login': 'Login with Facebook',
+  'enter_email_address': 'Enter Email Address',
+  'back_to_sign_in': 'Back to sign in',
+  'send': 'Send',
+  'or': 'Or',
+  'have_account': 'Do you have an account?',
+  'sign_up': 'Sign up',
+  'create_account_subtitle':
+      'Create an account so you can explore \n all the  existing jobs',
+
+  'confirm_password': 'Confirm Password',
+  'confirm_password_required': 'Confirm your password',
+  'passwords_not_match': 'Passwords do not match',
+  'already_have_account': 'Already have an account',
+  'home': 'Home',
+  'jobs': 'Jobs',
+  'book': 'Book',
+  'menu': 'Menu',
+  // Section titles
+  'featured_activities': 'Featured Activities',
+  'top_listings': 'Top Listings',
+  'view_all': 'View All',
+
+  // Listing card tags
+  'paid': 'Paid',
+  'free': 'Free',
+
+  // Listing card buttons
+  'view_details': 'View Details',
+  'book_now': 'Book Now',
+
+  // Grid titles (could be keys or just literals)
+  'football': 'Football',
+  'gym': 'Gym',
+  'swimming': 'Swimming',
+  'tennis': 'Tennis',
+  'reward': 'Reward',
+  'car_services': 'Car Services',
+  'faqs': 'FAQs',
+  'notifications': 'Notifications',
+  'admin': 'Admin',
+  'logout': 'Logout',
+  'edit_name': 'Edit Name',
+  'gold_member_points': 'Gold Member - 1200 Points',
+  'location': 'Location',
+  'enter_your_location': 'Enter your location',
+
+  'book_a_session': 'Book a Session',
+  'personal_information': 'Personal Information',
+  'first_name': 'First Name',
+  'last_name': 'Last Name',
+  'email_address': 'Email Address',
+  'booking_details': 'Booking Details',
+  'select_academy': 'Select Academy',
+  'category': 'Category',
+  'date': 'Date',
+  'number_of_participants': 'Number of Participants',
+  'age_group': 'Age Group',
+  'select_an_age_group': 'Select an age group',
+  'special_request': 'Special Request',
+  'additional_request': 'Additional Request',
+  'select_an_academy': 'Select an academy',
+  'select_a_category': 'Select a category',
+  'agree_terms': 'I agree to the terms and conditions\n',
+  'booking_agreement': 'By booking a session, you agree to our\n',
+  'terms_of_service': 'Terms of Service',
+  'and': ' and ',
+  'privacy_policy': 'Privacy Policy',
+  'cancel': 'Cancel',
+  'submit_booking': 'Submit Booking',
+  'academy_overview': 'Academy Overview',
+  'downtown': 'Downtown',
+  'reviews_count': '(2 reviews)',
+  'description': 'Description',
+  'age_groups': 'Age Groups',
+  'children_6_12': 'Children (6-12 years)',
+  'teenagers_13_18': 'Teenagers (13-18 years)',
+  'facilities': 'Facilities',
+  'opening_hours': 'Opening Hours',
+  'opening_hours_detail': 'Mon-Fri: 7:00 AM - 9:00PM, Sat-Sun: 8:00AM - 7:00PM',
+  'reviews': 'Reviews',
+  // Facilities
+  'olympic_pool': 'Olympic-sized pool',
+  'changing_rooms': 'Changing rooms',
+  'shower_facilities': 'Shower facilities',
+  'spectator_area': 'Spectator area',
+
+  // Contact labels (optional)
+  'phone': 'Phone',
+  'website': 'Website',
+  'date_month_year': 'Date/Month/year',
+  'time': 'Time',
+  'number_of_person': 'Number of person',
+  'contact_information': 'Contact Information',
+  'home_title': "Find the Perfect Sports Academy or Nursery",
+  'home_sub_title':
+      "Discover top-rated sports academies and nurseries in your area. Book sessions easily and track your progress.",
+  'home_bottom_title': "Ready to get started?",
+  'home_bottom_sub_title':
+      "Join thousands of parents who have found the perfect academy for their children.",
+
+  'academies_1_title': "Elite Swimming Academy",
+  'academies_2_title': "Power Gym Center",
+  'academies_3_title': "Ace Tennis Club",
+  'academies_4_title': "Hoops Basketball Center",
+  'academies_5_title': "Ace Tennis Club",
+  'academies_6_title': "Bright Beginnings Nursery",
+
+  'academies_1_details':
+      "Elite Swimming Academy offers professional swimming lessons for children and teenagers. Our Olympic-sized pool and certified instructors ensure top-quality training.",
+  'academies_2_details':
+      "Power Gym Center is equipped with modern machines and certified personal trainers.",
+  'academies_3_details':
+      "Join Ace Tennis Club to enjoy premium coaching and facilities for all skill levels.",
+  'academies_4_details':
+      "Hoops Basketball Center offers training programs for all age groups. Our facility includes multiple courts and specialized training equipment.",
+  'academies_5_details':
+      "Ace Tennis Club provides world-class tennis coaching for all ages and skill levels. Our facilities include indoor and outdoor courts.",
+  'academies_6_details':
+      "Bright Beginnings Nursery focuses on early childhood development in a fun and engaging environment. We offer a balanced mix of play and structured activities.",
+  'apply_filters': 'Apply Filters',
+  'all_location': 'All Location',
+  'rating': 'Rating',
+  'price': 'Price',
+  'reset': 'Reset',
+  'how_it_works': 'How It Works',
+
+  'points_earn_history': 'Points Earn History',
+  'booking': 'Booking',
+  'earned_points_on': 'Earned 10 points on April',
+  'available_rewards': 'Available Rewards',
+  'off_next_booking': '10% Off Next Booking',
+  'get_discount_text': 'Get 10% off your next booking at any academy.',
+  'redeem': 'Redeem',
+  'gold_member': 'Gold Member',
+  'points': 'Points',
+
+  'earn_points_info':
+      'Earn 10 points for every booking you make through our platform.',
+  'faq_q1': 'How can I book a session?',
+  'faq_a1':
+      'Visit the booking page, fill out the form, and click "Submit Booking".',
+
+  'faq_q2': 'Can I cancel or reschedule a session?',
+  'faq_a2':
+      'Yes, you can cancel or reschedule up to 24 hours before the session.',
+
+  'faq_q3': 'What payment methods do you accept?',
+  'faq_a3': 'We accept credit cards, debit cards, and secure online transfers.',
+
+  'faq_q4': 'Is there a refund policy?',
+  'faq_a4':
+      'Refunds are offered for cancellations made at least 24 hours in advance.',
+
+  'faq_q5': 'How do I contact support?',
+  'faq_a5':
+      'You can reach support via our Contact page or by emailing support@example.com.',
+
+  'faq_q6': 'Are there any discounts for group bookings?',
+  'faq_a6': 'Yes, we offer discounts for bookings with 3 or more participants.',
+
+  'faq_q7': 'Can I attend sessions without registering?',
+  'faq_a7':
+      'Registration is required for all sessions to ensure space availability.',
+
+  'faq_q8': 'Do you provide equipment?',
+  'faq_a8':
+      'Basic equipment is provided for most sessions, but check details when booking.',
+
+  'faq_q9': 'Are sessions suitable for beginners?',
+  'faq_a9': 'Yes, we offer beginner-friendly sessions across all categories.',
+
+  'faq_q10': 'What happens if a session is canceled by the academy?',
+  'faq_a10':
+      'You will be notified immediately and offered a reschedule or full refund.',
+  'english_language': 'English',
+  'language': 'Language',
+  'nurseries': 'Nurseries',
+  'sprots_academies': 'Sports Academies',
+  'comming_soon': 'Comming Soon',
+  'loyalty_points': 'Loyality Points',
+  "activity.swimming.downtown": "Swimming | Downtown",
+  "activity.gym.uptown": "Gym | Uptown",
+  "activity.tennis.westside": "Tennis | West Side",
+  "activity.basketball.downtown": "Basketball | Downtown",
+  "activity.tennis.southside": "Tennis | South Side",
+  "activity.school.southside": "School | South Side",
+  'history': 'History',
+};
