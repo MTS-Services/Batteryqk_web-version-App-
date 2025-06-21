@@ -24,7 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  final AuthController authController = Get.put(AuthController());
+   final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {

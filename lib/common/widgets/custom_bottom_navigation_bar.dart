@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
-import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/profile_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +22,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
      HomeScreen(),
     const Listings(),
     const BookScreen(),
-    const MenuScreen(),
+    const ProfileScreen(),
   ];
 
   @override
