@@ -3,11 +3,14 @@ import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Points extends StatelessWidget {
-  const Points({super.key});
+import '../controllers/user_controller.dart';
 
+class Points extends StatelessWidget {
+  Points({super.key});
+  final UserController _controller = Get.put(UserController());
   @override
   Widget build(BuildContext context) {
+    final users = _controller.userList;
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
@@ -51,7 +54,7 @@ class Points extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Emon Halder',
+                            "${users.first.fname} ${users.first.lname}",
                             style: Theme.of(
                               context,
                             ).textTheme.titleMedium!.copyWith(
@@ -70,7 +73,7 @@ class Points extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Text(
-                              'gold_member'.tr,
+                              '${users.first.highestRewardCategory}'.tr,
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
@@ -85,7 +88,7 @@ class Points extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '1200',
+                          "${users.first.totalRewardPoints}",
                           style: Theme.of(
                             context,
                           ).textTheme.titleMedium!.copyWith(
@@ -103,62 +106,7 @@ class Points extends StatelessWidget {
                 ),
               ),
             ),
-
             const SizedBox(height: 20),
-
-            // HOW IT WORKS SECTION
-            Text(
-              'how_it_works'.tr,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 150,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: 250,
-                    margin: const EdgeInsets.only(right: 10),
-                    child: Card(
-                      shadowColor: const Color.fromARGB(83, 255, 255, 255),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      elevation: 1,
-                      color: AppColor.whiteColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(
-                              Icons.workspace_premium,
-                              color: AppColor.blueColor,
-                              size: 30,
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              '${'reward'.tr} ${index + 1}',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text('${'earn_points_info'.tr} ${index + 1}'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // POINTS EARN HISTORY SECTION
             Text(
               'points_earn_history'.tr,
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -229,60 +177,7 @@ class Points extends StatelessWidget {
                 );
               },
             ),
-
             const SizedBox(height: 20),
-
-            // AVAILABLE REWARDS SECTION
-            Text(
-              'available_rewards'.tr,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Card(
-                  shadowColor: const Color.fromARGB(83, 255, 255, 255),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  elevation: 1,
-                  color: AppColor.whiteColor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Icon(
-                          Icons.card_giftcard,
-                          color: AppColor.blueColor,
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          '${'off_next_booking'.tr} ${index + 1}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        const SizedBox(height: 8),
-                        Text('get_discount_text'.tr),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            side: const BorderSide(color: AppColor.blueColor),
-                          ),
-                          child: Text(
-                            'redeem'.tr,
-                            style: const TextStyle(color: AppColor.blueColor),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
           ],
         ),
       ),

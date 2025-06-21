@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../common/widgets/custom_bottom_navigation_bar.dart';
 
@@ -117,6 +118,34 @@ class AuthController extends GetxController {
     }
   }
 
+
+
+  Future<UserCredential?> signInWithApple() async {
+    try {
+
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      // Apple credential থেকে Firebase OAuth credential তৈরি
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+
+      // Firebase login
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      print("✅ Apple Sign-In Successful: ${userCredential.user?.email}");
+      return userCredential;
+
+    } catch (e) {
+      print("❌ Apple Sign-In Error: $e");
+      return null;
+    }
+  }
 
 
 }

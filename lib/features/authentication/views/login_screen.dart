@@ -24,7 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  final AuthController authController = Get.put(AuthController());
+   final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -216,9 +216,9 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                     SizedBox(width: 16),
                     buildSocialButton(
-                      icon: FontAwesomeIcons.facebook,
+                      icon: FontAwesomeIcons.apple,
                       onTap: () {
-                        // Handle Facebook login
+                        authController.signInWithApple();
                       },
                     ),
                   ],
