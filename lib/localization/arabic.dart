@@ -192,4 +192,5 @@ Map<String, String> arabic = {
   "activity.tennis.southside": "التنس | الجانب الجنوبي",
   "activity.school.southside": "المدرسة | الجانب الجنوبي",
   'history': 'التاريخ',
+  'all_sports': 'جميع الرياضات',
 };

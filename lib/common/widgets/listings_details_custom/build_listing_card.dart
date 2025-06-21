@@ -23,7 +23,8 @@ class BuildListingCard extends StatelessWidget {
     required this.description,
     required this.imageUrl,
     required this.context,
-    required this.onPressed, required this.bookingOnPressed,
+    required this.onPressed,
+    required this.bookingOnPressed,
   });
 
   @override
@@ -107,6 +108,8 @@ class BuildListingCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   location,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(color: Colors.grey, fontSize: 13),
                 ),
                 const SizedBox(height: 6),

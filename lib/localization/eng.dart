@@ -201,4 +201,5 @@ Map<String, String> eng = {
   "activity.tennis.southside": "Tennis | South Side",
   "activity.school.southside": "School | South Side",
   'history': 'History',
+  'all_sports': 'All Sports',
 };

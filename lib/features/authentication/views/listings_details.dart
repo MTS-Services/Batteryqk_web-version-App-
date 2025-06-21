@@ -1,38 +1,51 @@
-import 'package:get/get.dart'; // add for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details_image_group.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_listings_booking_section.dart';
-import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/colors.dart';
 
 class ListingsDetails extends StatefulWidget {
-  const ListingsDetails({super.key});
+  const ListingsDetails({
+    super.key,
+    required this.mainImage,
+    required this.title,
+    required this.location,
+    required this.tag,
+    required this.description,
+    required this.subImage1,
+    required this.subImage2,
+    required this.subImage3,
+    required this.subImage4,
+    required this.ageGroup,
+    required this.facility,
+    required this.categoriesList,
+  });
+
+  final String mainImage;
+  final String title;
+  final String location;
+  final String tag;
+  final String description;
+  final String subImage1;
+  final String subImage2;
+  final String subImage3;
+  final String subImage4;
+  final String ageGroup;
+  final String facility;
+  final List<String> categoriesList;
 
   @override
   State<ListingsDetails> createState() => _ListingsDetailsState();
 }
 
 class _ListingsDetailsState extends State<ListingsDetails> {
-  late final List<String> facilitiesList;
   final List<String> contractInfos = [
     '555-123-4567',
     'info@eliteswimmingacademy.com',
     'www.eliteswimmingacademy.com',
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    facilitiesList = [
-      'olympic_pool'.tr,
-      'changing_rooms'.tr,
-      'shower_facilities'.tr,
-      'spectator_area'.tr,
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,14 +61,23 @@ class _ListingsDetailsState extends State<ListingsDetails> {
           child: Column(
             children: [
               CustomDetailsImageGroup(
-                image1a: AppImages.academies1a,
-                image1b: AppImages.academies1b,
-                image1c: AppImages.academies1c,
-                image1d: AppImages.academies1d,
-                image1e: AppImages.academies1e,
+                image1a: widget.mainImage,
+                image1b: widget.subImage1,
+                image1c: widget.subImage2,
+                image1d: widget.subImage3,
+                image1e: widget.subImage4,
               ),
               const SizedBox(height: 20),
-              CustomDetails(facilities: facilitiesList, starCount: 5,  tag: 'Paid'.tr,),
+              CustomDetails(
+                name: widget.title,
+                location: widget.location,
+                description: widget.description,
+                starCount: 5,
+                tag: widget.tag,
+                ageGroup: widget.ageGroup,
+                facility: widget.facility,
+                categories: widget.categoriesList,
+              ),
 
               CustomListingsBookingSection(
                 dateController: TextEditingController(),
