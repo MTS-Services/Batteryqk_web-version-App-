@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/features/authentication/controllers/build_listing_card_controller.dart';
 import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
 import 'package:get/get.dart'; // import for .tr
 import 'package:flutter/material.dart';
@@ -5,17 +6,17 @@ import '../../../util/colors.dart';
 import '../custom_button.dart';
 
 class CustomListingsBookingSection extends StatefulWidget {
-  final TextEditingController dateController;
   final String number;
   final String gmail;
   final String web;
+  final int index;
 
   const CustomListingsBookingSection({
     super.key,
-    required this.dateController,
     required this.number,
     required this.gmail,
     required this.web,
+    required this.index,
   });
 
   @override
@@ -27,6 +28,8 @@ class _CustomListingsBookingSectionState
     extends State<CustomListingsBookingSection> {
   DateTime? selectedDate;
 
+  final _apiController = Get.find<BuildListingCardController>();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +39,13 @@ class _CustomListingsBookingSectionState
         CustomButton(
           buttonText: 'book_now'.tr,
           onPressed: () {
-            Get.to(() => BookScreen());
+            Get.to(() {
+              var data = _apiController.listingCardData[widget.index];
+              return BookScreen(
+                openingHours: data.operatingHours[0],
+                listingId: data.id,
+              );
+            });
           },
         ),
         const SizedBox(height: 30),

@@ -1,8 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/home_screen.dart';
-import 'package:batteryqk_web_app/features/authentication/views/listings.dart';
+import 'package:batteryqk_web_app/features/authentication/views/HomeScreen/home_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/ListingScreen/listings.dart';
 import 'package:batteryqk_web_app/features/authentication/views/menu_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:get/get.dart';
@@ -19,9 +18,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-     HomeScreen(),
+    HomeScreen(),
     const Listings(),
-    const BookScreen(),
+    // const BookScreen(),
     const MenuScreen(),
   ];
 
@@ -38,7 +37,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
           child: Container(
-            height: MediaQuery.of(context).size.height*0.1,
+            height: MediaQuery.of(context).size.height * 0.1,
             width: double.infinity, // Make it fill the entire width
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.9), // Slight opacity
@@ -49,8 +48,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               children: [
                 _buildNavItem(Icons.home_filled, 'home'.tr, 0),
                 _buildNavItem(Icons.work_outline, 'jobs'.tr, 1),
-                _buildNavItem(Icons.calendar_today_outlined, 'book'.tr, 2),
-                _buildNavItem(Icons.menu, 'menu'.tr, 3),
+                // _buildNavItem(Icons.calendar_today_outlined, 'book'.tr, 2),
+                _buildNavItem(Icons.menu, 'menu'.tr, 2),
               ],
             ),
           ),

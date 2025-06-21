@@ -1,23 +1,24 @@
 import 'review_model.dart';
 
 class BuildListingCardModel {
-  String name;
-  String mainFeatures;
-  String location;
-  String description;
-  String price;
-  String mainImage;
-  String subImage1;
-  String subImage2;
-  String subImage3;
-  String subImage4;
-  List<String> ageGroup;
-  List<String> facilities;
-  List<String> operatingHours;
-  List<String> specificItemNames;
-  List<Review> reviews;
-  double averageRating;
-  int totalReviews;
+  final String name;
+  final String mainFeatures;
+  final String location;
+  final String description;
+  final String price;
+  final String mainImage;
+  final String subImage1;
+  final String subImage2;
+  final String subImage3;
+  final String subImage4;
+  final List<String> ageGroup;
+  final List<String> facilities;
+  final List<String> operatingHours;
+  final List<String> specificItemNames;
+  final List<Review> reviews;
+  final double averageRating;
+  final int totalReviews;
+  final int id;
 
   BuildListingCardModel({
     required this.name,
@@ -37,6 +38,7 @@ class BuildListingCardModel {
     required this.reviews,
     required this.averageRating,
     required this.totalReviews,
+    required this.id,
   });
 
   factory BuildListingCardModel.fromJson(Map<String, dynamic> json) {
@@ -75,9 +77,10 @@ class BuildListingCardModel {
         reviewsList.map((review) => Review.fromJson(review)).toList();
     double averageRating = json['averageRating']?.toDouble() ?? 0.0;
     int totalReviews = json['totalReviews']?.toInt() ?? 0;
-    print('This is the main image : ${json['main_image']}');
+    print('${json['id']}');
 
     return BuildListingCardModel(
+      id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       mainFeatures: mainFeatures,
       location: location,

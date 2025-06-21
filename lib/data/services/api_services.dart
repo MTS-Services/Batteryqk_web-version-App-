@@ -5,6 +5,7 @@ import 'package:batteryqk_web_app/features/authentication/models/build_listing_c
 import 'package:batteryqk_web_app/features/authentication/models/user_data.dart';
 import 'package:batteryqk_web_app/features/authentication/models/user_login.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/features/authentication/controllers/auth_controller.dart'; // Import the AuthController
 
@@ -101,5 +102,112 @@ class ApiService {
     throw Exception('An error occurred: $e');
   }
 }
+
+Future<void> makeBooking({
+  required int listingId,
+  required String bookingDate,
+  required String bookingHours,
+  required int numberOfPersons,
+  required String additionalNote,
+  required BuildContext context,
+}) async {
+  final String url = Urls.booking;
+  final Map<String, dynamic> bookingData = {
+    "listingId": listingId,
+    "bookingDate": bookingDate,
+    "booking_hours": bookingHours,
+    "numberOfPersons": numberOfPersons,
+    "additionalNote": additionalNote,
+  };
+
+  try {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(bookingData),
+    );
+
+    // Check if the response is successful
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+
+      // Handle success
+      if (responseData['success'] == true) {
+        // Show success message
+        final message = responseData['data']['message'];
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text('Booking Successful'),
+            content: Text(message),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        // Handle failure
+        final message = responseData['message'] ?? "Failed to create booking";
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text('Booking Failed'),
+            content: Text(message),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    } else {
+      // Handle non-200 status code
+      showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: Text('Error'),
+          content: Text('Something went wrong. Please try again later.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  } catch (e) {
+    // Handle error
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('Error'),
+        content: Text('An error occurred: $e'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 }
