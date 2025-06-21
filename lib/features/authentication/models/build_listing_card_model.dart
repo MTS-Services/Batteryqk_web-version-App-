@@ -1,3 +1,5 @@
+import 'review_model.dart';
+
 class BuildListingCardModel {
   String name;
   String mainFeatures;
@@ -13,6 +15,9 @@ class BuildListingCardModel {
   List<String> facilities;
   List<String> operatingHours;
   List<String> specificItemNames;
+  List<Review> reviews;
+  double averageRating;
+  int totalReviews;
 
   BuildListingCardModel({
     required this.name,
@@ -29,31 +34,48 @@ class BuildListingCardModel {
     required this.facilities,
     required this.operatingHours,
     required this.specificItemNames,
+    required this.reviews,
+    required this.averageRating,
+    required this.totalReviews,
   });
 
   factory BuildListingCardModel.fromJson(Map<String, dynamic> json) {
-    var selectedMainCategories = json['selectedMainCategories'] as List<dynamic>? ?? [];
+    var selectedMainCategories =
+        json['selectedMainCategories'] as List<dynamic>? ?? [];
     var subImagesList = json['sub_images'] as List<dynamic>? ?? [];
-    String subImage1 = (subImagesList.isNotEmpty) ? subImagesList[0] as String : '';
-    String subImage2 = (subImagesList.length > 1) ? subImagesList[1] as String : '';
-    String subImage3 = (subImagesList.length > 2) ? subImagesList[2] as String : '';
-    String subImage4 = (subImagesList.length > 3) ? subImagesList[3] as String : '';
-    
+    String subImage1 =
+        (subImagesList.isNotEmpty) ? subImagesList[0] as String : '';
+    String subImage2 =
+        (subImagesList.length > 1) ? subImagesList[1] as String : '';
+    String subImage3 =
+        (subImagesList.length > 2) ? subImagesList[2] as String : '';
+    String subImage4 =
+        (subImagesList.length > 3) ? subImagesList[3] as String : '';
+
     String mainFeatures = selectedMainCategories
         .map((category) => category['name'] as String? ?? '')
         .join(', ');
 
-    var locationList = json['location'] as List<dynamic>? ?? [];    
+    var locationList = json['location'] as List<dynamic>? ?? [];
     String location = locationList.join(', ');
 
     List<String> ageGroup = List<String>.from(json['agegroup'] ?? []);
     List<String> facilities = List<String>.from(json['facilities'] ?? []);
-    List<String> operatingHours = List<String>.from(json['operatingHours'] ?? []);
- var selectedSpecificItems = json['selectedSpecificItems'] as List<dynamic>? ?? [];
-    List<String> specificItemNames = selectedSpecificItems
-        .map((item) => item['name'] as String? ?? '')
-        .toList();
-        // print(specificItemNames);
+    List<String> operatingHours = List<String>.from(
+      json['operatingHours'] ?? [],
+    );
+    var selectedSpecificItems =
+        json['selectedSpecificItems'] as List<dynamic>? ?? [];
+    List<String> specificItemNames =
+        selectedSpecificItems
+            .map((item) => item['name'] as String? ?? '')
+            .toList();
+    var reviewsList = json['reviews'] as List<dynamic>? ?? [];
+    List<Review> reviews =
+        reviewsList.map((review) => Review.fromJson(review)).toList();
+    double averageRating = json['averageRating']?.toDouble() ?? 0.0;
+    int totalReviews = json['totalReviews']?.toInt() ?? 0;
+    print('This is the main image : ${json['main_image']}');
 
     return BuildListingCardModel(
       name: json['name'] as String? ?? '',
@@ -69,7 +91,10 @@ class BuildListingCardModel {
       ageGroup: ageGroup,
       facilities: facilities,
       operatingHours: operatingHours,
-      specificItemNames: specificItemNames,  
+      specificItemNames: specificItemNames,
+      reviews: reviews,
+      averageRating: averageRating,
+      totalReviews: totalReviews,
     );
   }
 }

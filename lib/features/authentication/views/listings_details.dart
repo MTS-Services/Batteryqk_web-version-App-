@@ -2,6 +2,7 @@ import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_details_image_group.dart';
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_listings_booking_section.dart';
+import 'package:batteryqk_web_app/features/authentication/models/review_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../util/colors.dart';
@@ -21,6 +22,8 @@ class ListingsDetails extends StatefulWidget {
     required this.ageGroup,
     required this.facility,
     required this.categoriesList,
+    required this.openingHours,
+    required this.reviews, required this.averageRating, required this.numOfReviews,
   });
 
   final String mainImage;
@@ -35,6 +38,10 @@ class ListingsDetails extends StatefulWidget {
   final String ageGroup;
   final String facility;
   final List<String> categoriesList;
+  final String openingHours;
+  final List<Review> reviews;
+  final double averageRating;
+  final int numOfReviews;
 
   @override
   State<ListingsDetails> createState() => _ListingsDetailsState();
@@ -72,11 +79,14 @@ class _ListingsDetailsState extends State<ListingsDetails> {
                 name: widget.title,
                 location: widget.location,
                 description: widget.description,
-                starCount: 5,
+                averageRating: widget.averageRating,
                 tag: widget.tag,
                 ageGroup: widget.ageGroup,
                 facility: widget.facility,
                 categories: widget.categoriesList,
+                openingHours: widget.openingHours,
+                reviews: widget.reviews,
+                numOfReviews: widget.numOfReviews,
               ),
 
               CustomListingsBookingSection(

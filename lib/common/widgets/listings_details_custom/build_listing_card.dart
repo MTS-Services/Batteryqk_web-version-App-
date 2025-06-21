@@ -14,6 +14,8 @@ class BuildListingCard extends StatelessWidget {
   final Function() onPressed;
   final Function() bookingOnPressed;
 
+  final double averageRating; // Use double for averageRating
+
   const BuildListingCard({
     super.key,
     required this.title,
@@ -25,7 +27,33 @@ class BuildListingCard extends StatelessWidget {
     required this.context,
     required this.onPressed,
     required this.bookingOnPressed,
+    required this.averageRating,
   });
+  List<Widget> _buildStars() {
+    List<Widget> stars = [];
+    int fullStars =
+        averageRating.floor(); // Full stars based on the integer part
+    bool hasHalfStar =
+        (averageRating - fullStars) >= 0.5; // Check if half-star is needed
+
+    // Add full stars
+    for (int i = 0; i < fullStars; i++) {
+      stars.add(const Icon(Icons.star, color: Colors.amber, size: 16));
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+      stars.add(const Icon(Icons.star_half, color: Colors.amber, size: 16));
+    }
+
+    // Add empty stars for the remaining part
+    int emptyStars = 5 - stars.length; // Make sure to have 5 stars total
+    for (int i = 0; i < emptyStars; i++) {
+      stars.add(const Icon(Icons.star_border, color: Colors.amber, size: 16));
+    }
+
+    return stars;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,17 +142,8 @@ class BuildListingCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Row(
-                  children: List.generate(
-                    5,
-                    (index) => Icon(
-                      Icons.star,
-                      color:
-                          index < rating.round()
-                              ? Colors.amber
-                              : Colors.grey.shade300,
-                      size: 18,
-                    ),
-                  ),
+                  children:
+                      _buildStars(), // Add star icons based on averageRating
                 ),
                 const SizedBox(height: 10),
                 Text(

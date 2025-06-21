@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import '../../../common/widgets/listings_details_custom/custom_reviews.dart';
+import '../models/review_model.dart';
 
 class ReviewScreen extends StatelessWidget {
-  const ReviewScreen({super.key});
+  const ReviewScreen({super.key, required this.reviews});
+
+  final List<Review> reviews;
 
   @override
   Widget build(BuildContext context) {
-    const int starCount = 5;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -18,23 +19,21 @@ class ReviewScreen extends StatelessWidget {
               const SizedBox(height: 20),
               const Text(
                 'All Reviews',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               const SizedBox(height: 30),
               Expanded(
                 child: ListView.separated(
-                  itemCount: 20,
-                  reverse: true,
+                  itemCount: reviews.length,
+                  reverse: false,
                   physics: const BouncingScrollPhysics(),
-                  separatorBuilder: (context, index) => const SizedBox(height: 10),
+                  separatorBuilder:
+                      (context, index) => const SizedBox(height: 10),
                   itemBuilder: (context, index) {
                     return CustomReviews(
-                      starCount: starCount,
-                      name: 'Mark T.',
-                      designation: 'Excellent facilities and coaches',
+                      starCount: reviews[index].rating,
+                      name: reviews[index].user,
+                      designation: reviews[index].comment,
                     );
                   },
                 ),

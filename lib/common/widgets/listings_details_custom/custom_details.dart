@@ -1,24 +1,29 @@
-import 'package:batteryqk_web_app/features/authentication/views/review_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart'; // add for .tr
-import 'package:batteryqk_web_app/common/styles/styles.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import '../../../features/authentication/models/review_model.dart';
+import '../../../features/authentication/views/review_screen.dart';
+import '../../../util/colors.dart';
+import '../../styles/styles.dart';
 import 'custom_reviews.dart';
 
 class CustomDetails extends StatelessWidget {
+  final double averageRating; // Use double for averageRating
   final String name;
   final String location;
   final String description;
-  final int starCount;
   final String tag;
   final String ageGroup;
   final String facility;
   final List<String> categories;
+  final String openingHours;
+  final List<Review> reviews;
+  final int numOfReviews;
 
   const CustomDetails({
     super.key,
-    required this.starCount,
+    required this.averageRating, // Pass averageRating as a double
     required this.tag,
     required this.name,
     required this.location,
@@ -26,7 +31,37 @@ class CustomDetails extends StatelessWidget {
     required this.ageGroup,
     required this.facility,
     required this.categories,
+    required this.openingHours,
+    required this.reviews,
+    required this.numOfReviews,
   });
+
+  // Helper method to generate the star icons based on the average rating
+  List<Widget> _buildStars() {
+    List<Widget> stars = [];
+    int fullStars =
+        averageRating.floor(); // Full stars based on the integer part
+    bool hasHalfStar =
+        (averageRating - fullStars) >= 0.5; // Check if half-star is needed
+
+    // Add full stars
+    for (int i = 0; i < fullStars; i++) {
+      stars.add(const Icon(Icons.star, color: Colors.amber, size: 16));
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+      stars.add(const Icon(Icons.star_half, color: Colors.amber, size: 16));
+    }
+
+    // Add empty stars for the remaining part
+    int emptyStars = 5 - stars.length; // Make sure to have 5 stars total
+    for (int i = 0; i < emptyStars; i++) {
+      stars.add(const Icon(Icons.star_border, color: Colors.amber, size: 16));
+    }
+
+    return stars;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +71,7 @@ class CustomDetails extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomTitleText(name),
+            Flexible(child: CustomTitleText(name)),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
@@ -60,18 +95,15 @@ class CustomDetails extends StatelessWidget {
         Row(
           children: [
             Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(starCount, (index) {
-                return const Icon(Icons.star, color: Colors.amber, size: 16);
-              }),
+              children: _buildStars(), // Add star icons based on averageRating
             ),
             Text(
-              ' ($starCount)',
+              ' ($averageRating)',
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
             const SizedBox(width: 4),
             Text(
-              'reviews_count'.tr,
+              ('($numOfReviews ${'reviews'.tr})'),
               style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ],
@@ -81,44 +113,30 @@ class CustomDetails extends StatelessWidget {
         CustomParagraphText(description),
         const SizedBox(height: 30),
         CustomSectionHeaderText('age_groups'.tr),
-        Badge(
-          label: Text(ageGroup, style: TextStyle(fontSize: 14.sp)),
-          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
-          backgroundColor: AppColor.whiteColor,
-          textColor: Colors.black,
-        ),
+        const SizedBox(height: 5),
+        Text(ageGroup, style: TextStyle(fontSize: 14.sp)),
         const SizedBox(height: 30),
         CustomSectionHeaderText('all_sports'.tr),
+        const SizedBox(height: 5),
         Column(
           children: [
-            ...List.generate(
-              categories.length,
-              (index) => Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Row(
-                  children: [
-                    const Icon(Icons.check_box, color: Colors.green),
-                    const SizedBox(width: 6),
-                    Text(categories[index]),
-                  ],
-                ),
-              ),
-            ),
+            ...List.generate(categories.length, (index) {
+              return Row(
+                children: [
+                  const Icon(Icons.check_box, color: Colors.green),
+                  const SizedBox(width: 6),
+                  Text(categories[index]),
+                ],
+              );
+            }),
           ],
         ),
         const SizedBox(height: 30),
         CustomSectionHeaderText('facilities'.tr),
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Row(children: [const SizedBox(width: 6), Text(facility)]),
-            ),
-          ],
-        ),
+        Row(children: [Text(facility)]),
         const SizedBox(height: 30),
         CustomSectionHeaderText('opening_hours'.tr),
-        CustomParagraphText('opening_hours_detail'.tr),
+        CustomParagraphText(openingHours),
         const SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,7 +146,9 @@ class CustomDetails extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ReviewScreen()),
+                  MaterialPageRoute(
+                    builder: (context) => ReviewScreen(reviews: reviews),
+                  ),
                 );
               },
               child: Text(
@@ -142,20 +162,29 @@ class CustomDetails extends StatelessWidget {
             ),
           ],
         ),
-        ListView.builder(
-          shrinkWrap: true,
-          itemCount: 2,
-          itemBuilder: (context, index) {
-            return Padding(
+        reviews.isEmpty
+            ? Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
-              child: CustomReviews(
-                starCount: starCount,
-                name: 'Mark T.',
-                designation: 'Excellent facilities and coaches',
+              child: Text(
+                'No reviews added yet',
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
               ),
-            );
-          },
-        ),
+            )
+            : ListView.builder(
+              shrinkWrap: true,
+              itemCount: 2, // Use reviews list length
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: CustomReviews(
+                    starCount: reviews[index].rating,
+                    name: reviews[index].user, // Access the name here
+                    designation: reviews[index].comment, // Access the comment
+                  ),
+                );
+              },
+            ),
       ],
     );
   }

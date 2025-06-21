@@ -32,7 +32,7 @@ class _CustomListingsBookingSectionState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 50),
+        const SizedBox(height: 10),
         CustomButton(
           buttonText: 'book_now'.tr,
           onPressed: () {

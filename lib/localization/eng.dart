@@ -85,7 +85,6 @@ Map<String, String> eng = {
   'submit_booking': 'Submit Booking',
   'academy_overview': 'Academy Overview',
   'downtown': 'Downtown',
-  'reviews_count': '(2 reviews)',
   'description': 'Description',
   'age_groups': 'Age Groups',
   'children_6_12': 'Children (6-12 years)',

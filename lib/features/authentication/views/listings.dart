@@ -190,6 +190,7 @@ class _ListingsState extends State<Listings> {
                           _listController.listingCardData[index].description,
                       imageUrl:
                           _listController.listingCardData[index].mainImage,
+                          averageRating: _listController.listingCardData[index].averageRating,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -235,6 +236,10 @@ class _ListingsState extends State<Listings> {
                                           
                                           facility: _listController.listingCardData[index].facilities[0],
                                           categoriesList: _listController.listingCardData[0].specificItemNames,
+                                          openingHours: _listController.listingCardData[index].operatingHours[0],
+                                          reviews: _listController.listingCardData[index].reviews,
+                                          averageRating: _listController.listingCardData[index].averageRating,
+                                          numOfReviews: _listController.listingCardData[index].totalReviews,
 
                                 ),
                           ),

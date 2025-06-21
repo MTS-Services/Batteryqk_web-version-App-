@@ -162,6 +162,8 @@ class HomeScreen extends StatelessWidget {
                       description:
                           apiController.listingCardData[index].description,
                       imageUrl: apiController.listingCardData[index].mainImage,
+                      averageRating:
+                          apiController.listingCardData[index].averageRating,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -212,6 +214,22 @@ class HomeScreen extends StatelessWidget {
                                       apiController
                                           .listingCardData[0]
                                           .specificItemNames,
+                                  openingHours:
+                                      apiController
+                                          .listingCardData[index]
+                                          .operatingHours[0],
+                                  reviews:
+                                      apiController
+                                          .listingCardData[index]
+                                          .reviews,
+                                  averageRating:
+                                      apiController
+                                          .listingCardData[index]
+                                          .averageRating,
+                                  numOfReviews:
+                                      apiController
+                                          .listingCardData[index]
+                                          .totalReviews,
                                 ),
                           ),
                         );
