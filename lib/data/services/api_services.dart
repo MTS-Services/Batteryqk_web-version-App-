@@ -4,13 +4,13 @@ import 'package:batteryqk_web_app/data/services/utility/urls.dart';
 import 'package:batteryqk_web_app/features/authentication/models/build_listing_card_model.dart';
 import 'package:batteryqk_web_app/features/authentication/models/user_login.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/features/authentication/controllers/auth_controller.dart';
 
 import '../../features/authentication/models/user_data.dart';
 
 class ApiService {
-
   static Future<void> createUser(UserCreate user, BuildContext context) async {
     final String url = Urls.userCreate;
     try {
@@ -25,15 +25,21 @@ class ApiService {
       if (response.statusCode == 200 || response.statusCode == 201) {
         showSnackbar(context, "Success", "User created successfully");
       } else {
-        showSnackbar(context, "Failed", "User creation failed: ${response.statusCode}");
+        showSnackbar(
+          context,
+          "Failed",
+          "User creation failed: ${response.statusCode}",
+        );
       }
     } catch (e) {
       showSnackbar(context, "Error", "An error occurred: $e");
     }
   }
 
-
-  static Future<void> userLogIn(UserLogin userLogin, BuildContext context) async {
+  static Future<void> userLogIn(
+    UserLogin userLogin,
+    BuildContext context,
+  ) async {
     final String url = Urls.userLogin;
     try {
       final response = await http.post(
@@ -62,7 +68,6 @@ class ApiService {
   Future<List<BuildListingCardModel>> showListing() async {
     final String url = Urls.showAllListing;
     final String? token = await AuthController.getToken();
-    print('Retrieved token: $token');
 
     if (token == null || token.isEmpty) {
       throw Exception('Token is not available');
@@ -74,18 +79,137 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
+          // 'Accept-Language': 'ar',
         },
       );
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonData = json.decode(response.body);
         final List<dynamic> listingData = jsonData['data']['listings'];
-        return listingData.map((e) => BuildListingCardModel.fromJson(e)).toList();
+        return listingData
+            .map((e) => BuildListingCardModel.fromJson(e))
+            .toList();
       } else {
         throw Exception('Failed to load listings: ${response.statusCode}');
       }
     } catch (e) {
       throw Exception('An error occurred: $e');
+    }
+  }
+
+  Future<void> makeBooking({
+    required int listingId,
+    required String bookingDate,
+    required String bookingHours,
+    required int numberOfPersons,
+    required String additionalNote,
+    required BuildContext context,
+  }) async {
+    final String url = Urls.booking;
+
+    final String? token = await AuthController.getToken();
+    final Map<String, dynamic> bookingData = {
+      "listingId": listingId,
+      "bookingDate": bookingDate,
+      "booking_hours": bookingHours,
+      "numberOfPersons": numberOfPersons,
+      "additionalNote": additionalNote,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(bookingData),
+      );
+      print(bookingData);
+      print(response.statusCode);
+      print(response.body);
+
+      // Check if the response is successful
+      if (response.statusCode == 201) {
+        final responseData = json.decode(response.body);
+
+        // Handle success
+        if (responseData['success'] == true) {
+          // Show success message
+          final message = responseData['data']['message'];
+          showDialog(
+            context: context,
+            builder:
+                (BuildContext context) => AlertDialog(
+                  title: Text('Booking Successful'),
+                  content: Text(message),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('OK'),
+                    ),
+                  ],
+                ),
+          );
+        } else {
+          // Handle failure
+          final message = responseData['message'] ?? "Failed to create booking";
+          showDialog(
+            context: context,
+            builder:
+                (BuildContext context) => AlertDialog(
+                  title: Text('Booking Failed'),
+                  content: Text(message),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('OK'),
+                    ),
+                  ],
+                ),
+          );
+        }
+      } else {
+        // Handle non-200 status code
+        showDialog(
+          context: context,
+          builder:
+              (BuildContext context) => AlertDialog(
+                title: Text('Error'),
+                content: Text('Something went wrong. Please try again later.'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('OK'),
+                  ),
+                ],
+              ),
+        );
+      }
+    } catch (e) {
+      // Handle error
+      showDialog(
+        context: context,
+        builder:
+            (BuildContext context) => AlertDialog(
+              title: Text('Error'),
+              content: Text('An error occurred: $e'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+      );
     }
   }
 }

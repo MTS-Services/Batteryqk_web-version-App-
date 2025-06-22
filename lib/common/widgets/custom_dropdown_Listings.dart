@@ -5,11 +5,13 @@ import '../../util/colors.dart';
 class CustomDropdownListings extends StatefulWidget {
   final String listType;
   final List<String> itemList;
+  final ValueChanged<String?> onChanged;
 
   const CustomDropdownListings({
     super.key,
     required this.itemList,
     required this.listType,
+    required this.onChanged,
   });
 
   @override
@@ -55,11 +57,12 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             setState(() {
               selectedItem = value;
             });
+            widget.onChanged(value);
           },
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 25,
-            iconEnabledColor: Colors.grey
+            iconEnabledColor: Colors.grey,
           ),
           dropdownStyleData: DropdownStyleData(
             maxHeight: 300,
@@ -87,10 +90,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: Colors.grey.shade400,
-                width: 1,
-              ),
+              border: Border.all(color: Colors.grey.shade400, width: 1),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.03),
