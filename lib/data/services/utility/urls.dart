@@ -6,4 +6,5 @@ class Urls{
 
   //----------------------user get -------------------------//
   static String getAllUser = "$_baseUrl/users/self";
+  static String getBooking = "$_baseUrl/bookings/user";
 }

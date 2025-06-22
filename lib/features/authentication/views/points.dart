@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/features/authentication/controllers/booking_history_controller.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,17 +8,23 @@ import '../controllers/user_controller.dart';
 
 class Points extends StatelessWidget {
   Points({super.key});
+
   final UserController _controller = Get.put(UserController());
+  final BookingHistoryController _bookingContainer = Get.put(
+    BookingHistoryController(),
+  );
+
   @override
   Widget build(BuildContext context) {
     final users = _controller.userList;
+    final bookingList = _bookingContainer.bookingList;
+    print(bookingList);
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
         child: const CustomAppBar(isBack: true),
       ),
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -112,11 +119,14 @@ class Points extends StatelessWidget {
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-            ListView.builder(
+            Obx(() =>
+            _bookingContainer.isLoading.value ? Center(
+              child: CircularProgressIndicator(),) : ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: 5,
+              itemCount: _bookingContainer.bookingList.length,
               itemBuilder: (context, index) {
+                final bookingList = _bookingContainer.bookingList[index];
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 6),
                   decoration: BoxDecoration(
@@ -146,7 +156,9 @@ class Points extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${'booking'.tr} #${index + 1}',
+                              '${bookingList.listing!.name ??
+                                  "Unknown".tr} #${bookingList.listing!.id ??
+                                  "N/A"}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -155,7 +167,13 @@ class Points extends StatelessWidget {
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              '${'earned_points_on'.tr} ${20 - index}, 2025',
+                              '${bookingList.listing!.description ??
+                                  "Unknown".tr} ${DateTime
+                                  .parse(
+                                  bookingList.createdAt.toString())
+                                  .toLocal()
+                                  .toString()
+                                  .split(" ")[0]}',
                               style: const TextStyle(
                                 color: AppColor.blackColor,
                                 fontSize: 13,
@@ -165,7 +183,7 @@ class Points extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '+10',
+                        '+${bookingList.reward!.points ?? "N/A"}',
                         style: const TextStyle(
                           color: AppColor.blackColor,
                           fontWeight: FontWeight.bold,
@@ -176,7 +194,7 @@ class Points extends StatelessWidget {
                   ),
                 );
               },
-            ),
+            ),),
             const SizedBox(height: 20),
           ],
         ),

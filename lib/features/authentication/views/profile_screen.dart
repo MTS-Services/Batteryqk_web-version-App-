@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _locationController = TextEditingController(text: 'Dhaka, Bangladesh');
   final _locationFocusNode = FocusNode();
   final UserController _controller = Get.put(UserController());
-  final AuthController authController = Get.put(AuthController());
+  final AuthControllers authController = Get.put(AuthControllers());
 
   @override
   void dispose() {
@@ -117,7 +117,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                 const SizedBox(width: 8),
                 Obx(()=>_controller.isLoading.value?Text("Loading..."): Text(
-                  user!=null?'${user.first.highestRewardCategory?.toLowerCase()} member ~ ${user.first.totalRewardPoints}':"N/A".tr,
+                  user!=null?'${user.first.highestRewardCategory?.toLowerCase()} ${user.first.totalRewardPoints}':"N/A".tr,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 14,

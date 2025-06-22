@@ -1,6 +1,5 @@
+import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
 import '../../../data/services/user_service.dart';
 import '../models/user_model.dart';
 
@@ -22,13 +21,20 @@ class UserController extends GetxController {
       print('result ===== $result');
 
       if (result.isNotEmpty) {
-        userList.value = result; // ✅ এখানে পুরো লিস্ট অ্যাসাইন করো
+        userList.value = result;
+        print('userList $userList');
       } else {
         print('No user found');
       }
     } catch (e) {
       print('Error loading user: $e');
-      Get.snackbar('Error', e.toString().split('] ').last);
+      if (Get.context != null) {
+        showSnackbar(
+          Get.context!,
+          "Error",
+          e.toString().split('] ').last,
+        );
+      }
     } finally {
       isLoading.value = false;
     }
