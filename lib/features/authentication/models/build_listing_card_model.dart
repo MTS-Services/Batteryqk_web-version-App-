@@ -77,7 +77,7 @@ class BuildListingCardModel {
         reviewsList.map((review) => Review.fromJson(review)).toList();
     double averageRating = json['averageRating']?.toDouble() ?? 0.0;
     int totalReviews = json['totalReviews']?.toInt() ?? 0;
-    print('${json['id']}');
+
 
     return BuildListingCardModel(
       id: json['id'] as int? ?? 0,

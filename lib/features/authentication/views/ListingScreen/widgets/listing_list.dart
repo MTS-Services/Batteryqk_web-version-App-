@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../common/widgets/listings_details_custom/build_listing_card.dart';
 import '../../../controllers/build_listing_card_controller.dart';
-import '../../book_screen.dart';
+import '../../BookingScreen/book_screen.dart';
 import '../../listings_details.dart';
 
 class ListingsList extends StatelessWidget {

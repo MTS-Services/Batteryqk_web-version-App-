@@ -33,12 +33,33 @@ class FilterModalContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('apply_filters'.tr, style: const TextStyle(fontSize: 18, color: Colors.black87, fontWeight: FontWeight.w600)),
+            Text(
+              'apply_filters'.tr,
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.black87,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             MultiDropDown(),
-            CustomDropdownListings(itemList: DropDownMenuItemList.location, listType: 'all_location'.tr),
-            CustomDropdownListings(itemList: DropDownMenuItemList.ageGroup, listType: 'age_group'.tr),
-            CustomDropdownListings(itemList: DropDownMenuItemList.rating, listType: 'rating'.tr),
-            CustomDropdownListings(itemList: price, listType: 'price'.tr),
+            CustomDropdownListings(
+              itemList: DropDownMenuItemList.location,
+              listType: 'all_location'.tr,
+              onChanged: (value) {},
+            ),
+            CustomDropdownListings(
+              itemList: DropDownMenuItemList.ageGroup,
+              listType: 'age_group'.tr,
+              onChanged: (value) {
+              
+            },
+            ),
+            CustomDropdownListings(
+              itemList: DropDownMenuItemList.rating,
+              listType: 'rating'.tr,
+                  onChanged: (value) {},
+            ),
+            CustomDropdownListings(itemList: price, listType: 'price'.tr,    onChanged: (value) {},),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,10 +70,13 @@ class FilterModalContent extends StatelessWidget {
                     icon: const Icon(Icons.check_circle_outline),
                     label: Text('apply_filters'.tr),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: islogin ? AppColor.blueColor : Colors.grey.shade200,
+                      backgroundColor:
+                          islogin ? AppColor.blueColor : Colors.grey.shade200,
                       foregroundColor: islogin ? Colors.white : Colors.black87,
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ),
@@ -63,10 +87,13 @@ class FilterModalContent extends StatelessWidget {
                     icon: const Icon(Icons.refresh),
                     label: Text('reset'.tr),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: islogin ? Colors.grey.shade200 : AppColor.blueColor,
+                      backgroundColor:
+                          islogin ? Colors.grey.shade200 : AppColor.blueColor,
                       foregroundColor: islogin ? Colors.black87 : Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ),

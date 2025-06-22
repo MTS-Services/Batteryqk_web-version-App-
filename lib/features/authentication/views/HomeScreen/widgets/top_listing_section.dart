@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../common/widgets/listings_details_custom/build_listing_card.dart';
 import '../../../../../util/colors.dart';
 import '../../../controllers/build_listing_card_controller.dart';
-import '../../book_screen.dart';
+import '../../BookingScreen/book_screen.dart';
 import '../../ListingScreen/listings.dart';
 import '../../listings_details.dart';
 

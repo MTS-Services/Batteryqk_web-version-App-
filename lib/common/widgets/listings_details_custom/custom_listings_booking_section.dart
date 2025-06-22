@@ -1,5 +1,5 @@
 import 'package:batteryqk_web_app/features/authentication/controllers/build_listing_card_controller.dart';
-import 'package:batteryqk_web_app/features/authentication/views/book_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/BookingScreen/book_screen.dart';
 import 'package:get/get.dart'; // import for .tr
 import 'package:flutter/material.dart';
 import '../../../util/colors.dart';
