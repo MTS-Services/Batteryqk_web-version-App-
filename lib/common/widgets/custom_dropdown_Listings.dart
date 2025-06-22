@@ -53,7 +53,12 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
                     ),
                   )
                   .toList(),
-          onChanged: widget.onChanged,
+          onChanged: (value) {
+            setState(() {
+              selectedItem = value;
+            });
+            widget.onChanged(value);
+          },
           iconStyleData: const IconStyleData(
             icon: Icon(Icons.keyboard_arrow_down_rounded),
             iconSize: 25,

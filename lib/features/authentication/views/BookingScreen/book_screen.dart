@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
+import 'package:batteryqk_web_app/data/services/api_services.dart';
 import 'package:batteryqk_web_app/features/admin/edit_dialog_box.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +37,26 @@ class _BookScreenState extends State<BookScreen> {
   DateTime? _selectedDate;
   final _dateController = TextEditingController();
   final _requestController = TextEditingController();
+  ApiService apiService = ApiService();
 
   @override
   void initState() {
     super.initState();
     timeList = generateTimeSlots(widget.openingHours);
     allowedWeekdays = parseAllowedWeekdays(widget.openingHours);
+  }
+
+  DateTime getCombinedDateTime(DateTime date, String timeLabel) {
+    final match = RegExp(r'(\d{1,2}):(\d{2}) (\w{2})').firstMatch(timeLabel);
+    if (match == null) return date;
+    int hour = int.parse(match.group(1)!);
+    int minute = int.parse(match.group(2)!);
+    String ampm = match.group(3)!;
+
+    if (ampm == "PM" && hour != 12) hour += 12;
+    if (ampm == "AM" && hour == 12) hour = 0;
+
+    return DateTime(date.year, date.month, date.day, hour, minute);
   }
 
   @override
@@ -136,11 +151,41 @@ class _BookScreenState extends State<BookScreen> {
                     TermsAndBookingCard(
                       onCancel: () {},
                       onSubmit: () {
-                        showSnackbar(
-                          context,
-                          'Success',
-                          '${_dateController.text} $selectedTime ${_requestController.text} $selectedPerson',
-                        );
+                        if (_selectedDate == null) {
+                          showSnackbar(
+                            context,
+                            'Error',
+                            'Please select a date',
+                          );
+                        } else if (selectedTime.isEmpty) {
+                          showSnackbar(
+                            context,
+                            'Error',
+                            'Please select a time',
+                          );
+                        } else if (selectedPerson.isEmpty) {
+                          showSnackbar(
+                            context,
+                            'Error',
+                            'Please select a person',
+                          );
+                        } else {
+                          final bookingDateTime = getCombinedDateTime(
+                            _selectedDate!,
+                            selectedTime,
+                          );
+                          print(bookingDateTime.toIso8601String());
+                          apiService.makeBooking(
+                            listingId: widget.listingId,
+                            bookingDate:
+                                bookingDateTime
+                                    .toIso8601String(), // <-- The only change
+                            bookingHours: selectedTime,
+                            numberOfPersons: int.parse(selectedPerson),
+                            additionalNote: _requestController.text,
+                            context: context,
+                          );
+                        }
                       },
                     ),
                     const SizedBox(height: 50),

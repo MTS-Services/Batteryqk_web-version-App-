@@ -68,7 +68,6 @@ class ApiService {
   Future<List<BuildListingCardModel>> showListing() async {
     final String url = Urls.showAllListing;
     final String? token = await AuthController.getToken();
-    print('Retrieved token: $token');
 
     if (token == null || token.isEmpty) {
       throw Exception('Token is not available');
@@ -80,6 +79,7 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
+          'Accept-Language': 'ar',
         },
       );
 
@@ -106,6 +106,8 @@ class ApiService {
     required BuildContext context,
   }) async {
     final String url = Urls.booking;
+
+    final String? token = await AuthController.getToken();
     final Map<String, dynamic> bookingData = {
       "listingId": listingId,
       "bookingDate": bookingDate,
@@ -117,12 +119,18 @@ class ApiService {
     try {
       final response = await http.post(
         Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
         body: jsonEncode(bookingData),
       );
+      print(bookingData);
+      print(response.statusCode);
+      print(response.body);
 
       // Check if the response is successful
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         final responseData = json.decode(response.body);
 
         // Handle success
