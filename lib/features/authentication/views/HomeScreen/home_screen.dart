@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
             ),
             const QuickAccessSection(),
             const SizedBox(height: 30),
-            TopListingsSection(apiController: apiController),
+
           ],
         );
       }),

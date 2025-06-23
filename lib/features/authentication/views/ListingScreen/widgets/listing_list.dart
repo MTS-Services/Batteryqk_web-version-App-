@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../../../../../common/widgets/listings_details_custom/build_listing_card.dart';
+import 'package:get/get.dart';
 import '../../../controllers/build_listing_card_controller.dart';
 import '../../BookingScreen/book_screen.dart';
 import '../../listings_details.dart';
+import '../../../../../common/widgets/listings_details_custom/build_listing_card.dart';
 
 class ListingsList extends StatelessWidget {
   final BuildListingCardController listController;
@@ -11,12 +11,17 @@ class ListingsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: listController.listingCardData.length,
+    return Obx(() {
+      if (listController.filteredListingData.isEmpty) {
+        return const Center(child: Text('No data found'));
+      }
+
+      return ListView.builder(
+        itemCount: listController.filteredListingData.length,
         itemBuilder: (context, index) {
-          var data = listController.listingCardData[index];
-          var ageGroup = data.ageGroup[0];
+          final data = listController.filteredListingData[index];
+          final ageGroup = data.ageGroup.isNotEmpty ? data.ageGroup[0] : '';
+
           return BuildListingCard(
             context: context,
             title: data.name,
@@ -41,9 +46,9 @@ class ListingsList extends StatelessWidget {
                     subImage3: data.subImage3,
                     subImage4: data.subImage4,
                     ageGroup: ageGroup,
-                    facility: data.facilities[0],
-                    categoriesList: listController.listingCardData[0].specificItemNames,
-                    openingHours: data.operatingHours[0],
+                    facility: data.facilities.firstOrNull.toString(),
+                    categoriesList: data.specificItemNames,
+                    openingHours: data.operatingHours.firstOrNull.toString(),
                     reviews: data.reviews,
                     averageRating: data.averageRating,
                     numOfReviews: data.totalReviews,
@@ -53,11 +58,19 @@ class ListingsList extends StatelessWidget {
               );
             },
             bookingOnPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: data.id,openingHours: data.operatingHours[0],)));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BookScreen(
+                    listingId: data.id,
+                    openingHours: data.operatingHours.firstOrNull.toString(),
+                  ),
+                ),
+              );
             },
           );
         },
-      ),
-    );
+      );
+    });
   }
 }
