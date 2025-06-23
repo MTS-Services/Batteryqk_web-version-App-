@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:get/get.dart';
+import '../../features/authentication/controllers/booking_history_controller.dart';
+import '../../features/authentication/controllers/icon_controller.dart';
+import '../../features/authentication/controllers/review_service.dart';
 import '../../util/colors.dart';
 import '../styles/styles.dart';
 import 'custom_review_icon.dart';
@@ -8,17 +11,22 @@ import 'icon_text_button.dart';
 
 class ReviewDialog extends StatelessWidget {
   const ReviewDialog({
-    super.key,
-    required this.reviewController,
+    Key? key,
     required this.academyName,
-  });
-
-  final TextEditingController reviewController;
+    required this.bookingId,
+    required this.reviewController,
+  }) : super(key: key);
 
   final String academyName;
+  final String bookingId;
+  final TextEditingController reviewController;
 
   @override
   Widget build(BuildContext context) {
+    final ReviewController reviewCtrl = Get.find<ReviewController>();
+    final IconController iconCtrl = Get.find<IconController>();
+    final BookingHistoryController bookingController = Get.put(BookingHistoryController());
+    final booking = bookingController.bookingList;
     return Dialog(
       backgroundColor: AppColor.whiteColor,
       insetPadding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -29,30 +37,24 @@ class ReviewDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomTitleText('Write a Review'),
+              const CustomTitleText('Write a Review'),
               SizedBox(height: 10.h),
               CustomSectionTitleText(title: academyName),
-              CustomSectionSubtitleText(
-                subtitle: 'Share your experience with this accademy',
-              ),
+              const CustomSectionSubtitleText(
+                  subtitle: 'Share your experience with this academy'),
               SizedBox(height: 10.h),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomSectionHeaderText('Rating'),
-                  CustomReviewIcons(tappable: true,),
-                  SizedBox(height: 10.h),
-                  CustomSectionHeaderText('Your Review'),
-                ],
-              ),
 
+              const CustomSectionHeaderText('Rating'),
+              CustomReviewIcons(tappable: true),
+              SizedBox(height: 10.h),
+
+              const CustomSectionHeaderText('Your Review'),
               SizedBox(height: 10.h),
               TextField(
                 controller: reviewController,
                 maxLines: 5,
                 decoration: InputDecoration(
                   hintText: 'Tell others about your experience...',
-
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
@@ -63,17 +65,37 @@ class ReviewDialog extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.h),
+
+              /// Submit Button
               IconTextButton(
-                onPressed: () {},
-                backgroundColor: Colors.blue,
-                textColor: AppColor.whiteColor,
-                text: 'Submit Review',
-              ),
-              SizedBox(height: 10.h),
-              IconTextButton(
-                onPressed: () {
-                  Navigator.pop(context);
+                onPressed: () async {
+                  if (reviewController.text.trim().isEmpty) {
+                    Get.snackbar("Error", "Please write something in the review");
+                    return;
+                  }
+
+                  reviewCtrl.isLoading.value = true;
+
+                  await reviewCtrl.submitReview(
+                    bookingId: bookingId,
+                    review: reviewController.text.trim(),
+                    rating: iconCtrl.selectedIndex.value + 1, // ধরে নিচ্ছি 0-based rating
+                  );
+
+                  reviewCtrl.isLoading.value = false;
+                  Navigator.pop(context); // ডায়ালগ বন্ধ করো
+                  Get.snackbar("Success", "Review submitted successfully");
                 },
+                backgroundColor: Colors.blue,
+                textColor: Colors.white,
+                text: reviewCtrl.isLoading.value ? 'Submitting...' : 'Submit Review',
+              ),
+
+              SizedBox(height: 10.h),
+
+              /// Cancel Button
+              IconTextButton(
+                onPressed: () => Navigator.pop(context),
                 text: 'Cancel',
               ),
             ],

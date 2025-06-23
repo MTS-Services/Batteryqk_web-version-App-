@@ -9,7 +9,6 @@ import '../controllers/user_controller.dart';
 class Points extends StatelessWidget {
   Points({super.key});
 
-  // ⬇️ কন্ট্রোলার ইনিশিয়ালাইজ
   final UserController _userController = Get.put(UserController());
   final BookingHistoryController _bookingController =
   Get.put(BookingHistoryController());

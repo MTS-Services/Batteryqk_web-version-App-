@@ -43,23 +43,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final users = _controller.userList;
-    print('allUser=======${users}');
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          _buildHeader(),
-          const SizedBox(height: 20),
-          Expanded(child: _buildMenuAndLocationSection()),
-        ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader(),
+              const SizedBox(height: 20),
+              _buildMenuAndLocationSection(),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   /// ------------------- Header Section -------------------
   Widget _buildHeader() {
-    final user = _controller.userList;
+    final users = _controller.userList;
 
     return Container(
       width: double.infinity,
@@ -85,22 +88,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Obx(()=>_controller.isLoading.value?Text("Loading..."):Text(
-                user != null
-                    ? "${user.first.fname} ${user.first.lname}"
-                    : "N/A",
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
+              Obx(
+                    () =>
+                _controller.isLoading.value
+                    ? const Text("Loading…"):
+                Text(
+                  users.isNotEmpty
+                      ? "${users.first.fname} ${users.first.lname}"
+                      : "—",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),),
-              IconButton(
-                onPressed: () =>
-                    FocusScope.of(context).requestFocus(_focusNode),
-                icon: const Icon(Icons.edit, color: Colors.white, size: 20),
               ),
             ],
           ),
@@ -116,14 +119,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Icon(Icons.star, size: 18, color: AppColor.orangeColor),
                 const SizedBox(width: 8),
-                Obx(()=>_controller.isLoading.value?Text("Loading..."): Text(
-                  user!=null?'${user.first.highestRewardCategory?.toLowerCase()} ${user.first.totalRewardPoints}':"N/A".tr,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),),
+                Obx(
+                  () =>
+                      _controller.isLoading.value
+                          ? const Text("Loading…")
+                          : Text(
+                            users.isNotEmpty
+                                ? '${users.first.highestRewardCategory?.toLowerCase() ?? ""} ${users.first.totalRewardPoints}'
+                                : "—",
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                ),
               ],
             ),
           ),
@@ -132,28 +142,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-
   /// ------------------- Menu Buttons & Location -------------------
   Widget _buildMenuAndLocationSection() {
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
-          _buildMenuButton(Icons.card_membership_rounded, 'reward'.tr, () =>
-              Get.to(() => Points())),
-          _buildMenuButton(Icons.build_circle_outlined, 'car_services'.tr, () =>
-              Get.to(() => CarService())),
-          _buildMenuButton(Icons.help_outline_rounded, 'faqs'.tr, () =>
-              Get.to(() => Faqs())),
           _buildMenuButton(
-              Icons.notifications_active_outlined, 'notifications'.tr, () =>
-              Get.to(() => NotificationPage())),
-          _buildMenuButton(Icons.language_outlined, 'language'.tr, () =>
-              Get.to(() => LanguagePage())),
+            Icons.card_membership_rounded,
+            'reward'.tr,
+            () => Get.to(() => Points()),
+          ),
           _buildMenuButton(
-              Icons.history, 'history'.tr, () => Get.to(() => HistoryScreen())),
+            Icons.build_circle_outlined,
+            'car_services'.tr,
+            () => Get.to(() => CarService()),
+          ),
+          _buildMenuButton(
+            Icons.help_outline_rounded,
+            'faqs'.tr,
+            () => Get.to(() => Faqs()),
+          ),
+          _buildMenuButton(
+            Icons.notifications_active_outlined,
+            'notifications'.tr,
+            () => Get.to(() => NotificationPage()),
+          ),
+          _buildMenuButton(
+            Icons.language_outlined,
+            'language'.tr,
+            () => Get.to(() => LanguagePage()),
+          ),
+          _buildMenuButton(
+            Icons.history,
+            'history'.tr,
+            () => Get.to(() => HistoryScreen()),
+          ),
           _buildMenuButton(Icons.logout, 'logout'.tr, () => signOut()),
-
           const SizedBox(height: 24),
           _buildLocationSection(),
         ],
@@ -211,27 +236,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text('location'.tr, style: const TextStyle(
-              fontSize: 16, fontWeight: FontWeight.bold)),
+          Text(
+            'location'.tr,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
-                child: TextField(
-                  controller: _locationController,
-                  focusNode: _locationFocusNode,
-                  decoration: InputDecoration(
-                    hintText: 'enter_your_location'.tr,
-                    border: InputBorder.none,
-                    isDense: true,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxHeight: 48),
+                  child: TextField(
+                    controller: _locationController,
+                    focusNode: _locationFocusNode,
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                      hintText: 'enter_your_location'.tr,
+                      border: InputBorder.none,
+                      isDense: true,
+                    ),
                   ),
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.edit_location_alt),
-                onPressed: () =>
-                    FocusScope.of(context).requestFocus(_locationFocusNode),
+                onPressed:
+                    () =>
+                        FocusScope.of(context).requestFocus(_locationFocusNode),
               ),
             ],
           ),
