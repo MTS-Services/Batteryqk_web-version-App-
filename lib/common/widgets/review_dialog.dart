@@ -76,11 +76,7 @@ class ReviewDialog extends StatelessWidget {
 
                   reviewCtrl.isLoading.value = true;
 
-                  await reviewCtrl.submitReview(
-                    bookingId: bookingId,
-                    review: reviewController.text.trim(),
-                    rating: iconCtrl.selectedIndex.value + 1, // ধরে নিচ্ছি 0-based rating
-                  );
+                
 
                   reviewCtrl.isLoading.value = false;
                   Navigator.pop(context); // ডায়ালগ বন্ধ করো
