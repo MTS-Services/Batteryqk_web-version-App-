@@ -3,11 +3,12 @@ import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:batteryqk_web_app/data/services/utility/urls.dart';
 import 'package:batteryqk_web_app/features/authentication/models/build_listing_card_model.dart';
 import 'package:batteryqk_web_app/features/authentication/models/user_login.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/features/authentication/controllers/auth_controller.dart';
 
+import '../../features/authentication/controllers/language_controller.dart';
 import '../../features/authentication/models/user_data.dart';
 
 class ApiService {
@@ -66,8 +67,14 @@ class ApiService {
   }
 
   Future<List<BuildListingCardModel>> showListing() async {
+    print('api called');
     final String url = Urls.showAllListing;
     final String? token = await AuthController.getToken();
+
+    // Get the current language from the controller:
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+    final String acceptLanguage = languageController.currentLanguage;
 
     if (token == null || token.isEmpty) {
       throw Exception('Token is not available');
@@ -79,7 +86,7 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
-          'Accept-Language': 'ar',
+          if (acceptLanguage.isNotEmpty) 'Accept-Language': acceptLanguage,
         },
       );
 
@@ -106,6 +113,11 @@ class ApiService {
     required BuildContext context,
   }) async {
     final String url = Urls.booking;
+    // Get the current language from the controller:
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+    final String acceptLanguage = languageController.currentLanguage;
+    print('Accept-Language: $acceptLanguage');
 
     final String? token = await AuthController.getToken();
     final Map<String, dynamic> bookingData = {
@@ -122,12 +134,11 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
+          // Only include if not empty
+          if (acceptLanguage.isNotEmpty) 'Accept-Language': acceptLanguage,
         },
         body: jsonEncode(bookingData),
       );
-      print(bookingData);
-      print(response.statusCode);
-      print(response.body);
 
       // Check if the response is successful
       if (response.statusCode == 201) {

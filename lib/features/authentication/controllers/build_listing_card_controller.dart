@@ -11,8 +11,13 @@ class BuildListingCardController extends GetxController {
 
   @override
   void onInit() {
-    fetchListData();
+    print('BuildListingCardController onInit, about to delay/fetch');
+    Future.delayed(const Duration(milliseconds: 150), fetchListData);
     super.onInit();
+  }
+
+  void refreshForLanguage() {
+    fetchListData();
   }
 
   Future<void> fetchListData() async {

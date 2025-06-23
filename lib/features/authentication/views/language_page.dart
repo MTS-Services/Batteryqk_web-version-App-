@@ -5,6 +5,8 @@ import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/build_listing_card_controller.dart';
+
 class LanguagePage extends StatefulWidget {
   const LanguagePage({super.key});
 
@@ -13,7 +15,8 @@ class LanguagePage extends StatefulWidget {
 }
 
 class _LanguagePageState extends State<LanguagePage> {
-  final LanguageController languageController = Get.put(LanguageController());
+  final LanguageController languageController = Get.find<LanguageController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +37,13 @@ class _LanguagePageState extends State<LanguagePage> {
                 title: Text("english_language".tr),
                 onTap: () {
                   languageController.toggleLanguage(true);
-                  Get.to(CustomBottomNavigationBar());
+                  Get.find<BuildListingCardController>().refreshForLanguage();
+                  Future.delayed(const Duration(milliseconds: 150), () {
+                    Get.offAll(
+                      () => CustomBottomNavigationBar(),
+                      arguments: {'refresh': true},
+                    );
+                  });
                 },
               ),
             ),
@@ -50,7 +59,13 @@ class _LanguagePageState extends State<LanguagePage> {
                 title: Text("Arabic".tr),
                 onTap: () {
                   languageController.toggleLanguage(false);
-                  Get.to(CustomBottomNavigationBar());
+                  Get.find<BuildListingCardController>().refreshForLanguage();
+                  Future.delayed(const Duration(milliseconds: 150), () {
+                    Get.offAll(
+                      () => CustomBottomNavigationBar(),
+                      arguments: {'refresh': true},
+                    );
+                  });
                 },
               ),
             ),

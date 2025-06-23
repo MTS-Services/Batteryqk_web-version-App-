@@ -6,6 +6,10 @@ class LanguageController extends GetxController {
 
   void toggleLanguage(bool value) {
     isEnglish.value = value;
-    Get.updateLocale(Locale(value ? 'en' : 'ar'));
+    print('Language toggled. isEnglish: $isEnglish');
+    Get.updateLocale(Locale(value ? 'en' : 'ar', value ? 'US' : ''));
   }
+
+  // Returns '' for English, 'ar' for Arabic
+  String get currentLanguage => isEnglish.value ? '' : 'ar';
 }
