@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 final Map<String, int> weekDaysMap = {
+  // English
   'Mon': DateTime.monday,
   'Tue': DateTime.tuesday,
   'Wed': DateTime.wednesday,
@@ -8,12 +10,34 @@ final Map<String, int> weekDaysMap = {
   'Fri': DateTime.friday,
   'Sat': DateTime.saturday,
   'Sun': DateTime.sunday,
+  // Arabic (common full names)
+  'الاثنين': DateTime.monday,
+  'الإثنين': DateTime.monday, // some will use this
+  'الثلاثاء': DateTime.tuesday,
+  'الأربعاء': DateTime.wednesday,
+  'الخميس': DateTime.thursday,
+  'الجمعة': DateTime.friday,
+  'السبت': DateTime.saturday,
+  'الأحد': DateTime.sunday,
 };
 
 List<int> parseAllowedWeekdays(String openingHours) {
-  final rangePart = openingHours.split(':').first.trim();
+  String rangePart = openingHours.split(':').first.trim();
+
+  // Remove Arabic "من" if present
+  if (rangePart.startsWith("من")) {
+    rangePart = rangePart.replaceFirst("من", "").trim();
+  }
+
+  // Remove any extra spaces or Arabic definite articles (like "ال")
+  rangePart = rangePart
+      .replaceAll("–", "-")
+      .replaceAll("—", "-")
+      .replaceAll("الى", "-");
+  // Some providers may use different dash characters
+
   if (rangePart.contains('-')) {
-    final parts = rangePart.split('-');
+    final parts = rangePart.split('-').map((e) => e.trim()).toList();
     final start = weekDaysMap[parts[0]];
     final end = weekDaysMap[parts[1]];
     if (start == null || end == null) return [];
@@ -57,13 +81,24 @@ List<String> generateTimeSlots(String openingHours) {
   }
 }
 
+String normalizeAmPm(String s) {
+  s = s.replaceAll(' ', '').replaceAll('ـ', '');
+  if (s.contains('صباحاً') || s.contains('صباحا') || s.contains('ص'))
+    return 'AM';
+  if (s.contains('مساءً') || s.contains('مساءا') || s.contains('م'))
+    return 'PM';
+  return s;
+}
+
 TimeOfDay parseTime(String s) {
-  final match = RegExp(r'(\d{1,2})(?::(\d{2}))?\s*([AP]M)').firstMatch(s);
+  final match = RegExp(
+    r'(\d{1,2})(?::(\d{2}))?\s*([AP]M|صباحاً|صباحا|مساءً|مساءا|ص|م)',
+  ).firstMatch(s);
   if (match == null) return TimeOfDay(hour: 9, minute: 0);
 
   int hour = int.parse(match.group(1)!);
   int minute = match.group(2) != null ? int.parse(match.group(2)!) : 0;
-  String ampm = match.group(3)!;
+  String ampm = normalizeAmPm(match.group(3)!);
 
   if (ampm == "PM" && hour != 12) hour += 12;
   if (ampm == "AM" && hour == 12) hour = 0;
@@ -73,7 +108,15 @@ TimeOfDay parseTime(String s) {
 
 String formatTimeLabel(int hour24) {
   int hour = hour24 % 12 == 0 ? 12 : hour24 % 12;
-  String ampm = hour24 < 12 ? 'AM' : 'PM';
+  bool isAM = hour24 < 12;
+  final isArabic = Get.locale?.languageCode == 'ar';
+
+  String ampm;
+  if (isArabic) {
+    ampm = isAM ? 'صباحاً' : 'مساءً';
+  } else {
+    ampm = isAM ? 'AM' : 'PM';
+  }
   return "$hour:00 $ampm";
 }
 

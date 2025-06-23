@@ -20,6 +20,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
+          dialogTheme: DialogTheme(backgroundColor: AppColor.whiteColor),
           scaffoldBackgroundColor: AppColor.whiteColor,
           canvasColor: Colors.white,
           inputDecorationTheme: InputDecorationTheme(

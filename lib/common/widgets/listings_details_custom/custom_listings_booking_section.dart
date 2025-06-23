@@ -41,6 +41,7 @@ class _CustomListingsBookingSectionState
           onPressed: () {
             Get.to(() {
               var data = _apiController.listingCardData[widget.index];
+              print('booking hours ${data.operatingHours[0]}');
               return BookScreen(
                 openingHours: data.operatingHours[0],
                 listingId: data.id,

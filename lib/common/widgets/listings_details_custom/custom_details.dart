@@ -172,7 +172,7 @@ class CustomDetails extends StatelessWidget {
             )
             : ListView.builder(
               shrinkWrap: true,
-              itemCount: 2, // Use reviews list length
+              itemCount: reviews.length > 2 ? 2 : reviews.length,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Padding(

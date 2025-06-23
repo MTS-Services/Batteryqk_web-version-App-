@@ -29,20 +29,20 @@ class DatePickerField extends StatelessWidget {
         labelText: 'date_month_year'.tr,
         suffixIcon: IconButton(
           onPressed: () async {
-            DateTime initial = selectedDate ?? findNextAllowedDate(allowedWeekdays, DateTime.now());
+            DateTime initial =
+                selectedDate ??
+                findNextAllowedDate(allowedWeekdays, DateTime.now());
             DateTime? pickedDate = await showDatePicker(
               context: context,
               firstDate: DateTime.now(),
               lastDate: DateTime.now().add(const Duration(days: 365)),
               initialDate: initial,
-              selectableDayPredicate: (date) => allowedWeekdays.contains(date.weekday),
+              selectableDayPredicate:
+                  (date) => allowedWeekdays.contains(date.weekday),
             );
             onDatePicked(pickedDate);
           },
-          icon: Icon(
-            Icons.calendar_today_outlined,
-            color: AppColor.blueColor,
-          ),
+          icon: Icon(Icons.calendar_today_outlined, color: AppColor.blueColor),
         ),
       ),
     );
