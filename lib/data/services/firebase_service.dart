@@ -7,7 +7,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../common/widgets/custom_bottom_navigation_bar.dart';
 
-class AuthController extends GetxController {
+class AuthControllers extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Rxn<User> firebaseUser = Rxn<User>();
@@ -146,6 +146,5 @@ class AuthController extends GetxController {
       return null;
     }
   }
-
 
 }

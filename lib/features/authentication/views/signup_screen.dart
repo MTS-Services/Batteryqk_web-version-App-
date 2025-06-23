@@ -29,7 +29,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final  TextEditingController _passwordTEController=TextEditingController();
   final  TextEditingController _confirmPTEController=TextEditingController();
   final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
-  final AuthController authController = Get.put(AuthController());
+  final AuthControllers authController = Get.put(AuthControllers());
 
   @override
   Widget build(BuildContext context) {

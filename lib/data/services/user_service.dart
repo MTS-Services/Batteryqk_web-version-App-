@@ -19,11 +19,12 @@ class UserService {
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
+        'Accept-Language':'ar'
       },
     );
 
-    print("HTTP Response Code: ${response.statusCode}");
-    print("Raw response body: ${response.body}");
+    // print("HTTP Response Code: ${response.statusCode}");
+    // print("Raw response body: ${response.body}");
 
     try {
       final decoded = jsonDecode(response.body);
