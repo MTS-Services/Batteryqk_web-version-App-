@@ -20,6 +20,7 @@ class BookingModel {
   final ListingModel? listing;
   final ReviewModel? review;
   final RewardModel? reward;
+  final double? ratings;
 
   BookingModel({
     this.id,
@@ -38,6 +39,7 @@ class BookingModel {
     this.listing,
     this.review,
     this.reward,
+    this.ratings,
   });
 
   factory BookingModel.fromJson(Map<String, dynamic> json) {
@@ -45,19 +47,35 @@ class BookingModel {
       id: json['id'],
       userId: json['userId'],
       listingId: json['listingId'],
-      bookingDate: json['bookingDate'] != null ? DateTime.tryParse(json['bookingDate']) : null,
+      bookingDate:
+          json['bookingDate'] != null
+              ? DateTime.tryParse(json['bookingDate'])
+              : null,
       bookingHours: json['booking_hours'],
-      additionalNote: json['additionalNote'],
+      additionalNote: json['additionalNote'] ?? 'No additional note added',
       ageGroup: json['ageGroup'],
       numberOfPersons: json['numberOfPersons'],
       paymentMethod: json['paymentMethod'],
-      status: json['status'],
+      status: json['review'] != null ? json['review']['status'] : null,
       reviewId: json['review_id'],
-      createdAt: json['createdAt'] != null ? DateTime.tryParse(json['createdAt']) : null,
-      updatedAt: json['updatedAt'] != null ? DateTime.tryParse(json['updatedAt']) : null,
-      listing: json['listing'] != null ? ListingModel.fromJson(json['listing']) : null,
-      review: json['review'] != null ? ReviewModel.fromJson(json['review']) : null,
-      reward: json['reward'] != null ? RewardModel.fromJson(json['reward']) : null,
+      createdAt:
+          json['createdAt'] != null
+              ? DateTime.tryParse(json['createdAt'])
+              : null,
+      updatedAt:
+          json['updatedAt'] != null
+              ? DateTime.tryParse(json['updatedAt'])
+              : null,
+      listing:
+          json['listing'] != null
+              ? ListingModel.fromJson(json['listing'])
+              : null,
+      review:
+          json['review'] != null ? ReviewModel.fromJson(json['review']) : null,
+      reward:
+          json['reward'] != null ? RewardModel.fromJson(json['reward']) : null,
+      ratings:
+          json['review'] != null ? json['review']['rating'].toDouble() : null,
     );
   }
 

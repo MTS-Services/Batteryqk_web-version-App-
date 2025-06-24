@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../features/authentication/controllers/booking_history_controller.dart';
-import '../../features/authentication/controllers/icon_controller.dart';
 import '../../features/authentication/controllers/review_service.dart';
 import '../../util/colors.dart';
 import '../styles/styles.dart';
@@ -11,11 +9,11 @@ import 'icon_text_button.dart';
 
 class ReviewDialog extends StatelessWidget {
   const ReviewDialog({
-    Key? key,
+    super.key,
     required this.academyName,
     required this.bookingId,
     required this.reviewController,
-  }) : super(key: key);
+  });
 
   final String academyName;
   final String bookingId;
@@ -24,9 +22,7 @@ class ReviewDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ReviewController reviewCtrl = Get.find<ReviewController>();
-    final IconController iconCtrl = Get.find<IconController>();
-    final BookingHistoryController bookingController = Get.put(BookingHistoryController());
-    final booking = bookingController.bookingList;
+
     return Dialog(
       backgroundColor: AppColor.whiteColor,
       insetPadding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -36,12 +32,16 @@ class ReviewDialog extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomTitleText('Write a Review'),
+              Center(child: const CustomTitleText('Write a Review')),
               SizedBox(height: 10.h),
-              CustomSectionTitleText(title: academyName),
-              const CustomSectionSubtitleText(
-                  subtitle: 'Share your experience with this academy'),
+              Center(child: CustomSectionTitleText(title: academyName)),
+              Center(
+                child: const CustomSectionSubtitleText(
+                  subtitle: 'Share your experience with this academy',
+                ),
+              ),
               SizedBox(height: 10.h),
 
               const CustomSectionHeaderText('Rating'),
@@ -68,23 +68,13 @@ class ReviewDialog extends StatelessWidget {
 
               /// Submit Button
               IconTextButton(
-                onPressed: () async {
-                  if (reviewController.text.trim().isEmpty) {
-                    Get.snackbar("Error", "Please write something in the review");
-                    return;
-                  }
-
-                  reviewCtrl.isLoading.value = true;
-
-                
-
-                  reviewCtrl.isLoading.value = false;
-                  Navigator.pop(context); // ডায়ালগ বন্ধ করো
-                  Get.snackbar("Success", "Review submitted successfully");
-                },
+                onPressed: () {},
                 backgroundColor: Colors.blue,
                 textColor: Colors.white,
-                text: reviewCtrl.isLoading.value ? 'Submitting...' : 'Submit Review',
+                text:
+                    reviewCtrl.isLoading.value
+                        ? 'Submitting...'
+                        : 'Submit Review',
               ),
 
               SizedBox(height: 10.h),

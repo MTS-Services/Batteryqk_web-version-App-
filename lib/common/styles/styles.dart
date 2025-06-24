@@ -55,11 +55,11 @@ class CustomParagraphText extends StatelessWidget {
 class CustomSectionSubtitleText extends StatelessWidget {
   const CustomSectionSubtitleText({super.key, required this.subtitle});
   final String subtitle;
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Text(
       subtitle,
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400),
     );
   }

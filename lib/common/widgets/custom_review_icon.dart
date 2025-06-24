@@ -24,9 +24,6 @@ class CustomReviewIcons extends StatelessWidget {
         for (int i = 1; i < 6; i++)
           Obx(
             () => InkWell(
-              // onDoubleTap: () {
-              //   iconController.isSelected.value = false;
-              // },
               onTap:
                   tappable
                       ? () {

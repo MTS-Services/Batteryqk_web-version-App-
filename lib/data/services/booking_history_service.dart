@@ -27,6 +27,7 @@ class BookingHistoryService {
        if(response.statusCode == 200 ){
          final jsonBody = jsonDecode(response.body);
          final List<dynamic> data  = jsonBody['data'];
+         print(data);
          return data.map((e)=>BookingModel.fromJson(e)).toList();
        }else{
          print("error ${response.body} - ${response.statusCode}");

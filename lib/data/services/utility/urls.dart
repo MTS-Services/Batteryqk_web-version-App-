@@ -10,4 +10,5 @@ class Urls{
   static String booking = "$_baseUrl/bookings";
   static String usersNotification = "$_baseUrl/notifications/self";
   static String reviews = "$_baseUrl//reviews";
+  static String sentReview = "$_baseUrl/reviews";
 }
