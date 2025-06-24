@@ -94,7 +94,7 @@ class CustomDetailsImageGroup extends StatelessWidget {
   Widget _buildSmallImage(String imagePath, Size size) {
     return Expanded(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(6), // More reduced roundness
+        borderRadius: BorderRadius.circular(6),
         child: Container(
           height: size.height * 0.18,
           decoration: BoxDecoration(

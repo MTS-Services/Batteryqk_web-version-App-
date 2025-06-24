@@ -1,6 +1,9 @@
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../features/authentication/controllers/category_controller.dart';
 import 'custom_multiSelect_dropdown.dart';
 
 class AdminMultiDropdown extends StatefulWidget {
@@ -14,6 +17,7 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
   List<String> selectedMainCategories = [];
   List<String> selectedSubCategories = [];
   List<String> selectedSports = [];
+  final categoryController = Get.put(CategoryController());
 
   List<String> getAvailableSubCategories() {
     List<String> subs = [];
@@ -57,14 +61,12 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
           ),
           SizedBox(width: 10),
           CustomMultiSelectDropdown(
-
-            title: "All Subcategories",
-            options: getAvailableSubCategories(),
-            selectedValues: selectedSubCategories,
+            title: "All Sports",
+            options: getAvailableSports(),
+            selectedValues: selectedSports,
             onSelectionChanged: (selected) {
               setState(() {
-                selectedSubCategories = selected;
-                selectedSports = [];
+                selectedSports = selected;
               });
             },
           ),
@@ -75,9 +77,7 @@ class _AdminMultiDropdownState extends State<AdminMultiDropdown> {
             options: getAvailableSports(),
             selectedValues: selectedSports,
             onSelectionChanged: (selected) {
-              setState(() {
-                selectedSports = selected;
-              });
+              categoryController.updateSports(selected);
             },
           ),
         ],
