@@ -223,59 +223,54 @@ class ApiService {
       );
     }
   }
+
   Future<void> sendReview(int bookingId, int rating, String comment) async {
-  // API endpoint
-  final String url = Urls.sentReview;
-  
+    final String url = Urls.sentReview;
+
+    // Get token
     final String? token = await AuthController.getToken();
 
-  // Request body
-  final Map<String, dynamic> reviewData = {
-    "bookingId": bookingId,
-    "rating": rating,
-    "comment": comment,
-  };
+    // Request body
+    final Map<String, dynamic> reviewData = {
+      "bookingId": bookingId,
+      "rating": rating,
+      "comment": comment,
+    };
 
-  // Make the POST request
-  try {
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: {
           'Authorization': 'Bearer $token',
-          'Content-Type': 'application/json',},
-      body: json.encode(reviewData),
-    );
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(reviewData),
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        // If the request is successful
+        final responseBody = json.decode(response.body);
+        if (responseBody['success']) {
+          final message = responseBody['data']['message'];
+          final reviewId = responseBody['data']['reviewId'];
+          final status = responseBody['data']['status'];
+          final listingName = responseBody['data']['listingName'];
 
-    // Handle the response
-    if (response.statusCode == 200) {
-      // Parse the response if the request is successful
-      final responseBody = json.decode(response.body);
-
-      // If the success key is true, the review was submitted successfully
-      if (responseBody['success']) {
-        final message = responseBody['data']['message'];
-        final reviewId = responseBody['data']['reviewId'];
-        final status = responseBody['data']['status'];
-        final listingName = responseBody['data']['listingName'];
-
-        print('Review Submitted Successfully!');
-        print('Message: $message');
-        print('Review ID: $reviewId');
-        print('Status: $status');
-        print('Listing Name: $listingName');
-
-        // You can also display this message in the UI or return it for further use
-        // Example: showDialog or SnackBar with the message
+          print('Review Submitted Successfully!');
+          print('Message: $message');
+          print('Review ID: $reviewId');
+          print('Status: $status');
+          print('Listing Name: $listingName');
+        } else {
+          print('Error: ${responseBody['data']['message']}');
+        }
       } else {
-        print('Error: ${responseBody['data']['message']}');
+        // Handle failure response (e.g., 4xx, 5xx errors)
+        print('Failed to submit review: ${response.statusCode}');
+        print("Response body: ${response.body}");
       }
-    } else {
-      // Handle failure response (e.g., 4xx, 5xx errors)
-      print('Failed to submit review: ${response.statusCode}');
+    } catch (e) {
+      // Handle network or other errors
+      Exception('Error submitting review: $e');
     }
-  } catch (e) {
-    // Handle network or other errors
-    print('Error: $e');
   }
-}
 }

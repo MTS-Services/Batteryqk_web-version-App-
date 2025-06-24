@@ -21,6 +21,8 @@ class BookingContainer extends StatelessWidget {
     required this.reviewIdStatus,
     required this.status,
     required this.averageRating,
+    required this.paymentMethod,
+    required this.reviewStatus,
   });
 
   final TextEditingController reviewController;
@@ -30,11 +32,13 @@ class BookingContainer extends StatelessWidget {
   final String description;
   final String numOfStar;
   final String bookingNumber;
-  final String bookingId;
+  final int bookingId;
   final String bookingTime;
   final String additionalNote;
   final String reviewIdStatus;
   final String status;
+  final String paymentMethod;
+  final String reviewStatus;
 
   final double averageRating;
   List<Widget> _buildStars() {
@@ -97,14 +101,20 @@ class BookingContainer extends StatelessWidget {
           CustomSectionTitleText(title: 'Additional Note:'),
           CustomSectionSubtitleText(subtitle: additionalNote),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: "Ratings:"),
-          if (reviewIdStatus != 'null' && status == 'ACCEPTED')
-            Row(children: _buildStars()),
+          if (reviewIdStatus != 'null' && reviewStatus == 'PENDING')
+            CustomSectionTitleText(title: 'Review Status: PENDING'),
+          if (reviewIdStatus != 'null' && reviewStatus == 'REJECTED')
+            CustomSectionTitleText(title: 'Review Status: REJECTED'),
+          if (reviewStatus == 'ACCEPTED')
+            CustomSectionTitleText(title: "Ratings:"),
+          if (reviewStatus == 'ACCEPTED') Row(children: _buildStars()),
           const SizedBox(height: 18),
           CustomSectionTitleText(title: "Description"),
           CustomSectionSubtitleText(subtitle: description),
           const SizedBox(height: 18),
-          if (reviewIdStatus == 'null')
+          if (paymentMethod != 'UNPAID' &&
+              status != 'PENDING' &&
+              reviewIdStatus == 'null')
             IconTextButton(
               onPressed: () {
                 showDialog(
@@ -121,8 +131,21 @@ class BookingContainer extends StatelessWidget {
               showIcon: true,
               text: 'Write Review',
             ),
-          if (reviewIdStatus != 'null' && status != 'ACCEPTED')
-            CustomSectionTitleText(title: 'Review In Pending'),
+          // Check if booking is cancelled first
+          if (status == 'CANCELLED')
+            CustomSectionTitleText(title: 'Booking is Cancelled'),
+
+          // Only check for unpaid and pending if status is not CANCELLED
+          if (status != 'CANCELLED')
+            if (paymentMethod == 'UNPAID' || status == 'PENDING')
+              CustomSectionTitleText(
+                title:
+                    paymentMethod == 'UNPAID' && status == 'PENDING'
+                        ? 'Booking is Unpaid and Pending'
+                        : paymentMethod == 'UNPAID'
+                        ? 'Booking is Unpaid'
+                        : 'Booking is Pending',
+              ),
 
           const SizedBox(height: 18),
           Divider(thickness: 1, color: Colors.grey.shade300),

@@ -4,7 +4,7 @@ import 'package:batteryqk_web_app/features/authentication/models/bookinghistory/
 import 'listing_model.dart';
 
 class BookingModel {
-  final int? id;
+  final int id;
   final int? userId;
   final int? listingId;
   final DateTime? bookingDate;
@@ -21,9 +21,11 @@ class BookingModel {
   final ReviewModel? review;
   final RewardModel? reward;
   final double? ratings;
+  final String reviewStatus;
 
   BookingModel({
-    this.id,
+    required this.id,
+    required this.reviewStatus,
     this.userId,
     this.listingId,
     this.bookingDate,
@@ -56,7 +58,7 @@ class BookingModel {
       ageGroup: json['ageGroup'],
       numberOfPersons: json['numberOfPersons'],
       paymentMethod: json['paymentMethod'],
-      status: json['review'] != null ? json['review']['status'] : null,
+      status: json['status'] ?? 'PENDING',
       reviewId: json['review_id'],
       createdAt:
           json['createdAt'] != null
@@ -76,6 +78,7 @@ class BookingModel {
           json['reward'] != null ? RewardModel.fromJson(json['reward']) : null,
       ratings:
           json['review'] != null ? json['review']['rating'].toDouble() : null,
+      reviewStatus: json['review'] != null ? json['review']['status'] : '',
     );
   }
 

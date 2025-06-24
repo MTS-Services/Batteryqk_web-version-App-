@@ -14,16 +14,26 @@ class BookingHistoryController extends GetxController {
     fetchBooking();
   }
 
-  void fetchBooking() async {
+  Future<void> fetchBooking() async {
     try {
-      isLoading(true);
-      hasError(false);
-      bookingList.value = await BookingHistoryService.getBookings();
+      isLoading(true); // Show loading spinner
+      hasError(false); // Reset error state
+      // Fetch the bookings from the service
+      final bookings = await BookingHistoryService.getBookings();
+
+      // Check if data is fetched properly
+      if (bookings.isNotEmpty) {
+        bookingList.value = bookings;
+      } else {
+        // Handle case when no data is returned
+        bookingList.clear();
+      }
     } catch (e) {
-      hasError(true);
-      errorMessage(e.toString());
+      hasError(true); // Set error state if an error occurs
+      errorMessage(e.toString()); // Save error message for debugging
+      print("Error fetching data: $e"); // Log error for debugging
     } finally {
-      isLoading(false);
+      isLoading(false); // Hide loading spinner
     }
   }
 }

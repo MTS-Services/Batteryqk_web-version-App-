@@ -1,14 +1,18 @@
+import 'package:batteryqk_web_app/data/services/api_services.dart';
+import 'package:batteryqk_web_app/features/authentication/controllers/icon_controller.dart';
+import 'package:batteryqk_web_app/features/authentication/controllers/review_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../features/authentication/controllers/review_service.dart';
+import '../../features/authentication/controllers/booking_history_controller.dart';
 import '../../util/colors.dart';
 import '../styles/styles.dart';
 import 'custom_review_icon.dart';
 import 'icon_text_button.dart';
+import 'show_snack_bar.dart';
 
 class ReviewDialog extends StatelessWidget {
-  const ReviewDialog({
+  ReviewDialog({
     super.key,
     required this.academyName,
     required this.bookingId,
@@ -16,13 +20,17 @@ class ReviewDialog extends StatelessWidget {
   });
 
   final String academyName;
-  final String bookingId;
+  final int bookingId;
   final TextEditingController reviewController;
+
+  final ReviewController reviewCtrl = Get.put(ReviewController());
+  final IconController iconController = Get.find<IconController>();
+  final ApiService apiServices = ApiService();
+  final BookingHistoryController bookingController =
+      Get.find<BookingHistoryController>();
 
   @override
   Widget build(BuildContext context) {
-    final ReviewController reviewCtrl = Get.find<ReviewController>();
-
     return Dialog(
       backgroundColor: AppColor.whiteColor,
       insetPadding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -68,20 +76,65 @@ class ReviewDialog extends StatelessWidget {
 
               /// Submit Button
               IconTextButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (reviewController.text.isEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Review cannot be empty'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else if (iconController.selectedIndex.value == 0) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Rating cannot be empty'),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  } else {
+                    // Submit the review
+                    apiServices
+                        .sendReview(
+                          bookingId,
+                          iconController.selectedIndex.value,
+                          reviewController.text,
+                        )
+                        .then((_) {
+                          // Show success message on successful submission
+                          showSnackbar(context, 'Success', 'Review submitted');
+
+                          // Call fetchBooking() to refresh data
+                          bookingController.fetchBooking();
+
+                          // Clear the form and reset the state
+                          iconController.selectedIndex.value = 0;
+                          reviewController.clear();
+                          Navigator.pop(context);
+                        })
+                        .catchError((error) {
+                          // Handle any error if the submission fails
+                          showSnackbar(
+                            context,
+                            'Error',
+                            'Failed to submit review: $error',
+                          );
+                        });
+                  }
+                },
                 backgroundColor: Colors.blue,
                 textColor: Colors.white,
-                text:
-                    reviewCtrl.isLoading.value
-                        ? 'Submitting...'
-                        : 'Submit Review',
+                text: 'Submit Review',
               ),
 
               SizedBox(height: 10.h),
 
               /// Cancel Button
               IconTextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () {
+                  iconController.selectedIndex.value = 0;
+                  reviewController.clear();
+                  Navigator.pop(context);
+                },
                 text: 'Cancel',
               ),
             ],

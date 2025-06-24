@@ -9,9 +9,11 @@ class CustomReviewIcons extends StatelessWidget {
   const CustomReviewIcons({
     super.key,
     this.showText = false,
-    this.numOfStar = '0',
+    this.numOfStar =
+        '0', // numOfStar as a default value (it will be overwritten)
     required this.tappable,
   });
+
   final bool showText;
   final String numOfStar;
   final bool tappable;
@@ -19,9 +21,14 @@ class CustomReviewIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final iconController = Get.find<IconController>();
+
+    // You can directly access iconController.selectedIndex.value to get the number of selected stars
+    final int selectedStars = iconController.selectedIndex.value;
+
     return Row(
       children: [
-        for (int i = 1; i < 6; i++)
+        // Loop through 5 stars and determine whether each star is selected or not
+        for (int i = 1; i <= 5; i++) // Start loop from 1 to 5 for 5 stars
           Obx(
             () => InkWell(
               onTap:
@@ -34,17 +41,17 @@ class CustomReviewIcons extends StatelessWidget {
               child: Icon(
                 Icons.star,
                 color:
-                    iconController.isSelected.value
-                        ? iconController.selectedIndex.value >= i
-                            ? Colors.amber
-                            : Colors.grey
-                        : Colors.grey,
+                    iconController.selectedIndex.value >= i
+                        ? Colors
+                            .amber // Fill the star if selected
+                        : Colors.grey, // Otherwise, empty gray star
                 size: 25,
               ),
             ),
           ),
         SizedBox(width: 10),
-        if (showText) CustomSectionSubtitleText(subtitle: '($numOfStar/5)'),
+        // Optionally show the number of selected stars as text
+        if (showText) CustomSectionSubtitleText(subtitle: '($selectedStars/5)'),
       ],
     );
   }
