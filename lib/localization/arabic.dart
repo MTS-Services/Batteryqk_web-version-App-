@@ -197,4 +197,6 @@ Map<String, String> arabic = {
   'booking_time': 'وقت الحجز',
   'additional_notes': 'ملاحظات اضافية',
   'review_status: PENDING': 'حالة المراجعة: معلقة',
+  'booking_successful':'الحجز بنجاح',
+  'ok': 'موافق',
 };

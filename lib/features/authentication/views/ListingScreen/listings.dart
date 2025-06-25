@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../../../common/widgets/custom_app_bar.dart';
 import '../../../../util/colors.dart';
 import '../../controllers/build_listing_card_controller.dart';
-import 'widgets/filter_model_content.dart';
 import 'widgets/listing_list.dart';
 
 class Listings extends StatefulWidget {
@@ -15,13 +14,12 @@ class Listings extends StatefulWidget {
 }
 
 class _ListingsState extends State<Listings> {
-  final List<String> price = ['Free', 'Paid', 'Subscription'];
   bool islogin = true;
   final _listController = Get.find<BuildListingCardController>();
   final TextEditingController searchController = TextEditingController();
 
   Future<void> _refreshData() async => await _listController.fetchListData();
- Future<void> _applyFilters() async {
+  Future<void> _applyFilters() async {
     String searchTerm = searchController.text.trim();
     _listController.isloading.value = true;
     await Future.delayed(const Duration(milliseconds: 300));
@@ -34,7 +32,7 @@ class _ListingsState extends State<Listings> {
     if (mounted) Navigator.pop(context);
   }
 
- void _showFilterModal() {
+  void _showFilterModal() {
     showModalBottomSheet(
       backgroundColor: AppColor.whiteColor,
       elevation: 4,
@@ -129,11 +127,7 @@ class _ListingsState extends State<Listings> {
         backgroundColor: AppColor.blueColor,
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        child: const Icon(
-          Icons.search,
-          size: 28,
-          color: AppColor.whiteColor,
-        ),
+        child: const Icon(Icons.search, size: 28, color: AppColor.whiteColor),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

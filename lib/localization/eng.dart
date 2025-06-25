@@ -205,5 +205,7 @@ Map<String, String> eng = {
   'booking_time': 'Booking Time',
   'additional_notes': 'Additional Notes',
   'review_status: PENDING': 'Review Status: Pending',
+  'booking_successful':'Booking Successfull',
+  'ok': 'OK',
   
 };

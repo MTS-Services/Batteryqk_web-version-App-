@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/features/authentication/controllers/auth_controller.dart';
 
+import '../../common/widgets/custom_bottom_navigation_bar.dart';
 import '../../features/authentication/controllers/language_controller.dart';
 import '../../features/authentication/models/user_data.dart';
 
@@ -116,7 +117,6 @@ class ApiService {
     final LanguageController languageController =
         Get.find<LanguageController>();
     final String acceptLanguage = languageController.currentLanguage;
-    print('Accept-Language: $acceptLanguage');
 
     final String? token = await AuthController.getToken();
     final Map<String, dynamic> bookingData = {
@@ -151,14 +151,14 @@ class ApiService {
             context: context,
             builder:
                 (BuildContext context) => AlertDialog(
-                  title: Text('Booking Successful'),
+                  title: Text('booking_successful'.tr),
                   content: Text(message),
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Get.to(() => CustomBottomNavigationBar());
                       },
-                      child: Text('OK'),
+                      child: Text('ok'.tr),
                     ),
                   ],
                 ),

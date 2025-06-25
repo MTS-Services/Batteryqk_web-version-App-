@@ -4,8 +4,10 @@ import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_
 import 'package:batteryqk_web_app/common/widgets/listings_details_custom/custom_listings_booking_section.dart';
 import 'package:batteryqk_web_app/features/authentication/models/review_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../util/colors.dart';
+import '../controllers/build_listing_card_controller.dart';
 
 class ListingsDetails extends StatefulWidget {
   const ListingsDetails({
@@ -25,7 +27,8 @@ class ListingsDetails extends StatefulWidget {
     required this.openingHours,
     required this.reviews,
     required this.averageRating,
-    required this.numOfReviews, required this.index,
+    required this.numOfReviews,
+    required this.index,
   });
 
   final String mainImage;
@@ -56,6 +59,11 @@ class _ListingsDetailsState extends State<ListingsDetails> {
     'info@eliteswimmingacademy.com',
     'www.eliteswimmingacademy.com',
   ];
+  final controller = Get.find<BuildListingCardController>();
+
+  Future<void> _refreshData() async {
+    await controller.fetchListData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,39 +73,42 @@ class _ListingsDetailsState extends State<ListingsDetails> {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              CustomDetailsImageGroup(
-                image1a: widget.mainImage,
-                image1b: widget.subImage1,
-                image1c: widget.subImage2,
-                image1d: widget.subImage3,
-                image1e: widget.subImage4,
-              ),
-              const SizedBox(height: 20),
-              CustomDetails(
-                name: widget.title,
-                location: widget.location,
-                description: widget.description,
-                averageRating: widget.averageRating,
-                tag: widget.tag,
-                ageGroup: widget.ageGroup,
-                facility: widget.facility,
-                categories: widget.categoriesList,
-                openingHours: widget.openingHours,
-                reviews: widget.reviews,
-                numOfReviews: widget.numOfReviews,
-              ),
-
-              CustomListingsBookingSection(index: widget.index,
-                number: contractInfos[0],
-                gmail: contractInfos[1],
-                web: contractInfos[2],
-              ),
-            ],
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                CustomDetailsImageGroup(
+                  image1a: widget.mainImage,
+                  image1b: widget.subImage1,
+                  image1c: widget.subImage2,
+                  image1d: widget.subImage3,
+                  image1e: widget.subImage4,
+                ),
+                const SizedBox(height: 20),
+                CustomDetails(
+                  name: widget.title,
+                  location: widget.location,
+                  description: widget.description,
+                  averageRating: widget.averageRating,
+                  tag: widget.tag,
+                  ageGroup: widget.ageGroup,
+                  facility: widget.facility,
+                  categories: widget.categoriesList,
+                  openingHours: widget.openingHours,
+                  reviews: widget.reviews,
+                  numOfReviews: widget.numOfReviews,
+                ),
+                CustomListingsBookingSection(
+                  index: widget.index,
+                  number: contractInfos[0],
+                  gmail: contractInfos[1],
+                  web: contractInfos[2],
+                ),
+              ],
+            ),
           ),
         ),
       ),

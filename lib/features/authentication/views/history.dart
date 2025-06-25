@@ -53,7 +53,10 @@ class HistoryScreen extends StatelessWidget {
                 child: BookingContainer(
                   reviewController: reviewController,
                   academyName: booking.listing?.name ?? "N/A",
-                  location: booking.listing!.location.toString(),
+                  location: booking.listing!.location.toString().substring(
+                    1,
+                    booking.listing!.location.toString().length - 1,
+                  ),
                   date: formattedDate, // Pass the formatted date
                   additionalNote: booking.additionalNote.toString(),
                   bookingTime: booking.bookingHours.toString(),

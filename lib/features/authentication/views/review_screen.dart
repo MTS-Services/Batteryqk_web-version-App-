@@ -22,6 +22,7 @@ class ReviewScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
               const SizedBox(height: 30),
+              if (reviews.isEmpty) const Text('No Reviews Available yet'),
               Expanded(
                 child: ListView.separated(
                   itemCount: reviews.length,

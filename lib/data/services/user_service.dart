@@ -1,13 +1,18 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/data/services/utility/urls.dart';
 import 'package:batteryqk_web_app/features/authentication/models/user_model.dart';
 import '../../features/authentication/controllers/auth_controller.dart';
+import '../../features/authentication/controllers/language_controller.dart';
 
 class UserService {
   static Future<List<UserModel>> getAllUser() async {
     final String? token = await AuthController.getToken();
-    print('Retrieved token: $token');
+
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+    final String acceptLanguage = languageController.currentLanguage;
 
     if (token == null || token.isEmpty) {
       throw Exception('Token is not available');
@@ -19,7 +24,7 @@ class UserService {
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
-        'Accept-Language':'ar'
+        if (acceptLanguage.isNotEmpty) 'Accept-Language': acceptLanguage,
       },
     );
 
@@ -36,12 +41,10 @@ class UserService {
         final List<dynamic> usersData = decoded['data'];
         return usersData.map((e) => UserModel.fromJson(e)).toList();
       }
-
       // Case 2: Only one user returned as Map
       else if (decoded is Map<String, dynamic> && decoded.containsKey('id')) {
         return [UserModel.fromJson(decoded)]; // wrap single user into list
       }
-
       // Case 3: Already a List
       else if (decoded is List) {
         return decoded.map((e) => UserModel.fromJson(e)).toList();
@@ -53,5 +56,4 @@ class UserService {
       throw Exception('Error parsing user data: $e');
     }
   }
-
 }

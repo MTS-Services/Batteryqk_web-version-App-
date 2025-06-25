@@ -148,13 +148,13 @@ class BookingContainer extends StatelessWidget {
                         : 'Booking is Pending',
               ),
 
-          const SizedBox(height: 18),
-          Divider(thickness: 1, color: Colors.grey.shade300),
-          const SizedBox(height: 18),
-          Text(
-            'Booking #$bookingNumber',
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-          ),
+          // const SizedBox(height: 18),
+          // Divider(thickness: 1, color: Colors.grey.shade300),
+          // const SizedBox(height: 18),
+          // Text(
+          //   'Booking #$bookingNumber',
+          //   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          // ),
         ],
       ),
     );
