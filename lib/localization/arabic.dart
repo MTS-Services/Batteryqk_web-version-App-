@@ -193,4 +193,8 @@ Map<String, String> arabic = {
   "activity.school.southside": "المدرسة | الجانب الجنوبي",
   'history': 'التاريخ',
   'all_sports': 'جميع الرياضات',
+  'booking_date': 'تاريخ الحجز',
+  'booking_time': 'وقت الحجز',
+  'additional_notes': 'ملاحظات اضافية',
+  'review_status: PENDING': 'حالة المراجعة: معلقة',
 };

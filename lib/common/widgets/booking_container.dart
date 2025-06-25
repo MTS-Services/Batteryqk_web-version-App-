@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/get_utils.dart';
 
 import '../../util/colors.dart';
 import '../styles/styles.dart';
@@ -89,27 +90,27 @@ class BookingContainer extends StatelessWidget {
         children: [
           CustomSectionHeaderText(academyName),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: "Loaction"),
+          CustomSectionTitleText(title: "location".tr),
           CustomSectionSubtitleText(subtitle: location),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: "Booking Date:"),
+          CustomSectionTitleText(title: "booking_date".tr),
           CustomSectionSubtitleText(subtitle: date),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: 'Booking Time:'),
+          CustomSectionTitleText(title: 'booking_time'.tr),
           CustomSectionSubtitleText(subtitle: bookingTime),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: 'Additional Note:'),
+          CustomSectionTitleText(title: 'additional_notes'.tr),
           CustomSectionSubtitleText(subtitle: additionalNote),
           const SizedBox(height: 18),
           if (reviewIdStatus != 'null' && reviewStatus == 'PENDING')
-            CustomSectionTitleText(title: 'Review Status: PENDING'),
+            CustomSectionTitleText(title: 'review_status: PENDING'.tr),
           if (reviewIdStatus != 'null' && reviewStatus == 'REJECTED')
             CustomSectionTitleText(title: 'Review Status: REJECTED'),
           if (reviewStatus == 'ACCEPTED')
             CustomSectionTitleText(title: "Ratings:"),
           if (reviewStatus == 'ACCEPTED') Row(children: _buildStars()),
           const SizedBox(height: 18),
-          CustomSectionTitleText(title: "Description"),
+          CustomSectionTitleText(title: "description".tr),
           CustomSectionSubtitleText(subtitle: description),
           const SizedBox(height: 18),
           if (paymentMethod != 'UNPAID' &&

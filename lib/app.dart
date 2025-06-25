@@ -3,7 +3,9 @@ import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
+
+import 'features/authentication/controllers/language_controller.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,7 +16,9 @@ class App extends StatelessWidget {
       designSize: Size(360, 690),
       child: GetMaterialApp(
         home: AuthCheck(),
-        locale: Locale('en', 'US'),
+         locale: Get.find<LanguageController>().isEnglish.value
+            ? Locale('en', 'US')
+            : Locale('ar', ''), 
         fallbackLocale: Locale('en', 'US'),
         translations: Language(),
         debugShowCheckedModeBanner: false,

@@ -67,7 +67,6 @@ class ApiService {
   }
 
   Future<List<BuildListingCardModel>> showListing() async {
-    print('api called');
     final String url = Urls.showAllListing;
     final String? token = await AuthController.getToken();
 
@@ -229,6 +228,9 @@ class ApiService {
 
     // Get token
     final String? token = await AuthController.getToken();
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+    final String acceptLanguage = languageController.currentLanguage;
 
     // Request body
     final Map<String, dynamic> reviewData = {
@@ -243,6 +245,7 @@ class ApiService {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
+          if (acceptLanguage.isNotEmpty) 'Accept-Language': acceptLanguage,
         },
         body: json.encode(reviewData),
       );

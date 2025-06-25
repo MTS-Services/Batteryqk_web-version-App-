@@ -19,6 +19,8 @@ class _ListingsState extends State<Listings> {
   bool islogin = true;
   final _listController = Get.find<BuildListingCardController>();
 
+  Future<void> _refreshData() async => await _listController.fetchListData();
+
   void _resetFilters() {
     setState(() {
       islogin = false;
@@ -38,7 +40,9 @@ class _ListingsState extends State<Listings> {
       backgroundColor: AppColor.whiteColor,
       elevation: 4,
       context: context,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
       builder: (context) {
         return FilterModalContent(
           islogin: islogin,
@@ -76,13 +80,14 @@ class _ListingsState extends State<Listings> {
             ),
           );
         }
-        return Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListingsList(listController: _listController),
-            ],
+        return RefreshIndicator(
+          onRefresh: _refreshData,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [ListingsList(listController: _listController)],
+            ),
           ),
         );
       }),
@@ -91,7 +96,11 @@ class _ListingsState extends State<Listings> {
         backgroundColor: AppColor.blueColor,
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        child: const Icon(Icons.filter_alt_outlined, size: 28, color: AppColor.whiteColor),
+        child: const Icon(
+          Icons.filter_alt_outlined,
+          size: 28,
+          color: AppColor.whiteColor,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

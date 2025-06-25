@@ -7,18 +7,15 @@ import 'package:get/get.dart';
 
 import '../controllers/build_listing_card_controller.dart';
 
-class LanguagePage extends StatefulWidget {
+class LanguagePage extends StatelessWidget {
   const LanguagePage({super.key});
 
   @override
-  State<LanguagePage> createState() => _LanguagePageState();
-}
-
-class _LanguagePageState extends State<LanguagePage> {
-  final LanguageController languageController = Get.find<LanguageController>();
-
-  @override
   Widget build(BuildContext context) {
+    // Access the LanguageController instance
+    final LanguageController languageController =
+        Get.find<LanguageController>();
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(kToolbarHeight),
@@ -34,16 +31,16 @@ class _LanguagePageState extends State<LanguagePage> {
             child: Card(
               color: AppColor.whiteColor,
               child: ListTile(
-                title: Text("english_language".tr),
+                title: Text("english_language".tr), // Use the translation
                 onTap: () {
+                  // Toggle the language to English
                   languageController.toggleLanguage(true);
                   Get.find<BuildListingCardController>().refreshForLanguage();
-                  Future.delayed(const Duration(milliseconds: 150), () {
-                    Get.offAll(
-                      () => CustomBottomNavigationBar(),
-                      arguments: {'refresh': true},
-                    );
-                  });
+                  // Navigate to the bottom navigation
+                  Get.offAll(
+                    () => CustomBottomNavigationBar(),
+                    arguments: {'refresh': true},
+                  );
                 },
               ),
             ),
@@ -56,16 +53,16 @@ class _LanguagePageState extends State<LanguagePage> {
             child: Card(
               color: AppColor.whiteColor,
               child: ListTile(
-                title: Text("Arabic".tr),
+                title: Text("Arabic".tr), // Use the translation
                 onTap: () {
+                  // Toggle the language to Arabic
                   languageController.toggleLanguage(false);
                   Get.find<BuildListingCardController>().refreshForLanguage();
-                  Future.delayed(const Duration(milliseconds: 150), () {
-                    Get.offAll(
-                      () => CustomBottomNavigationBar(),
-                      arguments: {'refresh': true},
-                    );
-                  });
+                  // Navigate to the bottom navigation
+                  Get.offAll(
+                    () => CustomBottomNavigationBar(),
+                    arguments: {'refresh': true},
+                  );
                 },
               ),
             ),

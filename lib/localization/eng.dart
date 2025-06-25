@@ -201,4 +201,9 @@ Map<String, String> eng = {
   "activity.school.southside": "School | South Side",
   'history': 'History',
   'all_sports': 'All Sports',
+  'booking_date': 'Booking Date',
+  'booking_time': 'Booking Time',
+  'additional_notes': 'Additional Notes',
+  'review_status: PENDING': 'Review Status: Pending',
+  
 };

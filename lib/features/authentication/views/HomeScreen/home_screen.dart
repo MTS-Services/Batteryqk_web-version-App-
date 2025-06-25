@@ -10,7 +10,13 @@ import 'widgets/top_listing_section.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final BuildListingCardController apiController = Get.put(BuildListingCardController());
+  final BuildListingCardController apiController = Get.put(
+    BuildListingCardController(),
+  );
+
+  Future<void> _refreshData() async {
+    await apiController.fetchListData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,22 +44,29 @@ class HomeScreen extends StatelessWidget {
             ),
           );
         }
-        return ListView(
-          children: [
-            const SizedBox(height: 30),
-            const BannerSection(),
-            const SizedBox(height: 18),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                "featured_activities".tr,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xff212121)),
+        return RefreshIndicator(
+          onRefresh: _refreshData,
+          child: ListView(
+            children: [
+              const SizedBox(height: 30),
+              const BannerSection(),
+              const SizedBox(height: 18),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: Text(
+                  "featured_activities".tr,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xff212121),
+                  ),
+                ),
               ),
-            ),
-            const QuickAccessSection(),
-            const SizedBox(height: 30),
-            TopListingsSection(apiController: apiController),
-          ],
+              const QuickAccessSection(),
+              const SizedBox(height: 30),
+              TopListingsSection(apiController: apiController),
+            ],
+          ),
         );
       }),
     );
