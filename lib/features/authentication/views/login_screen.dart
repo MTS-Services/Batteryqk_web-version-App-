@@ -4,13 +4,14 @@ import 'package:get/get.dart'; // add this import for .tr
 import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_text_button.dart';
 import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
-import 'package:batteryqk_web_app/features/authentication/views/email_verification_screen.dart';
 import 'package:batteryqk_web_app/features/authentication/views/signup_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../common/widgets/built_social_button.dart';
 import '../../../data/services/firebase_service.dart';
+
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
 
@@ -24,7 +25,7 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController _emailTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-   final AuthControllers authController = Get.put(AuthControllers());
+  final AuthControllers authController = Get.put(AuthControllers());
 
   @override
   Widget build(BuildContext context) {
@@ -42,12 +43,11 @@ class _LogInScreenState extends State<LogInScreen> {
                 Text(
                   'login_here'.tr,
                   textAlign: TextAlign.center,
-                  style:TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      color: AppColor.blackColor,
-                  )
-
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: AppColor.blackColor,
+                  ),
                 ),
                 const SizedBox(height: 15),
                 Text(
@@ -140,12 +140,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: MyCustomTextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => EmailVerificationScreen(),
-                        ),
-                      );
+                    onPressed: () async {
+                      await launchUrl(Uri.parse('https://reset.batteryqk.com/firebase'));
                     },
                     text: 'forgot_password'.tr,
                   ),
@@ -157,10 +153,12 @@ class _LogInScreenState extends State<LogInScreen> {
                     onPressed: () {
                       if (_globalKey.currentState!.validate()) {
                         handleSignIn(context);
-                        UserLogin userLogin = UserLogin(email: _emailTEController.text.trim(), password: _passwordTEController.text);
-                       ApiService.userLogIn(userLogin, context);
+                        UserLogin userLogin = UserLogin(
+                          email: _emailTEController.text.trim(),
+                          password: _passwordTEController.text,
+                        );
+                        ApiService.userLogIn(userLogin, context);
                       }
-
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.symmetric(
@@ -185,9 +183,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => SignupScreen(),
-                        ),
+                        MaterialPageRoute(builder: (context) => SignupScreen()),
                       );
                     },
                   ),
@@ -209,9 +205,8 @@ class _LogInScreenState extends State<LogInScreen> {
                   children: [
                     buildSocialButton(
                       icon: FontAwesomeIcons.google,
-                      onTap: ()  {
+                      onTap: () {
                         authController.googleSignIn();
-
                       },
                     ),
                     SizedBox(width: 16),
@@ -230,6 +225,7 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
   }
+
   void handleSignIn(BuildContext context) async {
     final email = _emailTEController.text.trim();
     final password = _passwordTEController.text.trim();

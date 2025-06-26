@@ -51,8 +51,8 @@ class NotificationPage extends StatelessWidget {
                         Icons.notifications,
                         color: AppColor.blueColor,
                       ),
-                      title: Text(notif.title ?? ""),
-                      subtitle: Text(notif.message ?? ""),
+                      title: Text(notif.title),
+                      subtitle: Text(notif.message),
                       trailing:
                           notif.isRead
                               ? null

@@ -42,8 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final users = _controller.userList;
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
