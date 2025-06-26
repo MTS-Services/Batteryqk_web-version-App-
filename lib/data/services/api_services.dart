@@ -21,8 +21,6 @@ class ApiService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(user.toJson()),
       );
-      print("Response statusCode: ${response.statusCode}");
-      print("Response body: ${response.body}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         showSnackbar(context, "Success", "User created successfully");
@@ -49,16 +47,12 @@ class ApiService {
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(userLogin.toJson()),
       );
-      print("Response statusCode: ${response.statusCode}");
-      print("Response Body: ${response.body}");
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map<String, dynamic> responseBody = json.decode(response.body);
         final String token = responseBody['token'];
 
         await AuthController.saveToken(token);
-        print('Token saved: $token');
-        showSnackbar(context, "Success", "Login successful");
       } else {
         showSnackbar(context, "Failed", "Login failed: ${response.statusCode}");
       }

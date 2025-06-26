@@ -24,55 +24,69 @@ class AuthControllers extends GetxController {
     });
   }
 
-  Future<bool> signUp(String email, String password, BuildContext context) async {
+  Future<bool> signUp(
+    String email,
+    String password,
+    BuildContext context,
+  ) async {
     try {
       isLoading.value = true;
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      showSnackbar(context, "Success", "Account created successfully");
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      showSnackbar(context, "Success", "Account created successfully".tr);
       return true;
     } catch (e) {
-      showSnackbar(context, 'Sign Up Error', e.toString().split('] ').last);
+      showSnackbar(context, 'Sign Up Error'.tr, e.toString().split('] ').last);
       return false;
     } finally {
       isLoading.value = false;
     }
   }
 
-  Future<void> signIn(String email, String password, BuildContext context) async {
+  Future<void> signIn(
+    String email,
+    String password,
+    BuildContext context,
+  ) async {
     try {
       isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      showSnackbar(context, 'Success', 'Logged in successfully');
+      showSnackbar(context, 'success'.tr, 'login_success'.tr);
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {
         case 'invalid-email':
-          errorMessage = 'The email address is not valid.';
+          errorMessage = 'The email address is not valid.'.tr;
           break;
         case 'user-not-found':
-          errorMessage = 'No account found with this email.';
+          errorMessage = 'No account found with this email.'.tr;
           break;
         case 'wrong-password':
-          errorMessage = 'The password you entered is incorrect.';
+          errorMessage = 'The password you entered is incorrect.'.tr;
           break;
         default:
-          errorMessage = 'Login failed. Please try again.';
+          errorMessage = 'Login failed. Please try again.'.tr;
       }
-      showSnackbar(context, 'Sign In Error', errorMessage);
+      showSnackbar(context, 'Sign In Error'.tr, errorMessage);
     } catch (e) {
-      showSnackbar(context, 'Error', 'Something went wrong. Please try again later.');
+      showSnackbar(
+        context,
+        'Error'.tr,
+        'Something went wrong. Please try again later.'.tr,
+      );
     } finally {
       isLoading.value = false;
     }
   }
-
 
   Future<void> logOut(BuildContext context) async {
     try {
       isLoading.value = true;
       await _auth.signOut();
     } catch (e) {
-      showSnackbar(context, 'Logout Error', e.toString().split('] ').last);
+      showSnackbar(context, 'Logout Error'.tr, e.toString().split('] ').last);
     } finally {
       isLoading.value = false;
     }
@@ -85,14 +99,19 @@ class AuthControllers extends GetxController {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
       if (googleUser == null) {
-        showSnackbar(Get.context!, 'Cancelled', 'Google sign-in was cancelled');
+        showSnackbar(
+          Get.context!,
+          'Cancelled'.tr,
+          'Google sign-in was cancelled'.tr,
+        );
         return false;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       if (googleAuth.accessToken == null) {
-        showSnackbar(Get.context!, 'Error', 'Missing access token');
+        showSnackbar(Get.context!, 'Error'.tr, 'Missing access token'.tr);
         return false;
       }
 
@@ -105,24 +124,21 @@ class AuthControllers extends GetxController {
       final user = userCredential.user;
 
       if (user != null) {
-        showSnackbar(Get.context!, 'Success', 'Logged in with Google');
+        showSnackbar(Get.context!, 'Success'.tr, 'Logged in with Google'.tr);
         Get.offAll(() => CustomBottomNavigationBar());
         return true;
       } else {
-        showSnackbar(Get.context!, 'Error', 'Failed to retrieve user');
+        showSnackbar(Get.context!, 'Error'.tr, 'Failed to retrieve user'.tr);
         return false;
       }
     } catch (e) {
-      showSnackbar(Get.context!, 'Google Sign-In Error', e.toString());
+      showSnackbar(Get.context!, 'Google Sign-In Error'.tr, e.toString());
       return false;
     }
   }
 
-
-
   Future<UserCredential?> signInWithApple() async {
     try {
-
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -130,21 +146,19 @@ class AuthControllers extends GetxController {
         ],
       );
 
-      // Apple credential থেকে Firebase OAuth credential তৈরি
       final oauthCredential = OAuthProvider("apple.com").credential(
         idToken: appleCredential.identityToken,
         accessToken: appleCredential.authorizationCode,
       );
 
-      // Firebase login
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(
+        oauthCredential,
+      );
       print("✅ Apple Sign-In Successful: ${userCredential.user?.email}");
       return userCredential;
-
     } catch (e) {
       print("❌ Apple Sign-In Error: $e");
       return null;
     }
   }
-
 }

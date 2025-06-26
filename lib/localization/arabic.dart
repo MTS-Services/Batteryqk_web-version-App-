@@ -199,4 +199,26 @@ Map<String, String> arabic = {
   'review_status: PENDING': 'حالة المراجعة: معلقة',
   'booking_successful':'الحجز بنجاح',
   'ok': 'موافق',
+  'error': 'خطأ',
+  'email_pass_wrong': "البريد الإلكتروني وكلمة المرور لا يمكن أن يكونا فارغين",
+  "Success": "نجاح",
+  "Account created successfully": "تم إنشاء الحساب بنجاح",
+  "Sign Up Error": "خطأ في التسجيل",
+  "Sign In Error": "خطأ في تسجيل الدخول",
+  "login_success": "تم تسجيل الدخول بنجاح",
+  "Error": "خطأ",
+  "Something went wrong. Please try again later.": "حدث خطأ. يرجى المحاولة لاحقاً.",
+  "The email address is not valid.": "عنوان البريد الإلكتروني غير صالح.",
+  "No account found with this email.": "لم يتم العثور على حساب مع هذا البريد الإلكتروني.",
+  "The password you entered is incorrect.": "كلمة المرور التي أدخلتها غير صحيحة.",
+  "Google sign-in was cancelled": "تم إلغاء تسجيل الدخول عبر Google",
+  "Missing access token": "مفقود رمز الوصول",
+  "Failed to retrieve user": "فشل في استرجاع المستخدم",
+  "Logged in with Google": "تم تسجيل الدخول باستخدام Google",
+  "Google Sign-In Error": "خطأ في تسجيل الدخول عبر Google",
+  "Cancelled": "تم الإلغاء",
+  "no_notifications": "لا توجد إشعارات."
+
+
+
 };

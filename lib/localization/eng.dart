@@ -205,7 +205,29 @@ Map<String, String> eng = {
   'booking_time': 'Booking Time',
   'additional_notes': 'Additional Notes',
   'review_status: PENDING': 'Review Status: Pending',
-  'booking_successful':'Booking Successfull',
+  'booking_successful': 'Booking Successfull',
   'ok': 'OK',
-  
+  'error': 'Error',
+  'email_pass_wrong': "Email and password cannot be empty",
+  "Success": "Success",
+  "Account created successfully": "Account created successfully",
+  "Sign Up Error": "Sign Up Error",
+  "Sign In Error": "Sign In Error",
+  "login_success": "Login successful",
+  "Error": "Error",
+  "Something went wrong. Please try again later.":
+      "Something went wrong. Please try again later.",
+  "The email address is not valid.": "The email address is not valid.",
+  "No account found with this email.": "No account found with this email.",
+  "The password you entered is incorrect.":
+      "The password you entered is incorrect.",
+  "Google sign-in was cancelled": "Google sign-in was cancelled",
+  "Missing access token": "Missing access token",
+  "Failed to retrieve user": "Failed to retrieve user",
+  "Logged in with Google": "Logged in with Google",
+  "Google Sign-In Error": "Google Sign-In Error",
+  "Cancelled": "Cancelled",
+  "no_notifications": "No notifications found.",
+  "password_strength":
+      "Password must contain at least one uppercase letter, one number, and one special character.",
 };

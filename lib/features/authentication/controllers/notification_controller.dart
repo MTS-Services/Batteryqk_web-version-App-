@@ -13,7 +13,7 @@ class NotificationController extends GetxController {
   }
 
 
-  void fetchNotifications() async {
+  Future<void> fetchNotifications() async {
     try {
       isLoading(true);
       final model = await NotificationService.getNotification();

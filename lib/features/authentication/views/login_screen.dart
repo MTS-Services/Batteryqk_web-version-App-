@@ -28,6 +28,13 @@ class _LogInScreenState extends State<LogInScreen> {
   final AuthControllers authController = Get.put(AuthControllers());
 
   @override
+  void dispose() {
+    _emailTEController.dispose();
+    _passwordTEController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
@@ -103,6 +110,14 @@ class _LogInScreenState extends State<LogInScreen> {
                     if (value.length < 6) {
                       return 'password_length'.tr;
                     }
+                    // Add validation for uppercase letter, number, and special character
+                    final passwordRegExp = RegExp(
+                      r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$',
+                    );
+                    if (!passwordRegExp.hasMatch(value)) {
+                      return 'password_strength'
+                          .tr; // Custom error for weak password
+                    }
                     return null;
                   },
                   decoration: InputDecoration(
@@ -141,7 +156,9 @@ class _LogInScreenState extends State<LogInScreen> {
                   alignment: Alignment.bottomRight,
                   child: MyCustomTextButton(
                     onPressed: () async {
-                      await launchUrl(Uri.parse('https://reset.batteryqk.com/firebase'));
+                      await launchUrl(
+                        Uri.parse('https://reset.batteryqk.com/firebase'),
+                      );
                     },
                     text: 'forgot_password'.tr,
                   ),

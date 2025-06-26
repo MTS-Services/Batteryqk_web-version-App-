@@ -5,8 +5,9 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isBack;
+  final bool showNotification ;
 
-  const CustomAppBar({super.key, this.isBack = false});
+  const CustomAppBar({super.key, this.isBack = false, this.showNotification= true});
 
   @override
   Size get preferredSize => const Size.fromHeight(70);
@@ -50,6 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               const Spacer(),
 
               /// Notification Icon
+              if (showNotification)
               InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {

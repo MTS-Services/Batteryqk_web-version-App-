@@ -6,7 +6,6 @@ import 'package:batteryqk_web_app/features/authentication/views/login_screen.dar
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../common/widgets/built_social_button.dart';
 import '../../../common/widgets/show_snack_bar.dart';
@@ -25,11 +24,21 @@ class _SignupScreenState extends State<SignupScreen> {
 
   final TextEditingController _fNameTEController = TextEditingController();
   final TextEditingController _lNameTEController = TextEditingController();
-  final  TextEditingController _emailTEController=TextEditingController();
-  final  TextEditingController _passwordTEController=TextEditingController();
-  final  TextEditingController _confirmPTEController=TextEditingController();
-  final GlobalKey<FormState> _formKey=GlobalKey<FormState>();
+  final TextEditingController _emailTEController = TextEditingController();
+  final TextEditingController _passwordTEController = TextEditingController();
+  final TextEditingController _confirmPTEController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthControllers authController = Get.put(AuthControllers());
+
+  @override
+  void dispose() {
+    _fNameTEController.dispose();
+    _lNameTEController.dispose();
+    _emailTEController.dispose();
+    _passwordTEController.dispose();
+    _confirmPTEController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'Last Name'.tr,
+                    hintText: 'first_name'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
                   ),
@@ -88,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: 'Last Name'.tr,
+                    hintText: 'last_name'.tr,
                     filled: true,
                     fillColor: Colors.blue.shade50,
                   ),
@@ -124,6 +133,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     }
                     if (value.length < 6) {
                       return 'password_length'.tr;
+                    }
+                    // Check if password contains at least one number, one uppercase letter, and one special character
+                    final passwordRegExp = RegExp(
+                      r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$',
+                    );
+                    if (!passwordRegExp.hasMatch(value)) {
+                      return 'password_strength'
+                          .tr; // Custom error for weak password
                     }
                     return null;
                   },
@@ -183,14 +200,14 @@ class _SignupScreenState extends State<SignupScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if(_formKey.currentState!.validate()){
+                      if (_formKey.currentState!.validate()) {
                         handleSignup(context);
                         final user = UserCreate(
-                            fname: _fNameTEController.text,
-                            lname: _lNameTEController.text,
-                            email: _emailTEController.text.trim(),
-                            password: _passwordTEController.text,
-                            uid:UserCreate.generateUID()
+                          fname: _fNameTEController.text,
+                          lname: _lNameTEController.text,
+                          email: _emailTEController.text.trim(),
+                          password: _passwordTEController.text,
+                          uid: UserCreate.generateUID(),
                         );
                         ApiService.createUser(user, context);
                         Get.to(() => LogInScreen());
@@ -241,14 +258,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     buildSocialButton(
                       icon: FontAwesomeIcons.google,
                       onTap: () {
-                        // Handle Google login
+                        authController.googleSignIn();
                       },
                     ),
                     SizedBox(width: 16),
                     buildSocialButton(
-                      icon: FontAwesomeIcons.facebook,
+                      icon: FontAwesomeIcons.apple,
                       onTap: () {
-                        // Handle Facebook login
+                        authController.signInWithApple();
                       },
                     ),
                   ],
@@ -260,12 +277,13 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+
   void handleSignup(BuildContext context) async {
     final email = _emailTEController.text.trim();
     final password = _passwordTEController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      showSnackbar(context, "Error", "Email and password cannot be empty");
+      showSnackbar(context, "error".tr, "email_pass_wrong".tr);
       return;
     }
 
@@ -275,7 +293,4 @@ class _SignupScreenState extends State<SignupScreen> {
       Get.to(() => LogInScreen());
     }
   }
-
-
-
 }
