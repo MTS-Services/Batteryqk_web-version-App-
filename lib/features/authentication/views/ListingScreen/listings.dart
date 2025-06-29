@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/widgets/custom_app_bar.dart';
+import '../../../../common/widgets/custom_dropdown_Listings.dart';
+import '../../../../common/widgets/multi_dropdown.dart';
 import '../../../../util/colors.dart';
+import '../../../../util/dropdown_menu_item.dart';
 import '../../controllers/build_listing_card_controller.dart';
 import 'widgets/listing_list.dart';
 
@@ -15,6 +18,13 @@ class Listings extends StatefulWidget {
 
 class _ListingsState extends State<Listings> {
   bool islogin = true;
+  void _resetFilters() {
+    // Add reset logic for each dropdown if necessary
+    setState(() {
+      islogin = false;
+    });
+    Navigator.pop(context);
+  }
   final _listController = Get.find<BuildListingCardController>();
   final TextEditingController searchController = TextEditingController();
 
@@ -41,42 +51,93 @@ class _ListingsState extends State<Listings> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: SizedBox(
-            height: 250,
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+              left: 20,
+              right: 20,
+              top: 20,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Academy Search",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 15),
-                TextFormField(
-                  controller: searchController,
-                  decoration: const InputDecoration(
-                    hintText: 'Search....',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.search),
+                Text(
+                  'apply_filters'.tr,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    color: Colors.black87,
+                    fontWeight: FontWeight.w600,
                   ),
-                  onFieldSubmitted: (_) => _applyFilters(),
                 ),
-                const SizedBox(height: 20),
+                MultiDropDown(),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.location,
+                  listType: 'all_location'.tr, onChanged: (String? value) {  },
+                ),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.ageGroup,
+                  listType: 'age_group'.tr, onChanged: (String? value) {  },
+                ),
+                CustomDropdownListings(
+                  itemList:  DropDownMenuItemList.rating,
+                  listType: 'rating'.tr, onChanged: (String? value) {  },
+                ),
+                CustomDropdownListings(
+                  itemList: DropDownMenuItemList.gender,
+                  listType: 'Gender'.tr, onChanged: (String? value) {  },
+                ),
+                CustomDropdownListings(
+                  itemList: DropDownMenuItemList.price,
+                  listType: 'price'.tr, onChanged: (String? value) {  },
+                ),
+
+                const SizedBox(height: 30),
+
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextButton(
-                      onPressed: _listController.resetFilter,
-                      child: const Text('Reset'),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          setState(() {
+                            islogin = true;
+                          });
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.check_circle_outline),
+                        label: Text('apply_filters'.tr),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                          islogin ? AppColor.blueColor : Colors.grey.shade200,
+                          foregroundColor: islogin ? Colors.white : Colors.black87,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
                     ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: _applyFilters,
-                      child: const Text('Search'),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: ElevatedButton.icon(
+                        onPressed: _resetFilters,
+                        icon: const Icon(Icons.refresh),
+                        label: Text('reset'.tr),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                          islogin ? Colors.grey.shade200 : AppColor.blueColor,
+                          foregroundColor: islogin ? Colors.black87 : Colors.white,
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -127,7 +188,11 @@ class _ListingsState extends State<Listings> {
         backgroundColor: AppColor.blueColor,
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        child: const Icon(Icons.search, size: 28, color: AppColor.whiteColor),
+        child: const Icon(
+          Icons.filter_alt_outlined,
+          size: 28,
+          color: AppColor.whiteColor,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
