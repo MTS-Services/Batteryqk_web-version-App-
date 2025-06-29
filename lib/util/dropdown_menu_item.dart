@@ -22,6 +22,15 @@ class DropDownMenuItemList {
     '4 Stars',
     '5 Stars',
   ];
+  static final List<String> gender = [
+    'Male',
+    'Female',
+    'Other'
+  ];
+  static final List<String> price = [
+    'Paid',
+    'Pending',
+  ];
 
   static Map<String, Map<String, Map<String, bool>>> sportsCategories = {
     'A. Individual Sports': {

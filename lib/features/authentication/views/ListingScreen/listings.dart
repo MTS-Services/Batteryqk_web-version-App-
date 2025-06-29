@@ -1,15 +1,14 @@
-import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
-import 'package:batteryqk_web_app/common/widgets/custom_dropdown_Listings.dart';
-import 'package:batteryqk_web_app/common/widgets/multi_dropdown.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
-import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/widgets/listings_details_custom/build_listing_card.dart';
-import '../../../../util/images_path.dart';
-import '../BookingScreen/book_screen.dart';
-import '../listings_details.dart';
+import '../../../../common/widgets/custom_app_bar.dart';
+import '../../../../common/widgets/custom_dropdown_Listings.dart';
+import '../../../../common/widgets/multi_dropdown.dart';
+import '../../../../util/colors.dart';
+import '../../../../util/dropdown_menu_item.dart';
+import '../../controllers/build_listing_card_controller.dart';
+import 'widgets/listing_list.dart';
+
 class Listings extends StatefulWidget {
   const Listings({super.key});
 
@@ -18,16 +17,29 @@ class Listings extends StatefulWidget {
 }
 
 class _ListingsState extends State<Listings> {
-  final List<String> price = ['Free', 'Paid', 'Subscription'];
-
   bool islogin = true;
-
   void _resetFilters() {
     // Add reset logic for each dropdown if necessary
     setState(() {
       islogin = false;
     });
     Navigator.pop(context);
+  }
+  final _listController = Get.find<BuildListingCardController>();
+  final TextEditingController searchController = TextEditingController();
+
+  Future<void> _refreshData() async => await _listController.fetchListData();
+  Future<void> _applyFilters() async {
+    String searchTerm = searchController.text.trim();
+    _listController.isloading.value = true;
+    await Future.delayed(const Duration(milliseconds: 300));
+    _listController.applyFilter(
+      priceType: 'All',
+      category: 'All',
+      searchTerm: searchTerm,
+    );
+    _listController.isloading.value = false;
+    if (mounted) Navigator.pop(context);
   }
 
   void _showFilterModal() {
@@ -72,11 +84,15 @@ class _ListingsState extends State<Listings> {
                   listType: 'rating'.tr, onChanged: (String? value) {  },
                 ),
                 CustomDropdownListings(
-                  itemList: price,
+                  itemList: DropDownMenuItemList.gender,
+                  listType: 'Gender'.tr, onChanged: (String? value) {  },
+                ),
+                CustomDropdownListings(
+                  itemList: DropDownMenuItemList.price,
                   listType: 'price'.tr, onChanged: (String? value) {  },
                 ),
 
-                const SizedBox(height: 15),
+                const SizedBox(height: 30),
 
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +137,7 @@ class _ListingsState extends State<Listings> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
               ],
             ),
           ),
@@ -134,154 +150,39 @@ class _ListingsState extends State<Listings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
-        child: const CustomAppBar(isBack: false),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(isBack: false),
       ),
-      body: Stack(
-        children: [
-          Padding(
+      body: Obx(() {
+        if (_listController.isloading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (_listController.hasError.value) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(_listController.errorMessage.value),
+                ElevatedButton(
+                  onPressed: _listController.fetchListData,
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          );
+        }
+        return RefreshIndicator(
+          onRefresh: _refreshData,
+          child: Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(),
-                const SizedBox(height: 24),
-
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_1_title'.tr,
-                          location: "activity.swimming.downtown".tr,
-                          tag: "paid".tr,
-                          rating: 4.5,
-                          description: 'academies_1_details'.tr,
-                          imageUrl: AppImages.academies1a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_2_title'.tr,
-                          location: "activity.gym.uptown".tr,
-                          tag: "free".tr,
-                          rating: 4.0,
-                          description: 'academies_2_details'.tr,
-                          imageUrl: AppImages.academies2a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_3_title'.tr,
-                          location: "activity.tennis.westside".tr,
-                          tag: "paid".tr,
-                          rating: 5.0,
-                          description: 'academies_3_details'.tr,
-                          imageUrl: AppImages.academies3a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_4_title'.tr,
-                          location: "activity.basketball.downtown".tr,
-                          tag: "paid".tr,
-                          rating: 4.5,
-                          description: 'academies_4_details'.tr,
-                          imageUrl: AppImages.academies4a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_5_title'.tr,
-                          location: "activity.tennis.southside".tr,
-                          tag: "free".tr,
-                          rating: 5.0,
-                          description: 'academies_5_details'.tr,
-                          imageUrl: AppImages.academies5a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                        BuildListingCard(
-                          context: context,
-                          title: 'academies_6_title'.tr,
-                          location: 'activity.school.southside'.tr,
-                          tag: "paid".tr,
-                          rating: 4.8,
-                          description: 'academies_6_details'.tr,
-                          imageUrl: AppImages.academies6a,
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ListingsDetails(mainImagePres: '', title: '', location: '', tag: '', description: '', subImage1: '', subImage2: '', subImage3: '', subImage4: '', ageGroup: '', facility: '', categoriesList: [], openingHours: '', reviews: [], averageRating: 0, numOfReviews: 0, index: 0, mainImage: '',),
-                              ),
-                            );
-                          },
-                          bookingOnPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: 2, openingHours: '',)));
-                          }, averageRating: 0,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                // Your listing cards would go here...
-              ],
+              children: [ListingsList(listController: _listController)],
             ),
           ),
-        ],
-      ),
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: _showFilterModal,
         backgroundColor: AppColor.blueColor,
