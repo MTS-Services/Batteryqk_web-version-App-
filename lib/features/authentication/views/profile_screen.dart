@@ -8,7 +8,6 @@ import '../../../util/colors.dart';
 import '../views/car_service.dart';
 import '../views/faqs.dart';
 import '../views/history.dart';
-import '../views/language_page.dart';
 import '../views/login_screen.dart';
 import '../views/notification_page.dart';
 import '../views/points.dart';
@@ -31,7 +30,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final UserController _controller = Get.find<UserController>();
   final AuthControllers authController = Get.put(AuthControllers());
   Future<void> _refreshData() async => await _controller.fetchUser();
-   @override
+  @override
   void initState() {
     super.initState();
     _controller.fetchUser();
@@ -180,11 +179,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             'notifications'.tr,
             () => Get.to(() => NotificationPage()),
           ),
-          _buildMenuButton(
-            Icons.language_outlined,
-            'language'.tr,
-            () => Get.to(() => LanguagePage()),
-          ),
+          // _buildMenuButton(
+          //   Icons.language_outlined,
+          //   'language'.tr,
+          //   () => Get.to(() => LanguagePage()),
+          // ),
           _buildMenuButton(
             Icons.history,
             'history'.tr,

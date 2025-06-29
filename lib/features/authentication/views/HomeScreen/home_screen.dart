@@ -10,9 +10,7 @@ import 'widgets/top_listing_section.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
-  final BuildListingCardController apiController = Get.put(
-    BuildListingCardController(),
-  );
+  final BuildListingCardController apiController = Get.find<BuildListingCardController>();
 
   Future<void> _refreshData() async {
     await apiController.fetchListData();

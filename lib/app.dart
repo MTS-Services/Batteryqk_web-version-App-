@@ -1,4 +1,4 @@
-import 'package:batteryqk_web_app/auth_chack.dart';
+import 'package:batteryqk_web_app/features/authentication/views/splash_screen.dart';
 import 'package:batteryqk_web_app/localization/localization.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +15,11 @@ class App extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 690),
       child: GetMaterialApp(
-        home: AuthCheck(),
-         locale: Get.find<LanguageController>().isEnglish.value
-            ? Locale('en', 'US')
-            : Locale('ar', ''), 
+        home: SplashScreen(),
+        locale:
+            Get.find<LanguageController>().isEnglish.value
+                ? Locale('en', 'US')
+                : Locale('ar', ''),
         fallbackLocale: Locale('en', 'US'),
         translations: Language(),
         debugShowCheckedModeBanner: false,

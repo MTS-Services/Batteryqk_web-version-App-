@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'features/authentication/controllers/build_listing_card_controller.dart';
 import 'features/authentication/controllers/notification_controller.dart';
 import 'features/authentication/controllers/user_controller.dart';
 import 'firebase_options.dart';
@@ -12,8 +13,9 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Get.put(NotificationController());
-  Get.put(UserController());
-  Get.put(LanguageController());
+  Get.lazyPut(() => NotificationController());
+  Get.lazyPut(() => UserController());
+  Get.lazyPut(() => LanguageController());
+  Get.lazyPut(() => BuildListingCardController());
   runApp(App());
 }
