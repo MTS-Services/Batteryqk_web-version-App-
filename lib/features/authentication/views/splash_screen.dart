@@ -40,7 +40,9 @@ class SplashScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LanguagePage()),
+                      MaterialPageRoute(builder: (context) => LanguagePage( 
+                        initialSelection: true,
+                      )),
                       (route) => false,
                     );
                   },

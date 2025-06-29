@@ -1,5 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
-import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
+import 'package:batteryqk_web_app/features/authentication/views/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class AuthCheck extends StatelessWidget {
         } else if (snapshot.hasData) {
           return CustomBottomNavigationBar();
         } else {
-          return LogInScreen();
+          return SplashScreen();
         }
       },
     );

@@ -11,6 +11,7 @@ import '../views/history.dart';
 import '../views/login_screen.dart';
 import '../views/notification_page.dart';
 import '../views/points.dart';
+import 'language_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -179,11 +180,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             'notifications'.tr,
             () => Get.to(() => NotificationPage()),
           ),
-          // _buildMenuButton(
-          //   Icons.language_outlined,
-          //   'language'.tr,
-          //   () => Get.to(() => LanguagePage()),
-          // ),
+          _buildMenuButton(
+            Icons.language_outlined,
+            'language'.tr,
+            () => Get.to(() => LanguagePage(initialSelection: false,)),
+          ),
           _buildMenuButton(
             Icons.history,
             'history'.tr,
