@@ -47,7 +47,7 @@ class ListingsList extends StatelessWidget {
                     reviews: data.reviews,
                     averageRating: data.averageRating,
                     numOfReviews: data.totalReviews,
-                    index: data.id,
+                    index: data.id, mainImagePres: '',
                   ),
                 ),
               );

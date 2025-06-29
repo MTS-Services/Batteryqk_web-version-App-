@@ -28,7 +28,7 @@ class ListingsDetails extends StatefulWidget {
     required this.reviews,
     required this.averageRating,
     required this.numOfReviews,
-    required this.index,
+    required this.index, required String mainImagePres,
   });
 
   final String mainImage;
