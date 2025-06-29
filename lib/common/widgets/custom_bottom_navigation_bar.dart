@@ -48,9 +48,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(Icons.home_filled, 'home'.tr, 0),
-                _buildNavItem(Icons.work_outline, 'jobs'.tr, 1),
+                _buildNavItem(Icons.wallet, 'jobs'.tr, 1),
                 // _buildNavItem(Icons.calendar_today_outlined, 'book'.tr, 2),
-                _buildNavItem(Icons.menu, 'menu'.tr, 2),
+                _buildNavItem(Icons.settings, 'menu'.tr, 2),
               ],
             ),
           ),

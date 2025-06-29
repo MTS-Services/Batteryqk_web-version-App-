@@ -13,7 +13,7 @@ class UserController extends GetxController {
     fetchUser();
   }
 
-  void fetchUser() async {
+  Future<void> fetchUser() async {
     try {
       isLoading.value = true;
 

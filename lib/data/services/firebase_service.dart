@@ -35,7 +35,7 @@ class AuthControllers extends GetxController {
         email: email,
         password: password,
       );
-      showSnackbar(context, "Success", "Account created successfully".tr);
+      showSnackbar(context, "Success".tr, "Account created successfully".tr);
       return true;
     } catch (e) {
       showSnackbar(context, 'Sign Up Error'.tr, e.toString().split('] ').last);
@@ -53,7 +53,7 @@ class AuthControllers extends GetxController {
     try {
       isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      showSnackbar(context, 'success'.tr, 'login_success'.tr);
+      showSnackbar(context, 'Success'.tr, 'login_success'.tr);
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {

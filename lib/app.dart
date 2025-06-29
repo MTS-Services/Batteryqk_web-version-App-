@@ -24,7 +24,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.dark,
         theme: ThemeData(
-          dialogTheme: DialogTheme(backgroundColor: AppColor.whiteColor),
+          dialogTheme: DialogThemeData(backgroundColor: AppColor.whiteColor),
           scaffoldBackgroundColor: AppColor.whiteColor,
           canvasColor: Colors.white,
           inputDecorationTheme: InputDecorationTheme(
@@ -33,7 +33,6 @@ class App extends StatelessWidget {
               borderSide: BorderSide(color: AppColor.blueColor),
               borderRadius: BorderRadius.circular(6),
             ),
-
             border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(6),

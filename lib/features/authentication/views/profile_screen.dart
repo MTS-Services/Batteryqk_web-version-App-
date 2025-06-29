@@ -28,8 +28,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final _locationController = TextEditingController(text: 'Dhaka, Bangladesh');
   final _locationFocusNode = FocusNode();
-  final UserController _controller = Get.put(UserController());
+  final UserController _controller = Get.find<UserController>();
   final AuthControllers authController = Get.put(AuthControllers());
+  Future<void> _refreshData() async => await _controller.fetchUser();
+   @override
+  void initState() {
+    super.initState();
+    _controller.fetchUser();
+  }
 
   @override
   void dispose() {
@@ -42,16 +48,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              _buildHeader(),
-              const SizedBox(height: 20),
-              _buildMenuAndLocationSection(),
-            ],
+    return RefreshIndicator(
+      onRefresh: _refreshData,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _buildHeader(),
+                const SizedBox(height: 20),
+                _buildMenuAndLocationSection(),
+              ],
+            ),
           ),
         ),
       ),
@@ -61,7 +70,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   /// ------------------- Header Section -------------------
   Widget _buildHeader() {
     final users = _controller.userList;
-
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(20, 70, 20, 40),
@@ -71,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           bottomRight: Radius.circular(30),
         ),
         gradient: LinearGradient(
-          colors: [primaryColor, primaryColor.withOpacity(0.9)],
+          colors: [primaryColor, primaryColor.withAlpha(230)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -89,19 +97,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Obx(
-                    () =>
-                _controller.isLoading.value
-                    ? const Text("Loading…"):
-                Text(
-                  users.isNotEmpty
-                      ? "${users.first.fname} ${users.first.lname}"
-                      : "—",
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                () =>
+                    _controller.isLoading.value
+                        ? const Text("Loading…")
+                        : Expanded(
+                          child: Center(
+                            child: Text(
+                              users.isNotEmpty
+                                  ? "${users.first.fname} ${users.first.lname}"
+                                  : "—",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
               ),
             ],
           ),

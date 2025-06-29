@@ -29,14 +29,14 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(isBack: true),
       body: Obx(() {
         final bookingList = bookingController.bookingList;
         if (bookingController.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
         if (bookingList.isEmpty) {
-          return const Center(child: Text('No bookings found.'));
+          return Center(child: Text('no_booking_found'.tr));
         }
         return RefreshIndicator(
           onRefresh: _refreshData, // Refresh data on pull-to-refresh

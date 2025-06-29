@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:953237213749:android:8ed11de6f625abb3ee577c",
         "android_client_info": {
-          "package_name": "com.example.batteryqk_web_app"
+          "package_name": "com.batteryqk.batteryqk_app"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "953237213749-qkspaa5l0264a5l34j3d7f74o8ia156q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.batteryqk_web_app",
+            "package_name": "com.batteryqk.batteryqk_app",
             "certificate_hash": "b89103fdaf4491e478f46f4281211e6910b25bc5"
           }
         },

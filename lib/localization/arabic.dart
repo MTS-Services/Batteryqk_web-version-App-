@@ -217,7 +217,8 @@ Map<String, String> arabic = {
   "Logged in with Google": "تم تسجيل الدخول باستخدام Google",
   "Google Sign-In Error": "خطأ في تسجيل الدخول عبر Google",
   "Cancelled": "تم الإلغاء",
-  "no_notifications": "لا توجد إشعارات."
+  "no_notifications": "لا توجد إشعارات.",
+  'no_booking_found': 'لم يتم العثور على حجز',
 
 
 

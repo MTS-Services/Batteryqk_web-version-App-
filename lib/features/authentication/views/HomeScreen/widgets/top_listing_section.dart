@@ -47,53 +47,65 @@ class TopListingsSection extends StatelessWidget {
               ),
             ],
           ),
-          ...List.generate(3, (index) {
-            final data = apiController.listingCardData[index];
-            return BuildListingCard(
-              context: context,
-              title: data.name,
-              location: '${data.mainFeatures} | ${data.location}',
-              tag: data.price,
-              rating: 4.5,
-              description: data.description,
-              imageUrl: data.mainImage,
-              averageRating: data.averageRating,
-              onPressed:
-                  () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder:
-                          (context) => ListingsDetails(
-                            mainImage: data.mainImage,
-                            description: data.description,
-                            location: '${data.mainFeatures} | ${data.location}',
-                            tag: data.price,
-                            title: data.name,
-                            subImage1: data.subImage1,
-                            subImage2: data.subImage2,
-                            subImage3: data.subImage3,
-                            subImage4: data.subImage4,
-                            ageGroup: data.ageGroup[0],
-                            facility: data.facilities[0],
-                            categoriesList:
-                                apiController
-                                    .listingCardData[0]
-                                    .specificItemNames,
-                            openingHours: data.operatingHours[0],
-                            reviews: data.reviews,
-                            averageRating: data.averageRating,
-                            numOfReviews: data.totalReviews,
-                            index: data.id,
-                          ),
+          ...List.generate(
+            apiController.listingCardData.length > 3
+                ? 3
+                : apiController.listingCardData.length,
+            (index) {
+              final data = apiController.listingCardData[index];
+              return BuildListingCard(
+                context: context,
+                title: data.name,
+                location: '${data.mainFeatures} | ${data.location}',
+                tag: data.price,
+                rating: 4.5,
+                description: data.description,
+                imageUrl: data.mainImage,
+                averageRating: data.averageRating,
+                onPressed:
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => ListingsDetails(
+                              mainImage: data.mainImage,
+                              description: data.description,
+                              location:
+                                  '${data.mainFeatures} | ${data.location}',
+                              tag: data.price,
+                              title: data.name,
+                              subImage1: data.subImage1,
+                              subImage2: data.subImage2,
+                              subImage3: data.subImage3,
+                              subImage4: data.subImage4,
+                              ageGroup: data.ageGroup[0],
+                              facility: data.facilities[0],
+                              categoriesList:
+                                  apiController
+                                      .listingCardData[0]
+                                      .specificItemNames,
+                              openingHours: data.operatingHours[0],
+                              reviews: data.reviews,
+                              averageRating: data.averageRating,
+                              numOfReviews: data.totalReviews,
+                              index: data.id,
+                            ),
+                      ),
                     ),
-                  ),
-              bookingOnPressed:
-                  () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => BookScreen(listingId: data.id,openingHours: data.operatingHours[0],)),
-                  ),
-            );
-          }),
+                bookingOnPressed:
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => BookScreen(
+                              listingId: data.id,
+                              openingHours: data.operatingHours[0],
+                            ),
+                      ),
+                    ),
+              );
+            },
+          ),
         ],
       ),
     );

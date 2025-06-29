@@ -228,6 +228,7 @@ Map<String, String> eng = {
   "Google Sign-In Error": "Google Sign-In Error",
   "Cancelled": "Cancelled",
   "no_notifications": "No notifications found.",
+  'no_booking_found': 'No booking found',
   "password_strength":
       "Password must contain at least one uppercase letter, one number, and one special character.",
 };

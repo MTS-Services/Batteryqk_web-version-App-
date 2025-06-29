@@ -1,11 +1,13 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
 import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:batteryqk_web_app/features/authentication/controllers/language_controller.dart';
+import 'package:batteryqk_web_app/features/authentication/controllers/notification_controller.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/build_listing_card_controller.dart';
+import '../controllers/user_controller.dart';
 
 class LanguagePage extends StatelessWidget {
   const LanguagePage({super.key});
@@ -36,6 +38,8 @@ class LanguagePage extends StatelessWidget {
                   // Toggle the language to English
                   languageController.toggleLanguage(true);
                   Get.find<BuildListingCardController>().refreshForLanguage();
+                  Get.find<NotificationController>().fetchNotifications();
+                  Get.find<UserController>().fetchUser();
                   // Navigate to the bottom navigation
                   Get.offAll(
                     () => CustomBottomNavigationBar(),
@@ -58,6 +62,8 @@ class LanguagePage extends StatelessWidget {
                   // Toggle the language to Arabic
                   languageController.toggleLanguage(false);
                   Get.find<BuildListingCardController>().refreshForLanguage();
+                  Get.find<NotificationController>().fetchNotifications();
+                  Get.find<UserController>().fetchUser();
                   // Navigate to the bottom navigation
                   Get.offAll(
                     () => CustomBottomNavigationBar(),

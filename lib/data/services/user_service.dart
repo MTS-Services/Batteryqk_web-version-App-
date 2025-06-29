@@ -9,7 +9,7 @@ import '../../features/authentication/controllers/language_controller.dart';
 class UserService {
   static Future<List<UserModel>> getAllUser() async {
     final String? token = await AuthController.getToken();
-
+    
     final LanguageController languageController =
         Get.find<LanguageController>();
     final String acceptLanguage = languageController.currentLanguage;

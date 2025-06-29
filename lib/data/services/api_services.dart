@@ -69,6 +69,7 @@ class ApiService {
     final LanguageController languageController =
         Get.find<LanguageController>();
     final String acceptLanguage = languageController.currentLanguage;
+    print('Accept-Language: $acceptLanguage');
 
     if (token == null || token.isEmpty) {
       throw Exception('Token is not available');
