@@ -28,6 +28,8 @@ class CustomSectionHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w500),
     );
   }

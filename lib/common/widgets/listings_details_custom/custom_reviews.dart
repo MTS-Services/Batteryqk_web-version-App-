@@ -30,7 +30,7 @@ class CustomReviews extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomSectionHeaderText(name),
+              Expanded(child: CustomSectionHeaderText(name)),
               Row(
                 children: List.generate(starCount, (index) {
                   return const Icon(Icons.star, color: Colors.amber, size: 16);

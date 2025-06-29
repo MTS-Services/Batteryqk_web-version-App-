@@ -13,9 +13,20 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  Get.lazyPut(() => NotificationController());
-  Get.lazyPut(() => UserController());
-  Get.lazyPut(() => LanguageController());
-  Get.lazyPut(() => BuildListingCardController());
-  runApp(App());
+
+  // Register each controller ONCE with permanent: true
+  if (!Get.isRegistered<NotificationController>()) {
+    Get.put(NotificationController(), permanent: true);
+  }
+  if (!Get.isRegistered<UserController>()) {
+    Get.put(UserController(), permanent: true);
+  }
+  if (!Get.isRegistered<LanguageController>()) {
+    Get.put(LanguageController(), permanent: true);
+  }
+  if (!Get.isRegistered<BuildListingCardController>()) {
+    Get.put(BuildListingCardController(), permanent: true);
+  }
+
+  runApp(const App());
 }

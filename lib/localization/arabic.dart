@@ -219,6 +219,8 @@ Map<String, String> arabic = {
   "Cancelled": "تم الإلغاء",
   "no_notifications": "لا توجد إشعارات.",
   'no_booking_found': 'لم يتم العثور على حجز',
+  'choose_your_language': 'Choose your language',
+  'change_your_language': 'تغيير اللغة',
 
 
 

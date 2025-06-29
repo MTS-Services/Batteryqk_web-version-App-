@@ -229,6 +229,8 @@ Map<String, String> eng = {
   "Cancelled": "Cancelled",
   "no_notifications": "No notifications found.",
   'no_booking_found': 'No booking found',
+  'choose_your_language': 'Choose your language',
+    'change_your_language': 'Change your language',
   "password_strength":
       "Password must contain at least one uppercase letter, one number, and one special character.",
 };

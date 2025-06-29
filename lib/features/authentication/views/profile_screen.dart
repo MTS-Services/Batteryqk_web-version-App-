@@ -31,12 +31,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final UserController _controller = Get.find<UserController>();
   final AuthControllers authController = Get.put(AuthControllers());
   Future<void> _refreshData() async => await _controller.fetchUser();
-  @override
-  void initState() {
-    super.initState();
-    _controller.fetchUser();
-  }
-
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _controller.fetchUser();
+  // }
   @override
   void dispose() {
     nameController.dispose();
@@ -183,7 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _buildMenuButton(
             Icons.language_outlined,
             'language'.tr,
-            () => Get.to(() => LanguagePage(initialSelection: false,)),
+            () => Get.to(() => LanguagePage(initialSelection: false)),
           ),
           _buildMenuButton(
             Icons.history,
