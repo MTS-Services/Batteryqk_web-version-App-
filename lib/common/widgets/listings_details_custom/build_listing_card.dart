@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../util/colors.dart';
+import '../offer_container.dart';
 
 class BuildListingCard extends StatelessWidget {
   final String title;
@@ -14,6 +15,7 @@ class BuildListingCard extends StatelessWidget {
   final Function() onPressed;
   final Function() bookingOnPressed;
   final double averageRating;
+  final String discount;
 
   const BuildListingCard({
     super.key,
@@ -26,7 +28,7 @@ class BuildListingCard extends StatelessWidget {
     required this.context,
     required this.onPressed,
     required this.bookingOnPressed,
-    required this.averageRating,
+    required this.averageRating, required this.discount,
   });
   List<Widget> _buildStars() {
     List<Widget> stars = [];
@@ -115,7 +117,7 @@ class BuildListingCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        tag,
+                        'AED $tag',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -133,8 +135,12 @@ class BuildListingCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Row(
-                  children:
-                      _buildStars(), // Add star icons based on averageRating
+                  children: [
+                    ..._buildStars(),
+                    // Spacer(),
+                    const SizedBox(width: 10),
+                    OfferContainer(offer: discount),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Text(

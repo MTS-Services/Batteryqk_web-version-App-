@@ -29,6 +29,7 @@ class ListingsDetails extends StatefulWidget {
     required this.averageRating,
     required this.numOfReviews,
     required this.index,
+    required this.gender, required this.discount,
   });
 
   final String mainImage;
@@ -48,6 +49,8 @@ class ListingsDetails extends StatefulWidget {
   final double averageRating;
   final int numOfReviews;
   final int index;
+  final String gender;
+  final String discount;
 
   @override
   State<ListingsDetails> createState() => _ListingsDetailsState();
@@ -100,6 +103,8 @@ class _ListingsDetailsState extends State<ListingsDetails> {
                   openingHours: widget.openingHours,
                   reviews: widget.reviews,
                   numOfReviews: widget.numOfReviews,
+                  gender: widget.gender,
+                  discount: widget.discount,
                 ),
                 CustomListingsBookingSection(
                   index: widget.index,

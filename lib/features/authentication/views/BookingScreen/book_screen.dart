@@ -73,7 +73,7 @@ class _BookScreenState extends State<BookScreen> {
       backgroundColor: AppColor.whiteColor,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: const CustomAppBar(isBack: false),
+        child: const CustomAppBar(isBack: true),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
@@ -154,20 +154,20 @@ class _BookScreenState extends State<BookScreen> {
                         if (_selectedDate == null) {
                           showSnackbar(
                             context,
-                            'Error',
-                            'Please select a date',
+                            'error'.tr,
+                            'please_select_a_date'.tr,
                           );
                         } else if (selectedTime.isEmpty) {
                           showSnackbar(
                             context,
                             'Error',
-                            'Please select a time',
+                            'please_select_a_time'.tr,
                           );
                         } else if (selectedPerson.isEmpty) {
                           showSnackbar(
                             context,
                             'Error',
-                            'Please select a person',
+                            'please_select_numeber_of_persons'.tr,
                           );
                         } else {
                           final bookingDateTime = getCombinedDateTime(

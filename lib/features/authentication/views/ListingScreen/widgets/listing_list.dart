@@ -26,6 +26,7 @@ class ListingsList extends StatelessWidget {
             description: data.description,
             imageUrl: data.mainImage,
             averageRating: data.averageRating,
+            discount: data.discount,
             onPressed: () {
               Navigator.push(
                 context,
@@ -48,6 +49,8 @@ class ListingsList extends StatelessWidget {
                     averageRating: data.averageRating,
                     numOfReviews: data.totalReviews,
                     index: data.id,
+                    gender: data.gender,
+                    discount: data.discount,
                   ),
                 ),
               );

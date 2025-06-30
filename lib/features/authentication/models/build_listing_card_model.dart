@@ -19,6 +19,8 @@ class BuildListingCardModel {
   final double averageRating;
   final int totalReviews;
   final int id;
+  final String gender;
+  final String discount;
 
   BuildListingCardModel({
     required this.name,
@@ -39,6 +41,8 @@ class BuildListingCardModel {
     required this.averageRating,
     required this.totalReviews,
     required this.id,
+    required this.gender,
+    required this.discount,
   });
 
   factory BuildListingCardModel.fromJson(Map<String, dynamic> json) {
@@ -78,7 +82,6 @@ class BuildListingCardModel {
     double averageRating = json['averageRating']?.toDouble() ?? 0.0;
     int totalReviews = json['totalReviews']?.toInt() ?? 0;
 
-
     return BuildListingCardModel(
       id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
@@ -98,6 +101,8 @@ class BuildListingCardModel {
       reviews: reviews,
       averageRating: averageRating,
       totalReviews: totalReviews,
+      gender: json['gender'] as String? ?? '',
+      discount: json['discount'] as String? ?? '',
     );
   }
 }

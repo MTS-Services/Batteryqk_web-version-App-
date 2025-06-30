@@ -231,6 +231,10 @@ Map<String, String> eng = {
   'no_booking_found': 'No booking found',
   'choose_your_language': 'Choose your language',
     'change_your_language': 'Change your language',
+    'please_select_a_date': 'Please select a date',
+    'please_select_a_time': 'Please select a time',
+    'gender': 'Gender',
+    'please_select_numeber_of_persons': 'Please select number of persons',
   "password_strength":
       "Password must contain at least one uppercase letter, one number, and one special character.",
 };

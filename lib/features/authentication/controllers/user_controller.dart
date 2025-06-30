@@ -16,10 +16,7 @@ class UserController extends GetxController {
   Future<void> fetchUser() async {
     try {
       isLoading.value = true;
-
       final result = await UserService.getAllUser();
-      print('result ===== $result');
-
       if (result.isNotEmpty) {
         userList.value = result;
         print('userList $userList');

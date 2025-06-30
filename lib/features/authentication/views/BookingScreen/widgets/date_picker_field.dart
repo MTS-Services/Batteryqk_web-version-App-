@@ -34,6 +34,17 @@ class DatePickerField extends StatelessWidget {
                 findNextAllowedDate(allowedWeekdays, DateTime.now());
             DateTime? pickedDate = await showDatePicker(
               context: context,
+              builder: (context, child) {
+                return Theme(
+                  data: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.light(
+                      primary: AppColor.blueColor,
+                      onPrimary: Colors.white,
+                    ),
+                  ),
+                  child: child!,
+                );
+              },
               firstDate: DateTime.now(),
               lastDate: DateTime.now().add(const Duration(days: 365)),
               initialDate: initial,

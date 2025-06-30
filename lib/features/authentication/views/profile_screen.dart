@@ -31,11 +31,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final UserController _controller = Get.find<UserController>();
   final AuthControllers authController = Get.put(AuthControllers());
   Future<void> _refreshData() async => await _controller.fetchUser();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller.fetchUser();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _controller.fetchUser();
+    });
+  }
+
   @override
   void dispose() {
     nameController.dispose();

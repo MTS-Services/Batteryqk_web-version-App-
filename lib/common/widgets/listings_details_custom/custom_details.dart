@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/common/widgets/offer_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,6 +21,8 @@ class CustomDetails extends StatelessWidget {
   final String openingHours;
   final List<Review> reviews;
   final int numOfReviews;
+  final String gender;
+  final String discount;
 
   const CustomDetails({
     super.key,
@@ -34,6 +37,8 @@ class CustomDetails extends StatelessWidget {
     required this.openingHours,
     required this.reviews,
     required this.numOfReviews,
+    required this.gender,
+    required this.discount,
   });
 
   // Helper method to generate the star icons based on the average rating
@@ -82,7 +87,7 @@ class CustomDetails extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                tag,
+                'AED $tag',
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -108,16 +113,22 @@ class CustomDetails extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 10.h),
+        OfferContainer(offer: discount),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('description'.tr),
         CustomParagraphText(description),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('age_groups'.tr),
-        const SizedBox(height: 5),
+        SizedBox(height: 5.h),
         Text(ageGroup, style: TextStyle(fontSize: 14.sp)),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
+        CustomSectionHeaderText('gender'.tr),
+        SizedBox(height: 5.h),
+        Text(gender.tr, style: TextStyle(fontSize: 14.sp)),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('all_sports'.tr),
-        const SizedBox(height: 5),
+        SizedBox(height: 5.h),
         Column(
           children: [
             ...List.generate(categories.length, (index) {
@@ -131,13 +142,13 @@ class CustomDetails extends StatelessWidget {
             }),
           ],
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('facilities'.tr),
         Row(children: [Text(facility)]),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('opening_hours'.tr),
         CustomParagraphText(openingHours),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
