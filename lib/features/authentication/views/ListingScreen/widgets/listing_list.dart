@@ -31,32 +31,43 @@ class ListingsList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ListingsDetails(
-                    mainImage: data.mainImage,
-                    title: data.name,
-                    location: data.location,
-                    tag: data.price,
-                    description: data.description,
-                    subImage1: data.subImage1,
-                    subImage2: data.subImage2,
-                    subImage3: data.subImage3,
-                    subImage4: data.subImage4,
-                    ageGroup: ageGroup,
-                    facility: data.facilities[0],
-                    categoriesList: listController.listingCardData[0].specificItemNames,
-                    openingHours: data.operatingHours[0],
-                    reviews: data.reviews,
-                    averageRating: data.averageRating,
-                    numOfReviews: data.totalReviews,
-                    index: data.id,
-                    gender: data.gender,
-                    discount: data.discount,
-                  ),
+                  builder:
+                      (context) => ListingsDetails(
+                        mainImage: data.mainImage,
+                        title: data.name,
+                        location: data.location,
+                        tag: data.price,
+                        description: data.description,
+                        subImage1: data.subImage1,
+                        subImage2: data.subImage2,
+                        subImage3: data.subImage3,
+                        subImage4: data.subImage4,
+                        ageGroup: ageGroup,
+                        facility: data.facilities[0],
+                        categoriesList:
+                            listController.listingCardData[0].specificItemNames,
+                        openingHours: data.operatingHours[0],
+                        reviews: data.reviews,
+                        averageRating: data.averageRating,
+                        numOfReviews: data.totalReviews,
+                        index: data.id,
+                        gender: data.gender,
+                        discount: data.discount,
+                      ),
                 ),
               );
             },
             bookingOnPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => BookScreen(listingId: data.id,openingHours: data.operatingHours[0],)));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder:
+                      (context) => BookScreen(
+                        listingId: data.id,
+                        openingHours: data.operatingHours[0],
+                      ),
+                ),
+              );
             },
           );
         },

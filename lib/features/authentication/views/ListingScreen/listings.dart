@@ -25,6 +25,7 @@ class _ListingsState extends State<Listings> {
     });
     Navigator.pop(context);
   }
+
   final _listController = Get.find<BuildListingCardController>();
   final TextEditingController searchController = TextEditingController();
 
@@ -72,28 +73,31 @@ class _ListingsState extends State<Listings> {
                 ),
                 MultiDropDown(),
                 CustomDropdownListings(
-                  itemList:  DropDownMenuItemList.location,
-                  listType: 'all_location'.tr, onChanged: (String? value) {  },
+                  itemList: DropDownMenuItemList.location,
+                  listType: 'all_location'.tr,
+                  onChanged: (String? value) {},
                 ),
                 CustomDropdownListings(
-                  itemList:  DropDownMenuItemList.ageGroup,
-                  listType: 'age_group'.tr, onChanged: (String? value) {  },
+                  itemList: DropDownMenuItemList.ageGroup,
+                  listType: 'age_group'.tr,
+                  onChanged: (String? value) {},
                 ),
                 CustomDropdownListings(
-                  itemList:  DropDownMenuItemList.rating,
-                  listType: 'rating'.tr, onChanged: (String? value) {  },
+                  itemList: DropDownMenuItemList.rating,
+                  listType: 'rating'.tr,
+                  onChanged: (String? value) {},
                 ),
                 CustomDropdownListings(
                   itemList: DropDownMenuItemList.gender,
-                  listType: 'Gender'.tr, onChanged: (String? value) {  },
+                  listType: 'gender'.tr,
+                  onChanged: (String? value) {},
                 ),
                 CustomDropdownListings(
                   itemList: DropDownMenuItemList.price,
-                  listType: 'price'.tr, onChanged: (String? value) {  },
+                  listType: 'price'.tr,
+                  onChanged: (String? value) {},
                 ),
-
                 const SizedBox(height: 30),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -109,8 +113,11 @@ class _ListingsState extends State<Listings> {
                         label: Text('apply_filters'.tr),
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                          islogin ? AppColor.blueColor : Colors.grey.shade200,
-                          foregroundColor: islogin ? Colors.white : Colors.black87,
+                              islogin
+                                  ? AppColor.blueColor
+                                  : Colors.grey.shade200,
+                          foregroundColor:
+                              islogin ? Colors.white : Colors.black87,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -126,8 +133,11 @@ class _ListingsState extends State<Listings> {
                         label: Text('reset'.tr),
                         style: ElevatedButton.styleFrom(
                           backgroundColor:
-                          islogin ? Colors.grey.shade200 : AppColor.blueColor,
-                          foregroundColor: islogin ? Colors.black87 : Colors.white,
+                              islogin
+                                  ? Colors.grey.shade200
+                                  : AppColor.blueColor,
+                          foregroundColor:
+                              islogin ? Colors.black87 : Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),

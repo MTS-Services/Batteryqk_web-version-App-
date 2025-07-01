@@ -1,15 +1,16 @@
 import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'custom_multiSelect_dropdown.dart';
 
 class MultiDropDown extends StatefulWidget {
+  const MultiDropDown({super.key});
+
   @override
-  _MultiDropDownState createState() =>
-      _MultiDropDownState();
+  MultiDropDownState createState() => MultiDropDownState();
 }
 
-class _MultiDropDownState
-    extends State<MultiDropDown> {
+class MultiDropDownState extends State<MultiDropDown> {
   List<String> selectedMainCategories = [];
   List<String> selectedSubCategories = [];
   List<String> selectedSports = [];
@@ -41,8 +42,7 @@ class _MultiDropDownState
     return Column(
       children: [
         CustomMultiSelectDropdown(
-
-          title: "All Main Categories",
+          title: "all_main_categories".tr,
           options: mainOptions,
           selectedValues: selectedMainCategories,
           onSelectionChanged: (selected) {
@@ -54,8 +54,7 @@ class _MultiDropDownState
           },
         ),
         CustomMultiSelectDropdown(
-
-          title: "All Subcategories",
+          title: "all_sub_categories".tr,
           options: getAvailableSubCategories(),
           selectedValues: selectedSubCategories,
           onSelectionChanged: (selected) {
@@ -66,8 +65,7 @@ class _MultiDropDownState
           },
         ),
         CustomMultiSelectDropdown(
-
-          title: "All Sports",
+          title: "all_sports".tr,
           options: getAvailableSports(),
           selectedValues: selectedSports,
           onSelectionChanged: (selected) {
@@ -80,4 +78,3 @@ class _MultiDropDownState
     );
   }
 }
-
