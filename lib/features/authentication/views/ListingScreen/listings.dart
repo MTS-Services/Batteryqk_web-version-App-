@@ -5,8 +5,8 @@ import '../../../../common/widgets/custom_app_bar.dart';
 import '../../../../common/widgets/custom_dropdown_Listings.dart';
 import '../../../../common/widgets/multi_dropdown.dart';
 import '../../../../util/colors.dart';
-import '../../../../util/dropdown_menu_item.dart';
 import '../../controllers/build_listing_card_controller.dart';
+import '../../controllers/dropdown_controller.dart';
 import 'widgets/listing_list.dart';
 
 class Listings extends StatefulWidget {
@@ -18,8 +18,12 @@ class Listings extends StatefulWidget {
 
 class _ListingsState extends State<Listings> {
   bool islogin = true;
+  String? selectedLocation;
+  String? selectedAgeGroup;
+  String? selectedRating;
+  String? selectedGender;
+  String? selectedPrice;
   void _resetFilters() {
-    // Add reset logic for each dropdown if necessary
     setState(() {
       islogin = false;
     });
@@ -27,23 +31,37 @@ class _ListingsState extends State<Listings> {
   }
 
   final _listController = Get.find<BuildListingCardController>();
+  final dropdownController = Get.put(DropdownController());
   final TextEditingController searchController = TextEditingController();
 
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   Future<void> _refreshData() async => await _listController.fetchListData();
-  Future<void> _applyFilters() async {
-    String searchTerm = searchController.text.trim();
-    _listController.isloading.value = true;
-    await Future.delayed(const Duration(milliseconds: 300));
-    _listController.applyFilter(
-      priceType: 'All',
-      category: 'All',
-      searchTerm: searchTerm,
-    );
-    _listController.isloading.value = false;
-    if (mounted) Navigator.pop(context);
+  Future<void> applyFilter() async {
+    
   }
 
   void _showFilterModal() {
+    List<String> allLocation =
+        _listController.listingCardData.map((e) => e.location).toSet().toList();
+    List<String> ageGroup =
+        _listController.listingCardData
+            .map((e) => e.ageGroup[0])
+            .toSet()
+            .toList();
+    List<String> rating =
+        _listController.listingCardData
+            .map((e) => e.averageRating.toString())
+            .toSet()
+            .toList();
+    List<String> gender =
+        _listController.listingCardData.map((e) => e.gender).toSet().toList();
+    List<String> price =
+        _listController.listingCardData.map((e) => e.price).toSet().toList();
     showModalBottomSheet(
       backgroundColor: AppColor.whiteColor,
       elevation: 4,
@@ -73,42 +91,48 @@ class _ListingsState extends State<Listings> {
                 ),
                 MultiDropDown(),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.location,
+                  itemList: allLocation,
                   listType: 'all_location'.tr,
-                  onChanged: (String? value) {},
+                  onChanged: (String? value) {
+                    dropdownController.selectedLocation.value = value;
+                  },
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.ageGroup,
+                  itemList: ageGroup,
                   listType: 'age_group'.tr,
-                  onChanged: (String? value) {},
+                  onChanged: (String? value) {
+                    dropdownController.selectedAgeGroup.value = value;
+                  },
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.rating,
+                  itemList: rating,
                   listType: 'rating'.tr,
-                  onChanged: (String? value) {},
+                  onChanged: (String? value) {
+                    dropdownController.selectedRating.value = value;
+                  },
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.gender,
+                  itemList: gender,
                   listType: 'gender'.tr,
-                  onChanged: (String? value) {},
+                  onChanged: (String? value) {
+                    dropdownController.selectedGender.value = value;
+                  },
                 ),
                 CustomDropdownListings(
-                  itemList: DropDownMenuItemList.price,
+                  itemList: price,
                   listType: 'price'.tr,
-                  onChanged: (String? value) {},
+                  onChanged: (String? value) {
+                    dropdownController.selectedPrice.value = value;
+                  },
                 ),
+
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       child: ElevatedButton.icon(
-                        onPressed: () {
-                          setState(() {
-                            islogin = true;
-                          });
-                          Navigator.pop(context);
-                        },
+                        onPressed: applyFilter,
                         icon: const Icon(Icons.check_circle_outline),
                         label: Text('apply_filters'.tr),
                         style: ElevatedButton.styleFrom(

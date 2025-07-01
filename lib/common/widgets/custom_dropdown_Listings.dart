@@ -11,7 +11,7 @@ class CustomDropdownListings extends StatefulWidget {
     super.key,
     required this.itemList,
     required this.listType,
-    required this.onChanged,
+    required this.onChanged, String? selectedValue,
   });
 
   @override

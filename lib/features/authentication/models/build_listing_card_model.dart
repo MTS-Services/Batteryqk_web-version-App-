@@ -3,6 +3,8 @@ import 'review_model.dart';
 class BuildListingCardModel {
   final String name;
   final String mainFeatures;
+  final String mainSubCategories;
+  final String allSprots;
   final String location;
   final String description;
   final String price;
@@ -25,6 +27,7 @@ class BuildListingCardModel {
   BuildListingCardModel({
     required this.name,
     required this.mainFeatures,
+    required this.allSprots,
     required this.location,
     required this.description,
     required this.price,
@@ -43,11 +46,17 @@ class BuildListingCardModel {
     required this.id,
     required this.gender,
     required this.discount,
+    required this.mainSubCategories,
   });
 
   factory BuildListingCardModel.fromJson(Map<String, dynamic> json) {
     var selectedMainCategories =
         json['selectedMainCategories'] as List<dynamic>? ?? [];
+    var selectedSubMainCategories =
+        json['selectedSubCategories'] as List<dynamic>? ?? [];
+
+    var selectedSpecificItems =
+        json['selectedSpecificItems'] as List<dynamic>? ?? [];
     var subImagesList = json['sub_images'] as List<dynamic>? ?? [];
     String subImage1 =
         (subImagesList.isNotEmpty) ? subImagesList[0] as String : '';
@@ -61,6 +70,13 @@ class BuildListingCardModel {
     String mainFeatures = selectedMainCategories
         .map((category) => category['name'] as String? ?? '')
         .join(', ');
+    String mainSubCategories = selectedSubMainCategories
+        .map((category) => category['name'] as String? ?? '')
+        .join(', ');
+
+    String allSports = selectedSpecificItems
+        .map((item) => item['name'])
+        .join(', ');
 
     var locationList = json['location'] as List<dynamic>? ?? [];
     String location = locationList.join(', ');
@@ -70,8 +86,6 @@ class BuildListingCardModel {
     List<String> operatingHours = List<String>.from(
       json['operatingHours'] ?? [],
     );
-    var selectedSpecificItems =
-        json['selectedSpecificItems'] as List<dynamic>? ?? [];
     List<String> specificItemNames =
         selectedSpecificItems
             .map((item) => item['name'] as String? ?? '')
@@ -103,6 +117,8 @@ class BuildListingCardModel {
       totalReviews: totalReviews,
       gender: json['gender'] as String? ?? '',
       discount: json['discount'] as String? ?? '',
+      mainSubCategories: mainSubCategories,
+      allSprots: allSports,
     );
   }
 }

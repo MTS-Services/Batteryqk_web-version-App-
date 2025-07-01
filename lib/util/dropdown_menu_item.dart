@@ -1,5 +1,3 @@
-import 'package:batteryqk_web_app/features/authentication/controllers/build_listing_card_controller.dart';
-import 'package:get/get.dart';
 
 class DropDownMenuItemList {
   static final List<String> location = [
@@ -34,7 +32,6 @@ class DropDownMenuItemList {
     'Paid',
     'Pending',
   ];
-final controller = Get.find<BuildListingCardController>();
   static Map<String, Map<String, Map<String, bool>>> sportsCategories = {
     'A. Individual Sports': {
       'A.1 Combat Sports': {
