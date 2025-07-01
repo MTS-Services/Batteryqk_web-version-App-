@@ -42,7 +42,6 @@ class _ListingsState extends State<Listings> {
 
   Future<void> _refreshData() async => await _listController.fetchListData();
   Future<void> applyFilter() async {
-    
   }
 
   void _showFilterModal() {
