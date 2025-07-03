@@ -107,19 +107,13 @@ class _LogInScreenState extends State<LogInScreen> {
                     if (value == null || value.isEmpty) {
                       return 'password_required'.tr;
                     }
-                    if (value.length < 6) {
-                      return 'password_length'.tr;
-                    }
-                    // Add validation for uppercase letter, number, and special character
-                    final passwordRegExp = RegExp(
-                      r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$',
-                    );
-                    if (!passwordRegExp.hasMatch(value)) {
-                      return 'password_strength'
-                          .tr; // Custom error for weak password
+                    if (value.length < 7) {
+                      return 'password_length'
+                          .tr; // Update your translation for this key
                     }
                     return null;
                   },
+
                   decoration: InputDecoration(
                     hintText: 'password'.tr,
                     filled: true,
