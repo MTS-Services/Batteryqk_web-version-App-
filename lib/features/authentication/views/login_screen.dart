@@ -113,7 +113,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     }
                     return null;
                   },
-
                   decoration: InputDecoration(
                     hintText: 'password'.tr,
                     filled: true,

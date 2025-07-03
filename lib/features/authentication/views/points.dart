@@ -10,8 +10,12 @@ class Points extends StatelessWidget {
   Points({super.key});
 
   final UserController _userController = Get.put(UserController());
-  final BookingHistoryController _bookingController =
-  Get.put(BookingHistoryController());
+  final BookingHistoryController _bookingController = Get.put(
+    BookingHistoryController(),
+  );
+  Future<void> _refreshData() async {
+    await _bookingController.fetchBooking();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +27,16 @@ class Points extends StatelessWidget {
       ),
 
       // ⬇️ স্ক্রিনজুড়ে Obx – যেকোনো Rx ভ্যালু বদলালেই রি-বিল্ড
-      body: Obx(
-            () {
-          final users = _userController.userList;
-          final bookings = _bookingController.bookingList;
-
-          return SingleChildScrollView(
+      body: Obx(() {
+        final users = _userController.userList;
+        final bookings = _bookingController.bookingList;
+        if (_userController.isLoading.value ||
+            _bookingController.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return RefreshIndicator(
+          onRefresh: _refreshData,
+          child: SingleChildScrollView(
             padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,10 +73,9 @@ class Points extends StatelessWidget {
                             children: [
                               Text(
                                 '${users.first.fname} ${users.first.lname}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
+                                style: Theme.of(
+                                  context,
+                                ).textTheme.titleMedium!.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                 ),
@@ -100,18 +107,18 @@ class Points extends StatelessWidget {
                           children: [
                             Text(
                               '${users.first.totalRewardPoints}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
+                              style: Theme.of(
+                                context,
+                              ).textTheme.titleMedium!.copyWith(
                                 fontWeight: FontWeight.bold,
                                 color: AppColor.blackColor,
                               ),
                             ),
                             Text(
                               'points'.tr,
-                              style:
-                              const TextStyle(color: AppColor.blackColor),
+                              style: const TextStyle(
+                                color: AppColor.blackColor,
+                              ),
                             ),
                           ],
                         ),
@@ -123,7 +130,9 @@ class Points extends StatelessWidget {
                 Text(
                   'points_earn_history'.tr,
                   style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 10),
 
@@ -164,7 +173,7 @@ class Points extends StatelessWidget {
                               children: [
                                 Text(
                                   '${booking.listing?.name ?? "Unknown".tr} '
-                                      '#${booking.listing?.id ?? "N/A"}',
+                                  '#${booking.listing?.id ?? "N/A"}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -174,7 +183,7 @@ class Points extends StatelessWidget {
                                 const SizedBox(height: 4),
                                 Text(
                                   '${booking.listing?.description ?? "Unknown".tr} '
-                                      '${DateTime.parse(booking.createdAt.toString()).toLocal().toString().split(" ")[0]}',
+                                  '${DateTime.parse(booking.createdAt.toString()).toLocal().toString().split(" ")[0]}',
                                   style: const TextStyle(
                                     color: AppColor.blackColor,
                                     fontSize: 13,
@@ -199,9 +208,9 @@ class Points extends StatelessWidget {
                 const SizedBox(height: 20),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      }),
     );
   }
 }

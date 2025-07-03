@@ -131,16 +131,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'password_required'.tr;
                     }
-                    if (value.length < 6) {
-                      return 'password_length'.tr;
-                    }
-                    // Check if password contains at least one number, one uppercase letter, and one special character
-                    final passwordRegExp = RegExp(
-                      r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$',
-                    );
-                    if (!passwordRegExp.hasMatch(value)) {
-                      return 'password_strength'
-                          .tr; // Custom error for weak password
+                    if (value.length < 7) {
+                      return 'password_length'
+                          .tr; // Update your translation for this key
                     }
                     return null;
                   },
