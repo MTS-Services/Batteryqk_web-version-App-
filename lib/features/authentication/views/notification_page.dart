@@ -10,7 +10,8 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<NotificationController>(); // Accessing the controller
+    final controller =
+        Get.find<NotificationController>(); // Accessing the controller
 
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
@@ -28,20 +29,24 @@ class NotificationPage extends StatelessWidget {
               }
 
               if (controller.userNotification.isEmpty) {
-                return Center(child: Text('no_notifications'.tr)); // Show no notifications message
+                return Center(
+                  child: Text('no_notifications'.tr),
+                ); // Show no notifications message
               }
 
               return RefreshIndicator(
-                onRefresh: controller.fetchNotifications, // Refresh notifications
+                onRefresh:
+                    controller.fetchNotifications, // Refresh notifications
                 child: ListView.builder(
                   padding: const EdgeInsets.all(12),
                   itemCount: controller.userNotification.length,
                   itemBuilder: (context, index) {
                     final notif = controller.userNotification[index];
                     return Card(
-                      color: notif.isRead
-                          ? const Color.fromARGB(255, 255, 255, 255)
-                          : Colors.grey.shade100,
+                      color:
+                          notif.isRead
+                              ? const Color.fromARGB(255, 255, 255, 255)
+                              : Colors.grey.shade100,
                       elevation: 0,
                       margin: const EdgeInsets.symmetric(vertical: 8),
                       shape: RoundedRectangleBorder(
@@ -54,13 +59,13 @@ class NotificationPage extends StatelessWidget {
                         ),
                         title: Text(notif.title),
                         subtitle: Text(notif.message),
-                        trailing: notif.isRead
-                            ? null
-                            : const Icon(
-                                Icons.circle,
-                                size: 8,
-                                color: Colors.red,
-                              ),
+                        // trailing: notif.isRead
+                        //     ? null
+                        //     : const Icon(
+                        //         Icons.circle,
+                        //         size: 8,
+                        //         color: Colors.red,
+                        //       ),
                         onTap: () => controller.markAsRead(index),
                       ),
                     );

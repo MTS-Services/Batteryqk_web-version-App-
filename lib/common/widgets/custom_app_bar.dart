@@ -86,18 +86,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                           color: Colors.black87,
                         ),
                         // Optional: Notification badge
-                        Positioned(
-                          right: 0,
-                          top: 0,
-                          child: Container(
-                            width: 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              color: Colors.redAccent,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
+                        // Positioned(
+                        //   right: 0,
+                        //   top: 0,
+                        //   child: Container(
+                        //     width: 8,
+                        //     height: 8,
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.redAccent,
+                        //       shape: BoxShape.circle,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
