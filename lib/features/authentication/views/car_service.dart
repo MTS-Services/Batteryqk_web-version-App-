@@ -13,7 +13,7 @@ class CarService extends StatelessWidget {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
       ),
-      body: Center(child: Image.asset(AppImages.comingSoon)),
+      body: Center(child: Image.asset(AppImages.blurPenguineImage)),
     );
   }
 }

@@ -149,7 +149,9 @@ class _BookScreenState extends State<BookScreen> {
                     Divider(color: Colors.grey.shade300),
                     const SizedBox(height: 10),
                     TermsAndBookingCard(
-                      onCancel: () {},
+                      onCancel: () {
+                        Get.back();
+                      },
                       onSubmit: () {
                         if (_selectedDate == null) {
                           showSnackbar(
@@ -174,7 +176,6 @@ class _BookScreenState extends State<BookScreen> {
                             _selectedDate!,
                             selectedTime,
                           );
-                          print(bookingDateTime.toIso8601String());
                           apiService.makeBooking(
                             listingId: widget.listingId,
                             bookingDate:
@@ -188,7 +189,6 @@ class _BookScreenState extends State<BookScreen> {
                         }
                       },
                     ),
-                    const SizedBox(height: 50),
                   ],
                 ),
               ),

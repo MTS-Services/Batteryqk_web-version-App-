@@ -1,4 +1,5 @@
 import 'package:batteryqk_web_app/common/widgets/custom_app_bar.dart';
+import 'package:batteryqk_web_app/common/widgets/custom_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Import the intl package
@@ -29,7 +30,13 @@ class HistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(isBack: true),
+      appBar: CustomAppBar(
+        isBack: true,
+        onPressed: () {
+          print('pressed');
+          Get.off(() => CustomBottomNavigationBar());
+        },
+      ),
       body: Obx(() {
         final bookingList = bookingController.bookingList;
         if (bookingController.isLoading.value) {

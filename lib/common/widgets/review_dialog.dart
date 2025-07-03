@@ -42,27 +42,26 @@ class ReviewDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(child: const CustomTitleText('Write a Review')),
+              Center(child: CustomTitleText('write_review_title'.tr)),
               SizedBox(height: 10.h),
               Center(child: CustomSectionTitleText(title: academyName)),
               Center(
-                child: const CustomSectionSubtitleText(
-                  subtitle: 'Share your experience with this academy',
+                child: CustomSectionSubtitleText(
+                  subtitle: 'share_experience_subtitle'.tr,
                 ),
               ),
               SizedBox(height: 10.h),
-
-              const CustomSectionHeaderText('Rating'),
+              CustomSectionHeaderText('rating_header'.tr),
               CustomReviewIcons(tappable: true),
               SizedBox(height: 10.h),
 
-              const CustomSectionHeaderText('Your Review'),
+              CustomSectionHeaderText('your_review_header'.tr),
               SizedBox(height: 10.h),
               TextField(
                 controller: reviewController,
                 maxLines: 5,
                 decoration: InputDecoration(
-                  hintText: 'Tell others about your experience...',
+                  hintText: 'review_hint'.tr,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                     borderSide: BorderSide(
@@ -80,14 +79,14 @@ class ReviewDialog extends StatelessWidget {
                   if (reviewController.text.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Review cannot be empty'),
+                        content: Text('review_empty_error'.tr),
                         backgroundColor: Colors.red,
                       ),
                     );
                   } else if (iconController.selectedIndex.value == 0) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Rating cannot be empty'),
+                        content: Text('review_empty_error'.tr),
                         backgroundColor: Colors.red,
                       ),
                     );
@@ -100,12 +99,14 @@ class ReviewDialog extends StatelessWidget {
                           reviewController.text,
                         )
                         .then((_) {
-                          // Show success message on successful submission
-                          showSnackbar(context, 'Success', 'Review submitted');
-
                           // Call fetchBooking() to refresh data
                           bookingController.fetchBooking();
-
+                          // Show success message on successful submission
+                          showSnackbar(
+                            context,
+                            'review_success_title'.tr,
+                            'review_success'.tr,
+                          );
                           // Clear the form and reset the state
                           iconController.selectedIndex.value = 0;
                           reviewController.clear();
@@ -115,15 +116,15 @@ class ReviewDialog extends StatelessWidget {
                           // Handle any error if the submission fails
                           showSnackbar(
                             context,
-                            'Error',
-                            'Failed to submit review: $error',
+                            'review_error_title'.tr,
+                            '${'review_error_message'.tr} $error',
                           );
                         });
                   }
                 },
                 backgroundColor: Colors.blue,
                 textColor: Colors.white,
-                text: 'Submit Review',
+                text: 'submit_review_button'.tr,
               ),
 
               SizedBox(height: 10.h),
@@ -135,7 +136,7 @@ class ReviewDialog extends StatelessWidget {
                   reviewController.clear();
                   Navigator.pop(context);
                 },
-                text: 'Cancel',
+                text: 'cancel_button'.tr,
               ),
             ],
           ),

@@ -5,9 +5,15 @@ import 'package:batteryqk_web_app/util/images_path.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool isBack;
-  final bool showNotification ;
+  final bool showNotification;
+  final Function()? onPressed;
 
-  const CustomAppBar({super.key, this.isBack = false, this.showNotification= true});
+  const CustomAppBar({
+    super.key,
+    this.isBack = false,
+    this.showNotification = true,
+    this.onPressed,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(70);
@@ -30,7 +36,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     Icons.arrow_back_ios_new,
                     color: Colors.black87,
                   ),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    if (onPressed != null) {
+                      onPressed!();
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+
                   tooltip: 'Back',
                 ),
               if (!isBack) const SizedBox(width: 0),
@@ -52,41 +65,43 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
               /// Notification Icon
               if (showNotification)
-              InkWell(
-                borderRadius: BorderRadius.circular(20),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NotificationPage()),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      const Icon(
-                        Icons.notifications_none,
-                        size: 28,
-                        color: Colors.black87,
+                InkWell(
+                  borderRadius: BorderRadius.circular(20),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationPage(),
                       ),
-                      // Optional: Notification badge
-                      Positioned(
-                        right: 0,
-                        top: 0,
-                        child: Container(
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: Colors.redAccent,
-                            shape: BoxShape.circle,
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        const Icon(
+                          Icons.notifications_none,
+                          size: 28,
+                          color: Colors.black87,
+                        ),
+                        // Optional: Notification badge
+                        Positioned(
+                          right: 0,
+                          top: 0,
+                          child: Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: Colors.redAccent,
+                              shape: BoxShape.circle,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
         ),

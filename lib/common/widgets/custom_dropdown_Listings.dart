@@ -11,7 +11,8 @@ class CustomDropdownListings extends StatefulWidget {
     super.key,
     required this.itemList,
     required this.listType,
-    required this.onChanged, String? selectedValue,
+    required this.onChanged,
+    String? selectedValue,
   });
 
   @override
@@ -37,7 +38,6 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
               color: Colors.grey.shade500,
             ),
           ),
-
           items:
               widget.itemList
                   .map(
@@ -65,7 +65,7 @@ class _CustomDropdownListingsState extends State<CustomDropdownListings> {
             iconEnabledColor: Colors.grey,
           ),
           dropdownStyleData: DropdownStyleData(
-            maxHeight: 300,
+            maxHeight: 200,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),

@@ -35,7 +35,7 @@ class QuickAccessSection extends StatelessWidget {
         ),
         _buildQuickAccessCardWithImage(
           "comming_soon".tr,
-          AppImages.car1,
+          AppImages.blurCarImage,
           context,
         ),
       ],

@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../common/widgets/custom_dropdown_listings.dart';
+import '../../../../../common/widgets/custom_dropdown_Listings.dart';
 import '../../../../../common/widgets/multi_dropdown.dart';
 import '../../../../../util/colors.dart';
-import '../../../../../util/dropdown_menu_item.dart';
+import '../../../controllers/dropdown_controller.dart';
 
-class FilterModalContent extends StatelessWidget {
-  final bool islogin;
+class FilterModal extends StatelessWidget {
+  final DropdownController dropdownController;
+  final List<String> allLocation;
+  final List<String> ageGroup;
+  final List<String> discount;
+  final List<String> rating;
+  final List<String> gender;
   final List<String> price;
+  final bool isLogin;
   final VoidCallback onApply;
   final VoidCallback onReset;
 
-  const FilterModalContent({
+  const FilterModal({
     super.key,
-    required this.islogin,
+    required this.dropdownController,
+    required this.allLocation,
+    required this.ageGroup,
+    required this.discount,
+    required this.rating,
+    required this.gender,
     required this.price,
+    required this.isLogin,
     required this.onApply,
     required this.onReset,
   });
@@ -43,24 +55,42 @@ class FilterModalContent extends StatelessWidget {
             ),
             MultiDropDown(),
             CustomDropdownListings(
-              itemList: DropDownMenuItemList.location,
+              itemList: allLocation,
               listType: 'all_location'.tr,
-              onChanged: (value) {},
+              onChanged: (value) =>
+                  dropdownController.selectedLocation.value = value,
             ),
             CustomDropdownListings(
-              itemList: DropDownMenuItemList.ageGroup,
+              itemList: ageGroup,
               listType: 'age_group'.tr,
-              onChanged: (value) {
-              
-            },
+              onChanged: (value) =>
+                  dropdownController.selectedAgeGroup.value = value,
             ),
             CustomDropdownListings(
-              itemList: DropDownMenuItemList.rating,
-              listType: 'rating'.tr,
-                  onChanged: (value) {},
+              itemList: discount,
+              listType: 'discount'.tr,
+              onChanged: (value) =>
+                  dropdownController.selectedDiscount.value = value,
             ),
-            CustomDropdownListings(itemList: price, listType: 'price'.tr,    onChanged: (value) {},),
-            const SizedBox(height: 15),
+            CustomDropdownListings(
+              itemList: rating,
+              listType: 'rating'.tr,
+              onChanged: (value) =>
+                  dropdownController.selectedRating.value = value,
+            ),
+            CustomDropdownListings(
+              itemList: gender,
+              listType: 'gender'.tr,
+              onChanged: (value) =>
+                  dropdownController.selectedGender.value = value,
+            ),
+            CustomDropdownListings(
+              itemList: price,
+              listType: 'price'.tr,
+              onChanged: (value) =>
+                  dropdownController.selectedPrice.value = value,
+            ),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -70,9 +100,10 @@ class FilterModalContent extends StatelessWidget {
                     icon: const Icon(Icons.check_circle_outline),
                     label: Text('apply_filters'.tr),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          islogin ? AppColor.blueColor : Colors.grey.shade200,
-                      foregroundColor: islogin ? Colors.white : Colors.black87,
+                      backgroundColor: isLogin
+                          ? AppColor.blueColor
+                          : Colors.grey.shade200,
+                      foregroundColor: isLogin ? Colors.white : Colors.black87,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -87,9 +118,10 @@ class FilterModalContent extends StatelessWidget {
                     icon: const Icon(Icons.refresh),
                     label: Text('reset'.tr),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          islogin ? Colors.grey.shade200 : AppColor.blueColor,
-                      foregroundColor: islogin ? Colors.black87 : Colors.white,
+                      backgroundColor: isLogin
+                          ? Colors.grey.shade200
+                          : AppColor.blueColor,
+                      foregroundColor: isLogin ? Colors.black87 : Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -99,7 +131,7 @@ class FilterModalContent extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 40),
           ],
         ),
       ),

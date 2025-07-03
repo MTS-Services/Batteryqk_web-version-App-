@@ -3,12 +3,12 @@ import 'package:batteryqk_web_app/common/widgets/show_snack_bar.dart';
 import 'package:batteryqk_web_app/data/services/utility/urls.dart';
 import 'package:batteryqk_web_app/features/authentication/models/build_listing_card_model.dart';
 import 'package:batteryqk_web_app/features/authentication/models/user_login.dart';
+import 'package:batteryqk_web_app/features/authentication/views/history.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:batteryqk_web_app/features/authentication/controllers/auth_controller.dart';
 
-import '../../common/widgets/custom_bottom_navigation_bar.dart';
 import '../../features/authentication/controllers/language_controller.dart';
 import '../../features/authentication/models/user_data.dart';
 
@@ -151,7 +151,7 @@ class ApiService {
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
-                        Get.to(() => CustomBottomNavigationBar());
+                        Get.to(() => HistoryScreen());
                       },
                       child: Text('ok'.tr),
                     ),

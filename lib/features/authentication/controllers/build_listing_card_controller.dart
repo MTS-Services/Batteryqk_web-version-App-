@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 
 class BuildListingCardController extends GetxController {
   final ApiService _apiService = ApiService();
+
   var listingCardData = <BuildListingCardModel>[].obs;
   var filteredListingData = <BuildListingCardModel>[].obs;
 
   var isloading = true.obs;
   var hasError = false.obs;
   var errorMessage = ''.obs;
+
   @override
   void onInit() {
     Future.delayed(const Duration(milliseconds: 150), fetchListData);
@@ -24,14 +26,22 @@ class BuildListingCardController extends GetxController {
     try {
       isloading(true);
       hasError(false);
+
       final data = await _apiService.showListing();
+
       listingCardData.value = data;
       filteredListingData.value = data;
+
     } catch (e) {
       hasError(true);
       errorMessage.value = e.toString();
     } finally {
       isloading(false);
     }
+  }
+
+  /// ✅ New helper method to reset filters easily
+  void resetFilters() {
+    filteredListingData.value = listingCardData;
   }
 }

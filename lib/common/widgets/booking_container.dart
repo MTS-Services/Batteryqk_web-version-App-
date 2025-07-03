@@ -105,9 +105,9 @@ class BookingContainer extends StatelessWidget {
           if (reviewIdStatus != 'null' && reviewStatus == 'PENDING')
             CustomSectionTitleText(title: 'review_status: PENDING'.tr),
           if (reviewIdStatus != 'null' && reviewStatus == 'REJECTED')
-            CustomSectionTitleText(title: 'Review Status: REJECTED'),
+            CustomSectionTitleText(title: 'review_status_rejected'.tr),
           if (reviewStatus == 'ACCEPTED')
-            CustomSectionTitleText(title: "Ratings:"),
+            CustomSectionTitleText(title: 'ratings_label'.tr),
           if (reviewStatus == 'ACCEPTED') Row(children: _buildStars()),
           const SizedBox(height: 18),
           CustomSectionTitleText(title: "description".tr),
@@ -130,11 +130,11 @@ class BookingContainer extends StatelessWidget {
                 );
               },
               showIcon: true,
-              text: 'Write Review',
+              text: 'write_review'.tr,
             ),
           // Check if booking is cancelled first
           if (status == 'CANCELLED')
-            CustomSectionTitleText(title: 'Booking is Cancelled'),
+            CustomSectionTitleText(title: 'booking_cancelled'.tr),
 
           // Only check for unpaid and pending if status is not CANCELLED
           if (status != 'CANCELLED')
@@ -142,10 +142,10 @@ class BookingContainer extends StatelessWidget {
               CustomSectionTitleText(
                 title:
                     paymentMethod == 'UNPAID' && status == 'PENDING'
-                        ? 'Booking is Unpaid and Pending'
+                        ? 'booking_unpaid_pending'.tr
                         : paymentMethod == 'UNPAID'
-                        ? 'Booking is Unpaid'
-                        : 'Booking is Pending',
+                        ? 'booking_unpaid'.tr
+                        : 'booking_pending'.tr,
               ),
 
           // const SizedBox(height: 18),

@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../common/widgets/custom_app_bar.dart';
-import '../../../../common/widgets/custom_dropdown_Listings.dart';
-import '../../../../common/widgets/multi_dropdown.dart';
 import '../../../../util/colors.dart';
 import '../../controllers/build_listing_card_controller.dart';
 import '../../controllers/dropdown_controller.dart';
+import 'widgets/filter_list.dart';
 import 'widgets/listing_list.dart';
 
 class Listings extends StatefulWidget {
@@ -27,6 +26,21 @@ class _ListingsState extends State<Listings> {
     setState(() {
       islogin = false;
     });
+
+    // Clear ALL filters in the dropdown controller
+    dropdownController.selectedMainCategories.clear();
+    dropdownController.selectedSubCategories.clear();
+    dropdownController.selectedSports.clear();
+
+    dropdownController.selectedLocation.value = null;
+    dropdownController.selectedAgeGroup.value = null;
+    dropdownController.selectedRating.value = null;
+    dropdownController.selectedGender.value = null;
+    dropdownController.selectedPrice.value = null;
+
+    // Reset the data back to original
+    _listController.filteredListingData.value = _listController.listingCardData;
+
     Navigator.pop(context);
   }
 
@@ -42,142 +56,144 @@ class _ListingsState extends State<Listings> {
 
   Future<void> _refreshData() async => await _listController.fetchListData();
   Future<void> applyFilter() async {
+    final allData = _listController.listingCardData;
+
+    final filtered =
+        allData.where((item) {
+          final matchesAge =
+              dropdownController.selectedAgeGroup.value == null ||
+              dropdownController.selectedAgeGroup.value!.isEmpty ||
+              item.ageGroup.any(
+                (age) =>
+                    age.toLowerCase().trim() ==
+                    dropdownController.selectedAgeGroup.value!
+                        .toLowerCase()
+                        .trim(),
+              );
+
+          final matchesGender =
+              dropdownController.selectedGender.value == null ||
+              dropdownController.selectedGender.value!.isEmpty ||
+              item.gender.toLowerCase().trim() ==
+                  dropdownController.selectedGender.value!.toLowerCase().trim();
+
+          final matchesLocation =
+              dropdownController.selectedLocation.value == null ||
+              dropdownController.selectedLocation.value!.isEmpty ||
+              item.location.toLowerCase().trim() ==
+                  dropdownController.selectedLocation.value!
+                      .toLowerCase()
+                      .trim();
+
+          final matchesPrice =
+              dropdownController.selectedPrice.value == null ||
+              dropdownController.selectedPrice.value!.isEmpty ||
+              item.price == dropdownController.selectedPrice.value;
+
+          final matchesRating =
+              dropdownController.selectedRating.value == null ||
+              dropdownController.selectedRating.value!.isEmpty ||
+              item.averageRating.toString() ==
+                  dropdownController.selectedRating.value;
+
+          final matchesMainCategory =
+              dropdownController.selectedMainCategories.isEmpty ||
+              dropdownController.selectedMainCategories.any(
+                (selected) => item.mainFeatures.toLowerCase().trim().contains(
+                  selected.toLowerCase().trim(),
+                ),
+              );
+
+          final matchesSubCategory =
+              dropdownController.selectedSubCategories.isEmpty ||
+              dropdownController.selectedSubCategories.any(
+                (selected) => item.mainSubCategories
+                    .toLowerCase()
+                    .trim()
+                    .contains(selected.toLowerCase().trim()),
+              );
+
+          final matchesSports =
+              dropdownController.selectedSports.isEmpty ||
+              dropdownController.selectedSports.any(
+                (selected) => item.allSprots.toLowerCase().trim().contains(
+                  selected.toLowerCase().trim(),
+                ),
+              );
+          final matchesDiscount =
+              dropdownController.selectedDiscount.value == null ||
+              dropdownController.selectedDiscount.value!.isEmpty ||
+              item.discount.toLowerCase().trim() ==
+                  dropdownController.selectedDiscount.value!
+                      .toLowerCase()
+                      .trim();
+
+          return matchesAge &&
+              matchesGender &&
+              matchesLocation &&
+              matchesPrice &&
+              matchesRating &&
+              matchesMainCategory &&
+              matchesSubCategory &&
+              matchesDiscount &&
+              matchesSports;
+        }).toList();
+
+    _listController.filteredListingData.value = filtered;
+
+    Navigator.pop(context);
   }
 
   void _showFilterModal() {
-    List<String> allLocation =
-        _listController.listingCardData.map((e) => e.location).toSet().toList();
-    List<String> ageGroup =
-        _listController.listingCardData
-            .map((e) => e.ageGroup[0])
-            .toSet()
-            .toList();
-    List<String> rating =
-        _listController.listingCardData
-            .map((e) => e.averageRating.toString())
-            .toSet()
-            .toList();
-    List<String> gender =
-        _listController.listingCardData.map((e) => e.gender).toSet().toList();
-    List<String> price =
-        _listController.listingCardData.map((e) => e.price).toSet().toList();
-    showModalBottomSheet(
-      backgroundColor: AppColor.whiteColor,
-      elevation: 4,
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) {
-        return SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-              left: 20,
-              right: 20,
-              top: 20,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'apply_filters'.tr,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                MultiDropDown(),
-                CustomDropdownListings(
-                  itemList: allLocation,
-                  listType: 'all_location'.tr,
-                  onChanged: (String? value) {
-                    dropdownController.selectedLocation.value = value;
-                  },
-                ),
-                CustomDropdownListings(
-                  itemList: ageGroup,
-                  listType: 'age_group'.tr,
-                  onChanged: (String? value) {
-                    dropdownController.selectedAgeGroup.value = value;
-                  },
-                ),
-                CustomDropdownListings(
-                  itemList: rating,
-                  listType: 'rating'.tr,
-                  onChanged: (String? value) {
-                    dropdownController.selectedRating.value = value;
-                  },
-                ),
-                CustomDropdownListings(
-                  itemList: gender,
-                  listType: 'gender'.tr,
-                  onChanged: (String? value) {
-                    dropdownController.selectedGender.value = value;
-                  },
-                ),
-                CustomDropdownListings(
-                  itemList: price,
-                  listType: 'price'.tr,
-                  onChanged: (String? value) {
-                    dropdownController.selectedPrice.value = value;
-                  },
-                ),
+  List<String> discount =
+      _listController.listingCardData.map((e) => e.discount).toSet().toList();
+  List<String> allLocation =
+      _listController.listingCardData.map((e) => e.location).toSet().toList();
+  List<String> ageGroup =
+      _listController.listingCardData.map((e) => e.ageGroup[0]).toSet().toList();
+  List<String> rating = _listController.listingCardData
+      .map((e) => e.averageRating.toString())
+      .toSet()
+      .toList();
+  List<String> gender =
+      _listController.listingCardData.map((e) => e.gender).toSet().toList();
+  List<String> price =
+      _listController.listingCardData.map((e) => e.price).toSet().toList();
 
-                const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: applyFilter,
-                        icon: const Icon(Icons.check_circle_outline),
-                        label: Text('apply_filters'.tr),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              islogin
-                                  ? AppColor.blueColor
-                                  : Colors.grey.shade200,
-                          foregroundColor:
-                              islogin ? Colors.white : Colors.black87,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: ElevatedButton.icon(
-                        onPressed: _resetFilters,
-                        icon: const Icon(Icons.refresh),
-                        label: Text('reset'.tr),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              islogin
-                                  ? Colors.grey.shade200
-                                  : AppColor.blueColor,
-                          foregroundColor:
-                              islogin ? Colors.black87 : Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  showModalBottomSheet(
+    backgroundColor: AppColor.whiteColor,
+    elevation: 4,
+    context: context,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+    ),
+    builder: (context) {
+      return FilterModal(
+        dropdownController: dropdownController,
+        allLocation: allLocation,
+        ageGroup: ageGroup,
+        discount: discount,
+        rating: rating,
+        gender: gender,
+        price: price,
+        isLogin: islogin,
+        onApply: applyFilter,
+        onReset: _resetFilters,
+      );
+    },
+  ).whenComplete(() {
+    // ✅ This runs when user taps outside or closes the sheet
+    dropdownController.selectedMainCategories.clear();
+    dropdownController.selectedSubCategories.clear();
+    dropdownController.selectedSports.clear();
+    dropdownController.selectedLocation.value = null;
+    dropdownController.selectedAgeGroup.value = null;
+    dropdownController.selectedRating.value = null;
+    dropdownController.selectedGender.value = null;
+    dropdownController.selectedPrice.value = null;
+    dropdownController.selectedDiscount.value = null;
+  });
+}
 
   @override
   Widget build(BuildContext context) {

@@ -235,54 +235,58 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Widget _buildLocationSection() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 8,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'location'.tr,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Expanded(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxHeight: 48),
-                  child: TextField(
-                    controller: _locationController,
-                    focusNode: _locationFocusNode,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                      hintText: 'enter_your_location'.tr,
-                      border: InputBorder.none,
-                      isDense: true,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 8,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'location'.tr,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxHeight: 48),
+                    child: TextField(
+                      controller: _locationController,
+                      focusNode: _locationFocusNode,
+                      maxLines: 1,
+                      decoration: InputDecoration(
+                        hintText: 'enter_your_location'.tr,
+                        border: InputBorder.none,
+                        isDense: true,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.edit_location_alt),
-                onPressed:
-                    () =>
-                        FocusScope.of(context).requestFocus(_locationFocusNode),
-              ),
-            ],
-          ),
-        ],
+                IconButton(
+                  icon: const Icon(Icons.edit_location_alt),
+                  onPressed:
+                      () => FocusScope.of(
+                        context,
+                      ).requestFocus(_locationFocusNode),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
