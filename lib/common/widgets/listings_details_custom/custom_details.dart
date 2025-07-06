@@ -75,8 +75,9 @@ class CustomDetails extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(child: CustomTitleText(name)),
+            Expanded(child: CustomTitleText(name)),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(

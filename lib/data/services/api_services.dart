@@ -151,7 +151,7 @@ class ApiService {
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
-                        Get.to(() => HistoryScreen());
+                        Get.offAll(() => HistoryScreen());
                       },
                       child: Text('ok'.tr),
                     ),

@@ -11,8 +11,6 @@ class CustomTitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
       style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
     );
   }
@@ -57,7 +55,7 @@ class CustomParagraphText extends StatelessWidget {
 class CustomSectionSubtitleText extends StatelessWidget {
   const CustomSectionSubtitleText({super.key, required this.subtitle});
   final String subtitle;
-  @override 
+  @override
   Widget build(BuildContext context) {
     return Text(
       subtitle,
