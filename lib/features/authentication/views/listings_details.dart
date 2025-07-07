@@ -64,9 +64,6 @@ class _ListingsDetailsState extends State<ListingsDetails> {
   ];
   final controller = Get.find<BuildListingCardController>();
 
-  Future<void> _refreshData() async {
-    await controller.fetchListData();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,44 +73,41 @@ class _ListingsDetailsState extends State<ListingsDetails> {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: CustomAppBar(isBack: true),
       ),
-      body: RefreshIndicator(
-        onRefresh: _refreshData,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                CustomDetailsImageGroup(
-                  image1a: widget.mainImage,
-                  image1b: widget.subImage1,
-                  image1c: widget.subImage2,
-                  image1d: widget.subImage3,
-                  image1e: widget.subImage4,
-                ),
-                const SizedBox(height: 20),
-                CustomDetails(
-                  name: widget.title,
-                  location: widget.location,
-                  description: widget.description,
-                  averageRating: widget.averageRating,
-                  tag: widget.tag,
-                  ageGroup: widget.ageGroup,
-                  facility: widget.facility,
-                  categories: widget.categoriesList,
-                  openingHours: widget.openingHours,
-                  reviews: widget.reviews,
-                  numOfReviews: widget.numOfReviews,
-                  gender: widget.gender,
-                  discount: widget.discount,
-                ),
-                CustomListingsBookingSection(
-                  index: widget.index,
-                  number: contractInfos[0],
-                  gmail: contractInfos[1],
-                  web: contractInfos[2],
-                ),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            children: [
+              CustomDetailsImageGroup(
+                image1a: widget.mainImage,
+                image1b: widget.subImage1,
+                image1c: widget.subImage2,
+                image1d: widget.subImage3,
+                image1e: widget.subImage4,
+              ),
+              const SizedBox(height: 20),
+              CustomDetails(
+                name: widget.title,
+                location: widget.location,
+                description: widget.description,
+                averageRating: widget.averageRating,
+                tag: widget.tag,
+                ageGroup: widget.ageGroup,
+                facility: widget.facility,
+                categories: widget.categoriesList,
+                openingHours: widget.openingHours,
+                reviews: widget.reviews,
+                numOfReviews: widget.numOfReviews,
+                gender: widget.gender,
+                discount: widget.discount,
+              ),
+              CustomListingsBookingSection(
+                index: widget.index,
+                number: contractInfos[0],
+                gmail: contractInfos[1],
+                web: contractInfos[2],
+              ),
+            ],
           ),
         ),
       ),

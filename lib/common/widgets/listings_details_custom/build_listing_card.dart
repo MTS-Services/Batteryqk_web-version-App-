@@ -1,3 +1,4 @@
+import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,8 @@ class BuildListingCard extends StatelessWidget {
     required this.context,
     required this.onPressed,
     required this.bookingOnPressed,
-    required this.averageRating, required this.discount,
+    required this.averageRating,
+    required this.discount,
   });
   List<Widget> _buildStars() {
     List<Widget> stars = [];
@@ -68,25 +70,34 @@ class BuildListingCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image.network(
-              imageUrl,
-              height: 180,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  height: 180,
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              },
-              errorBuilder:
-                  (context, error, stackTrace) => const SizedBox(
-                    height: 180,
-                    child: Center(child: Icon(Icons.error)),
-                  ),
-            ),
+            child:
+                imageUrl.isNotEmpty
+                    ? Image.network(
+                      imageUrl,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const SizedBox(
+                          height: 180,
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      },
+                      errorBuilder:
+                          (context, error, stackTrace) => const SizedBox(
+                            height: 180,
+                            child: Center(child: Icon(Icons.error)),
+                          ),
+                    )
+                    : Image.asset(
+                      AppImages.logo, // ✅ put your fallback image here!
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(14),
             child: Column(
