@@ -17,7 +17,7 @@ void main() async {
   }
   if (!Get.isRegistered<BuildListingCardController>()) {
     Get.lazyPut<BuildListingCardController>(
-      () => BuildListingCardController(),
+      () => BuildListingCardController(),//buildListingController
       fenix: true,
     );
   }
