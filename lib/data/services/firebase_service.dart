@@ -151,7 +151,6 @@ class AuthControllers extends GetxController {
 
         print("Create User Response: ${createResponse.body}");
 
-        /// 2. Login API
         final loginResponse = await http.post(
           Uri.parse(Urls.userLogin),
           headers: {'Content-Type': 'application/json'},
