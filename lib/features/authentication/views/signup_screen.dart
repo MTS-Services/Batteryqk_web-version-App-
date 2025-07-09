@@ -254,13 +254,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         authController.googleSignIn();
                       },
                     ),
-                    SizedBox(width: 16),
-                    buildSocialButton(
-                      icon: FontAwesomeIcons.apple,
-                      onTap: () {
-                        authController.signInWithApple();
-                      },
-                    ),
                   ],
                 ),
               ],
