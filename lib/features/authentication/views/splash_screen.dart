@@ -1,5 +1,6 @@
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'language_page.dart';
@@ -34,14 +35,17 @@ class SplashScreen extends StatelessWidget {
                   color: AppColor.blackColor,
                 ),
               ),
+
+              SizedBox(height: 80.h),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LanguagePage(
-                        initialSelection: true,
-                      )),
+                      MaterialPageRoute(
+                        builder:
+                            (context) => LanguagePage(initialSelection: true),
+                      ),
                       (route) => false,
                     );
                   },
