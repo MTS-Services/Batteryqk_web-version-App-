@@ -1,7 +1,9 @@
+import 'package:batteryqk_web_app/util/images_path.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../util/colors.dart';
+import '../offer_container.dart';
 
 class BuildListingCard extends StatelessWidget {
   final String title;
@@ -13,6 +15,8 @@ class BuildListingCard extends StatelessWidget {
   final BuildContext context;
   final Function() onPressed;
   final Function() bookingOnPressed;
+  final double averageRating;
+  final String discount;
 
   const BuildListingCard({
     super.key,
@@ -23,8 +27,28 @@ class BuildListingCard extends StatelessWidget {
     required this.description,
     required this.imageUrl,
     required this.context,
-    required this.onPressed, required this.bookingOnPressed,
+    required this.onPressed,
+    required this.bookingOnPressed,
+    required this.averageRating,
+    required this.discount,
   });
+  List<Widget> _buildStars() {
+    List<Widget> stars = [];
+    int fullStars = averageRating.floor();
+    bool hasHalfStar = (averageRating - fullStars) >= 0.5;
+
+    for (int i = 0; i < fullStars; i++) {
+      stars.add(const Icon(Icons.star, color: Colors.amber, size: 16));
+    }
+    if (hasHalfStar) {
+      stars.add(const Icon(Icons.star_half, color: Colors.amber, size: 16));
+    }
+    int emptyStars = 5 - stars.length;
+    for (int i = 0; i < emptyStars; i++) {
+      stars.add(const Icon(Icons.star_border, color: Colors.amber, size: 16));
+    }
+    return stars;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,25 +70,34 @@ class BuildListingCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image.network(
-              imageUrl,
-              height: 180,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const SizedBox(
-                  height: 180,
-                  child: Center(child: CircularProgressIndicator()),
-                );
-              },
-              errorBuilder:
-                  (context, error, stackTrace) => const SizedBox(
-                    height: 180,
-                    child: Center(child: Icon(Icons.error)),
-                  ),
-            ),
+            child:
+                imageUrl.isNotEmpty
+                    ? Image.network(
+                      imageUrl,
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const SizedBox(
+                          height: 180,
+                          child: Center(child: CircularProgressIndicator()),
+                        );
+                      },
+                      errorBuilder:
+                          (context, error, stackTrace) => const SizedBox(
+                            height: 180,
+                            child: Center(child: Icon(Icons.error)),
+                          ),
+                    )
+                    : Image.asset(
+                      AppImages.logo, // ✅ put your fallback image here!
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(14),
             child: Column(
@@ -95,7 +128,7 @@ class BuildListingCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        tag,
+                        'AED $tag',
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
@@ -107,21 +140,18 @@ class BuildListingCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   location,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(color: Colors.grey, fontSize: 13),
                 ),
                 const SizedBox(height: 6),
                 Row(
-                  children: List.generate(
-                    5,
-                    (index) => Icon(
-                      Icons.star,
-                      color:
-                          index < rating.round()
-                              ? Colors.amber
-                              : Colors.grey.shade300,
-                      size: 18,
-                    ),
-                  ),
+                  children: [
+                    ..._buildStars(),
+                    // Spacer(),
+                    const SizedBox(width: 10),
+                    OfferContainer(offer: discount),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 Text(

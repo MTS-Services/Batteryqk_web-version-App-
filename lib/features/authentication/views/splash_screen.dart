@@ -1,7 +1,8 @@
-import 'package:batteryqk_web_app/features/authentication/views/login_screen.dart';
 import 'package:batteryqk_web_app/util/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'language_page.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -39,7 +40,9 @@ class SplashScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LogInScreen()),
+                      MaterialPageRoute(builder: (context) => LanguagePage( 
+                        initialSelection: true,
+                      )),
                       (route) => false,
                     );
                   },

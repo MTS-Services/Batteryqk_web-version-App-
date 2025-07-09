@@ -7,6 +7,94 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:953237213749:android:958300584110787dee577c",
+        "android_client_info": {
+          "package_name": "com.batteryqk.batteryqk_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953237213749-u7uuflm3ruthpcd2a789ku2pft03vuk4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.batteryqk.batteryqk_app",
+            "certificate_hash": "76fefedc42b8da47cfcdf26f7454eb9227f94843"
+          }
+        },
+        {
+          "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMX-2-OV4pT6sCd6nqePO4d9rjb8yOtUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "953237213749-pktpe9rte9uvkf57potkipt9rl0dbipc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.batteryqkWebApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953237213749:android:d1df73a260450b8cee577c",
+        "android_client_info": {
+          "package_name": "com.example.batteryqk_web"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953237213749-t715naqflknsl1ekp8mb03mrfj37g9vb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.batteryqk_web",
+            "certificate_hash": "76fefedc42b8da47cfcdf26f7454eb9227f94843"
+          }
+        },
+        {
+          "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMX-2-OV4pT6sCd6nqePO4d9rjb8yOtUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953237213749-8nqu24ukp308fcr7jqa69sb01sesvc56.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "953237213749-pktpe9rte9uvkf57potkipt9rl0dbipc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.batteryqkWebApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:953237213749:android:8ed11de6f625abb3ee577c",
         "android_client_info": {
           "package_name": "com.example.batteryqk_web_app"

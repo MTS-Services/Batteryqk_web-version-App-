@@ -1,83 +1,62 @@
-import 'package:batteryqk_web_app/util/dropdown_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../features/authentication/controllers/build_listing_card_controller.dart';
+import '../../features/authentication/controllers/dropdown_controller.dart';
 import 'custom_multiSelect_dropdown.dart';
 
-class MultiDropDown extends StatefulWidget {
-  @override
-  _MultiDropDownState createState() =>
-      _MultiDropDownState();
-}
+class MultiDropDown extends StatelessWidget {
+  MultiDropDown({super.key});
 
-class _MultiDropDownState
-    extends State<MultiDropDown> {
-  List<String> selectedMainCategories = [];
-  List<String> selectedSubCategories = [];
-  List<String> selectedSports = [];
-
-  List<String> getAvailableSubCategories() {
-    List<String> subs = [];
-    for (var cat in selectedMainCategories) {
-      subs.addAll(DropDownMenuItemList.sportsCategories[cat]!.keys);
-    }
-    return subs;
-  }
-
-  List<String> getAvailableSports() {
-    List<String> sports = [];
-    for (String sub in selectedSubCategories) {
-      for (var cat in selectedMainCategories) {
-        if (DropDownMenuItemList.sportsCategories[cat]?[sub] != null) {
-          sports.addAll(DropDownMenuItemList.sportsCategories[cat]![sub]!.keys);
-        }
-      }
-    }
-    return sports.toSet().toList(); // remove duplicates
-  }
+  final controller = Get.find<BuildListingCardController>();
+  final dropdownController = Get.put(DropdownController());
 
   @override
   Widget build(BuildContext context) {
-    List<String> mainOptions =
-        DropDownMenuItemList.sportsCategories.keys.toList();
+    List<String> availableMainCategories =
+        controller.listingCardData.map((e) => e.mainFeatures).toSet().toList();
+    List<String> availableSubMainCategories =
+        controller.listingCardData
+            .map((e) => e.mainSubCategories)
+            .toSet()
+            .toList();
+    List<String> allSports =
+        controller.listingCardData.map((e) => e.allSprots).toSet().toList();
     return Column(
       children: [
-        CustomMultiSelectDropdown(
-
-          title: "All Main Categories",
-          options: mainOptions,
-          selectedValues: selectedMainCategories,
-          onSelectionChanged: (selected) {
-            setState(() {
-              selectedMainCategories = selected;
-              selectedSubCategories = [];
-              selectedSports = [];
-            });
-          },
+        Obx(
+          () => CustomMultiSelectDropdown(
+            title: "all_main_categories".tr,
+            options: availableMainCategories,
+            selectedValues: dropdownController.selectedMainCategories.toList(),
+            onSelectionChanged: (selected) {
+              dropdownController.selectedMainCategories.value = selected;
+              dropdownController.selectedSubCategories.clear();
+              dropdownController.selectedSports.clear();
+            },
+          ),
         ),
-        CustomMultiSelectDropdown(
-
-          title: "All Subcategories",
-          options: getAvailableSubCategories(),
-          selectedValues: selectedSubCategories,
-          onSelectionChanged: (selected) {
-            setState(() {
-              selectedSubCategories = selected;
-              selectedSports = [];
-            });
-          },
+        Obx(
+          () => CustomMultiSelectDropdown(
+            title: "all_sub_categories".tr,
+            options: availableSubMainCategories,
+            selectedValues: dropdownController.selectedSubCategories.toList(),
+            onSelectionChanged: (selected) {
+              dropdownController.selectedSubCategories.value = selected;
+              dropdownController.selectedSports.clear();
+            },
+          ),
         ),
-        CustomMultiSelectDropdown(
-
-          title: "All Sports",
-          options: getAvailableSports(),
-          selectedValues: selectedSports,
-          onSelectionChanged: (selected) {
-            setState(() {
-              selectedSports = selected;
-            });
-          },
+        Obx(
+          () => CustomMultiSelectDropdown(
+            title: "all_sports".tr,
+            options: allSports,
+            selectedValues: dropdownController.selectedSports.toList(),
+            onSelectionChanged: (selected) {
+              dropdownController.selectedSports.value = selected;
+            },
+          ),
         ),
       ],
     );
   }
 }
-

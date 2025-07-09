@@ -1,4 +1,4 @@
-package com.example.batteryqk_web_app
+package com.batteryqk.batteryqk_app
 
 import io.flutter.embedding.android.FlutterActivity
 

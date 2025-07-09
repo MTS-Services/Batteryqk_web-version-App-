@@ -1,25 +1,73 @@
-import 'package:get/get.dart'; // add for .tr
-import 'package:batteryqk_web_app/common/styles/styles.dart';
-import 'package:batteryqk_web_app/util/colors.dart';
+import 'package:batteryqk_web_app/common/widgets/offer_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+
+import '../../../features/authentication/models/review_model.dart';
+import '../../../features/authentication/views/review_screen.dart';
+import '../../../util/colors.dart';
+import '../../styles/styles.dart';
 import 'custom_reviews.dart';
 
-class CustomDetails extends StatefulWidget {
-  final List<String> facilities;
-  final int starCount;
+class CustomDetails extends StatelessWidget {
+  final double averageRating; // Use double for averageRating
+  final String name;
+  final String location;
+  final String description;
   final String tag;
+  final String ageGroup;
+  final String facility;
+  final List<String> categories;
+  final String openingHours;
+  final List<Review> reviews;
+  final int numOfReviews;
+  final String gender;
+  final String discount;
 
   const CustomDetails({
     super.key,
-    required this.facilities,
-    required this.starCount, required this.tag,
+    required this.averageRating, // Pass averageRating as a double
+    required this.tag,
+    required this.name,
+    required this.location,
+    required this.description,
+    required this.ageGroup,
+    required this.facility,
+    required this.categories,
+    required this.openingHours,
+    required this.reviews,
+    required this.numOfReviews,
+    required this.gender,
+    required this.discount,
   });
 
-  @override
-  State<CustomDetails> createState() => _CustomDetailsState();
-}
+  // Helper method to generate the star icons based on the average rating
+  List<Widget> _buildStars() {
+    List<Widget> stars = [];
+    int fullStars =
+        averageRating.floor(); // Full stars based on the integer part
+    bool hasHalfStar =
+        (averageRating - fullStars) >= 0.5; // Check if half-star is needed
 
-class _CustomDetailsState extends State<CustomDetails> {
+    // Add full stars
+    for (int i = 0; i < fullStars; i++) {
+      stars.add(const Icon(Icons.star, color: Colors.amber, size: 16));
+    }
+
+    // Add half star if necessary
+    if (hasHalfStar) {
+      stars.add(const Icon(Icons.star_half, color: Colors.amber, size: 16));
+    }
+
+    // Add empty stars for the remaining part
+    int emptyStars = 5 - stars.length; // Make sure to have 5 stars total
+    for (int i = 0; i < emptyStars; i++) {
+      stars.add(const Icon(Icons.star_border, color: Colors.amber, size: 16));
+    }
+
+    return stars;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,22 +75,20 @@ class _CustomDetailsState extends State<CustomDetails> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomTitleText('academies_1_title'.tr),
+            Expanded(child: CustomTitleText(name)),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 5,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
                 color:
-                widget.tag == "Paid".tr
-                    ? Colors.blue.shade100
-                    : Colors.green.shade100,
+                    tag == "Paid".tr
+                        ? Colors.blue.shade100
+                        : Colors.green.shade100,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(
-                widget.tag,
+                'AED $tag',
                 style: const TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
@@ -51,100 +97,106 @@ class _CustomDetailsState extends State<CustomDetails> {
             ),
           ],
         ),
-        Text('downtown'.tr, style: TextStyle(color: Colors.grey.shade600)),
-        Text('price : \$81'.tr, style: TextStyle(color: Colors.grey.shade600)),
+        Text(location, style: TextStyle(color: Colors.grey.shade600)),
         Row(
           children: [
             Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(widget.starCount, (index) {
-                return const Icon(Icons.star, color: Colors.amber, size: 16);
-              }),
+              children: _buildStars(), // Add star icons based on averageRating
             ),
             Text(
-              ' (${widget.starCount})',
+              ' ($averageRating)',
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
             const SizedBox(width: 4),
             Text(
-              'reviews_count'.tr,
+              ('($numOfReviews ${'reviews'.tr})'),
               style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ],
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 10.h),
+        OfferContainer(offer: discount),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('description'.tr),
-        CustomParagraphText('academies_1_details'.tr),
-        const SizedBox(height: 30),
+        CustomParagraphText(description),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('age_groups'.tr),
-
-        Row(
-          children: [
-            Badge(
-              label: Text('children_6_12'.tr),
-              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
-              backgroundColor: AppColor.whiteColor,
-              textColor: Colors.black,
-            ),
-            const SizedBox(width: 10),
-            Badge(
-              label: Text('teenagers_13_18'.tr),
-              padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
-              backgroundColor: AppColor.whiteColor,
-              textColor: Colors.black,
-            ),
-          ],
-        ),
-        const SizedBox(height: 30),
-        CustomSectionHeaderText('Category'.tr),
+        SizedBox(height: 5.h),
+        Text(ageGroup, style: TextStyle(fontSize: 14.sp)),
+        SizedBox(height: 20.h),
+        CustomSectionHeaderText('gender'.tr),
+        SizedBox(height: 5.h),
+        Text(gender.tr, style: TextStyle(fontSize: 14.sp)),
+        SizedBox(height: 20.h),
+        CustomSectionHeaderText('all_sports'.tr),
+        SizedBox(height: 5.h),
         Column(
-          children:
-          widget.facilities.map((facility) {
-            return Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: Row(
+          children: [
+            ...List.generate(categories.length, (index) {
+              return Row(
                 children: [
                   const Icon(Icons.check_box, color: Colors.green),
                   const SizedBox(width: 6),
-                  Text(facility),
+                  Text(categories[index]),
                 ],
-              ),
-            );
-          }).toList(),
+              );
+            }),
+          ],
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: 20.h),
         CustomSectionHeaderText('facilities'.tr),
-        Column(
-          children:
-              widget.facilities.map((facility) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Row(
-                    children: [
-                      const Icon(Icons.check, color: Colors.green),
-                      const SizedBox(width: 6),
-                      Text(facility),
-                    ],
+        Row(children: [Text(facility)]),
+        SizedBox(height: 20.h),
+        CustomSectionHeaderText('opening_hours'.tr),
+        CustomParagraphText(openingHours),
+        SizedBox(height: 20.h),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomSectionHeaderText('reviews'.tr),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReviewScreen(reviews: reviews),
                   ),
                 );
-              }).toList(),
+              },
+              child: Text(
+                "view_all".tr,
+                style: TextStyle(
+                  color: AppColor.blueColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 30),
-        CustomSectionHeaderText('opening_hours'.tr),
-        CustomParagraphText('opening_hours_detail'.tr),
-        const SizedBox(height: 30),
-        CustomSectionHeaderText('reviews'.tr),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Mark T.',
-          designation: 'Excellent facilities and coaches',
-        ),
-        const SizedBox(height: 20),
-        CustomReviews(
-          starCount: widget.starCount,
-          name: 'Sarah L.',
-          designation: 'My kids love coming here. Very professional.',
-        ),
+        reviews.isEmpty
+            ? Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Text(
+                'No reviews added yet',
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 16),
+              ),
+            )
+            : ListView.builder(
+              shrinkWrap: true,
+              itemCount: reviews.length > 2 ? 2 : reviews.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: CustomReviews(
+                    starCount: reviews[index].rating,
+                    name: reviews[index].user, // Access the name here
+                    designation: reviews[index].comment, // Access the comment
+                  ),
+                );
+              },
+            ),
       ],
     );
   }

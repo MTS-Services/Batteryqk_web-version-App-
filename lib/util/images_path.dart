@@ -46,4 +46,6 @@ class AppImages {
   static const String houseShape = "assets/images/house.png";
   static const String comingSoon = "assets/images/coming soon.jpg";
   static const String bannerImages = "assets/images/bannerImages.jpg";
+  static const String blurCarImage = "assets/images/blurCarImage.png";
+  static const String blurPenguineImage = "assets/images/blurPenguineImage.png";
 }

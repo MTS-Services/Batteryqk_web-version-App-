@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 
 class CustomDropdownButton extends StatefulWidget {
   final String listType;
-  double? fontSize=16;
+  final double? fontSize;
   final List<String> itemList;
 
-  CustomDropdownButton({
+  const CustomDropdownButton({
     super.key,
     required this.itemList,
     required this.listType,
-    this.fontSize,
+    this.fontSize = 16,
   });
 
   @override
@@ -19,12 +19,10 @@ class CustomDropdownButton extends StatefulWidget {
 }
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
-
   String? selectedItem;
   final FocusNode _focusNode = FocusNode();
   bool isFocused = false;
-  bool iisFocused=false;
-
+  bool iisFocused = false;
 
   @override
   void initState() {
@@ -32,11 +30,10 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
     _focusNode.addListener(() {
       setState(() {
         isFocused = _focusNode.hasFocus;
-        iisFocused=_focusNode.hasFocus;
+        iisFocused = _focusNode.hasFocus;
       });
     });
   }
-
 
   @override
   void dispose() {
@@ -47,7 +44,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 12.0,),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
       child: Focus(
         focusNode: _focusNode,
         child: DropdownButtonHideUnderline(
@@ -62,21 +59,23 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
                 color: Theme.of(context).hintColor,
               ),
             ),
-            items: widget.itemList
-                .map(
-                  (String item) => DropdownMenuItem(
-                    enabled: true,
-                value: item,
-                child: Text(
-                  item,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ).toList(),
+            items:
+                widget.itemList
+                    .map(
+                      (String item) => DropdownMenuItem(
+                        enabled: true,
+                        value: item,
+                        child: Text(
+                          item,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
             onChanged: (value) {
               setState(() {
                 selectedItem = value;
@@ -85,7 +84,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
             iconStyleData: IconStyleData(
               icon: const Icon(Icons.keyboard_arrow_down_rounded),
               iconSize: 20,
-              iconEnabledColor: iisFocused ? AppColor.blueColor: Colors.grey,
+              iconEnabledColor: iisFocused ? AppColor.blueColor : Colors.grey,
             ),
             dropdownStyleData: DropdownStyleData(
               isOverButton: false,
@@ -112,10 +111,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
               decoration: BoxDecoration(
                 color: AppColor.whiteColor,
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(
-                  color: Colors.grey.shade400,
-                  width: 1,
-                ),
+                border: Border.all(color: Colors.grey.shade400, width: 1),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),
