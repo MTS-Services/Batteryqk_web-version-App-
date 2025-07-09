@@ -11,9 +11,9 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
-      body: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Center(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
           child: Column(
             children: [
               const SizedBox(height: 40),
@@ -34,13 +34,12 @@ class SplashScreen extends StatelessWidget {
                   color: AppColor.blackColor,
                 ),
               ),
-              Spacer(),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LanguagePage( 
+                      MaterialPageRoute(builder: (context) => LanguagePage(
                         initialSelection: true,
                       )),
                       (route) => false,
