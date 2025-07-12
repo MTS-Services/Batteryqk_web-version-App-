@@ -28,10 +28,13 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Get.offAll(() => CustomBottomNavigationBar());
-        return false; // prevent default pop
+    return PopScope(
+      canPop: false, // disables default back behavior
+      onPopInvoked: (didPop) {
+        // If user tries to pop, do this instead
+        if (!didPop) {
+          Get.offAll(() => CustomBottomNavigationBar());
+        }
       },
       child: Scaffold(
         appBar: CustomAppBar(
@@ -65,9 +68,9 @@ class HistoryScreen extends StatelessWidget {
                     reviewController: reviewController,
                     academyName: booking.listing?.name ?? "N/A",
                     location: booking.listing!.location.toString().substring(
-                          1,
-                          booking.listing!.location.toString().length - 1,
-                        ),
+                      1,
+                      booking.listing!.location.toString().length - 1,
+                    ),
                     date: formattedDate,
                     additionalNote: booking.additionalNote.toString(),
                     bookingTime: booking.bookingHours.toString(),
