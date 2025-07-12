@@ -105,19 +105,24 @@ class AuthControllers extends GetxController {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
       if (googleUser == null) {
-        showSnackbar(Get.context!, 'Cancelled'.tr, 'Google sign-in was cancelled'.tr);
+        showSnackbar(
+          Get.context!,
+          'Cancelled'.tr,
+          'Google sign-in was cancelled'.tr,
+        );
         return false;
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      final UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      final UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithCredential(credential);
       final User? user = userCredential.user;
 
       if (user != null) {
@@ -131,9 +136,13 @@ class AuthControllers extends GetxController {
         }
 
         final String fname = name.split(' ').first;
-        final String lname = name.split(' ').length > 1 ? name.split(' ').sublist(1).join(' ') : '';
+        final String lname =
+            name.split(' ').length > 1
+                ? name.split(' ').sublist(1).join(' ')
+                : '';
 
-        final String tempPassword = 'E#1234'; // You can set a fixed or random password
+        final String tempPassword =
+            'E#1234'; // You can set a fixed or random password
 
         /// 1. Create User API
         final createResponse = await http.post(
@@ -147,21 +156,15 @@ class AuthControllers extends GetxController {
             "uid": uid,
           }),
         );
-
-
         print("Create User Response: ${createResponse.body}");
 
-        /// 2. Login APIdfasdfasfdsa
         final loginResponse = await http.post(
           Uri.parse(Urls.userLogin),
           headers: {'Content-Type': 'application/json'},
-          body: jsonEncode({
-            "email": email,
-            "password": tempPassword,
-          }),
+          body: jsonEncode({"email": email, "password": tempPassword}),
         );
 
-        print(fname+lname+tempPassword);
+        print(fname + lname + tempPassword);
 
         if (loginResponse.statusCode == 200) {
           final responseData = jsonDecode(loginResponse.body);
@@ -170,50 +173,38 @@ class AuthControllers extends GetxController {
           if (apiToken != null) {
             await AuthController.saveToken(apiToken);
             print("API Token Saved: $apiToken");
-            showSnackbar(Get.context!, 'Success'.tr, 'Logged in with Google'.tr);
+            showSnackbar(
+              Get.context!,
+              'Success'.tr,
+              'Logged in with Google'.tr,
+            );
             Get.offAll(() => CustomBottomNavigationBar());
             return true;
           } else {
-            showSnackbar(Get.context!, 'Error'.tr, 'Token missing in API response'.tr);
+            showSnackbar(
+              Get.context!,
+              'Error'.tr,
+              'Token missing in API response'.tr,
+            );
           }
         } else {
-          print("Login failed: ${loginResponse.statusCode} ${loginResponse.body}");
-          showSnackbar(Get.context!, 'Login Failed'.tr, 'Invalid credentials'.tr);
+          print(
+            "Login failed: ${loginResponse.statusCode} ${loginResponse.body}",
+          );
+          showSnackbar(
+            Get.context!,
+            'Login Failed'.tr,
+            'Invalid credentials'.tr,
+          );
         }
       } else {
         showSnackbar(Get.context!, 'Error'.tr, 'Firebase user not found'.tr);
       }
-    } catch (e) {
+    } catch (e, s) {
       print("Exception: $e");
       showSnackbar(Get.context!, 'Google Sign-In Error'.tr, e.toString());
     }
 
     return false;
-  }
-
-
-  Future<UserCredential?> signInWithApple() async {
-    try {
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      final oauthCredential = OAuthProvider("apple.com").credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
-      );
-
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(
-        oauthCredential,
-      );
-      print(" Apple Sign-In Successful: ${userCredential.user?.email}");
-      return userCredential;
-    } catch (e) {
-      print(" Apple Sign-In Error: $e");
-      return null;
-    }
   }
 }
