@@ -53,8 +53,6 @@ class ApiService {
         final String token = responseBody['token'];
 
         await AuthController.saveToken(token);
-      } else {
-        showSnackbar(context, "Failed", "Login failed: ${response.statusCode}");
       }
     } catch (e) {
       showSnackbar(context, "Error", "An error occurred: $e");

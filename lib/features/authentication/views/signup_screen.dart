@@ -131,7 +131,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value == null || value.isEmpty) {
                       return 'password_required'.tr;
                     }
-                    if (value.length < 7) {
+                    if (value.length < 6) {
                       return 'password_length'
                           .tr; // Update your translation for this key
                     }

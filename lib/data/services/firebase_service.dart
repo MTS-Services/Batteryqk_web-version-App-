@@ -40,7 +40,6 @@ class AuthControllers extends GetxController {
         email: email,
         password: password,
       );
-      showSnackbar(context, "Success".tr, "Account created successfully".tr);
       return true;
     } catch (e) {
       showSnackbar(context, 'Sign Up Error'.tr, e.toString().split('] ').last);
